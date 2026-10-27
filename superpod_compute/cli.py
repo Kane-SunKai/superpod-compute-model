@@ -66,4 +66,3 @@ def main(argv=None):
         return 0
     except (ValueError,TypeError,OSError,NotImplementedError,json.JSONDecodeError) as exc:
         print('error: '+str(exc),file=sys.stderr);return 2
-

@@ -17,4 +17,3 @@ include = ["superpod_compute*"]
 
 [tool.setuptools.package-data]
 superpod_compute = ["data/*.csv", "data/*.json"]
-

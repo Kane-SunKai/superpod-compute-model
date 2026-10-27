@@ -127,4 +127,3 @@ class GemmModel:
 
 def default_registry():
     registry=OperatorRegistry();registry.register(GemmModel());return registry
-

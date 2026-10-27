@@ -9,4 +9,3 @@ print('model duration (us):',result['best']['duration_us'])
 fixed=evaluate_mapping(request,Mapping(128,128,128,12,9,2,2),trace_limit=8)
 print('fixed teaching mapping duration (us):',fixed['duration_us'])
 print('first wave pipeline:',fixed['wave_classes'][0]['pipeline'])
-

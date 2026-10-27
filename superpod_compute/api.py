@@ -50,4 +50,3 @@ def evaluate_mapping(request,mapping,hardware=None,*,policy=None,backend='array'
     result=model.evaluate(request,hardware,policy,compute,mapping,trace_limit=trace_limit)
     if result is None:raise ValueError('Mapping violates resource budgets: '+str(model.capacity(mapping,hardware)))
     return result
-

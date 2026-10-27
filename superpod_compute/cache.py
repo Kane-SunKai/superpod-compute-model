@@ -33,4 +33,3 @@ class MappingCache:
         with self.connect() as db:return db.execute('SELECT COUNT(*) FROM mappings').fetchone()[0]
     def clear(self):
         with self.connect() as db:db.execute('DELETE FROM mappings')
-

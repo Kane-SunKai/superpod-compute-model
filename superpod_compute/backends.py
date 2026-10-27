@@ -100,4 +100,3 @@ def make_backend(name,hardware,efficiency=1.0,lut_path=None):
     if name=='array':return ArrayBackend(hardware,efficiency,lut_path)
     if name=='peak':return PeakBackend(hardware,efficiency)
     raise ValueError('Unknown backend: '+name)
-

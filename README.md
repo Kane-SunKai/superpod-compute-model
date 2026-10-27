@@ -142,4 +142,6 @@ $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\de
 
 测试覆盖逐元素分块数学、全部来源LUT、阵列分配、容量、四种缓冲组合、共享端口、加速流水与独立DAG对照、长K快进、非整除、少量活跃Core、搜索最小值、缓存命中/失效/损坏处理和算子扩展接口。`tools/validate.py`会生成可复现的案例报告；不会启动GPU或网络任务。
 
+已完成的数值和测试记录见[验证报告](docs/validation.md)。可单独运行`python tools/audit_lut.py`核查捆绑的阵列周期表；无需保留原LLMCompass目录。
+
 本项目是独立本地Git仓库，不设置远端。代码、配置、必要来源数据、测试和验证摘要会提交；`.cache`、临时结果、Python缓存和虚拟环境不提交。可以运行`git log --oneline`查看备份点。当前机器没有Git用户身份配置，因此自动生成的备份提交使用`Codex Local Backup <codex@localhost>`，未修改全局Git配置。

@@ -141,4 +141,3 @@ class Mapping:
         if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
 
     def to_dict(self):return asdict(self)
-

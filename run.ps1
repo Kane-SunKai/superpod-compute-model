@@ -14,4 +14,3 @@ Push-Location -LiteralPath $PSScriptRoot
 try { & $computePython -m superpod_compute @args; $computeExitCode = $LASTEXITCODE }
 finally { Pop-Location }
 exit $computeExitCode
-

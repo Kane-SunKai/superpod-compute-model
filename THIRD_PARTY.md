@@ -29,4 +29,3 @@ cycles = max(1, folds * (K + array_rows + array_cols - 2) - 1)
 原配置的192 KiB是LLMCompass抽象SRAM参数。本项目按已确认方案使用128 KiB shared预算、128 KiB寄存器预算、32 KiB工作寄存器预留。C按FP32的4 B/元素计容量；没有沿用原阵列数据对象的统一2 B累加口径。
 
 原IO配置保留1 µs latency，但原GEMM的块IO公式仅按带宽计费。默认策略因此不对每个面板加1 µs；可以通过 `charge_hbm_latency` 显式切换，并生成不同缓存键。
-
