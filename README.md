@@ -134,6 +134,8 @@ print(result["best"]["duration_s"])
 
 ## 7. 验证、结果与Git
 
+真机对比使用新增的`tools/benchmark_gemm.py`：`measure`在真实GPU上运行三组GEMM，`predict`运行计算模型，`compare`读取实测文件并生成JSON/CSV对比表。具体命令、计时范围、算子尺寸和硬件配置修改方法见[真机测试指南](docs/real_gpu_benchmark.md)。
+
 ```powershell
 $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 & $py -m unittest discover -s tests -v
