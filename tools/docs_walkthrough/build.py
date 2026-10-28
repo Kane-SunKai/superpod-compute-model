@@ -172,7 +172,7 @@ body=r'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta nam
 <div class="note">这里描述的是当前 V3.1 实现。BW1100 已启用四阶段输入/计算流水；A100仍使用原 array 后端。两种硬件路径的细节并不完全相同。</div></section>
 
 <section id="hardware"><div class="section-no">02 / GPU STRUCTURE</div><h2>HBM → 全卡共享 L2 → 各 CU 的 Shared → 寄存器 → 矩阵单元</h2><div class="diagram">@@GPU@@</div>
-<div class="table-scroll"><table><thead><tr><th>资源</th><th>当前配置</th><th>进入模型的方式</th></tr></thead><tbody><tr><td>矩阵计算</td><td>72 CU，每CU 4单元；16×16×16 MMAC；8 cycles</td><td>每条8192 FLOP；按指令分组和最慢单元服务计时。1.30 GHz下整卡383.3856 TFLOP/s。</td></tr><tr><td>Shared / LDS</td><td>64 KiB/CU；读取64 B/CU/cycle</td><td>A/B暂存与双缓冲；读取带宽83.2 GB/s/CU，显式加入S阶段。</td></tr><tr><td>寄存器</td><td>768 KiB/CU聚合预算；预留32 KiB</td><td>C的FP32累加区 + 1/2份A/B操作数槽 + 预留；必须放得下。</td></tr><tr><td>L2</td><td>8 MiB，全卡共用；2990 B/cycle</td><td>输入窗口、输出窗口与保留数据共用容量；统一服务带宽3.887 TB/s。</td></tr><tr><td>HBM</td><td>约144 GiB；有效带宽1.72 TB/s</td><td>输入未命中/未保留的数据，以及最终FP16输出，按实际字节数计费。</td></tr></tbody></table></div><p class="small">矩阵服务和LDS读取来自独立微基准；HBM/L2参数沿用现有资料。图中的寄存器与矩阵单元连接是性能模型抽象；每线程资源分配、LDS bank冲突和完整端口竞争尚未逐指令刻画。</p></section>
+<div class="table-scroll"><table><thead><tr><th>资源</th><th>当前配置</th><th>进入模型的方式</th></tr></thead><tbody><tr><td>矩阵计算</td><td>72 CU，每CU 4单元；16×16×16 MMAC；8 cycles</td><td>每条8192 FLOP；按指令分组和最慢单元服务计时。1.30 GHz下整卡383.3856 TFLOP/s。</td></tr><tr><td>Shared / LDS</td><td>64 KiB/CU；读取64 B/CU/cycle</td><td>A/B暂存与双缓冲；读取带宽83.2 GB/s/CU，显式加入S阶段。</td></tr><tr><td>寄存器</td><td>768 KiB/CU聚合预算（用户资料）；预留32 KiB（设计假设）</td><td>C的FP32累加区 + 1/2份A/B操作数槽 + 预留；必须放得下。</td></tr><tr><td>L2</td><td>8 MiB，全卡共用；2990 B/cycle</td><td>输入窗口、输出窗口与保留数据共用容量；统一服务带宽3.887 TB/s。</td></tr><tr><td>HBM</td><td>约144 GiB；有效带宽1.72 TB/s</td><td>输入未命中/未保留的数据，以及最终FP16输出，按实际字节数计费。</td></tr></tbody></table></div><p class="small">矩阵服务和LDS读取来自独立微基准；HBM/L2参数沿用现有资料。384 KiB的C与80 KiB的A/B寄存器占用由此分块推导，不是实测kernel的寄存器占用。图中的寄存器与矩阵单元连接是性能模型抽象；每线程资源分配、LDS bank冲突和完整端口竞争尚未逐指令刻画。</p></section>
 
 <section id="mapper"><div class="section-no">03 / TILING & CAPACITY</div><h2>任意尺寸怎么切？先枚举，再检查容量，最后比较时间</h2><div class="steps"><div class="step"><b>M/N 划分独立的 C 子块。</b>每个CU负责 bm×bn 的输出；一批安排 gm×gn 个CU。不同CU的C不重叠，所以无需跨CU合并C。</div><div class="step"><b>K 分段输入，C一直累加。</b>每个面板厚度bk；K未整除时处理尾段并按矩阵指令粒度补齐计算。C保留在寄存器直到全部K完成。</div><div class="step"><b>联合枚举缓冲和输出片。</b>L2、Shared、A/B寄存器各选1或2份；输出片可选4/16 KiB，输出缓冲1或2份。多缓冲增加重叠，也占用更多容量。</div><div class="step"><b>容量通过后，模拟整个时间轴。</b>对每个合法方案计算H/R/S/C及写回流水；再比较A复用、B复用或不复用的遍历顺序，选模型时间最小者。</div></div>
 <div class="formula">Shared输入 = n<sub>S</sub> × 2(bm+bn)bk 字节<br>Shared输出 = min(2bm·bn, 输出片字节数 × n<sub>O</sub>)<br>Shared峰值 = max(输入, 输出)，因为本实现将输入/计算与最终输出分阶段执行。<br>寄存器 = 4bm·bn + n<sub>V</sub> × A/B操作数寄存器字节数 + 预留<br>L2工作窗口 = n<sub>L</sub> × 2(gm·bm+gn·bn)bk + gm·gn × Shared输出</div>
@@ -187,9 +187,9 @@ body=r'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta nam
 
 <section id="pipeline"><div class="section-no">05 / ACTUAL MODEL TIMELINE</div><h2>同一面板串行，连续面板流水重叠</h2><p class="lead">A₀/B₀必须走完 H→R→S 才能计算；但计算 a₀×b₀ 时，后续面板可以分别在搬入L2、搬入Shared或搬入寄存器。</p>
 <div class="legend"><span><i class="dot" style="background:#b7d4fa"></i>H：HBM读取</span><span><i class="dot" style="background:#b2ded1"></i>R：L2分发</span><span><i class="dot" style="background:#d5bde9"></i>S：Shared读入寄存器</span><span><i class="dot" style="background:#f3d49e"></i>C：矩阵乘加</span></div>
-<div class="toolbar"><label for="panel">跟踪面板</label><select id="panel"></select><button id="allPanels" type="button">显示全部</button><span class="small">横轴是真实模型时间，块宽按时长绘制；窄块悬停查看完整信息。</span></div>
-<div class="diagram" id="mainTimeline"></div><div class="detail" id="panelDetail" aria-live="polite"></div>
-<h3>④ 缓冲什么时候能覆盖</h3><div class="grid"><div class="card"><b>L2 / Shared 输入槽</b><p>本例L2输入窗口只有1份，必须等Rᵢ结束才能读Hᵢ₊₁；Shared有2槽，偶数/奇数面板交替。Sᵢ读完后，Shared槽可用于Rᵢ₊₂。</p></div><div class="card"><b>A/B寄存器槽 / C累加区</b><p>A/B有2槽，必须等Cᵢ计算完成后，Sᵢ₊₂才能覆盖同一槽。C累加区独立保留：C←C+aᵢbᵢ，i从0到63，期间不把部分C写回L2/HBM。</p></div></div>
+<div class="toolbar"><label for="panel">跟踪面板</label><select id="panel"></select><button id="allPanels" type="button">取消高亮</button><span class="small">主图按执行顺序示意；前4段 + 最后4段K，所有块明确标注。</span></div>
+<div class="diagram" id="mainTimeline"></div><div class="detail" id="panelDetail" aria-live="polite"></div><details><summary>展开精确模型时间图（前8个K面板，按微秒比例）</summary><div class="diagram" id="timingReference"></div></details>
+<h3>④ 缓冲什么时候能覆盖</h3><div class="grid"><div class="card"><b>L2 / Shared 输入槽</b><p>本例L2输入窗口只有1份，必须等Rᵢ结束才能读Hᵢ₊₁；Shared有2槽，主图分别画出偶数/奇数面板的存活区间。Sᵢ读完后，Shared槽可用于Rᵢ₊₂。</p></div><div class="card"><b>A/B寄存器槽 / C累加区</b><p>A/B有2槽，必须等Cᵢ计算完成后，Sᵢ₊₂才能覆盖同一槽。C累加区独立保留：C←C+aᵢbᵢ，i从0到63，期间不把部分C写回L2/HBM。</p></div></div>
 <div class="formula">每个活动的开始时间 = max(输入数据就绪时间，本资源空闲时间，目标缓冲槽释放时间)<br>结束时间 = 开始时间 + 本阶段服务时长。<br>重叠由这些依赖自然产生，不能把“重叠时间”再作为一个正开销相加。</div>
 <h3>⑤ 全部K结束后，把C分片写出</h3><p>每CU的FP32 C为384 KiB，最终FP16输出为192 KiB。按4 KiB/片分成48片；每轮72个CU合计288 KiB。输出有两套暂存窗口，允许“这一轮写HBM”与“下一轮写L2”重叠。</p>
 <div class="diagram" id="outputTimeline"></div><p>每轮写L2为0.075871 µs，写HBM为0.171460 µs。48轮输出流水合计 <b>8.305974 µs</b>。FP32→FP16转换/重排的执行服务目前没有单独校准，图中只展示已计费的L2/HBM写出；Shared输出峰值为每CU8 KiB。</p>
@@ -199,10 +199,10 @@ body=r'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta nam
 <section id="reuse"><div class="section-no">06 / HBM TRAFFIC REUSE</div><h2>L2里保留A，下一批只从HBM搬新的B</h2><p>将N从2304扩为4608，其余分块保持不变。模型按N方向依次处理两批C。两批使用同一个A；第一批读入的A面板在L2留下，第二批继续复用。</p><div class="diagram">@@REUSEMAP@@</div>
 <div class="formula">L2可保留空间 = 8192 − 744 = 7448 KiB<br>完整A = 3072×1024×2 B = 6144 KiB，可以保留。<br>第二批每个面板：HBM只读新的Bᵢ =72 KiB；L2仍向CU提供aᵢ和bᵢ，所以R/S/C不消失。</div>
 <div class="toolbar"><button type="button" id="reuseOn" class="active" aria-pressed="true">第二批：开启A复用</button><button type="button" id="reuseOff" aria-pressed="false">第二批：不保留A</button></div>
-<div class="diagram" id="reuseTimeline"></div><div class="detail" id="reuseDetail" aria-live="polite"></div>
+<div class="diagram" id="reuseTimeline"></div><div class="detail" id="reuseDetail" aria-live="polite"></div><details><summary>展开复用前后真实模型时间对照</summary><div class="diagram" id="reuseTimingReference"></div></details>
 <h3>跨两批的完整流水与A的存活区间</h3><div class="diagram" id="reuseOverview"></div>
 <div class="metrics"><div class="metric"><strong>21 → 15 MiB</strong><span>两批HBM输入总量</span></div><div class="metric"><strong>28.57%</strong><span>HBM输入字节减少比例</span></div><div class="metric"><strong>97.295 → 97.238</strong><span>两批总预测时间，µs</span></div><div class="metric"><strong>0.057 µs</strong><span>本例真正节省的时间</span></div></div>
-<p><b>复用减少了搬运，并不一定同比减少总时间。</b>本例S/C阶段比H更长，大部分HBM服务原本就被计算隐藏了。复用主要缩短第二批的流水启动部分；通过切换上图可以看到H块明显变窄，但C流水节奏基本不变。</p>
+<p><b>复用减少了搬运，并不一定同比减少总时间。</b>本例S/C阶段比H更长，大部分HBM服务原本就被计算隐藏了。复用主要缩短第二批的流水启动部分；主图切换后可看到H行从A+B变成只搬B；展开微秒对照图可看到H块变窄，而C流水节奏基本不变。</p>
 <details><summary>如果L2放不下完整A，mapper怎么做？</summary><p>代码按剩余容量计算可保留K长度：<code>keepK = floor(剩余L2字节 / (2×A条带行数))</code>；未覆盖完整K时向下对齐bk。后续批在已保留前缀只搬B，超出前缀继续搬A+B，因此同一批的H块宽度会变化。对称地也可保留B、沿M遍历；模型比较各方案时间。它是容量受限的计划驻留策略，并未模拟真实L2替换算法。</p></details>
 <p class="small">为忠实于当前代码，两批输出在图中顺序执行：第一批输出写回结束后才开始第二批输入。当前实现没有把不同输出批的计算/写回进一步交错。</p></section>
 
@@ -224,7 +224,7 @@ $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\de
 <p>改算子尺寸：<code>--m --n --k</code>；改硬件：<code>--hardware</code>；改候选和缓冲：<code>--policy</code>。换硬件需重新校准设备固定服务，原策略中的硬件指纹会阻止误用旧校准值。</p>
 <h3>当前验证范围</h3><div class="table-scroll"><table><thead><tr><th>分组</th><th>≤15%</th><th>平均绝对误差</th><th>本阶段定位</th></tr></thead><tbody><tr><td>规则形状</td><td>41 / 50</td><td>7.52%</td><td>面向LLM的主要验证范围；仍有9组需要改进</td></tr><tr><td>非规则形状</td><td>0 / 10</td><td>61.73%</td><td>按当前约定单独记录，不作为本阶段主要验收范围</td></tr></tbody></table></div><p class="small">这里按已有实验的irregular组分类，不表示LLM实际运行绝不会遇到尾块。实现逻辑有55项测试；精度结果来自原60组回归，未宣称全新盲测。Softmax和LayerNorm尚未实现。</p>
 <details><summary>代码对应表与模型边界</summary><div class="table-scroll"><table><thead><tr><th>代码</th><th>职责</th></tr></thead><tbody><tr><td>contracts.py / Hardware, Policy, Mapping</td><td>硬件、策略与映射参数及单位</td></tr><tr><td>operators.py / candidates, capacity, evaluate</td><td>枚举、容量、全卡流量、输入复用、输出分片</td></tr><tr><td>backends.py / mmac_operand_plan, MmacBackend</td><td>引擎分组、指令计数、Shared到寄存器操作数流量</td></tr><tr><td>scheduler.py / operand_pipeline</td><td>H/R/S/C资源与缓冲依赖，推出每项活动开始/结束</td></tr><tr><td>api.py / predict；cache.py</td><td>比较合法候选，精确缓存与复核</td></tr></tbody></table></div><p>本例假设不同搬运服务可按配置重叠，LDS读端口与输入写服务独立；寄存器采用聚合容量限制，未模拟每线程分配、实际rocBLAS选择的kernel和所有边界路径。输出转换/重排的额外服务仍为0。完整范围随结果JSON的scope_notes输出。</p></details></section>
-</main><footer>单卡计算建模总体方案 · V3.1 · 2026-10-28<br>图中时间轴由安装后的模型 evaluate_mapping 生成；宽度按模型时间绘制。旧版HTML保留，此页为独立整理版。</footer>
+</main><footer>单卡计算建模总体方案 · V3.1 · 2026-10-28<br>主图按执行顺序与存活区间示意；展开的微秒图由 evaluate_mapping 生成并按模型时间绘制。旧版HTML保留，此页为独立整理版。</footer>
 <script>const DATA=@@DATA@@;
 const colors={H:'#b7d4fa',R:'#b2ded1',S:'#d5bde9',C:'#f3d49e'};
 const labels={H:'HBM → L2',R:'L2 → Shared',S:'Shared → A/B寄存器',C:'MMAC：C += aᵢbᵢ'};
@@ -232,6 +232,89 @@ const us=v=>(v*1e6).toFixed(6);const X=250,W=940;
 function text(x,y,s,size=14,anchor='start'){return `<text x="${x}" y="${y}" font-size="${size}" fill="#18364d" text-anchor="${anchor}">${s}</text>`}
 function box(x,y,w,h,fill,extra=''){return `<rect x="${x}" y="${y}" width="${Math.max(0,w)}" height="${h}" rx="5" fill="${fill}" stroke="#a5bac9" ${extra}/>`}
 function canvas(label,h){return `<svg viewBox="0 0 1250 ${h}" role="img" aria-label="${label}" xmlns="http://www.w3.org/2000/svg">`}
+// Schematic positions preserve dependencies and buffer lifetimes, not time ratios.
+const shownPanels=[0,1,2,3,60,61,62,63];
+function schematic(opts={}) {
+ const reused=!!opts.reused,second=!!opts.second,selected=opts.selected;
+ const ids=shownPanels,xx=j=>250+j*96+(j>=4?64:0),rowTop=112,rowH=70;
+ const rows=[['H','HBM → L2',reused?'仅搬新 Bᵢ右；每段72 KiB':'整波 Aᵢ / Bᵢ；每段168 KiB'],
+ ...(second?[['keep','L2 保留的 A',reused?'6 MiB；第二批继续使用':'关闭跨批保留，重新读取A']]:[]),
+ ['R','L2 → Core 的 Shared','本CU aᵢ / bᵢ；每段20 KiB'],
+ ['S','Shared → A/B寄存器','本CU操作数副本；每段40 KiB'],
+ ['C','矩阵单元',second?'C右 ← C右 + aᵢ × bᵢ右':'C ← C + aᵢ × bᵢ'],
+ ['sh0','Shared 槽0','20 KiB输入槽；S读完即可覆盖'],
+ ['sh1','Shared 槽1','20 KiB输入槽；与槽0交替'],
+ ['rf0','A/B寄存器 槽0','40 KiB；C计算完才可覆盖'],
+ ['rf1','A/B寄存器 槽1','40 KiB；与槽0交替'],
+ ['acc','C 累加寄存器','384 KiB；跨完整K持续累加'],
+ ['ep','输出转换 / 整理','逻辑步骤；额外时延尚未计入'],
+ ['wl','输出片 → L2','每CU每片4 KiB，共48片'],
+ ['wh','L2 → HBM','每轮72 CU合计288 KiB']];
+ const ys=Object.fromEntries(rows.map(([id],i)=>[id,rowTop+i*rowH]));
+ const height=rowTop+rows.length*rowH+63;
+ let s=`<svg viewBox="0 0 1560 ${height}" role="img" aria-label="执行阶段与数据存活区间：完整K累加和最终分片写回" xmlns="http://www.w3.org/2000/svg"><defs><marker id="dep-${second?'reuse':'main'}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7Z" fill="#68879b"/></marker></defs>`;
+ const label=(x,y,t,size=16,bold=false,color='#1b3f59',anchor='start')=>`<text x="${x}" y="${y}" font-size="${size}" font-weight="${bold?700:400}" fill="${color}" text-anchor="${anchor}">${t}</text>`;
+ const block=(x,y,w,h,fill,stroke='#8eacd1',dash=false,strong=false)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="${fill}" stroke="${stroke}" stroke-width="${strong?2.5:1}" ${dash?'stroke-dasharray="4 3"':''}/>`;
+ const edge=(x1,y1,x2,y2,dash=false)=>`<path d="M${x1},${y1} L${x2},${y2}" fill="none" stroke="#68879b" stroke-width="1.5" ${dash?'stroke-dasharray="4 3"':''} marker-end="url(#dep-${second?'reuse':'main'})"/>`;
+ s+=label(24,31,second?'第二批输出：执行阶段与 A 复用区间':'执行阶段与数据存活区间',22,true);
+ s+=label(250,62,'示意推进方向 →（不按微秒比例；中间56个K面板省略）',15,false,'#68879b');
+ s+=edge(250,81,1523,81);
+ s+=label(856,102,'K=960：继续累加 a60×b60，C仍不写出',14,false,'#be7421');
+ rows.forEach(([id,name,desc],i)=>{let y=ys[id];s+=block(12,y-5,1530,65,i%2?'#edf4f9':'#f7fafc','#edf4f9');
+ s+=label(25,y+20,name,19,true)+label(25,y+44,desc,13,false,'#68879b')});
+ const stage={H:[0,44,'#deebfd'],R:[44,48,'#deebfd'],S:[92,58,'#ece4f7'],C:[150,96,'#fff0d8']};
+ for(const key of ['H','R','S','C']){
+  let [offset,width,fill]=stage[key],y=ys[key];
+  ids.forEach((i,j)=>{let x=xx(j)+offset,active=selected==null||selected===i,strong=selected===i||selected==null&&i===0;
+   s+=`<g data-stage="${key}" data-panel="${i}" opacity="${active?1:.23}">`+block(x,y,width,48,fill,key==='C'?'#d7ad62':key==='S'?'#a58cc5':'#87acd8',false,strong);
+   const top=key==='C'?`a${i}×b${i}${second?'右':''}`:key==='H'?(reused?`B${i}右`:`A${i}`):`a${i}`;
+   const bottom=key==='C'?`K ${i*16}–${i*16+15}`:key==='H'?(reused?'L2复用A':`B${i}${second?'右':''}`):`b${i}${second?'右':''}`;
+   s+=label(x+width/2,y+20,top,key==='C'?15:15,true,'#244b6a','middle')+label(x+width/2,y+38,bottom,key==='C'?12:reused&&key==='H'?9:12,false,'#6b8197','middle');
+   s+=`<title>面板${i}：K[${i*16}:${(i+1)*16}]；${key==='H'?(reused?'HBM只读取右侧新B；A从L2复用':'HBM读取整波A/B'):key==='R'?'L2分发本CU的a/b子片':key==='S'?'Shared读取到A/B寄存器槽':'矩阵乘加，累加到同一份FP32 C'}</title></g>`;
+  });
+  const gap=(xx(3)+offset+width+xx(4)+offset)/2;
+  s+=label(gap,y+28,'⋯',23,false,'#8da2b3','middle');
+ }
+ // Only selected dependencies, so arrows stay legible rather than covering all blocks.
+ const chosen=selected==null?[0,1,60]:[selected];
+ chosen.forEach(i=>{const j=ids.indexOf(i);if(j<0)return;
+  const x=xx(j),extra=second?70:0;
+  s+=edge(x+44,ys.H+49,x+44,ys.R-1,extra>0);
+  s+=edge(x+92,ys.R+49,x+92,ys.S-1);
+  s+=edge(x+150,ys.S+49,x+150,ys.C-1,true);
+ });
+ const bdata=[['sh0',0,44,150,20],['sh1',1,44,150,20],['rf0',0,92,246,40],['rf1',1,92,246,40]];
+ bdata.forEach(([name,parity,start,end,capacity])=>{let y=ys[name];
+  ids.forEach((i,j)=>{if(i%2!==parity)return;let x=xx(j)+start,w=end-start,active=selected==null||selected===i;
+   s+=`<g opacity="${active?1:.23}">`+block(x,y,w,48,'#eee8f7','#a48ac8',true,selected===i||selected==null&&i===0)+label(x+w/2,y+20,`a${i} / b${i}${second?'右':''}`,15,true,'#385776','middle')+label(x+w/2,y+39,`${capacity} KiB`,12,false,'#74869a','middle')+'</g>';
+  });
+ });
+ // Shared memory is reused only after the whole input/compute phase finishes.
+ for(const [name,parity] of [['sh0',0],['sh1',1]]){
+  const x=1246+parity*25,w=1518-x,y=ys[name];
+  s+=block(x,y,w,48,'#eee8f7','#a48ac8',true)+label(x+w/2,y+20,`最终C小片 ${parity}/${parity+2}/…/${46+parity}`,15,true,'#385776','middle')+label(x+w/2,y+39,'4 KiB槽循环使用',12,false,'#74869a','middle');
+ }
+ let cy=ys.acc;
+ s+=block(250,cy,1268,48,'#eee8f7','#a48ac8',true)+label(770,cy+20,'同一份C：K 0 → 16 → 32 → 48 → 64 → … → 960 → 976 → 992 → 1024',16,true,'#244b6a','middle');
+ s+=label(770,cy+39,'FP32部分和驻留；完整K结束后，从此处分片读取、转换并写出',13,false,'#687c98','middle');
+ // This is an execution-order sketch: conversion width is not charged model time.
+ s+=block(1246,ys.ep,272,48,'#fff7e7','#d7ad62',true)+label(1382,ys.ep+20,'逐片转换 / 整理',16,true,'#9b681d','middle')+label(1382,ys.ep+39,'逻辑过程，额外服务暂为0',12,false,'#9b681d','middle');
+ for(const [j,x] of [[0,1246],[1,1324],[47,1420]]){
+  s+=block(x,ys.wl,50,48,'#deebfd')+label(x+25,ys.wl+20,`片${j}`,14,true,'#244b6a','middle')+label(x+25,ys.wl+39,'写L2',12,false,'#687c98','middle');
+  s+=block(x+50,ys.wh,56,48,'#deebfd')+label(x+78,ys.wh+20,`片${j}`,14,true,'#244b6a','middle')+label(x+78,ys.wh+39,'写HBM',12,false,'#687c98','middle');
+  s+=edge(x+50,ys.wl+49,x+50,ys.wh-1);
+ }
+ s+=label(1401,ys.wl+28,'⋯',22,false,'#8da2b3','middle')+label(1450,ys.wh+28,'⋯',22,false,'#8da2b3','middle');
+ s+=edge(1233,ys.C+23,1239,ys.ep+20,true);
+ s+=`<path d="M${xx(4)+150},90 V${ys.acc+48}" stroke="#c7842b" stroke-dasharray="5 4"/>`;
+ if(second){let y=ys.keep;
+  s+=block(250,y,950,48,reused?'#e4f1e8':'#f0f2f5',reused?'#81af96':'#b7c2ca',true)+label(725,y+20,reused?'保留 A₀…A₆₃：本批R阶段直接取用，共6 MiB':'A不跨批保留：每个K面板重新从HBM取A和右侧B',16,true,'#365d4a','middle')+label(725,y+39,reused?'只省 HBM→L2 的A读取；aᵢ仍需走 R → S → C':'不改变后续R/S/C和C累加过程',13,false,'#68879b','middle');
+ }
+ s+=label(250,height-32,'实线块 = 执行动作；紫色虚线块 = 数据存活/槽占用。两套Shared共40 KiB；两套A/B寄存器共80 KiB。',15,false,'#68879b');
+ s+=label(250,height-10,'这里统一展示全流程；中间K面板和输出片省略。精确时长仍以下方展开的模型时间图与数值为准。',14,false,'#68879b');
+ return s+'</svg>';
+}
+
 function timeline(trace,opts={}){
  const top=58,rowH=76,end=opts.end||Math.max(...trace.map(r=>r.C_end_s)),scale=W/end;
  let s=canvas('包含Shared到寄存器的四阶段K面板流水',opts.storage?675:438);
@@ -252,14 +335,14 @@ function timeline(trace,opts={}){
  s+=text(25,652,'槽1承担奇数面板（未展开）。彩色槽区间含填入与消费；C累加区与A/B输入槽分别占用容量。',14);
  }return s+'</svg>';
 }
-const wave=DATA.main.wave_classes[0], trace=wave.pipeline.trace;
-const selector=document.querySelector('#panel');selector.innerHTML=trace.map(r=>`<option value="${r.panel}">i = ${r.panel} · K[${r.panel*16}:${(r.panel+1)*16}]</option>`).join('');
-function showPanel(i=null){document.querySelector('#mainTimeline').innerHTML=timeline(trace,{storage:true,selected:i});const r=trace[i??0];document.querySelector('#panelDetail').innerHTML=`<b>面板 ${r.panel} 的依赖：</b>H ${us(r.H_start_s)}–${us(r.H_end_s)} → R ${us(r.R_start_s)}–${us(r.R_end_s)} → <b>S ${us(r.S_start_s)}–${us(r.S_end_s)}</b> → C ${us(r.C_start_s)}–${us(r.C_end_s)} µs。<br>其余面板可在不同资源上同时推进；后续面板等待缓冲时，等待已体现在开始时刻。`;}
+const wave=DATA.main.wave_classes[0], trace=wave.pipeline.trace.slice(0,8);
+const selector=document.querySelector('#panel');selector.innerHTML=shownPanels.map(i=>`<option value="${i}">i = ${i} · K[${i*16}:${(i+1)*16}]</option>`).join('');
+function showPanel(i=null){document.querySelector('#mainTimeline').innerHTML=schematic({selected:i});document.querySelector('#timingReference').innerHTML=timeline(trace,{storage:false,selected:i!=null&&i<8?i:null});const r=wave.pipeline.trace.find(r=>r.panel===(i??0));document.querySelector('#panelDetail').innerHTML=`<b>面板 ${r.panel} 的依赖：</b>H ${us(r.H_start_s)}–${us(r.H_end_s)} → R ${us(r.R_start_s)}–${us(r.R_end_s)} → <b>S ${us(r.S_start_s)}–${us(r.S_end_s)}</b> → C ${us(r.C_start_s)}–${us(r.C_end_s)} µs。<br>其余面板可在不同资源上同时推进；后续面板等待缓冲时，等待已体现在开始时刻。`;}
 selector.addEventListener('change',()=>showPanel(Number(selector.value)));document.querySelector('#allPanels').onclick=()=>showPanel();showPanel();
 function overview(){let d=DATA.main,parts=[['固定设备服务',d.device_service_s,'#dce5ec'],['64个K面板：H / R / S / C',wave.pipeline.duration_s,'#d5bde9'],['48轮C分片输出',wave.output_stream.duration_s,'#b2ded1']],s=canvas('完整单次GEMM时间分解',170),scale=1120/d.duration_s,x=45;
  s+=text(25,28,'完整算子 · 从单次设备服务到最后一个C输出片写入HBM',18);parts.forEach(([name,t,c],i)=>{let w=t*scale;s+=box(x,62,w,50,c)+text(x+w/2,138,`${name} ${us(t)} µs`,i===1?15:12,'middle');s+=text(x+w/2,92,i===0?'固定':i===1?'输入与计算重叠':'输出',14,'middle');x+=w});return s+'</svg>'}
 document.querySelector('#overview').innerHTML=overview();
-function outputs(){let t=wave.output_stream.pipeline.trace,end=t[t.length-1].C_end_s,scale=W/end,s=canvas('C分片输出的L2和HBM重叠',245);s+=text(24,28,'输出流水放大：前8轮，每轮72个CU各写4 KiB（共288 KiB）',19);
+function outputs(){let t=wave.output_stream.pipeline.trace.slice(0,8),end=t[t.length-1].C_end_s,scale=W/end,s=canvas('C分片输出的L2和HBM重叠',245);s+=text(24,28,'输出流水放大：前8轮，每轮72个CU各写4 KiB（共288 KiB）',19);
  [['R','输出片 → L2','#b2ded1'],['C','L2 → HBM','#b7d4fa']].forEach(([k,l,c],j)=>{let y=60+j*72;s+=text(25,y+27,l,16);t.forEach(r=>{let x=X+r[k+'_start_s']*scale,w=(r[k+'_end_s']-r[k+'_start_s'])*scale;s+=box(x,y,w,45,c)+text(x+5,y+28,`片${r.panel}`,12)+`<title>第${r.panel}轮 ${us(r[k+'_start_s'])}–${us(r[k+'_end_s'])} µs</title>`})});
  for(let i=0;i<=5;i++)s+=text(X+W*i/5,215,(end*1e6*i/5).toFixed(3),13,'middle');return s+'</svg>'}
 document.querySelector('#outputTimeline').innerHTML=outputs();
@@ -276,8 +359,8 @@ function reuseOverview(on){let d=on?DATA.reuse:DATA.no_reuse,first=DATA.reuse.wa
  s+=text(25,257,'条带表示A从开始保留到最后消费的范围；占用并非从起点就瞬间达到6 MiB。',14);
  s+=text(25,286,'每批内部都有H/R/S/C流水；当前代码不把第二批输入与第一批C写回重叠。',14);return s+'</svg>';
 }
-function setReuse(on){const w=on?DATA.reuse.wave_classes[1]:DATA.no_reuse.wave_classes[0],t=w.pipeline.trace,end=trace[trace.length-1].C_end_s;
- document.querySelector('#reuseTimeline').innerHTML=timeline(t,{reused:on,end,title:'第二批输出：前8个K面板 · 两种模式保持同一时间刻度'});
+function setReuse(on){const w=on?DATA.reuse.wave_classes[1]:DATA.no_reuse.wave_classes[0],t=w.pipeline.trace.slice(0,8),end=trace[trace.length-1].C_end_s;
+ document.querySelector('#reuseTimeline').innerHTML=schematic({reused:on,second:true});document.querySelector('#reuseTimingReference').innerHTML=timeline(t,{reused:on,end,title:'第二批输出：前8个K面板 · 两种模式保持同一时间刻度'});
  document.querySelector('#reuseOverview').innerHTML=reuseOverview(on);
  document.querySelector('#reuseDetail').innerHTML=on?'<b>开启复用：</b>每面板H只读新B：72 KiB，0.042865 µs；A从L2取。R仍为1440 KiB/波，S仍为40 KiB/CU。第二批完整耗时47.029734 µs。':'<b>关闭复用：</b>每面板H重读A+B：168 KiB，0.100019 µs。R/S/C工作量相同。第二批完整耗时47.086888 µs。';
  ['reuseOn','reuseOff'].forEach((id,i)=>{const active=on===(i===0),b=document.getElementById(id);b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});}

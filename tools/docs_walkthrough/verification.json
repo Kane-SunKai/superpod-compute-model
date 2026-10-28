@@ -1,21 +1,10 @@
 {
   "errors": [],
-  "overflow": false,
+  "desktopOverflow": false,
   "mobileOverflow": false,
   "svgOverflow": [],
-  "panelSelection": true,
-  "reuseHWidths": {
-    "on": 7.071667632683605,
-    "off": 16.50055780959508
-  },
-  "diagramCount": 9,
-  "commands": {
-    "fixed_us": 50.20813227869285,
-    "search_us": 50.20813227869285,
-    "cached_us": 50.20813227869285,
-    "cache_hit_on_repeat": true,
-    "reuse_us": 97.23786637864438,
-    "reuse_HBM_MiB": 15.0
-  },
-  "html_sha256": "37d711cf451eb22d7c9f33fe5fba39e146986b74d69453b9572fa5935b9f448c"
+  "panel63Selection": true,
+  "reuseLabels": true,
+  "html_sha256": "d645d764c74ae6127507d2cd1c9c17682308844adc9b3b2b377b08504ab5f216",
+  "style": "Reference swimlane: execution stages, dependencies, both buffer slots, C lifetime and final output on one diagram; timing diagrams remain expandable"
 }
