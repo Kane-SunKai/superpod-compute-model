@@ -1,0 +1,113 @@
+{
+  "profile": {
+    "name": "BW1100-72CU-1.35GHz-equivalent-v1",
+    "cores": 72,
+    "clock_hz": 1350000000.0,
+    "arrays_per_core": 4,
+    "array_rows": 16,
+    "array_cols": 16,
+    "mac_per_cell_per_cycle": 1.9412570529513888,
+    "vector_fp16_flops_per_cycle_per_core": 251.73611111111111,
+    "hbm_bandwidth_Bps": 1720000000000.0,
+    "hbm_latency_s": 0.0,
+    "hbm_capacity_bytes": 154602045440,
+    "l2_bytes": 8388608,
+    "l2_bytes_per_cycle": 2990,
+    "source_sram_bytes_per_core": 65536,
+    "shared_budget_bytes_per_core": 65536,
+    "register_budget_bytes_per_core": 786432,
+    "register_reserve_bytes_per_core": 32768,
+    "kernel_launch_s": 0.0,
+    "matrix_k_quantum": 16
+  },
+  "checks_passed": true,
+  "chip_matrix_peak_flops": 386437500000000.0,
+  "l2_modeled_bandwidth_Bps": 4036500000000.0,
+  "scope": "Interface and mapping feasibility validation only; not GPU accuracy validation",
+  "cases": [
+    {
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mapping": {
+        "bm": 128,
+        "bn": 256,
+        "bk": 32,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2
+      },
+      "duration_us": 55.389638647342984,
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 65536,
+        "shared_input_bytes": 49152,
+        "shared_output_bytes": 65536,
+        "register_bytes": 163840,
+        "l2_bytes": 5144576,
+        "parallel_cores": 72
+      },
+      "feasible_candidates": 5728
+    },
+    {
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "mapping": {
+        "bm": 32,
+        "bn": 32,
+        "bk": 64,
+        "gm": 5,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2
+      },
+      "duration_us": 0.22967299467936472,
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 16384,
+        "shared_input_bytes": 16384,
+        "shared_output_bytes": 2048,
+        "register_bytes": 36864,
+        "l2_bytes": 114688,
+        "parallel_cores": 20
+      },
+      "feasible_candidates": 3338
+    },
+    {
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "mapping": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 16,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 1
+      },
+      "duration_us": 78.15693849207378,
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 4608,
+        "shared_input_bytes": 4608,
+        "shared_output_bytes": 4096,
+        "register_bytes": 40960,
+        "l2_bytes": 787456,
+        "parallel_cores": 64
+      },
+      "feasible_candidates": 4256
+    }
+  ]
+}
