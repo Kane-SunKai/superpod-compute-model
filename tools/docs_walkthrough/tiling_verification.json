@@ -1,0 +1,12 @@
+{
+  "errors": [],
+  "desktopOverflow": false,
+  "mobileOverflow": false,
+  "svgOverflow": [],
+  "lastCBlock": "C[2816:3072, 1920:2304]",
+  "lastKPanel": "当前 i=63：a63=A[2816:3072, 1008:1024]；b63=B[1008:1024, 1920:2304]",
+  "clickSelection": true,
+  "existingInteractions": true,
+  "html_sha256": "867fb8aa3ee665098563e99e11b15b439e0082835bc41c916fa0d58129b7ef9d",
+  "scope": "Five-step tiling diagrams; index selection and existing pipeline/reuse interactions; no calculation model change"
+}

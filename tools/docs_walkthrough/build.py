@@ -1,5 +1,6 @@
 from pathlib import Path
 import json,html
+from tiling_explainer import render as render_tiling, JS as TILING_JS
 ROOT=Path(__file__).parent
 D=json.loads((ROOT/'example_data.json').read_text(encoding='utf-8'))
 project=Path('D:/03_Project_Work/02_WORK_Super node/compute_model')
@@ -179,11 +180,11 @@ body=r'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta nam
 <p>Shared存放“每CU一份输入子片”；不同矩阵引擎使用的A/B副本进入寄存器后需要另外预算。因此Shared输入大小与寄存器操作数大小可能不同。L2工作窗口以外的剩余容量，才允许用来保留A或B。</p>
 <p class="small">默认bm/bn候选16、32、64、128、192、256、384；bk候选16、32、64、128、256、512，并加入有限的形状相关候选。搜索的是这些合法方案，不是所有可能GPU程序。缓存命中使用完整输入身份，不能把一个尺寸的最优块无条件套到另一个尺寸。</p></section>
 
-<section id="example"><div class="section-no">04 / ONE COMPLETE GEMM</div><h2>算例：A[3072,1024] × B[1024,2304]</h2><p>沿用之前的规则矩阵。采用已归档的分块 <code>bm=256, bn=384, bk=16, gm=12, gn=6</code>；72个CU一次覆盖完整C，每个CU依次处理64个K面板。</p><div class="diagram">@@PARTITION@@</div>
+<section id="example"><div class="section-no">04 / ONE COMPLETE GEMM</div><h2>算例：A[3072,1024] × B[1024,2304]</h2><p>下面按五步把参数与矩阵中的具体区域对应起来。先看完整尺寸，再确定每个CU的任务与每次输入的数据；随后接到后面的搬运/计算流水图。</p>@@TILING@@
 <div class="metrics"><div class="metric"><strong>64</strong><span>K面板：1024÷16</span></div><div class="metric"><strong>72</strong><span>并行CU：12×6</span></div><div class="metric"><strong>496 KiB</strong><span>每CU寄存器聚合预算使用</span></div><div class="metric"><strong>50.208 µs</strong><span>此映射的完整预测时间</span></div></div>
-<h3>① 每个 CU 内，如何分给4个矩阵单元</h3><p>把256×384的C再分成2×2个128×192区域，每个矩阵服务单元负责一块。每个K面板对应96条16×16×16指令/单元，因此最慢单元用 <b>96×8=768 cycles</b>，即0.590769 µs。指令完成乘加，新的乘积直接加到已有C上。</p>
-<h3>② 这一组数据放在哪里，放得下吗</h3><div class="table-scroll"><table><thead><tr><th>存储位置</th><th>算式</th><th>占用 / 预算</th></tr></thead><tbody><tr><td>Shared输入槽</td><td>每份2×(256+384)×16 =20 KiB；双缓冲</td><td>40 KiB / 64 KiB</td></tr><tr><td>FP32 C寄存器</td><td>256×384×4</td><td>384 KiB，跨全部K保留</td></tr><tr><td>A/B寄存器槽</td><td>4单元 × 2×(128+192)×16 =40 KiB；双缓冲</td><td>80 KiB</td></tr><tr><td>寄存器合计</td><td>384 + 80 + 32预留</td><td>496 KiB / 768 KiB</td></tr><tr><td>L2输入/输出窗口</td><td>168 KiB输入 + 72×8 KiB输出窗口</td><td>744 KiB / 8192 KiB</td></tr></tbody></table></div>
-<h3>③ 每个 K 面板的四种服务，逐项算时间</h3><div class="table-scroll"><table><thead><tr><th>阶段</th><th>本阶段数据或工作量</th><th>服务公式</th><th>时长</th></tr></thead><tbody><tr><td>H：HBM→L2</td><td>整波Aᵢ 96 KiB + Bᵢ 72 KiB =168 KiB</td><td>172032 B ÷ 1.72×10¹² B/s</td><td>0.100019 µs</td></tr><tr><td>R：L2→Shared</td><td>72 CU ×20 KiB =1440 KiB，包含分发副本</td><td>1474560 B ÷ 3.887×10¹² B/s</td><td>0.379357 µs</td></tr><tr><td>S：Shared→A/B寄存器</td><td>40 KiB/CU；72个CU各用自己的读服务</td><td>40960 B ÷ 83.2×10⁹ B/s</td><td>0.492308 µs</td></tr><tr><td>C：MMAC计算</td><td>每CU 384条指令，分给4个单元</td><td>96×8 cycles ÷ 1.30×10⁹ cycles/s</td><td>0.590769 µs</td></tr></tbody></table></div><p class="small">R按全卡L2带宽计费，S按每CU独立LDS读取服务计费；不能把两者的流量口径混用。A/B→寄存器的复制、缓冲和等待通过S阶段体现。</p></section>
+<h3>把第⑤步的指令数换成计算时间</h3><p>把256×384的C再分成2×2个128×192区域，每个矩阵服务单元负责一块。每个K面板对应96条16×16×16指令/单元，因此最慢单元用 <b>96×8=768 cycles</b>，即0.590769 µs。指令完成乘加，新的乘积直接加到已有C上。</p>
+<h3>选好分块后：检查这些数据放在哪里、放得下吗</h3><div class="table-scroll"><table><thead><tr><th>存储位置</th><th>算式</th><th>占用 / 预算</th></tr></thead><tbody><tr><td>Shared输入槽</td><td>每份2×(256+384)×16 =20 KiB；双缓冲</td><td>40 KiB / 64 KiB</td></tr><tr><td>FP32 C寄存器</td><td>256×384×4</td><td>384 KiB，跨全部K保留</td></tr><tr><td>A/B寄存器槽</td><td>4单元 × 2×(128+192)×16 =40 KiB；双缓冲</td><td>80 KiB</td></tr><tr><td>寄存器合计</td><td>384 + 80 + 32预留</td><td>496 KiB / 768 KiB</td></tr><tr><td>L2输入/输出窗口</td><td>168 KiB输入 + 72×8 KiB输出窗口</td><td>744 KiB / 8192 KiB</td></tr></tbody></table></div>
+<h3>再算每个K面板的四种服务时间</h3><div class="table-scroll"><table><thead><tr><th>阶段</th><th>本阶段数据或工作量</th><th>服务公式</th><th>时长</th></tr></thead><tbody><tr><td>H：HBM→L2</td><td>整波Aᵢ 96 KiB + Bᵢ 72 KiB =168 KiB</td><td>172032 B ÷ 1.72×10¹² B/s</td><td>0.100019 µs</td></tr><tr><td>R：L2→Shared</td><td>72 CU ×20 KiB =1440 KiB，包含分发副本</td><td>1474560 B ÷ 3.887×10¹² B/s</td><td>0.379357 µs</td></tr><tr><td>S：Shared→A/B寄存器</td><td>40 KiB/CU；72个CU各用自己的读服务</td><td>40960 B ÷ 83.2×10⁹ B/s</td><td>0.492308 µs</td></tr><tr><td>C：MMAC计算</td><td>每CU 384条指令，分给4个单元</td><td>96×8 cycles ÷ 1.30×10⁹ cycles/s</td><td>0.590769 µs</td></tr></tbody></table></div><p class="small">R按全卡L2带宽计费，S按每CU独立LDS读取服务计费；不能把两者的流量口径混用。A/B→寄存器的复制、缓冲和等待通过S阶段体现。</p></section>
 
 <section id="pipeline"><div class="section-no">05 / ACTUAL MODEL TIMELINE</div><h2>同一面板串行，连续面板流水重叠</h2><p class="lead">A₀/B₀必须走完 H→R→S 才能计算；但计算 a₀×b₀ 时，后续面板可以分别在搬入L2、搬入Shared或搬入寄存器。</p>
 <div class="legend"><span><i class="dot" style="background:#b7d4fa"></i>H：HBM读取</span><span><i class="dot" style="background:#b2ded1"></i>R：L2分发</span><span><i class="dot" style="background:#d5bde9"></i>S：Shared读入寄存器</span><span><i class="dot" style="background:#f3d49e"></i>C：矩阵乘加</span></div>
@@ -367,6 +368,7 @@ function setReuse(on){const w=on?DATA.reuse.wave_classes[1]:DATA.no_reuse.wave_c
 document.querySelector('#reuseOn').onclick=()=>setReuse(true);document.querySelector('#reuseOff').onclick=()=>setReuse(false);setReuse(true);
 document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent);b.textContent='已复制'}catch{b.textContent='请选中下方指令复制'}setTimeout(()=>b.textContent='复制指令',2000)});
 </script></body></html>'''
-for key,val in [('FLOW',flow),('GPU',gpu),('PARTITION',partition),('REUSEMAP',reusemap),('DATA',json.dumps(D,ensure_ascii=False))]:body=body.replace('@@'+key+'@@',val)
+for key,val in [('FLOW',flow),('GPU',gpu),('PARTITION',partition),('REUSEMAP',reusemap),('TILING',render_tiling()),('DATA',json.dumps(D,ensure_ascii=False))]:body=body.replace('@@'+key+'@@',val)
+body=body.replace('</script></body>',TILING_JS+'\n</script></body>')
 (ROOT/'单卡计算建模_总体方案与流水线.html').write_text(body.replace(chr(92)*2,chr(92)),encoding='utf-8')
 print('Wrote clean HTML and user guide')
