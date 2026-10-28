@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-1.0'
-SEARCH_VERSION = 'dense-candidates-1.0'
+MODEL_VERSION = 'resident-k-streamed-c-2.0'
+SEARCH_VERSION = 'dense-candidates-reuse-2.0'
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
@@ -93,8 +93,8 @@ class Hardware:
 
 @dataclass(frozen=True)
 class Policy:
-    bm_values: tuple = (16,32,64,128,256)
-    bn_values: tuple = (16,32,64,128,256)
+    bm_values: tuple = (16,32,64,128,192,256,384)
+    bn_values: tuple = (16,32,64,128,192,256,384)
     bk_values: tuple = (16,32,64,128,256,512)
     buffer_counts: tuple = (1,2)
     add_shape_candidate: bool = True
@@ -104,25 +104,35 @@ class Policy:
     epilogue_s_per_wave: float = 0.0
     transfer_resource_mode: str = 'independent'
     top_k: int = 5
+    input_reuse: bool = True
+    initial_cache_state: str = 'cold'
+    device_service_s: float = 0.0
+    output_chunk_values: tuple = (4096,16384)
+    output_buffer_counts: tuple = (1,2)
+    calibration_hardware_sha256: str = ''
 
     def __post_init__(self):
-        for name in ('add_shape_candidate','charge_hbm_latency'):
+        for name in ('add_shape_candidate','charge_hbm_latency','input_reuse'):
             if not isinstance(getattr(self,name),bool):raise ValueError(f'{name} must be boolean')
-        for name in ('bm_values','bn_values','bk_values','buffer_counts'):
+        for name in ('bm_values','bn_values','bk_values','buffer_counts','output_chunk_values','output_buffer_counts'):
             values=tuple(getattr(self,name));object.__setattr__(self,name,values)
             if not values or len(values)!=len(set(values)):
                 raise ValueError(f'{name} must contain unique positive integers')
             for v in values:
                 integer(v,name)
-            if name=='buffer_counts' and not set(values)<= {1,2}:
+            if name in ('buffer_counts','output_buffer_counts') and not set(values)<= {1,2}:
                 raise ValueError('Only one or two buffers are supported by the fast pipeline')
         positive(self.matrix_efficiency,'matrix_efficiency')
         if self.matrix_efficiency>1:raise ValueError('matrix_efficiency must be <= 1')
-        for name in ('l2_transfer_latency_s','epilogue_s_per_wave'):
+        for name in ('l2_transfer_latency_s','epilogue_s_per_wave','device_service_s'):
             positive(getattr(self,name),name,True)
         if self.transfer_resource_mode not in ('independent','shared-port'):
             raise ValueError('Unknown transfer resource mode')
         integer(self.top_k,'top_k')
+        if self.initial_cache_state not in ('cold','warm-if-fit'):raise ValueError('Invalid initial cache state')
+        fingerprint=self.calibration_hardware_sha256
+        if not isinstance(fingerprint,str) or (fingerprint and (len(fingerprint)!=64 or any(c not in '0123456789abcdef' for c in fingerprint))):
+            raise ValueError('calibration_hardware_sha256 must be an empty string or lowercase SHA256')
 
     def to_dict(self):return asdict(self)
 
@@ -135,9 +145,11 @@ class Mapping:
     gn: int
     l2_buffers: int
     shared_buffers: int
+    output_chunk_bytes: int = 16384
+    output_buffers: int = 2
 
     def __post_init__(self):
         for name,value in asdict(self).items():integer(value,name)
-        if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
+        if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2) or self.output_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
 
     def to_dict(self):return asdict(self)

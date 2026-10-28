@@ -123,12 +123,12 @@ class GemmTests(unittest.TestCase):
         self.assertFalse(model.capacity(Mapping(128,128,256,12,9,2,2),h)['valid'])
         self.assertTrue(model.capacity(Mapping(128,128,256,12,9,2,1),h)['valid'])
     def test_known_traffic(self):
-        r=evaluate_mapping(GemmRequest(3072,2304,1024),Mapping(128,128,128,12,9,2,2));self.assertEqual(r['hbm_read_bytes'],21*1024**2);self.assertEqual(r['l2_to_core_bytes'],216*1024**2);self.assertEqual(r['output_bytes'],13.5*1024**2);self.assertEqual(r['wave_count'],4)
+        r=evaluate_mapping(GemmRequest(3072,2304,1024),Mapping(128,128,128,12,9,2,2),policy=Policy(input_reuse=False));self.assertEqual(r['hbm_read_bytes'],21*1024**2);self.assertEqual(r['l2_to_core_bytes'],216*1024**2);self.assertEqual(r['output_bytes'],13.5*1024**2);self.assertEqual(r['wave_count'],4)
     def test_irregular_wave_aggregation(self):
-        req=GemmRequest(130,97,270);p=Mapping(64,64,128,2,1,2,2);h=Hardware();combined=evaluate_mapping(req,p,h);time=h.kernel_launch_s;hb=rb=0
+        req=GemmRequest(130,97,270);p=Mapping(64,64,128,2,1,2,2);h=Hardware();combined=evaluate_mapping(req,p,h,policy=Policy(input_reuse=False));time=h.kernel_launch_s;hb=rb=0
         for m in range(0,req.M,128):
             for n in range(0,req.N,64):
-                r=evaluate_mapping(GemmRequest(min(128,req.M-m),min(64,req.N-n),req.K),p,h);time+=r['duration_s']-h.kernel_launch_s;hb+=r['hbm_read_bytes'];rb+=r['l2_to_core_bytes']
+                r=evaluate_mapping(GemmRequest(min(128,req.M-m),min(64,req.N-n),req.K),p,h,policy=Policy(input_reuse=False));time+=r['duration_s']-h.kernel_launch_s;hb+=r['hbm_read_bytes'];rb+=r['l2_to_core_bytes']
         self.assertAlmostEqual(time,combined['duration_s']);self.assertEqual(hb,combined['hbm_read_bytes']);self.assertEqual(rb,combined['l2_to_core_bytes']);self.assertGreater(combined['executed_tile_flops'],combined['useful_flops'])
     def test_tail_valid_bytes_and_pad_compute(self):
         r=evaluate_mapping(GemmRequest(2,3,14),Mapping(16,16,128,1,1,1,1));self.assertEqual(r['hbm_read_bytes'],(2+3)*14*2);self.assertEqual(r['output_bytes'],12);self.assertEqual(r['executed_tile_flops'],2*16*16*16)

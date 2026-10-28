@@ -38,8 +38,21 @@ def pipeline(h, r, c, count, l2_buffers, shared_buffers, tail=None, *, accelerat
     if tail is not None:
         if len(tail)!=3:raise ValueError('tail must contain H/R/C durations')
         for v in tail:positive(v,'tail duration',True)
-    H=R=C=0.0;lf=[0.0]*l2_buffers;sf=[0.0]*shared_buffers;i=0;previous=None;skipped=0;trace=[]
-    total=count+(tail is not None)
+    segments=[(count,h,r,c)]
+    if tail is not None:segments.append((1,*tail))
+    return pipeline_segments(segments,l2_buffers,shared_buffers,accelerate=accelerate,shared_port=shared_port,trace_limit=trace_limit)
+
+
+def pipeline_segments(segments,l2_buffers,shared_buffers,*,accelerate=True,shared_port=False,trace_limit=0):
+    """Piecewise H/R/C service, retaining resource and buffer state at boundaries.
+
+    Each tuple is (panel_count, H_seconds, R_seconds, C_seconds). In particular,
+    a reused input has H=0 but still needs its R and C service. A zero-H panel
+    may conservatively reserve an input window; it never bypasses R or C.
+    """
+    if l2_buffers not in (1,2) or shared_buffers not in (1,2):raise ValueError('invalid buffer count')
+    integer(trace_limit,'trace_limit',0)
+    H=R=C=0.0;lf=[0.0]*l2_buffers;sf=[0.0]*shared_buffers;i=0;skipped=0;trace=[]
     def step(hh,rr,cc):
         nonlocal H,R,C,i
         ls=i%l2_buffers;ss=i%shared_buffers
@@ -50,21 +63,23 @@ def pipeline(h, r, c, count, l2_buffers, shared_buffers, tail=None, *, accelerat
         if len(trace)<trace_limit:
             trace.append({'panel':i,'l2_slot':ls,'shared_slot':ss,'H_start_s':h0,'H_end_s':h1,'R_start_s':r0,'R_end_s':r1,'C_start_s':c0,'C_end_s':c1})
         i+=1
-    while i<count:
-        step(h,r,c)
-        # After two panels the slot phase repeats. A uniform state translation is
-        # a fixed point of this max-plus recurrence: skip exact repeated cycles.
-        if accelerate and i%2==0:
-            state=[H,R,C,*lf,*sf]
-            if previous is not None:
-                deltas=[a-b for a,b in zip(state,previous)];delta=deltas[0]
-                if delta>0 and all(abs(d-delta)<=max(1e-18,abs(delta)*1e-10) for d in deltas):
-                    cycles=(count-i)//2
-                    if cycles and len(trace)>=trace_limit:
-                        shift=cycles*delta;H+=shift;R+=shift;C+=shift;lf=[v+shift for v in lf];sf=[v+shift for v in sf];i+=2*cycles;skipped+=2*cycles
-            previous=[H,R,C,*lf,*sf]
-    if tail is not None:step(*tail)
-    return {'duration_s':C,'H_end_s':H,'R_end_s':R,'C_end_s':C,'panels':total,'skipped_panels':skipped,'trace':trace}
+    for count,h,r,c in segments:
+        integer(count,'segment count',0)
+        for value in (h,r,c):positive(value,'segment duration',True)
+        stop=i+count;previous=None
+        while i<stop:
+            step(h,r,c)
+            if accelerate and i%2==0:
+                state=[H,R,C,*lf,*sf]
+                if previous is not None:
+                    deltas=[a-b for a,b in zip(state,previous)];delta=deltas[0]
+                    if delta>0 and all(abs(d-delta)<=max(1e-18,abs(delta)*1e-10) for d in deltas):
+                        cycles=(stop-i)//2
+                        if cycles and len(trace)>=trace_limit:
+                            shift=cycles*delta;H+=shift;R+=shift;C+=shift;lf=[v+shift for v in lf];sf=[v+shift for v in sf];i+=2*cycles;skipped+=2*cycles
+                previous=[H,R,C,*lf,*sf]
+    return {'duration_s':C,'H_end_s':H,'R_end_s':R,'C_end_s':C,'panels':i,'skipped_panels':skipped,'trace':trace}
+
 
 def pipeline_events(triplets, l2_buffers, shared_buffers, shared_port=False):
     """Uncompressed DAG, useful for independent verification and extension examples."""

@@ -1,0 +1,29 @@
+{
+  "goal_complete": false,
+  "requirements": {
+    "source1_explicit_timing_and_independent_fixed_service_calibration": "implemented and validated on 12 held-separate calibration cases",
+    "source2_streamed_C_output_and_capacity_bounded_reuse": "implemented; resource lifetimes checked against independent event DAG",
+    "source3_frozen": "hardware profile and array backend identical to baseline",
+    "at_least_50_representative_experiments": "72 measured; 12 calibration and 60 validation; all numerical checks passed",
+    "final_results_only": "summary statistics only; no new per-iteration measurement dumps or profiler traces",
+    "html_update_and_two_pipeline_diagrams": "installed; desktop/mobile checked and reuse toggle verified",
+    "arbitrary_GEMM_error_at_most_15_percent": "NOT MET; 35/60 pass, 8 pure-compute lower bounds already exceed measured time by more than 15%"
+  },
+  "tests": "46 unit tests passed in the installed project",
+  "cli_regular_us": 86.208578,
+  "validation": {
+    "count": 60,
+    "passes": 35,
+    "mean_absolute_percent": 25.176522615661654,
+    "median_absolute_percent": 8.635296053834624,
+    "max_absolute_percent": 81.52449748770051,
+    "frozen_peak_precludes_count": 8
+  },
+  "source3_hashes": {
+    "backends.py": "606d836ff574c8d1e0463f68f30ebfc62d30358ec8debd54621790b24e3bba29",
+    "data/bw1100.json": "f9876113912a7666243c34729cc5701754e68eed20476aaeae1315b343eddaec"
+  },
+  "html_sha256": "d0072e64fa84d602e9c0ef6903cfa7dde8d7a1d8a4c13c03fb9c919572b03f0d",
+  "known_runtime_log_sink_unchanged": true,
+  "remaining": "Cannot achieve all-shape accuracy under frozen peak that is contradicted by 8 measured shapes. Other kernel-specific residuals also remain; no fitted per-shape correction added."
+}

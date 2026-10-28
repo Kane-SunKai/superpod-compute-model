@@ -1,0 +1,302 @@
+{
+  "mapping": {
+    "bm": 128,
+    "bn": 128,
+    "bk": 64,
+    "gm": 12,
+    "gn": 6,
+    "l2_buffers": 2,
+    "shared_buffers": 2,
+    "output_chunk_bytes": 4096,
+    "output_buffers": 2
+  },
+  "capacity": {
+    "valid": true,
+    "rejections": [],
+    "shared_bytes": 65536,
+    "shared_input_bytes": 65536,
+    "shared_output_bytes": 8192,
+    "register_bytes": 98304,
+    "l2_bytes": 1179648,
+    "parallel_cores": 72
+  },
+  "duration_s": 4.51623630119347e-05,
+  "duration_us": 45.1623630119347,
+  "kernel_launch_s": 0.0,
+  "device_service_s": 0.0,
+  "initial_cache_state": "cold",
+  "warm_residency_admitted": false,
+  "reuse_order": "A",
+  "retention_budget_bytes": 7208960,
+  "hbm_bytes_saved_by_reuse": 6389760,
+  "wave_count": 3,
+  "wave_classes": [
+    {
+      "valid_m": 1536,
+      "valid_n": 768,
+      "count": 1,
+      "active_cores": 72,
+      "full_k_panels": 16,
+      "tail_k": 16,
+      "retained_k": 0,
+      "is_reuse_wave": false,
+      "panel_byte_runs": [
+        {
+          "panels": 16,
+          "k_elements": 64,
+          "HBM_bytes_per_panel": 294912,
+          "L2_to_core_bytes_per_panel": 2359296,
+          "retained_operand": null
+        },
+        {
+          "panels": 1,
+          "k_elements": 16,
+          "HBM_bytes_per_panel": 73728,
+          "L2_to_core_bytes_per_panel": 589824,
+          "retained_operand": null
+        }
+      ],
+      "full_panel_compute": {
+        "cycles": 1045,
+        "duration_s": 7.740740740740741e-07,
+        "source": "llmcompass-fast-0.98",
+        "array_partition_m": 1,
+        "array_partition_n": 4,
+        "subproblem": [
+          128,
+          32,
+          64
+        ]
+      },
+      "tail_panel_compute": {
+        "cycles": 735,
+        "duration_s": 5.444444444444444e-07,
+        "source": "llmcompass-lut-transposed",
+        "array_partition_m": 1,
+        "array_partition_n": 4,
+        "subproblem": [
+          128,
+          32,
+          16
+        ]
+      },
+      "pipeline": {
+        "duration_s": 1.3685580618714693e-05,
+        "H_end_s": 1.144626959229588e-05,
+        "R_end_s": 1.251318473118837e-05,
+        "C_end_s": 1.3685580618714693e-05,
+        "panels": 17,
+        "skipped_panels": 10,
+        "trace": [
+          {
+            "panel": 0,
+            "l2_slot": 0,
+            "shared_slot": 0,
+            "H_start_s": 0.0,
+            "H_end_s": 1.7146046511627906e-07,
+            "R_start_s": 1.7146046511627906e-07,
+            "R_end_s": 7.55950989085064e-07,
+            "C_start_s": 7.55950989085064e-07,
+            "C_end_s": 1.5300250631591381e-06
+          },
+          {
+            "panel": 1,
+            "l2_slot": 1,
+            "shared_slot": 1,
+            "H_start_s": 1.7146046511627906e-07,
+            "H_end_s": 3.429209302325581e-07,
+            "R_start_s": 7.55950989085064e-07,
+            "R_end_s": 1.3404415130538489e-06,
+            "C_start_s": 1.5300250631591381e-06,
+            "C_end_s": 2.304099137233212e-06
+          }
+        ]
+      },
+      "output_stream": {
+        "duration_s": 1.4447450364263305e-06,
+        "byte_runs": [
+          {
+            "chunks": 8,
+            "bytes_per_chunk_all_cores": 294912
+          }
+        ],
+        "pipeline": {
+          "duration_s": 1.4447450364263305e-06,
+          "H_end_s": 1.0034249565735915e-06,
+          "R_end_s": 1.1748854216898706e-06,
+          "C_end_s": 1.4447450364263305e-06,
+          "panels": 8,
+          "skipped_panels": 2,
+          "trace": [
+            {
+              "panel": 0,
+              "l2_slot": 0,
+              "shared_slot": 0,
+              "H_start_s": 0.0,
+              "H_end_s": 0.0,
+              "R_start_s": 0.0,
+              "R_end_s": 7.30613154960981e-08,
+              "C_start_s": 7.30613154960981e-08,
+              "C_end_s": 2.4452178061237715e-07
+            },
+            {
+              "panel": 1,
+              "l2_slot": 0,
+              "shared_slot": 1,
+              "H_start_s": 7.30613154960981e-08,
+              "H_end_s": 7.30613154960981e-08,
+              "R_start_s": 7.30613154960981e-08,
+              "R_end_s": 1.461226309921962e-07,
+              "C_start_s": 2.4452178061237715e-07,
+              "C_end_s": 4.159822457286562e-07
+            }
+          ]
+        },
+        "shared_output_limit_per_core": 8192,
+        "l2_output_window_limit": 589824
+      },
+      "epilogue_s": 0.0,
+      "write_to_l2_s": 5.844905239687848e-07,
+      "write_to_hbm_s": 1.3716837209302325e-06,
+      "duration_s": 1.5130325655141023e-05
+    },
+    {
+      "valid_m": 1536,
+      "valid_n": 768,
+      "count": 2,
+      "active_cores": 72,
+      "full_k_panels": 16,
+      "tail_k": 16,
+      "retained_k": 1040,
+      "is_reuse_wave": true,
+      "panel_byte_runs": [
+        {
+          "panels": 16,
+          "k_elements": 64,
+          "HBM_bytes_per_panel": 98304,
+          "L2_to_core_bytes_per_panel": 2359296,
+          "retained_operand": "A"
+        },
+        {
+          "panels": 1,
+          "k_elements": 16,
+          "HBM_bytes_per_panel": 24576,
+          "L2_to_core_bytes_per_panel": 589824,
+          "retained_operand": "A"
+        }
+      ],
+      "full_panel_compute": {
+        "cycles": 1045,
+        "duration_s": 7.740740740740741e-07,
+        "source": "llmcompass-fast-0.98",
+        "array_partition_m": 1,
+        "array_partition_n": 4,
+        "subproblem": [
+          128,
+          32,
+          64
+        ]
+      },
+      "tail_panel_compute": {
+        "cycles": 735,
+        "duration_s": 5.444444444444444e-07,
+        "source": "llmcompass-lut-transposed",
+        "array_partition_m": 1,
+        "array_partition_n": 4,
+        "subproblem": [
+          128,
+          32,
+          16
+        ]
+      },
+      "pipeline": {
+        "duration_s": 1.3571273641970509e-05,
+        "H_end_s": 1.1303385871365649e-05,
+        "R_end_s": 1.2398877754444185e-05,
+        "C_end_s": 1.3571273641970509e-05,
+        "panels": 17,
+        "skipped_panels": 10,
+        "trace": [
+          {
+            "panel": 0,
+            "l2_slot": 0,
+            "shared_slot": 0,
+            "H_start_s": 0.0,
+            "H_end_s": 5.715348837209302e-08,
+            "R_start_s": 5.715348837209302e-08,
+            "R_end_s": 6.416440123408778e-07,
+            "C_start_s": 6.416440123408778e-07,
+            "C_end_s": 1.415718086414952e-06
+          },
+          {
+            "panel": 1,
+            "l2_slot": 1,
+            "shared_slot": 1,
+            "H_start_s": 5.715348837209302e-08,
+            "H_end_s": 1.1430697674418605e-07,
+            "R_start_s": 6.416440123408778e-07,
+            "R_end_s": 1.2261345363096627e-06,
+            "C_start_s": 1.415718086414952e-06,
+            "C_end_s": 2.189792160489026e-06
+          }
+        ]
+      },
+      "output_stream": {
+        "duration_s": 1.4447450364263305e-06,
+        "byte_runs": [
+          {
+            "chunks": 8,
+            "bytes_per_chunk_all_cores": 294912
+          }
+        ],
+        "pipeline": {
+          "duration_s": 1.4447450364263305e-06,
+          "H_end_s": 1.0034249565735915e-06,
+          "R_end_s": 1.1748854216898706e-06,
+          "C_end_s": 1.4447450364263305e-06,
+          "panels": 8,
+          "skipped_panels": 2,
+          "trace": [
+            {
+              "panel": 0,
+              "l2_slot": 0,
+              "shared_slot": 0,
+              "H_start_s": 0.0,
+              "H_end_s": 0.0,
+              "R_start_s": 0.0,
+              "R_end_s": 7.30613154960981e-08,
+              "C_start_s": 7.30613154960981e-08,
+              "C_end_s": 2.4452178061237715e-07
+            },
+            {
+              "panel": 1,
+              "l2_slot": 0,
+              "shared_slot": 1,
+              "H_start_s": 7.30613154960981e-08,
+              "H_end_s": 7.30613154960981e-08,
+              "R_start_s": 7.30613154960981e-08,
+              "R_end_s": 1.461226309921962e-07,
+              "C_start_s": 2.4452178061237715e-07,
+              "C_end_s": 4.159822457286562e-07
+            }
+          ]
+        },
+        "shared_output_limit_per_core": 8192,
+        "l2_output_window_limit": 589824
+      },
+      "epilogue_s": 0.0,
+      "write_to_l2_s": 5.844905239687848e-07,
+      "write_to_hbm_s": 1.3716837209302325e-06,
+      "duration_s": 1.5016018678396838e-05
+    }
+  ],
+  "hbm_read_bytes": 7987200,
+  "l2_to_core_bytes": 115015680,
+  "output_bytes": 7077888,
+  "useful_flops": 7361003520,
+  "executed_tile_flops": 7361003520,
+  "array_sources_wave_panels": {
+    "llmcompass-fast-0.98": 48,
+    "llmcompass-lut-transposed": 3
+  }
+}

@@ -21,7 +21,7 @@ def parser():
         if name=='gemm':
             c.add_argument('--cache',type=Path,default=Path('.cache/mappings.sqlite3'));c.add_argument('--no-cache',action='store_true');c.add_argument('--force',action='store_true');c.add_argument('--progress',action='store_true')
         else:
-            c.add_argument('--mapping',required=True,help='bm,bn,bk,gm,gn,L2_buffers,shared_buffers')
+            c.add_argument('--mapping',required=True,help='bm,bn,bk,gm,gn,L2_buffers,shared_buffers[,output_chunk_bytes,output_buffers]')
             c.add_argument('--trace-panels',type=int,default=8,help='At most this many panels per representative wave, not a whole-kernel instruction trace')
     c=sub.add_parser('hardware',help='Print or export the bundled A100 profile');c.add_argument('--output',type=Path)
     c=sub.add_parser('cache',help='Inspect or clear the selected mapping database');c.add_argument('action',choices=('count','clear'));c.add_argument('--path',type=Path,default=Path('.cache/mappings.sqlite3'))
@@ -44,7 +44,7 @@ def main(argv=None):
         policy=Policy(**json.loads(args.policy.read_text(encoding='utf-8-sig'))) if args.policy else Policy()
         if args.command=='evaluate':
             values=[int(v) for v in args.mapping.split(',')]
-            if len(values)!=7:raise ValueError('--mapping requires 7 integers')
+            if len(values) not in (7,9):raise ValueError('--mapping requires 7 or 9 integers')
             if args.trace_panels<0 or args.trace_panels>10000:raise ValueError('--trace-panels must be 0..10000')
             result=evaluate_mapping(request,Mapping(*values),hardware,policy=policy,backend=args.backend,trace_limit=args.trace_panels)
             best=result

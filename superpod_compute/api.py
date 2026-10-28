@@ -7,10 +7,11 @@ from .contracts import Hardware, Policy, Mapping, MODEL_VERSION, SEARCH_VERSION,
 from .operators import default_registry
 
 def signature_for(request,hardware,policy,backend,model):
-    return {'request':request.to_dict(),'hardware':hardware.to_dict(),'policy':policy.to_dict(),'backend':backend.signature,'operator_model':model.version,'model_version':MODEL_VERSION,'search_version':SEARCH_VERSION,'initial_state':'cold-each-wave','dataflow':'resident-C-full-K; no-cross-wave-overlap'}
+    return {'request':request.to_dict(),'hardware':hardware.to_dict(),'policy':policy.to_dict(),'backend':backend.signature,'operator_model':model.version,'model_version':MODEL_VERSION,'search_version':SEARCH_VERSION,'initial_state':policy.initial_cache_state,'dataflow':'resident-C-full-K; streamed-output; capacity-bounded-input-reuse; sequential-waves'}
 
 def predict(request,hardware=None,*,policy=None,backend='array',cache_path=None,force=False,registry=None,progress=None,lut_path=None):
     hardware=hardware or Hardware.load();policy=policy or Policy();registry=registry or default_registry();model=registry.get(request.operator);model.validate(request,hardware)
+    if policy.calibration_hardware_sha256 and policy.calibration_hardware_sha256!=digest(hardware.to_dict()):raise ValueError('Calibration hardware fingerprint mismatch; recalibrate device service')
     compute=make_backend(backend,hardware,policy.matrix_efficiency,lut_path) if isinstance(backend,str) else backend
     signature=signature_for(request,hardware,policy,compute,model);key=digest(signature)
     special=model.special(request,hardware,policy)
@@ -46,6 +47,7 @@ def predict(request,hardware=None,*,policy=None,backend='array',cache_path=None,
 
 def evaluate_mapping(request,mapping,hardware=None,*,policy=None,backend='array',trace_limit=8):
     hardware=hardware or Hardware.load();policy=policy or Policy();model=default_registry().get(request.operator);model.validate(request,hardware)
+    if policy.calibration_hardware_sha256 and policy.calibration_hardware_sha256!=digest(hardware.to_dict()):raise ValueError('Calibration hardware fingerprint mismatch; recalibrate device service')
     compute=make_backend(backend,hardware,policy.matrix_efficiency) if isinstance(backend,str) else backend
     result=model.evaluate(request,hardware,policy,compute,mapping,trace_limit=trace_limit)
     if result is None:raise ValueError('Mapping violates resource budgets: '+str(model.capacity(mapping,hardware)))
