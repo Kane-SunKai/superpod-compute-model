@@ -38,7 +38,7 @@
   "top_k": 5,
   "input_reuse": true,
   "initial_cache_state": "warm-if-fit",
-  "device_service_s": 3.105274609663354e-06,
+  "device_service_s": 3.121244690369221e-06,
   "output_chunk_values": [
     4096,
     16384
@@ -47,5 +47,9 @@
     1,
     2
   ],
-  "calibration_hardware_sha256": "8e2402779a7a695e74dbfd381ca812fc214ffbb909fe6ce47562b5b66c64fa28"
+  "calibration_hardware_sha256": "58c843147546834b7b528ecd800b067f7575946851d5220ee07799bf1abcc4de",
+  "register_buffer_counts": [
+    1,
+    2
+  ]
 }

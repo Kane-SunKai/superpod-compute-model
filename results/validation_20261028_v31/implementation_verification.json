@@ -1,0 +1,23 @@
+{
+  "unit_tests": {
+    "count": 55,
+    "passed": 55,
+    "command": "python -B -m unittest discover -s tests"
+  },
+  "selected_mapping_checks": 144,
+  "mapping_differences": 0,
+  "html_qa": {
+    "errors": [],
+    "desktopOverflow": false,
+    "mobileOverflow": false,
+    "reuseSwitch": true
+  },
+  "html_sha256": "07a398330d4b9e2890bcd53513ca165e9b85e6fbb830e505120e127e7b311575",
+  "server_log_guard": {
+    "unchanged_since_previous_guard": true,
+    "scope": "Known /var/log/hylog file names, sizes and mtimes; not a full filesystem audit"
+  },
+  "accuracy_target_achieved": false,
+  "within_15_percent": 41,
+  "regression_cases": 60
+}

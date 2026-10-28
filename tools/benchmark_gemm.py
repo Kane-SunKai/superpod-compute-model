@@ -315,7 +315,7 @@ def main(argv=None):
     for p in (predict_parser, compare_parser):
         p.add_argument('--hardware', type=Path, help='Model hardware JSON; default bundled A100')
         p.add_argument('--policy', type=Path)
-        p.add_argument('--backend', choices=('array', 'peak'), default='array')
+        p.add_argument('--backend', choices=('auto', 'array', 'peak', 'mmac'), default='auto')
         p.add_argument('--cache', type=Path, help='Optional model search cache SQLite file')
     measure_parser.add_argument('--device', type=int, default=0)
     measure_parser.add_argument('--warmup', type=positive_int, default=30)

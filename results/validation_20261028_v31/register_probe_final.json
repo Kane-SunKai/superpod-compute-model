@@ -1,0 +1,30 @@
+{
+  "kernels": [
+    {
+      "name": "_Z5probeILi32EEvPfPyi",
+      "vgpr_count": 128,
+      "scratch_bytes_per_thread": 808
+    },
+    {
+      "name": "_Z5probeILi48EEvPfPyi",
+      "vgpr_count": 128,
+      "scratch_bytes_per_thread": 1336
+    },
+    {
+      "name": "_Z5probeILi64EEvPfPyi",
+      "vgpr_count": 128,
+      "scratch_bytes_per_thread": 1896
+    },
+    {
+      "name": "_Z5probeILi80EEvPfPyi",
+      "vgpr_count": 128,
+      "scratch_bytes_per_thread": 2344
+    },
+    {
+      "name": "_Z5probeILi96EEvPfPyi",
+      "vgpr_count": 128,
+      "scratch_bytes_per_thread": 3048
+    }
+  ],
+  "scope": "Same compiler and launch_bounds(512); register count/scratch size only; not proof of an immutable physical limit"
+}

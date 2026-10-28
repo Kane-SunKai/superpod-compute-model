@@ -1,4 +1,4 @@
-"""Operator-independent event service plus exact accelerated H/R/C pipeline."""
+"""Operator-independent event service and accelerated H/R/C or H/R/S/C pipelines."""
 from dataclasses import asdict, dataclass
 from .contracts import positive, integer
 
@@ -90,3 +90,46 @@ def pipeline_events(triplets, l2_buffers, shared_buffers, shared_port=False):
         cdeps=(f'R{i}',)+((f'C{i-1}',) if i else ())
         events.extend([Event(f'H{i}',h,('transfer' if shared_port else 'HBM',),hdeps,'load'),Event(f'R{i}',r,('transfer' if shared_port else 'L2',),rdeps,'load'),Event(f'C{i}',c,('matrix',),cdeps,'compute')])
     return events
+
+
+def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,trace_limit=0,accelerate=True):
+    """H: HBM->L2, R: L2->Shared, S: Shared->registers, C: matrix.
+
+    Input window frees at R end, Shared frees at S end, operand registers free
+    at C end. The persistent C accumulator is a distinct register allocation.
+    LDS-read and input-write service use independent ports in this abstraction.
+    """
+    buffers=(l2_buffers,shared_buffers,register_buffers)
+    if any(x not in (1,2) for x in buffers):raise ValueError('invalid buffer count')
+    ends=[0.0]*4;slots=[[0.0]*n for n in buffers];i=0;skipped=0;trace=[]
+    for number,h,r,s,c in segments:
+        integer(number,'segment count',0)
+        durations=(h,r,s,c)
+        for x in durations:positive(x,'stage duration',True)
+        stop=i+number;previous=None
+        while i<stop:
+            start=[];finish=[]
+            for stage,dt in enumerate(durations):
+                available=max(ends[stage],finish[-1] if stage else 0)
+                if stage<3:available=max(available,slots[stage][i%buffers[stage]])
+                if stage==0 and shared_port:available=max(available,ends[1])
+                start.append(available);finish.append(available+dt)
+            ends=finish
+            for stage in range(3):slots[stage][i%buffers[stage]]=finish[stage+1]
+            if len(trace)<trace_limit:
+                row={'panel':i}
+                for stage,name in enumerate(('H','R','S','C')):row.update({name+'_start_s':start[stage],name+'_end_s':finish[stage]})
+                trace.append(row)
+            i+=1
+            if accelerate and i%2==0:
+                state=ends+[v for group in slots for v in group]
+                if previous is not None:
+                    diffs=[a-b for a,b in zip(state,previous)];shift=diffs[0]
+                    if shift>0 and all(abs(d-shift)<=max(1e-18,abs(shift)*1e-10) for d in diffs):
+                        cycles=(stop-i)//2
+                        if cycles and len(trace)>=trace_limit:
+                            offset=cycles*shift;ends=[x+offset for x in ends];slots=[[x+offset for x in group] for group in slots]
+                            i+=cycles*2;skipped+=cycles*2
+                previous=ends+[v for group in slots for v in group]
+    return {'duration_s':ends[3],'H_end_s':ends[0],'R_end_s':ends[1],'S_end_s':ends[2],'C_end_s':ends[3],
+            'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['HBM','L2','Shared-read','matrix']}

@@ -1,0 +1,264 @@
+{
+  "mmac_slope_summary": [
+    {
+      "blocks": 1,
+      "waves": 1,
+      "chains": 1,
+      "TFLOPs": 1.3025788844821646,
+      "ticks_per_block_instruction": 8.2041015625
+    },
+    {
+      "blocks": 1,
+      "waves": 1,
+      "chains": 4,
+      "TFLOPs": 1.317582365870273,
+      "ticks_per_block_instruction": 8.074544270833334
+    },
+    {
+      "blocks": 1,
+      "waves": 1,
+      "chains": 8,
+      "TFLOPs": 1.325216759157449,
+      "ticks_per_block_instruction": 8.042236328125
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "chains": 1,
+      "TFLOPs": 5.210315286784448,
+      "ticks_per_block_instruction": 2.0859375
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "chains": 4,
+      "TFLOPs": 5.371555882020475,
+      "ticks_per_block_instruction": 2.0214640299479165
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "chains": 8,
+      "TFLOPs": 5.296674054288165,
+      "ticks_per_block_instruction": 2.0107828776041665
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "chains": 1,
+      "TFLOPs": 5.383063852328669,
+      "ticks_per_block_instruction": 2.0457763671875
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "chains": 4,
+      "TFLOPs": 5.293888768435052,
+      "ticks_per_block_instruction": 2.0116678873697915
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "chains": 8,
+      "TFLOPs": 5.294589321520329,
+      "ticks_per_block_instruction": 2.0058441162109375
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "chains": 1,
+      "TFLOPs": 92.07008386803989,
+      "ticks_per_block_instruction": 8.34375
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "chains": 4,
+      "TFLOPs": 96.53379734846557,
+      "ticks_per_block_instruction": 8.086507161458334
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "chains": 8,
+      "TFLOPs": 95.34029883537302,
+      "ticks_per_block_instruction": 8.042765299479166
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "chains": 1,
+      "TFLOPs": 368.2803528990428,
+      "ticks_per_block_instruction": 2.0862630208333335
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "chains": 4,
+      "TFLOPs": 386.5470412799091,
+      "ticks_per_block_instruction": 2.0193888346354165
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "chains": 8,
+      "TFLOPs": 381.3611953414921,
+      "ticks_per_block_instruction": 2.0108133951822915
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "chains": 1,
+      "TFLOPs": 388.41143995961914,
+      "ticks_per_block_instruction": 2.0457356770833335
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "chains": 4,
+      "TFLOPs": 381.2602305777062,
+      "ticks_per_block_instruction": 2.01129150390625
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "chains": 8,
+      "TFLOPs": 382.3160943028622,
+      "ticks_per_block_instruction": 2.005894978841146
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "chains": 1,
+      "TFLOPs": 367.5333282490982,
+      "ticks_per_block_instruction": 8.34375
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "chains": 4,
+      "TFLOPs": 386.13517023496394,
+      "ticks_per_block_instruction": 8.085367838541666
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "chains": 8,
+      "TFLOPs": 381.3605599407792,
+      "ticks_per_block_instruction": 8.0418701171875
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "chains": 1,
+      "TFLOPs": 385.10929857187915,
+      "ticks_per_block_instruction": 6.099690755208333
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "chains": 4,
+      "TFLOPs": 382.06416852229864,
+      "ticks_per_block_instruction": 6.02960205078125
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "chains": 8,
+      "TFLOPs": 382.7199953071539,
+      "ticks_per_block_instruction": 6.014546712239583
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "chains": 1,
+      "TFLOPs": 380.0613294823851,
+      "ticks_per_block_instruction": 6.061686197916667
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "chains": 4,
+      "TFLOPs": 382.5432753280547,
+      "ticks_per_block_instruction": 6.016754150390625
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "chains": 8,
+      "TFLOPs": 382.96000944704696,
+      "ticks_per_block_instruction": 6.008748372395833
+    }
+  ],
+  "lds_slope_summary": [
+    {
+      "blocks": 1,
+      "waves": 1,
+      "TBps": 0.01659130507977862,
+      "bytes_per_block_tick": 12.758572019565376
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "TBps": 0.06636556748384895,
+      "bytes_per_block_tick": 51.081317414373345
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "TBps": 0.08303346950568592,
+      "bytes_per_block_tick": 63.96535080027146
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "TBps": 1.1943297785344262,
+      "bytes_per_block_tick": 12.7601246105919
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "TBps": 4.777312963868595,
+      "bytes_per_block_tick": 51.0404984423676
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "TBps": 5.972905760298514,
+      "bytes_per_block_tick": 63.867948805798555
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "TBps": 4.777319114137705,
+      "bytes_per_block_tick": 12.7601246105919
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "TBps": 5.971331605528034,
+      "bytes_per_block_tick": 16.142969490690433
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "TBps": 5.978814809890356,
+      "bytes_per_block_tick": 21.175011864013168
+    }
+  ],
+  "instruction_peak_TFLOPs": 383.3856,
+  "evidence_scope": "Independent hardware microbenchmarks; no GEMM-shape error coefficient fitting",
+  "model_constants": {
+    "instruction_shape": [
+      16,
+      16,
+      16
+    ],
+    "instruction_cycles": 8,
+    "engines_per_CU": 4,
+    "clock_GHz": 1.3,
+    "LDS_read_B_per_CU_cycle": 64
+  },
+  "all_mmac_correct": true,
+  "all_lds_correct": true
+}

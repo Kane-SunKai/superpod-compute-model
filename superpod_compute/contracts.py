@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-streamed-c-2.0'
-SEARCH_VERSION = 'dense-candidates-reuse-2.0'
+MODEL_VERSION = 'resident-k-instruction-operand-service-3.1'
+SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.1'
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
@@ -62,11 +62,24 @@ class Hardware:
     register_reserve_bytes_per_core: int = 32 * 1024
     kernel_launch_s: float = 21e-6
     matrix_k_quantum: int = 16
+    matrix_backend: str = 'array'
+    instruction_m: int = 16
+    instruction_n: int = 16
+    instruction_k: int = 16
+    instruction_issue_cycles: int = 8
+    shared_read_bytes_per_cycle_per_core: float = 0.0
+
 
     def __post_init__(self):
         for name in ('cores','arrays_per_core','array_rows','array_cols','hbm_capacity_bytes','l2_bytes','source_sram_bytes_per_core','shared_budget_bytes_per_core','register_budget_bytes_per_core','matrix_k_quantum'):
             integer(getattr(self,name),name)
         integer(self.register_reserve_bytes_per_core,'register_reserve_bytes_per_core',0)
+        for name in ('instruction_m','instruction_n','instruction_k','instruction_issue_cycles'):
+            integer(getattr(self,name),name)
+        if self.matrix_backend not in ('array','mmac'):raise ValueError('Invalid matrix backend')
+        positive(self.shared_read_bytes_per_cycle_per_core,'shared_read_bytes_per_cycle_per_core',True)
+        if self.matrix_backend=='mmac' and self.matrix_k_quantum!=self.instruction_k:
+            raise ValueError('MMAC K padding must match instruction K dimension')
         for name in ('clock_hz','mac_per_cell_per_cycle','vector_fp16_flops_per_cycle_per_core','hbm_bandwidth_Bps','l2_bytes_per_cycle'):
             positive(getattr(self,name),name)
         for name in ('hbm_latency_s','kernel_launch_s'):
@@ -76,6 +89,8 @@ class Hardware:
 
     @property
     def core_peak_flops(self):
+        if self.matrix_backend=='mmac':
+            return self.arrays_per_core*2*self.instruction_m*self.instruction_n*self.instruction_k/self.instruction_issue_cycles*self.clock_hz
         return self.arrays_per_core*self.array_rows*self.array_cols*self.mac_per_cell_per_cycle*2*self.clock_hz
 
     @property
@@ -110,17 +125,18 @@ class Policy:
     output_chunk_values: tuple = (4096,16384)
     output_buffer_counts: tuple = (1,2)
     calibration_hardware_sha256: str = ''
+    register_buffer_counts: tuple = (1,2)
 
     def __post_init__(self):
         for name in ('add_shape_candidate','charge_hbm_latency','input_reuse'):
             if not isinstance(getattr(self,name),bool):raise ValueError(f'{name} must be boolean')
-        for name in ('bm_values','bn_values','bk_values','buffer_counts','output_chunk_values','output_buffer_counts'):
+        for name in ('bm_values','bn_values','bk_values','buffer_counts','output_chunk_values','output_buffer_counts','register_buffer_counts'):
             values=tuple(getattr(self,name));object.__setattr__(self,name,values)
             if not values or len(values)!=len(set(values)):
                 raise ValueError(f'{name} must contain unique positive integers')
             for v in values:
                 integer(v,name)
-            if name in ('buffer_counts','output_buffer_counts') and not set(values)<= {1,2}:
+            if name in ('buffer_counts','output_buffer_counts','register_buffer_counts') and not set(values)<= {1,2}:
                 raise ValueError('Only one or two buffers are supported by the fast pipeline')
         positive(self.matrix_efficiency,'matrix_efficiency')
         if self.matrix_efficiency>1:raise ValueError('matrix_efficiency must be <= 1')
@@ -147,9 +163,10 @@ class Mapping:
     shared_buffers: int
     output_chunk_bytes: int = 16384
     output_buffers: int = 2
+    register_input_buffers: int = 2
 
     def __post_init__(self):
         for name,value in asdict(self).items():integer(value,name)
-        if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2) or self.output_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
+        if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2) or self.output_buffers not in (1,2) or self.register_input_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
 
     def to_dict(self):return asdict(self)

@@ -6,8 +6,9 @@ def worker(item):
     source,row,version=item
     sys.path.insert(0,source)
     from superpod_compute import Hardware,GemmRequest,Policy,predict
-    hardware=Hardware.load(Path(source)/'superpod_compute/data/bw1100.json')
-    policy=Policy(initial_cache_state='warm-if-fit') if version=='v2' else Policy()
+    profile='bw1100_mmac_only_v3.json' if version=='v3' else 'bw1100.json'
+    hardware=Hardware.load(Path(source)/'superpod_compute/data'/profile)
+    policy=Policy(initial_cache_state='warm-if-fit') if version!='v1' else Policy()
     r=predict(GemmRequest(*row['shape']),hardware,policy=policy)
     b=r['best']
     t=(row['graph_round1']['p50_us']+row['graph_round2']['p50_us'])/2
@@ -22,16 +23,16 @@ def worker(item):
                 correct=row['correctness']['passed'])
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--version',choices=['v1','v2'],default='v2');ap.add_argument('--workers',type=int,default=4)
+    ap=argparse.ArgumentParser();ap.add_argument('--version',choices=['v1','v2','v3','v31'],default='v31');ap.add_argument('--workers',type=int,default=4)
     ap.add_argument('--source',type=Path);ap.add_argument('--measurements',type=Path);ap.add_argument('--output-dir',type=Path)
     args=ap.parse_args();root=Path(__file__).parent
     project=root if (root/'superpod_compute').is_dir() else root.parents[1]
-    if args.version=='v1' and args.source is None:ap.error('V1 requires --source pointing to an unchanged V1 checkout')
+    if args.version in ('v1','v2') and args.source is None:ap.error('Historical V1/V2 require --source pointing to the unchanged historical checkout')
     source=str((args.source or project).resolve())
     default_results=root if project==root else project/'results/validation_20261028'
     data=json.loads((args.measurements or default_results/'final_measurements.json').read_text());assert data['completed']
     report=dict(version=args.version,source=source,cases=[],completed=False)
-    output_dir=args.output_dir or default_results;output_dir.mkdir(parents=True,exist_ok=True)
+    output_dir=args.output_dir or (project/'results/validation_20261028_v31' if args.version in ('v3','v31') and project!=root else default_results);output_dir.mkdir(parents=True,exist_ok=True)
     out=output_dir/f'comparison_{args.version}.json'
     begin=time.monotonic()
     with concurrent.futures.ProcessPoolExecutor(max_workers=args.workers) as pool:
@@ -41,7 +42,7 @@ def main():
             print(row['id'],round(row['model_raw_us'],3),round(row['measured_graph_us'],3),flush=True)
             out.write_text(json.dumps(report,indent=2)+'\n')
     calibration=[x for x in report['cases'] if x['role']=='calibration']
-    service=max(0,statistics.median(x['measured_graph_us']-x['model_raw_us'] for x in calibration)) if args.version=='v2' else 0
+    service=max(0,statistics.median(x['measured_graph_us']-x['model_raw_us'] for x in calibration)) if args.version!='v1' else 0
     report['device_service_us']=service
     report['calibration_method']='One nonnegative median residual from 12 predeclared calibration shapes; zero validation-shape fitting'
     for row in report['cases']:

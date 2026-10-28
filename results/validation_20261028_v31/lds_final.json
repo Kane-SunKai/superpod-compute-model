@@ -1,0 +1,183 @@
+{
+  "cases": [
+    {
+      "blocks": 1,
+      "waves": 1,
+      "iterations": 4096,
+      "median_us": 262.239013672,
+      "block_ticks": 330292,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 1,
+      "iterations": 16384,
+      "median_us": 1020.643005371,
+      "block_ticks": 1316524,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "iterations": 4096,
+      "median_us": 259.200012207,
+      "block_ticks": 330276,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "iterations": 16384,
+      "median_us": 1017.600036621,
+      "block_ticks": 1315600,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "iterations": 4096,
+      "median_us": 409.920013428,
+      "block_ticks": 526160,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "iterations": 16384,
+      "median_us": 1622.241943359,
+      "block_ticks": 2099876,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "iterations": 4096,
+      "median_us": 261.121002197,
+      "block_ticks": 329364,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "iterations": 16384,
+      "median_us": 1019.680053711,
+      "block_ticks": 1315476,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "iterations": 4096,
+      "median_us": 259.040008545,
+      "block_ticks": 329412,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "iterations": 16384,
+      "median_us": 1017.600036621,
+      "block_ticks": 1315524,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "iterations": 4096,
+      "median_us": 410.239990234,
+      "block_ticks": 525972,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "iterations": 16384,
+      "median_us": 1623.679077148,
+      "block_ticks": 2102088,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "iterations": 4096,
+      "median_us": 261.279998779,
+      "block_ticks": 329372,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "iterations": 16384,
+      "median_us": 1019.839050293,
+      "block_ticks": 1315484,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "iterations": 4096,
+      "median_us": 814.87902832,
+      "block_ticks": 1041012,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "iterations": 16384,
+      "median_us": 3242.396972656,
+      "block_ticks": 4158880,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "iterations": 4096,
+      "median_us": 1624.799072266,
+      "block_ticks": 1585200,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "iterations": 16384,
+      "median_us": 6473.758300781,
+      "block_ticks": 6339072,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    }
+  ],
+  "instruction_examples": [
+    "s_mov_b64 s[8:9], src_shared_base",
+    "s_mov_b64 s[10:11], src_shared_base",
+    "flat_load_dwordx4 v[13:16], v[1:2] glc",
+    "flat_load_dwordx4 v[17:20], v[3:4] glc",
+    "flat_load_dwordx4 v[9:12], v[5:6] glc",
+    "flat_load_dwordx4 v[13:16], v[7:8] glc",
+    "flat_load_dwordx4 v[9:12], v[1:2] glc",
+    "flat_load_dwordx4 v[13:16], v[3:4] glc",
+    "flat_load_dwordx4 v[9:12], v[5:6] glc",
+    "flat_load_dwordx4 v[13:16], v[7:8] glc"
+  ],
+  "lds_instruction_lines": 0,
+  "scope": "Volatile aligned vector LDS reads plus vector accumulation; no GEMM fitting",
+  "assembly_uses_shared_base": true,
+  "assembly_group_segment_bytes": 16384,
+  "assembly_vector_load_count": 64
+}

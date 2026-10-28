@@ -1,0 +1,25 @@
+{
+  "model_version": "resident-k-instruction-operand-service-3.1",
+  "search_version": "dense-candidates-reuse-register-buffer-3.1",
+  "profiles": {
+    "v3": {
+      "checked_mappings": 72,
+      "differences": []
+    },
+    "v31": {
+      "checked_mappings": 72,
+      "differences": []
+    }
+  },
+  "calibration_fingerprint_matches": true,
+  "calibrated_regular_us": 50.20813227869285,
+  "calibrated_example_matches": true,
+  "validation_summary": {
+    "count": 60,
+    "passes": 41,
+    "mean_absolute_percent": 16.552199829828538,
+    "median_absolute_percent": 7.288957645727562,
+    "max_absolute_percent": 76.9657956985361,
+    "frozen_peak_precludes_count": 0
+  }
+}

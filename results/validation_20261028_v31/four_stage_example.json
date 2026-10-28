@@ -1,0 +1,310 @@
+{
+  "mapping": {
+    "bm": 256,
+    "bn": 384,
+    "bk": 16,
+    "gm": 12,
+    "gn": 6,
+    "l2_buffers": 1,
+    "shared_buffers": 2,
+    "output_chunk_bytes": 4096,
+    "output_buffers": 2,
+    "register_input_buffers": 2
+  },
+  "capacity": {
+    "valid": true,
+    "rejections": [],
+    "shared_bytes": 40960,
+    "shared_input_bytes": 40960,
+    "shared_output_bytes": 8192,
+    "register_bytes": 507904,
+    "operand_register_bytes": 81920,
+    "l2_bytes": 761856,
+    "parallel_cores": 72
+  },
+  "duration_s": 5.020813227869285e-05,
+  "duration_us": 50.20813227869285,
+  "kernel_launch_s": 0.0,
+  "device_service_s": 3.121244690369221e-06,
+  "initial_cache_state": "warm-if-fit",
+  "warm_residency_admitted": false,
+  "reuse_order": "none",
+  "retention_budget_bytes": 7626752,
+  "hbm_bytes_saved_by_reuse": 0,
+  "wave_count": 1,
+  "wave_classes": [
+    {
+      "valid_m": 3072,
+      "valid_n": 2304,
+      "count": 1,
+      "active_cores": 72,
+      "full_k_panels": 64,
+      "tail_k": 0,
+      "retained_k": 0,
+      "is_reuse_wave": false,
+      "panel_byte_runs": [
+        {
+          "panels": 64,
+          "k_elements": 16,
+          "HBM_bytes_per_panel": 172032,
+          "L2_to_core_bytes_per_panel": 1474560,
+          "Shared_to_register_bytes_per_core": 40960,
+          "retained_operand": null
+        }
+      ],
+      "full_panel_compute": {
+        "cycles": 768,
+        "duration_s": 5.907692307692307e-07,
+        "source": "bw1100-mmac-instruction-service",
+        "array_partition_m": 2,
+        "array_partition_n": 2,
+        "subproblem": [
+          256,
+          384,
+          16
+        ],
+        "schedule": "rectangular engine fragments; register input reuse",
+        "instruction_count": 384,
+        "engines_used": 4,
+        "shared_read_bytes": 40960
+      },
+      "tail_panel_compute": null,
+      "pipeline": {
+        "duration_s": 3.8780913896650134e-05,
+        "H_end_s": 3.679875087022335e-05,
+        "R_end_s": 3.728950149634142e-05,
+        "S_end_s": 3.809168312741937e-05,
+        "C_end_s": 3.8780913896650134e-05,
+        "panels": 64,
+        "skipped_panels": 56,
+        "trace": [
+          {
+            "panel": 0,
+            "H_start_s": 0.0,
+            "H_end_s": 1.000186046511628e-07,
+            "R_start_s": 1.000186046511628e-07,
+            "R_end_s": 4.793754351116721e-07,
+            "S_start_s": 4.793754351116721e-07,
+            "S_end_s": 9.716831274193646e-07,
+            "C_start_s": 9.716831274193646e-07,
+            "C_end_s": 1.5624523581885953e-06
+          },
+          {
+            "panel": 1,
+            "H_start_s": 4.793754351116721e-07,
+            "H_end_s": 5.793940397628349e-07,
+            "R_start_s": 5.793940397628349e-07,
+            "R_end_s": 9.587508702233443e-07,
+            "S_start_s": 9.716831274193646e-07,
+            "S_end_s": 1.4639908197270568e-06,
+            "C_start_s": 1.5624523581885953e-06,
+            "C_end_s": 2.153221588957826e-06
+          },
+          {
+            "panel": 2,
+            "H_start_s": 9.587508702233443e-07,
+            "H_end_s": 1.058769474874507e-06,
+            "R_start_s": 1.058769474874507e-06,
+            "R_end_s": 1.4381263053350164e-06,
+            "S_start_s": 1.5624523581885953e-06,
+            "S_end_s": 2.0547600504962875e-06,
+            "C_start_s": 2.153221588957826e-06,
+            "C_end_s": 2.743990819727057e-06
+          },
+          {
+            "panel": 3,
+            "H_start_s": 1.4381263053350164e-06,
+            "H_end_s": 1.5381449099861792e-06,
+            "R_start_s": 1.5381449099861792e-06,
+            "R_end_s": 1.9175017404466886e-06,
+            "S_start_s": 2.153221588957826e-06,
+            "S_end_s": 2.6455292812655183e-06,
+            "C_start_s": 2.743990819727057e-06,
+            "C_end_s": 3.3347600504962876e-06
+          },
+          {
+            "panel": 4,
+            "H_start_s": 1.9175017404466886e-06,
+            "H_end_s": 2.0175203450978515e-06,
+            "R_start_s": 2.0547600504962875e-06,
+            "R_end_s": 2.434116880956797e-06,
+            "S_start_s": 2.743990819727057e-06,
+            "S_end_s": 3.236298512034749e-06,
+            "C_start_s": 3.3347600504962876e-06,
+            "C_end_s": 3.925529281265518e-06
+          },
+          {
+            "panel": 5,
+            "H_start_s": 2.434116880956797e-06,
+            "H_end_s": 2.53413548560796e-06,
+            "R_start_s": 2.6455292812655183e-06,
+            "R_end_s": 3.0248861117260277e-06,
+            "S_start_s": 3.3347600504962876e-06,
+            "S_end_s": 3.82706774280398e-06,
+            "C_start_s": 3.925529281265518e-06,
+            "C_end_s": 4.5162985120347495e-06
+          },
+          {
+            "panel": 6,
+            "H_start_s": 3.0248861117260277e-06,
+            "H_end_s": 3.1249047163771906e-06,
+            "R_start_s": 3.236298512034749e-06,
+            "R_end_s": 3.6156553424952584e-06,
+            "S_start_s": 3.925529281265518e-06,
+            "S_end_s": 4.4178369735732105e-06,
+            "C_start_s": 4.5162985120347495e-06,
+            "C_end_s": 5.10706774280398e-06
+          },
+          {
+            "panel": 7,
+            "H_start_s": 3.6156553424952584e-06,
+            "H_end_s": 3.7156739471464214e-06,
+            "R_start_s": 3.82706774280398e-06,
+            "R_end_s": 4.20642457326449e-06,
+            "S_start_s": 4.5162985120347495e-06,
+            "S_end_s": 5.008606204342442e-06,
+            "C_start_s": 5.10706774280398e-06,
+            "C_end_s": 5.69783697357321e-06
+          }
+        ],
+        "stages": [
+          "HBM",
+          "L2",
+          "Shared-read",
+          "matrix"
+        ]
+      },
+      "output_stream": {
+        "duration_s": 8.305973691673492e-06,
+        "byte_runs": [
+          {
+            "chunks": 48,
+            "bytes_per_chunk_all_cores": 294912
+          }
+        ],
+        "pipeline": {
+          "duration_s": 8.305973691673492e-06,
+          "H_end_s": 7.867463662416757e-06,
+          "R_end_s": 8.038924127533037e-06,
+          "C_end_s": 8.305973691673492e-06,
+          "panels": 48,
+          "skipped_panels": 40,
+          "trace": [
+            {
+              "panel": 0,
+              "l2_slot": 0,
+              "shared_slot": 0,
+              "H_start_s": 0.0,
+              "H_end_s": 0.0,
+              "R_start_s": 0.0,
+              "R_end_s": 7.587136609210187e-08,
+              "C_start_s": 7.587136609210187e-08,
+              "C_end_s": 2.473318312083809e-07
+            },
+            {
+              "panel": 1,
+              "l2_slot": 0,
+              "shared_slot": 1,
+              "H_start_s": 7.587136609210187e-08,
+              "H_end_s": 7.587136609210187e-08,
+              "R_start_s": 7.587136609210187e-08,
+              "R_end_s": 1.5174273218420374e-07,
+              "C_start_s": 2.473318312083809e-07,
+              "C_end_s": 4.1879229632465997e-07
+            },
+            {
+              "panel": 2,
+              "l2_slot": 0,
+              "shared_slot": 0,
+              "H_start_s": 1.5174273218420374e-07,
+              "H_end_s": 1.5174273218420374e-07,
+              "R_start_s": 2.473318312083809e-07,
+              "R_end_s": 3.232031973004828e-07,
+              "C_start_s": 4.1879229632465997e-07,
+              "C_end_s": 5.90252761440939e-07
+            },
+            {
+              "panel": 3,
+              "l2_slot": 0,
+              "shared_slot": 1,
+              "H_start_s": 3.232031973004828e-07,
+              "H_end_s": 3.232031973004828e-07,
+              "R_start_s": 4.1879229632465997e-07,
+              "R_end_s": 4.946636624167618e-07,
+              "C_start_s": 5.90252761440939e-07,
+              "C_end_s": 7.61713226557218e-07
+            },
+            {
+              "panel": 4,
+              "l2_slot": 0,
+              "shared_slot": 0,
+              "H_start_s": 4.946636624167618e-07,
+              "H_end_s": 4.946636624167618e-07,
+              "R_start_s": 5.90252761440939e-07,
+              "R_end_s": 6.661241275330409e-07,
+              "C_start_s": 7.61713226557218e-07,
+              "C_end_s": 9.33173691673497e-07
+            },
+            {
+              "panel": 5,
+              "l2_slot": 0,
+              "shared_slot": 1,
+              "H_start_s": 6.661241275330409e-07,
+              "H_end_s": 6.661241275330409e-07,
+              "R_start_s": 7.61713226557218e-07,
+              "R_end_s": 8.375845926493199e-07,
+              "C_start_s": 9.33173691673497e-07,
+              "C_end_s": 1.104634156789776e-06
+            },
+            {
+              "panel": 6,
+              "l2_slot": 0,
+              "shared_slot": 0,
+              "H_start_s": 8.375845926493199e-07,
+              "H_end_s": 8.375845926493199e-07,
+              "R_start_s": 9.33173691673497e-07,
+              "R_end_s": 1.0090450577655988e-06,
+              "C_start_s": 1.104634156789776e-06,
+              "C_end_s": 1.276094621906055e-06
+            },
+            {
+              "panel": 7,
+              "l2_slot": 0,
+              "shared_slot": 1,
+              "H_start_s": 1.0090450577655988e-06,
+              "H_end_s": 1.0090450577655988e-06,
+              "R_start_s": 1.104634156789776e-06,
+              "R_end_s": 1.1805055228818779e-06,
+              "C_start_s": 1.276094621906055e-06,
+              "C_end_s": 1.447555087022334e-06
+            }
+          ]
+        },
+        "shared_output_limit_per_core": 8192,
+        "l2_output_window_limit": 589824
+      },
+      "epilogue_s": 0.0,
+      "write_to_l2_s": 3.6418255724208903e-06,
+      "write_to_hbm_s": 8.230102325581396e-06,
+      "duration_s": 4.708688758832363e-05
+    }
+  ],
+  "hbm_read_bytes": 11010048,
+  "l2_to_core_bytes": 94371840,
+  "output_bytes": 14155776,
+  "useful_flops": 14495514624,
+  "executed_tile_flops": 14495514624,
+  "array_sources_wave_panels": {
+    "bw1100-mmac-instruction-service": 64
+  },
+  "scope_notes": [
+    "resident FP32 C registers across all K panels; sequential output waves",
+    "bounded shared/L2 C staging; output chunks overlap L2 service with HBM drain on independent ports",
+    "L2 prefix retention is a planned ideal residence policy, not measured hardware cache behavior",
+    "register aggregate capacity checked; compiler per-thread allocation/occupancy not modeled",
+    "optional Shared->register service uses an explicit rectangular-engine operand reuse plan; independent LDS read/write ports assumed",
+    "FP16/BF16 share 16-bit service; conversion/layout execution cost remains a separate configurable term",
+    "device_service_s is additive per GEMM, distinct from hardware.kernel_launch_s host submission setting",
+    "matrix service selected by hardware/backend; no GEMM-shape-dependent correction"
+  ]
+}

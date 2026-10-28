@@ -1,6 +1,42 @@
-# BW1100硬件配置：来源、换算和使用方法
+# BW1100当前硬件配置与证据（V3.1）
 
-配置文件：`superpod_compute/data/bw1100.json`。
+当前配置为`superpod_compute/data/bw1100.json`。2026-10-28获准核实来源3后，用独立指令和Shared微基准修正；详细实验见 [V3.1核实报告](BW1100_V31_指令与LDS核实.md)。
+
+| 字段 | 当前值 | 定义与证据 |
+|---|---:|---|
+| `matrix_backend` | `mmac` | 按矩阵指令服务周期预测，由`--backend auto`选择 |
+| `instruction_m/n/k` | 16/16/16 | SDK与汇编确认的FP16 MMAC形状；每条8192 FLOP |
+| `instruction_issue_cycles` | 8 | 独立寄存器输入MMAC持续服务间隔，不由GEMM误差反算 |
+| `arrays_per_core` | 4 | 每CU四个矩阵服务单元，独立并发微基准支持这一服务能力 |
+| `cores` | 72 | 用户硬件资料与设备查询 |
+| `clock_hz` | 1300000000 | 本轮负载监测主要频率状态1.30 GHz；并非锁定频率 |
+| `mac_per_cell_per_cycle` | 2 | 仅供旧array接口等效表示；MMAC后端计算不使用此值 |
+| `shared_read_bytes_per_cycle_per_core` | 64 | 独立LDS持续读取实测约63.87–63.97 B/CU/cycle |
+| `l2_bytes_per_cycle` | 2990 | 仍保留原统一读写服务参数；未新测L2端口；当前换算3.887 TB/s |
+| `hbm_bandwidth_Bps` | 1.72e12 | 沿用用户HipStream有效带宽；非本轮新增测量 |
+
+其余容量沿用原资料：Shared 64 KiB/CU，聚合VGPR预算768 KiB/CU（预留32 KiB），L2 8 MiB。新增A/B输入寄存器槽需要额外扣除容量；聚合预算通过仍不保证实际编译器每线程分配不溢出。
+
+模型整卡矩阵吞吐为`72×4×8192/8×1.30e9=383.3856e12 FLOP/s`。矩阵单元指令形状和持续服务周期共同定义吞吐，不能只由16×16的二维尺寸推断。
+
+`kernel_launch_s`仍为0。配合`examples/bw1100_graph_calibrated.json`可显式加入12组校准得到的设备固定服务3.121245 µs。这是HIP Graph设备计时口径，不能直接当作Python端到端调用耗时。FP16证据未单独验证BF16吞吐；当前16位等效处理仍沿用用户约定。
+
+```powershell
+cd 'D:\03_Project_Work\02_WORK_Super node\compute_model'
+.\run.ps1 gemm --m 3072 --n 2304 --k 1024 `
+  --hardware superpod_compute/data/bw1100.json `
+  --policy examples/bw1100_graph_calibrated.json --backend auto
+```
+
+历史MAC=1配置已保存为`superpod_compute/data/bw1100_mac1_v2.json`。若要完整复现V2结果，需要同时使用Git提交`75a47ba`的代码与对应校准文件。仅换旧硬件文件不等于恢复旧算法。
+
+---
+
+以下保留V2来源说明，其中“当前”均指当时的V2状态。
+
+# 附录：历史V2硬件说明
+
+配置文件：`superpod_compute/data/bw1100_mac1_v2.json`。
 
 这是兼容当前`Hardware`接口的**BW1100硬件配置（16×16物理阵列结构约定、每单元每周期1 MAC）**。按用户明确指定，本方案将每个Tensor Core视为一个16×16物理阵列，每个CU有4个这样的阵列；这项结构作为本方案的建模前提。直接来源是用户提供的两张硬件参数表；L2容量和当前卡可用显存补充自`real_bw1100_fp16_v2.json`。没有用三组GEMM实测时延反向拟合参数，没有修改模型算法，也没有把默认A100的启动开销带过来。
 
@@ -13,7 +49,7 @@ cd 'D:\03_Project_Work\02_WORK_Super node\compute_model'
 
 .\run.ps1 gemm --m 3072 --n 2304 --k 1024 `
   --dtype fp16 `
-  --hardware superpod_compute/data/bw1100.json `
+  --hardware superpod_compute/data/bw1100_mac1_v2.json `
   --output results/bw1100_regular.json
 ```
 
@@ -23,7 +59,7 @@ cd 'D:\03_Project_Work\02_WORK_Super node\compute_model'
 $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 & $py tools/benchmark_gemm.py predict `
   --cases examples/benchmark_gemms.json `
-  --hardware superpod_compute/data/bw1100.json `
+  --hardware superpod_compute/data/bw1100_mac1_v2.json `
   --output results/model_bw1100.json
 ```
 

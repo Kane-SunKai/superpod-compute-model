@@ -20,6 +20,10 @@ class TileEstimate:
     array_partition_m: int
     array_partition_n: int
     subproblem: tuple
+    schedule: str = 'rectangular-array-partition'
+    instruction_count: int = 0
+    engines_used: int = 0
+    shared_read_bytes: int = 0
 
     def to_dict(self):return {**asdict(self),'subproblem':list(self.subproblem)}
 
@@ -96,7 +100,60 @@ class ArrayBackend:
             options.append(TileEstimate(cycles,cycles/self.hw.clock_hz,source,pm,pn,sub))
         return min(options,key=lambda x:(x.cycles,x.array_partition_m,x.array_partition_n))
 
+@lru_cache(maxsize=8192)
+def mmac_operand_plan(m,n,k,hardware):
+    """Equal rectangular fragment partitions; A/B reused within each engine.
+
+    Data are duplicated when engines own different rows/columns. This is an
+    explicit planned dataflow, not an assertion about the selected library kernel.
+    """
+    h=hardware;fm=ceil(m/h.instruction_m);fn=ceil(n/h.instruction_n)
+    options=[]
+    for pm in range(1,h.arrays_per_core+1):
+        if h.arrays_per_core%pm:continue
+        pn=h.arrays_per_core//pm
+        qm,qn=ceil(fm/pm),ceil(fn/pn)
+        active_m,active_n=ceil(fm/qm),ceil(fn/qn)
+        operand_bytes=2*k*(active_n*fm*h.instruction_m+active_m*fn*h.instruction_n)
+        options.append((qm*qn,operand_bytes,pm,pn,active_m*active_n))
+    return min(options)
+
+class MmacBackend:
+    """Instruction service, inferred from a separate register-only BW1100 probe.
+
+    Each engine serves one 16x16x16 FP16 MMAC per 8 cycles. Accumulation
+    dependencies allow the same sustained interval in the unfolded probe.
+    Distinct M/N rectangles are distributed over the four engines; K is not
+    split. No GEMM-duration correction factors or hardware lookup by shape.
+    This is an ideal executable-fragment schedule, not the rocBLAS dispatch.
+    """
+    version='bw1100-mmac-instruction-service-1.1'
+    def __init__(self,hardware,efficiency=1.0):
+        if hardware.matrix_backend!='mmac':raise ValueError('MMAC backend requires an explicit instruction hardware profile')
+        positive(efficiency,'efficiency')
+        if efficiency>1:raise ValueError('efficiency must be <= 1')
+        self.hw=hardware;self.efficiency=efficiency
+        self.estimate=lru_cache(maxsize=8192)(self._estimate)
+    @property
+    def signature(self):
+        return {'backend':self.version,'efficiency':self.efficiency,'assignment':'rectangular independent M/N fragments; resident C across K',
+                'instruction_shape':[self.hw.instruction_m,self.hw.instruction_n,self.hw.instruction_k],
+                'issue_cycles':self.hw.instruction_issue_cycles,'engines':self.hw.arrays_per_core,
+                'evidence':'54 register-MMAC probe configurations; 128-way loop unroll; not GEMM-shape fitting'}
+    def _estimate(self,m,n,k):
+        for value in (m,n,k):integer(value,'tile dimension')
+        h=self.hw
+        fragments=ceil(m/h.instruction_m)*ceil(n/h.instruction_n)
+        k_steps=ceil(k/h.instruction_k)
+        longest_engine,operand_bytes,pm,pn,active=mmac_operand_plan(m,n,k,h)
+        cycles=ceil(longest_engine*k_steps*h.instruction_issue_cycles/self.efficiency)
+        return TileEstimate(cycles,cycles/h.clock_hz,'bw1100-mmac-instruction-service',pm,pn,(m,n,k),
+                            'rectangular engine fragments; register input reuse',fragments*k_steps,active,operand_bytes)
+
+
 def make_backend(name,hardware,efficiency=1.0,lut_path=None):
+    if name=='auto':name=hardware.matrix_backend
+    if name=='mmac':return MmacBackend(hardware,efficiency)
     if name=='array':return ArrayBackend(hardware,efficiency,lut_path)
     if name=='peak':return PeakBackend(hardware,efficiency)
     raise ValueError('Unknown backend: '+name)

@@ -3,7 +3,8 @@ from collections import Counter
 from math import ceil, isqrt
 from typing import Protocol
 from .contracts import Mapping
-from .scheduler import pipeline, pipeline_segments
+from .scheduler import pipeline, pipeline_segments, operand_pipeline
+from .backends import mmac_operand_plan
 
 def ceildiv(a,b):return (a+b-1)//b
 def align(a,q):return ceildiv(a,q)*q
@@ -36,7 +37,7 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-stream-reuse-2.0'
+    version='dense-resident-c-stream-reuse-operands-3.1'
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
     @staticmethod
@@ -62,13 +63,17 @@ class GemmModel:
         inputs=p.shared_buffers*(p.bm+p.bn)*p.bk*2
         output=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
         registers=p.bm*p.bn*4+hardware.register_reserve_bytes_per_core
+        operand_registers=0
+        if hardware.matrix_backend=='mmac' and hardware.shared_read_bytes_per_cycle_per_core:
+            operand_registers=p.register_input_buffers*mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1]
+            registers+=operand_registers
         l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output
         reasons=[]
         if max(inputs,output)>hardware.shared_budget_bytes_per_core:reasons.append('shared')
         if registers>hardware.register_budget_bytes_per_core:reasons.append('registers')
         if l2>hardware.l2_bytes:reasons.append('L2')
         if p.gm*p.gn>hardware.cores:reasons.append('cores')
-        return {'valid':not reasons,'rejections':reasons,'shared_bytes':max(inputs,output),'shared_input_bytes':inputs,'shared_output_bytes':output,'register_bytes':registers,'l2_bytes':l2,'parallel_cores':p.gm*p.gn}
+        return {'valid':not reasons,'rejections':reasons,'shared_bytes':max(inputs,output),'shared_input_bytes':inputs,'shared_output_bytes':output,'register_bytes':registers,'operand_register_bytes':operand_registers,'l2_bytes':l2,'parallel_cores':p.gm*p.gn}
 
     def candidates(self,request,hardware,policy):
         def values(base,dim):
@@ -92,7 +97,8 @@ class GemmModel:
                                 chunks=sorted({min(x,bm*bn*2) for x in policy.output_chunk_values})
                                 for chunk in chunks:
                                     for O in policy.output_buffer_counts:
-                                        yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O)
+                                        counts=policy.register_buffer_counts if hardware.matrix_backend=='mmac' and hardware.shared_read_bytes_per_cycle_per_core else (2,)
+                                        for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V)
 
     def evaluate(self,request,hardware,policy,backend,mapping,trace_limit=0):
         p=mapping;cap=self.capacity(p,hardware)
@@ -171,11 +177,17 @@ class GemmModel:
                 for number,k,hit,service in [(hit_full,p.bk,True,compute),(full-hit_full,p.bk,False,compute),(int(tail>0),tail,keep==request.K,last)]:
                     if not number:continue
                     dh,dr,h,r=transfer(k,hit)
-                    segments.append((number,h,r,service.duration_s))
+                    read_bandwidth=hardware.shared_read_bytes_per_cycle_per_core*hardware.clock_hz
+                    st=service.shared_read_bytes/read_bandwidth if read_bandwidth and service.shared_read_bytes else 0
+                    segments.append((number,h,r,st,service.duration_s))
                     bytes_runs.append({'panels':number,'k_elements':k,'HBM_bytes_per_panel':dh,'L2_to_core_bytes_per_panel':dr,
+                                       'Shared_to_register_bytes_per_core':service.shared_read_bytes if read_bandwidth else 0,
                                        'retained_operand':('AB' if warm else order if hit else None)})
                     hbytes+=count*number*dh;rbytes+=count*number*dr;saved+=count*number*((m+n)*k*2-dh)
-                run=pipeline_segments(segments,p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit)
+                if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend=='mmac':
+                    run=operand_pipeline(segments,p.l2_buffers,p.shared_buffers,p.register_input_buffers,shared_port=shared_port,trace_limit=trace_limit)
+                else:
+                    run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit)
                 output=output_plan(m,n)
                 per_wave=run['duration_s']+output['duration_s'];total+=count*per_wave
                 out=m*n*2;obytes+=count*out;wave_count+=count
@@ -191,9 +203,10 @@ class GemmModel:
                    'bounded shared/L2 C staging; output chunks overlap L2 service with HBM drain on independent ports',
                    'L2 prefix retention is a planned ideal residence policy, not measured hardware cache behavior',
                    'register aggregate capacity checked; compiler per-thread allocation/occupancy not modeled',
+                   'optional Shared->register service uses an explicit rectangular-engine operand reuse plan; independent LDS read/write ports assumed',
                    'FP16/BF16 share 16-bit service; conversion/layout execution cost remains a separate configurable term',
                    'device_service_s is additive per GEMM, distinct from hardware.kernel_launch_s host submission setting',
-                   'source3 array backend and hardware throughput unchanged']
+                   'matrix service selected by hardware/backend; no GEMM-shape-dependent correction']
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,

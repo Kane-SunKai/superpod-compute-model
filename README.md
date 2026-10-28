@@ -1,5 +1,7 @@
 # Superpod Compute Model
 
+> 当前为2026-10-28 **V3.1**：BW1100通过独立MMAC/LDS微基准核实，采用8周期指令服务和64 B/CU/cycle Shared读取；加入Shared→A/B寄存器流水及输入寄存器容量检查。原60组回归41组误差≤15%，中位误差7.29%，平均16.55%，19组仍未达标。详见 [V3.1依据与结果](docs/BW1100_V31_指令与LDS核实.md)。A100默认继续使用array后端。下文V2及V1描述为历史背景。
+
 > 2026-10-28 V2：已实现C分片输出、容量受限的A/B输入保留、分段流水线及显式设备固定服务项。72组实测（12校准+60验证）中，35/60验证误差≤15%，尚未达到任意尺寸≤15%的目标。详见 [V2验证报告](docs/BW1100_V2_72组验证.md) 与 [交互设计说明](docs/计算建模总体方案_K分块与双缓冲Mapper.html)。后文原有冷输入及整块C容量说明为V1历史描述，V2规则以报告为准。
 
 
@@ -12,7 +14,7 @@
 在Windows PowerShell中：
 
 ```powershell
-cd 'D:\01codex_work\03_super node\compute_model'
+cd 'D:\03_Project_Work\02_WORK_Super node\compute_model'
 
 # 第一次：搜索；再次执行同一命令：精确查表
 .\run.ps1 gemm --m 3072 --n 2304 --k 1024 --output results/array_search.json
