@@ -1,11 +1,11 @@
 {
-  "name": "BW1100-72CU-1.35GHz-equivalent-v1",
+  "name": "BW1100-72CU-1.35GHz-mac1-v2",
   "cores": 72,
   "clock_hz": 1350000000.0,
   "arrays_per_core": 4,
   "array_rows": 16,
   "array_cols": 16,
-  "mac_per_cell_per_cycle": 1.9412570529513888,
+  "mac_per_cell_per_cycle": 1.0,
   "vector_fp16_flops_per_cycle_per_core": 251.73611111111111,
   "hbm_bandwidth_Bps": 1720000000000.0,
   "hbm_latency_s": 0.0,

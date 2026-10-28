@@ -1,12 +1,12 @@
 {
   "profile": {
-    "name": "BW1100-72CU-1.35GHz-equivalent-v1",
+    "name": "BW1100-72CU-1.35GHz-mac1-v2",
     "cores": 72,
     "clock_hz": 1350000000.0,
     "arrays_per_core": 4,
     "array_rows": 16,
     "array_cols": 16,
-    "mac_per_cell_per_cycle": 1.9412570529513888,
+    "mac_per_cell_per_cycle": 1.0,
     "vector_fp16_flops_per_cycle_per_core": 251.73611111111111,
     "hbm_bandwidth_Bps": 1720000000000.0,
     "hbm_latency_s": 0.0,
@@ -21,9 +21,9 @@
     "matrix_k_quantum": 16
   },
   "checks_passed": true,
-  "chip_matrix_peak_flops": 386437500000000.0,
+  "chip_matrix_peak_flops": 199065600000000.0,
   "l2_modeled_bandwidth_Bps": 4036500000000.0,
-  "scope": "Interface and mapping feasibility validation only; not GPU accuracy validation",
+  "scope": "Interface and mapping feasibility validation only; updated to user-requested MAC=1 on 2026-10-28",
   "cases": [
     {
       "shape": [
@@ -37,10 +37,10 @@
         "bk": 32,
         "gm": 8,
         "gn": 9,
-        "l2_buffers": 2,
+        "l2_buffers": 1,
         "shared_buffers": 2
       },
-      "duration_us": 55.389638647342984,
+      "duration_us": 87.73475793385357,
       "capacity": {
         "valid": true,
         "rejections": [],
@@ -48,7 +48,7 @@
         "shared_input_bytes": 49152,
         "shared_output_bytes": 65536,
         "register_bytes": 163840,
-        "l2_bytes": 5144576,
+        "l2_bytes": 4931584,
         "parallel_cores": 72
       },
       "feasible_candidates": 5728
@@ -65,10 +65,10 @@
         "bk": 64,
         "gm": 5,
         "gn": 4,
-        "l2_buffers": 2,
+        "l2_buffers": 1,
         "shared_buffers": 2
       },
-      "duration_us": 0.22967299467936472,
+      "duration_us": 0.3785618835682536,
       "capacity": {
         "valid": true,
         "rejections": [],
@@ -76,7 +76,7 @@
         "shared_input_bytes": 16384,
         "shared_output_bytes": 2048,
         "register_bytes": 36864,
-        "l2_bytes": 114688,
+        "l2_bytes": 77824,
         "parallel_cores": 20
       },
       "feasible_candidates": 3338
@@ -96,7 +96,7 @@
         "l2_buffers": 2,
         "shared_buffers": 1
       },
-      "duration_us": 78.15693849207378,
+      "duration_us": 78.18953108466637,
       "capacity": {
         "valid": true,
         "rejections": [],
