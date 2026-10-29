@@ -151,9 +151,40 @@ class MmacBackend:
                             'rectangular engine fragments; register input reuse',fragments*k_steps,active,operand_bytes)
 
 
+class MacThroughputBackend(MmacBackend):
+    """Same rectangular fragment/operand plan as MMAC, with a MAC/cycle budget.
+
+    No wavefront/LUT or empirical utilization multiplier: the comparison changes
+    compute service only. 16x16 cells * 1 MAC/cell/cycle = 256 MAC/engine/cycle.
+    Fragment padding and engine imbalance remain explicit in both backends.
+    """
+    version='rectangular-mac-throughput-1.0'
+    def __init__(self,hardware,efficiency=1.0):
+        if hardware.matrix_backend!='mac-throughput':raise ValueError('MAC throughput backend requires its matching hardware profile')
+        positive(efficiency,'efficiency')
+        if efficiency>1:raise ValueError('efficiency must be <= 1')
+        self.hw=hardware;self.efficiency=efficiency
+        self.estimate=lru_cache(maxsize=8192)(self._estimate)
+    @property
+    def signature(self):
+        h=self.hw
+        return {'backend':self.version,'efficiency':self.efficiency,
+                'mac_per_engine_cycle':h.array_rows*h.array_cols*h.mac_per_cell_per_cycle,
+                'assignment':'same rectangular fragments and operand reuse as MMAC; throughput-only counterfactual'}
+    def _estimate(self,m,n,k):
+        for value in (m,n,k):integer(value,'tile dimension')
+        h=self.hw
+        longest,operand_bytes,pm,pn,active=mmac_operand_plan(m,n,k,h)
+        steps=ceil(k/h.instruction_k)
+        macs=longest*h.instruction_m*h.instruction_n*steps*h.instruction_k
+        cycles=ceil(macs/(h.array_rows*h.array_cols*h.mac_per_cell_per_cycle*self.efficiency))
+        return TileEstimate(cycles,cycles/h.clock_hz,'rectangular-mac-throughput',pm,pn,(m,n,k),
+                            'rectangular engine fragments; register input reuse',0,active,operand_bytes)
+
 def make_backend(name,hardware,efficiency=1.0,lut_path=None):
     if name=='auto':name=hardware.matrix_backend
     if name=='mmac':return MmacBackend(hardware,efficiency)
+    if name=='mac-throughput':return MacThroughputBackend(hardware,efficiency)
     if name=='array':return ArrayBackend(hardware,efficiency,lut_path)
     if name=='peak':return PeakBackend(hardware,efficiency)
     raise ValueError('Unknown backend: '+name)

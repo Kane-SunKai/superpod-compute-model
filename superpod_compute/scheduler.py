@@ -92,6 +92,44 @@ def pipeline_events(triplets, l2_buffers, shared_buffers, shared_port=False):
     return events
 
 
+def output_pipeline(segments,shared_buffers,l2_buffers,*,shared_port=False,trace_limit=0,accelerate=True):
+    """W: accumulators -> Shared, L: output -> L2, D: L2 -> HBM.
+
+    FP16 conversion has zero separate cost by policy. Output Shared reads are
+    deliberately not timed. Shared slots live W.start..L.end; L2 slots live
+    L.start..D.end. Shared write and the output port are independent resources.
+    shared_port serializes L and D, not W. Slots are per output wave/chunk round.
+    """
+    if shared_buffers not in (1,2) or l2_buffers not in (1,2):raise ValueError('invalid output buffer count')
+    integer(trace_limit,'trace_limit',0)
+    ends=[0.0]*3;sf=[0.0]*shared_buffers;lf=[0.0]*l2_buffers;i=skipped=0;trace=[]
+    for count,w,l,d in segments:
+        integer(count,'segment count',0)
+        for value in (w,l,d):positive(value,'output stage duration',True)
+        stop=i+count;previous=None
+        while i<stop:
+            ss=i%shared_buffers;ls=i%l2_buffers
+            w0=max(ends[0],sf[ss]);w1=w0+w
+            l0=max(w1,ends[1],lf[ls],ends[2] if shared_port else 0);l1=l0+l
+            d0=max(l1,ends[2]);d1=d0+d
+            ends=[w1,l1,d1];sf[ss]=l1;lf[ls]=d1
+            if len(trace)<trace_limit:
+                trace.append({'panel':i,'shared_slot':ss,'l2_slot':ls,
+                    'W_start_s':w0,'W_end_s':w1,'L_start_s':l0,'L_end_s':l1,'D_start_s':d0,'D_end_s':d1})
+            i+=1
+            if accelerate and i%2==0:
+                state=ends+sf+lf
+                if previous is not None:
+                    deltas=[a-b for a,b in zip(state,previous)];delta=deltas[0]
+                    if delta>0 and all(abs(v-delta)<=max(1e-18,abs(delta)*1e-10) for v in deltas):
+                        repeats=(stop-i)//2
+                        if repeats and len(trace)>=trace_limit:
+                            offset=repeats*delta;ends=[x+offset for x in ends];sf=[x+offset for x in sf];lf=[x+offset for x in lf]
+                            i+=2*repeats;skipped+=2*repeats
+                previous=ends+sf+lf
+    return {'duration_s':ends[2],'W_end_s':ends[0],'L_end_s':ends[1],'D_end_s':ends[2],
+            'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['register-to-Shared','L2-write','L2-read/HBM-drain']}
+
 def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,trace_limit=0,accelerate=True):
     """H: HBM->L2, R: L2->Shared, S: Shared->registers, C: matrix.
 

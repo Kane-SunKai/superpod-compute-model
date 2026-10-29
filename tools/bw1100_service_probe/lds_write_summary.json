@@ -1,0 +1,12 @@
+{
+  "selection": "Mean of the two independently repeated 72-block, 8-wave/block slopes; not a GEMM error fit",
+  "read_bytes_per_cycle_per_core": 64,
+  "write_rounds_bytes_per_cycle_per_core": [
+    59.247300233779626,
+    59.456706586684874
+  ],
+  "write_bytes_per_cycle_per_core": 59.35200341023225,
+  "all_correct": true,
+  "known_log_sink_unchanged": true,
+  "limits": "Effective bandwidth for aligned volatile 16-byte stores; not arbitrary bank/conflict/write patterns or an exact peak."
+}

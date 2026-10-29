@@ -1,6 +1,6 @@
 # 单卡计算模型 · 简明 User Guide
 
-当前实现：V3.1。代码目录：`D:\03_Project_Work\02_WORK_Super node\compute_model`。
+当前实现：V3.2。代码目录：`D:\03_Project_Work\02_WORK_Super node\compute_model`。
 模型在CPU上预测本卡GEMM时间，不需要GPU、PyTorch或SSH。Python 3.10+，核心仅使用标准库。
 
 ## 1. 打开项目，选择Python
@@ -25,7 +25,7 @@ $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\de
   --trace-panels 8 --output results/tutorial_fixed.json
 ```
 
-预期打印`duration_us=50.208132`，1批输出；其中固定设备服务约3.121245 µs、64个K面板输入/计算流水38.780914 µs、分片输出8.305974 µs。此数值是模型估计。相同形状已有Graph实测64.709 µs，误差约−22.41%，尚未达到15%。
+预期打印`duration_us=50.182891`，1批输出；其中固定设备服务约3.121245 µs、64个K面板输入/计算流水38.702586 µs、分片输出8.359060 µs。此数值是模型估计。相同形状已有Graph实测64.709 µs，误差约−22.45%，尚未达到15%。
 
 映射参数依次为：
 
@@ -65,9 +65,9 @@ $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\de
 
 ## 5. 跑复用示例
 
-把固定分块命令中的`--n 2304`改为`--n 4608`，会计算两批C。当前策略下A+B不能全放入L2，所以初始仍为冷输入；模型会选择保留A的跨批复用，预期`duration_us=97.237866`、HBM输入15 MiB。
+把固定分块命令中的`--n 2304`改为`--n 4608`，会计算两批C。当前策略下A+B不能全放入L2，所以初始仍为冷输入；模型会选择保留A的跨批复用，预期`duration_us=97.187383`、HBM输入15 MiB。
 
-如要做严格无复用对照：复制策略文件，在新文件里设`initial_cache_state`为`cold`、`input_reuse`为`false`。用相同映射重新evaluate，预期97.295020 µs、HBM输入21 MiB。搬运减少6 MiB，但本例计算与搬运高度重叠，总时间只减少约0.057153 µs。
+如要做严格无复用对照：复制策略文件，在新文件里设`initial_cache_state`为`cold`、`input_reuse`为`false`。用相同映射重新evaluate，预期97.244536 µs、HBM输入21 MiB。搬运减少6 MiB，但本例计算与搬运高度重叠，总时间只减少约0.057153 µs。
 
 ## 6. 看结果、跑验证
 
@@ -83,9 +83,32 @@ $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\de
 
 ```powershell
 & $py -B -m unittest discover -s tests
-& $py -B tools/validation_20261028/verify_installed_results.py
+& $py -B tools/verify_v32.py
 ```
 
-55项实现测试通过。既有60组真机回归中，规则组41/50误差≤15%，非规则组0/10；规则组平均绝对误差7.52%。非规则组当前单独记录，不作为本阶段主要验收范围；仍有9组规则案例需要改进。
+60项实现测试通过；完整对照结果见 `results/validation_20261029_v32/comparison_modes.json`。同一组验证样例上分别搜索，不重拟合固定开销。
 
-`tools/validation_20261028/compare_suite.py --version v31 --workers 4`可重新搜索既有72组（12校准+60回归），耗时较长；它读取已保存真机数据，不重新启动GPU测试。上述固定服务基于Graph设备时间校准，不能直接用早期eager调用的时间判断同一口径精度。
+## 8. 切换为每个 Tensor Core 256 MAC/cycle
+
+将前述命令的硬件文件换为 `superpod_compute/data/bw1100_mac256.json`，策略换为 `examples/bw1100_mac256_comparison.json`；保持 `--backend auto`。
+默认硬件仍为MMAC模型。两个文件中的L2、Shared、HBM和设备固定服务相同，只切换矩阵计算服务。256 MAC/cycle指每个矩阵服务单元；每CU四个、全卡72CU。
+
+## 9. 重跑本次两模型对照
+
+```powershell
+& $py -B tools/compare_compute_modes.py --measurements results/validation_20261028/final_measurements.json --output-dir results/validation_20261029_v32 --workers 4
+```
+
+脚本复用同一组实测，不连接GPU；已有同名报告可断点续跑。换源码、硬件或策略后应使用新的输出目录，避免复用旧实验。
+输出包含144条预测（72组×2），按12组校准和60组验证分别汇总，阈值为绝对相对误差≤15%。
+
+## 10. 新增硬件参数
+
+- `l2_read_bytes_per_cycle=3768`：全卡L2读。
+- `l2_write_bytes_per_cycle=2990`：全卡L2写。
+- `shared_write_bytes_per_cycle_per_core`：本次对齐向量写实测两轮均值59.35200341023225 Byte/cycle/CU。
+- `shared_read_bytes_per_cycle_per_core=64`：之前Shared输入读取的实测。
+
+新字段默认0时表示兼容旧行为：L2读写回退到旧统一字段；Shared输出写不计费。当前BW1100配置已明确填入新值。
+输出沿 W(寄存器→Shared) → L(L2写) → D(L2读/HBM写) 调度；Shared槽在L结束释放，L2槽在D结束释放。Shared输出读回不单独计时。
+两模型沿用原固定服务3.121245 µs，未重新拟合。硬件指纹已更新，含义是显式迁移同一固定服务用于受控比较，不是重新校准。

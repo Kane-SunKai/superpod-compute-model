@@ -1,0 +1,228 @@
+{
+  "cases": [
+    {
+      "blocks": 1,
+      "waves": 1,
+      "iterations": 4096,
+      "median_us": 256.0,
+      "block_ticks": 313744,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 1,
+      "iterations": 16384,
+      "median_us": 984.323974609,
+      "block_ticks": 1254780,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "iterations": 4096,
+      "median_us": 249.602005005,
+      "block_ticks": 313804,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "iterations": 16384,
+      "median_us": 973.281982422,
+      "block_ticks": 1254812,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "iterations": 4096,
+      "median_us": 436.00100708,
+      "block_ticks": 558160,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "iterations": 16384,
+      "median_us": 1734.385009766,
+      "block_ticks": 2239588,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "iterations": 4096,
+      "median_us": 255.380981445,
+      "block_ticks": 313744,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "iterations": 16384,
+      "median_us": 979.040039062,
+      "block_ticks": 1254544,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "iterations": 4096,
+      "median_us": 248.960006714,
+      "block_ticks": 313800,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "iterations": 16384,
+      "median_us": 972.639953613,
+      "block_ticks": 1254596,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "iterations": 4096,
+      "median_us": 436.160003662,
+      "block_ticks": 558156,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "iterations": 16384,
+      "median_us": 1747.521972656,
+      "block_ticks": 2257192,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "iterations": 4096,
+      "median_us": 256.0,
+      "block_ticks": 313744,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "iterations": 16384,
+      "median_us": 979.841003418,
+      "block_ticks": 1254544,
+      "bytes_per_iteration_per_block": 1024,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "iterations": 4096,
+      "median_us": 912.479980469,
+      "block_ticks": 590060,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "iterations": 16384,
+      "median_us": 3628.645019531,
+      "block_ticks": 2359532,
+      "bytes_per_iteration_per_block": 4096,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "iterations": 4096,
+      "median_us": 1820.640014648,
+      "block_ticks": 1049140,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "iterations": 16384,
+      "median_us": 7236.964355469,
+      "block_ticks": 4194912,
+      "bytes_per_iteration_per_block": 8192,
+      "correct": true
+    }
+  ],
+  "slopes": [
+    {
+      "blocks": 1,
+      "waves": 1,
+      "bytes_per_block_tick": 13.371339672446112,
+      "gpu_event_TBps": 0.017276531377063517
+    },
+    {
+      "blocks": 1,
+      "waves": 4,
+      "bytes_per_block_tick": 53.48695016407937,
+      "gpu_event_TBps": 0.06954959314978783
+    },
+    {
+      "blocks": 1,
+      "waves": 8,
+      "bytes_per_block_tick": 59.86774099158573,
+      "gpu_event_TBps": 0.077529679811023
+    },
+    {
+      "blocks": 72,
+      "waves": 1,
+      "bytes_per_block_tick": 13.374693877551021,
+      "gpu_event_TBps": 1.2519288668663202
+    },
+    {
+      "blocks": 72,
+      "waves": 4,
+      "bytes_per_block_tick": 53.49900297195141,
+      "gpu_event_TBps": 5.007570917956864
+    },
+    {
+      "blocks": 72,
+      "waves": 8,
+      "bytes_per_block_tick": 59.247300233779626,
+      "gpu_event_TBps": 5.52689301914105
+    },
+    {
+      "blocks": 288,
+      "waves": 1,
+      "bytes_per_block_tick": 13.374693877551021,
+      "gpu_event_TBps": 5.006456720312791
+    },
+    {
+      "blocks": 288,
+      "waves": 4,
+      "bytes_per_block_tick": 28.444444444444443,
+      "gpu_event_TBps": 5.336757676921532
+    },
+    {
+      "blocks": 288,
+      "waves": 8,
+      "bytes_per_block_tick": 31.999552415114636,
+      "gpu_event_TBps": 5.352528287404143
+    }
+  ],
+  "correct": true,
+  "log_sink_unchanged": true,
+  "source_sha256": "484d2c127ce9ebe1d6e09b2db8b4305405f756608e93f6dbbe846218e6ccb65d",
+  "assembly_shared_base": true,
+  "vector_store_instruction_lines": 65,
+  "scope": "Volatile aligned 16-byte register-to-LDS stores. Per-block tick median across 9 launches; two iteration lengths remove fixed overhead. Output checks outside tick timing. Not a full GEMM epilogue measurement."
+}

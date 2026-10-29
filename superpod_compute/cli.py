@@ -16,7 +16,7 @@ def parser():
         c=sub.add_parser(name,help='Search mappings' if name=='gemm' else 'Evaluate one mapping and export its representative wave trace')
         c.add_argument('--m',type=int,required=True);c.add_argument('--n',type=int,required=True);c.add_argument('--k',type=int,required=True)
         c.add_argument('--dtype',choices=('fp16','bf16'),default='fp16');c.add_argument('--hardware',type=Path);c.add_argument('--policy',type=Path)
-        c.add_argument('--backend',choices=('auto','array','peak','mmac'),default='auto');c.add_argument('--output',type=Path)
+        c.add_argument('--backend',choices=('auto','array','peak','mmac','mac-throughput'),default='auto');c.add_argument('--output',type=Path)
         c.add_argument('--json',action='store_true',help='Print full JSON instead of a concise summary')
         if name=='gemm':
             c.add_argument('--cache',type=Path,default=Path('.cache/mappings.sqlite3'));c.add_argument('--no-cache',action='store_true');c.add_argument('--force',action='store_true');c.add_argument('--progress',action='store_true')

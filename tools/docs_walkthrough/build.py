@@ -3,7 +3,7 @@ import json,html
 from tiling_explainer import render as render_tiling, JS as TILING_JS
 ROOT=Path(__file__).parent
 D=json.loads((ROOT/'example_data.json').read_text(encoding='utf-8'))
-project=Path('D:/03_Project_Work/02_WORK_Super node/compute_model')
+project=ROOT.parents[1]
 def esc(s):return html.escape(str(s))
 def txt(x,y,s,size=16,fill='#18364d',weight=400,anchor='start'):
     return f'<text x="{x}" y="{y}" font-size="{size}" fill="{fill}" font-weight="{weight}" text-anchor="{anchor}">{esc(s)}</text>'
@@ -248,9 +248,10 @@ function schematic(opts={}) {
  ['rf0','A/B寄存器 槽0','40 KiB；C计算完才可覆盖'],
  ['rf1','A/B寄存器 槽1','40 KiB；与槽0交替'],
  ['acc','C 累加寄存器','384 KiB；跨完整K持续累加'],
- ['ep','输出转换 / 整理','逻辑步骤；额外时延尚未计入'],
- ['wl','输出片 → L2','每CU每片4 KiB，共48片'],
- ['wh','L2 → HBM','每轮72 CU合计288 KiB']];
+ ['ep','输出转换 / 整理','转换服务暂为0；Shared读回不计时'],
+ ['ws','C寄存器 → Shared','每CU每片4 KiB；显式写带宽计时'],
+ ['wl','输出片 → L2（写）','2990 B/cycle，全卡共享服务'],
+ ['wh','L2（读）→ HBM','读3768 B/cycle；HBM 1.72 TB/s']];
  const ys=Object.fromEntries(rows.map(([id],i)=>[id,rowTop+i*rowH]));
  const height=rowTop+rows.length*rowH+63;
  let s=`<svg viewBox="0 0 1560 ${height}" role="img" aria-label="执行阶段与数据存活区间：完整K累加和最终分片写回" xmlns="http://www.w3.org/2000/svg"><defs><marker id="dep-${second?'reuse':'main'}" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7Z" fill="#68879b"/></marker></defs>`;
@@ -293,20 +294,21 @@ function schematic(opts={}) {
  // Shared memory is reused only after the whole input/compute phase finishes.
  for(const [name,parity] of [['sh0',0],['sh1',1]]){
   const x=1246+parity*25,w=1518-x,y=ys[name];
-  s+=block(x,y,w,48,'#eee8f7','#a48ac8',true)+label(x+w/2,y+20,`最终C小片 ${parity}/${parity+2}/…/${46+parity}`,15,true,'#385776','middle')+label(x+w/2,y+39,'4 KiB槽循环使用',12,false,'#74869a','middle');
+  s+=block(x,y,w,48,'#eee8f7','#a48ac8',true)+label(x+w/2,y+20,`最终C小片 ${parity}/${parity+2}/…/${46+parity}`,15,true,'#385776','middle')+label(x+w/2,y+39,'4 KiB；写L2完成可覆盖',12,false,'#74869a','middle');
  }
  let cy=ys.acc;
  s+=block(250,cy,1268,48,'#eee8f7','#a48ac8',true)+label(770,cy+20,'同一份C：K 0 → 16 → 32 → 48 → 64 → … → 960 → 976 → 992 → 1024',16,true,'#244b6a','middle');
  s+=label(770,cy+39,'FP32部分和驻留；完整K结束后，从此处分片读取、转换并写出',13,false,'#687c98','middle');
  // This is an execution-order sketch: conversion width is not charged model time.
  s+=block(1246,ys.ep,272,48,'#fff7e7','#d7ad62',true)+label(1382,ys.ep+20,'逐片转换 / 整理',16,true,'#9b681d','middle')+label(1382,ys.ep+39,'逻辑过程，额外服务暂为0',12,false,'#9b681d','middle');
- for(const [j,x] of [[0,1246],[1,1324],[47,1420]]){
-  s+=block(x,ys.wl,50,48,'#deebfd')+label(x+25,ys.wl+20,`片${j}`,14,true,'#244b6a','middle')+label(x+25,ys.wl+39,'写L2',12,false,'#687c98','middle');
-  s+=block(x+50,ys.wh,56,48,'#deebfd')+label(x+78,ys.wh+20,`片${j}`,14,true,'#244b6a','middle')+label(x+78,ys.wh+39,'写HBM',12,false,'#687c98','middle');
-  s+=edge(x+50,ys.wl+49,x+50,ys.wh-1);
+ for(const [j,x] of [[0,1246],[1,1324],[47,1416]]){
+  s+=block(x,ys.ws,40,48,'#eadcf7','#a58cc5')+label(x+20,ys.ws+20,`片${j}`,13,true,'#244b6a','middle')+label(x+20,ys.ws+39,'写LDS',10,false,'#687c98','middle');
+  s+=block(x+40,ys.wl,40,48,'#deebfd')+label(x+60,ys.wl+20,`片${j}`,13,true,'#244b6a','middle')+label(x+60,ys.wl+39,'写L2',11,false,'#687c98','middle');
+  s+=block(x+80,ys.wh,40,48,'#deebfd')+label(x+100,ys.wh+20,`片${j}`,13,true,'#244b6a','middle')+label(x+100,ys.wh+39,'写HBM',10,false,'#687c98','middle');
+  s+=edge(x+40,ys.ws+49,x+40,ys.wl-1)+edge(x+80,ys.wl+49,x+80,ys.wh-1);
  }
- s+=label(1401,ys.wl+28,'⋯',22,false,'#8da2b3','middle')+label(1450,ys.wh+28,'⋯',22,false,'#8da2b3','middle');
- s+=edge(1233,ys.C+23,1239,ys.ep+20,true);
+ s+=label(1392,ys.ws+28,'⋯',20,false,'#8da2b3','middle');
+ s+=edge(1233,ys.C+23,1239,ys.ep+20,true)+edge(1240,ys.ep+49,1240,ys.ws-1);
  s+=`<path d="M${xx(4)+150},90 V${ys.acc+48}" stroke="#c7842b" stroke-dasharray="5 4"/>`;
  if(second){let y=ys.keep;
   s+=block(250,y,950,48,reused?'#e4f1e8':'#f0f2f5',reused?'#81af96':'#b7c2ca',true)+label(725,y+20,reused?'保留 A₀…A₆₃：本批R阶段直接取用，共6 MiB':'A不跨批保留：每个K面板重新从HBM取A和右侧B',16,true,'#365d4a','middle')+label(725,y+39,reused?'只省 HBM→L2 的A读取；aᵢ仍需走 R → S → C':'不改变后续R/S/C和C累加过程',13,false,'#68879b','middle');
@@ -343,9 +345,33 @@ selector.addEventListener('change',()=>showPanel(Number(selector.value)));docume
 function overview(){let d=DATA.main,parts=[['固定设备服务',d.device_service_s,'#dce5ec'],['64个K面板：H / R / S / C',wave.pipeline.duration_s,'#d5bde9'],['48轮C分片输出',wave.output_stream.duration_s,'#b2ded1']],s=canvas('完整单次GEMM时间分解',170),scale=1120/d.duration_s,x=45;
  s+=text(25,28,'完整算子 · 从单次设备服务到最后一个C输出片写入HBM',18);parts.forEach(([name,t,c],i)=>{let w=t*scale;s+=box(x,62,w,50,c)+text(x+w/2,138,`${name} ${us(t)} µs`,i===1?15:12,'middle');s+=text(x+w/2,92,i===0?'固定':i===1?'输入与计算重叠':'输出',14,'middle');x+=w});return s+'</svg>'}
 document.querySelector('#overview').innerHTML=overview();
-function outputs(){let t=wave.output_stream.pipeline.trace.slice(0,8),end=t[t.length-1].C_end_s,scale=W/end,s=canvas('C分片输出的L2和HBM重叠',245);s+=text(24,28,'输出流水放大：前8轮，每轮72个CU各写4 KiB（共288 KiB）',19);
- [['R','输出片 → L2','#b2ded1'],['C','L2 → HBM','#b7d4fa']].forEach(([k,l,c],j)=>{let y=60+j*72;s+=text(25,y+27,l,16);t.forEach(r=>{let x=X+r[k+'_start_s']*scale,w=(r[k+'_end_s']-r[k+'_start_s'])*scale;s+=box(x,y,w,45,c)+text(x+5,y+28,`片${r.panel}`,12)+`<title>第${r.panel}轮 ${us(r[k+'_start_s'])}–${us(r[k+'_end_s'])} µs</title>`})});
- for(let i=0;i<=5;i++)s+=text(X+W*i/5,215,(end*1e6*i/5).toFixed(3),13,'middle');return s+'</svg>'}
+function outputs(){
+ const t=wave.output_stream.pipeline.trace.slice(0,8),end=t[t.length-1].D_end_s,scale=W/end;
+ let s=canvas('C输出：寄存器写Shared、L2写服务、L2读与HBM写回的流水与缓冲存活',687);
+ s+=text(24,28,'C输出流水放大：前8片 / 共48片；横轴是输出阶段开始后的微秒',19);
+ [['W','C寄存器 → Shared','#d5bde9'],['L','输出 → L2（写）','#b2ded1'],['D','L2读 → HBM写','#b7d4fa']].forEach(([k,l,c],j)=>{
+  const y=60+j*76;s+=text(20,y+25,l,16);
+  t.forEach(r=>{const x=X+r[k+'_start_s']*scale,w=(r[k+'_end_s']-r[k+'_start_s'])*scale;
+   s+=box(x,y,w,42,c)+text(x+w/2,y+26,`${r.panel}`,11,'middle')+`<title>片${r.panel} ${k}: ${us(r[k+'_start_s'])}–${us(r[k+'_end_s'])} µs</title>`;
+   if(j<2){const next=j===0?'L':'D',a=X+r[k+'_end_s']*scale,b=X+r[next+'_start_s']*scale;
+     s+=`<path d="M${a},${y+43} L${b},${y+74}" stroke="#718ca1" fill="none" stroke-dasharray="3 2"/>`;}
+  });
+ });
+ for(let slot=0;slot<2;slot++){
+  const y=302+slot*66;s+=text(20,y+25,`Shared输出槽${slot} · 4 KiB`,15);
+  t.filter(r=>r.shared_slot===slot).forEach(r=>{const x=X+r.W_start_s*scale,w=(r.L_end_s-r.W_start_s)*scale;
+   s+=box(x,y,w,40,'#eee7f7','stroke-dasharray="4 3"')+text(x+w/2,y+25,`C片${r.panel}`,12,'middle');});
+ }
+ for(let slot=0;slot<2;slot++){
+  const y=434+slot*66;s+=text(20,y+25,`L2输出窗口${slot} · 288 KiB`,15);
+  t.filter(r=>r.l2_slot===slot).forEach(r=>{const x=X+r.L_start_s*scale,w=(r.D_end_s-r.L_start_s)*scale;
+   s+=box(x,y,w,40,'#e0f0eb','stroke-dasharray="4 3"')+text(x+w/2,y+25,`C片${r.panel}`,12,'middle');});
+ }
+ for(let i=0;i<=5;i++)s+=text(X+W*i/5,593,(end*1e6*i/5).toFixed(3),13,'middle');
+ s+=text(20,630,'Shared槽：W开始占用、L结束释放；L2窗口：L开始占用、D结束释放。等待体现在活动开始时刻。',15);
+ s+=text(20,659,'W按每CU带宽，L/D按全卡带宽。Shared输出读回不单独计时；转换额外耗时为0。',14);
+ return s+'</svg>';
+}
 document.querySelector('#outputTimeline').innerHTML=outputs();
 function reuseOverview(on){let d=on?DATA.reuse:DATA.no_reuse,first=DATA.reuse.wave_classes[0],second=on?DATA.reuse.wave_classes[1]:DATA.no_reuse.wave_classes[0],scale=1020/DATA.no_reuse.duration_s,x=155,s=canvas('两批C顺序执行以及A的L2保留区间',310);
  s+=text(25,28,'全局时间轴（含固定服务） · 先算C左半，再算C右半',19);
@@ -368,6 +394,89 @@ function setReuse(on){const w=on?DATA.reuse.wave_classes[1]:DATA.no_reuse.wave_c
 document.querySelector('#reuseOn').onclick=()=>setReuse(true);document.querySelector('#reuseOff').onclick=()=>setReuse(false);setReuse(true);
 document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent);b.textContent='已复制'}catch{b.textContent='请选中下方指令复制'}setTimeout(()=>b.textContent='复制指令',2000)});
 </script></body></html>'''
+
+# V3.2: all changed numeric labels derive from evaluate_mapping output.
+main=D['main']; w=main['wave_classes'][0]; out=w['output_stream']; hw=D['hardware']
+us6=lambda x:f'{x*1e6:.6f}'
+first=w['pipeline']['trace'][0]
+newR=first['R_end_s']-first['R_start_s']
+first_end=first['C_end_s']
+write=out['byte_runs'][0]['register_to_shared_s']
+err=100*(main['duration_us']/64.70874324440956-1)
+sw=hw['shared_write_bytes_per_cycle_per_core']
+replacements={
+ 'V3.1':'V3.2',
+ 'tools/validation_20261028/verify_installed_results.py':'tools/verify_v32.py',
+ '统一服务带宽 3.887 TB/s':'读 4.8984 TB/s · 写 3.887 TB/s',
+ '统一服务带宽3.887 TB/s':'读4.8984 TB/s、写3.887 TB/s，两个方向分别计费',
+ '8 MiB，全卡共用；2990 B/cycle':'8 MiB，全卡共用；读3768 / 写2990 B/cycle',
+ '64 KiB/CU；读取64 B/CU/cycle':f'64 KiB/CU；读64、写{sw:.3f} B/CU/cycle',
+ '读取带宽83.2 GB/s/CU，显式加入S阶段。':f'输入读取83.2 GB/s/CU；输出写入{sw*1.3:.3f} GB/s/CU，显式加入W阶段。',
+ '1474560 B ÷ 3.887×10¹² B/s':'1474560 B ÷ 4.8984×10¹² B/s',
+ '0.379357':us6(newR),
+ '50.208132':f"{main['duration_us']:.6f}",
+ '50.208':f"{main['duration_us']:.3f}",
+ '38.780914':us6(w['pipeline']['duration_s']),
+ '8.305974':us6(out['duration_s']),
+ '1.562452':us6(first_end),
+ '22.41':f'{abs(err):.2f}',
+ '97.237866':f"{D['reuse']['duration_us']:.6f}",
+ '97.295020':f"{D['no_reuse']['duration_us']:.6f}",
+ '97.295 → 97.238':f"{D['no_reuse']['duration_us']:.3f} → {D['reuse']['duration_us']:.3f}",
+ '47.029734':us6(D['reuse']['wave_classes'][1]['duration_s']),
+ '47.086888':us6(D['no_reuse']['wave_classes'][0]['duration_s']),
+ '55项':'60项','55 项':'60 项',
+ '图中只展示已计费的L2/HBM写出':f'图中显式计入寄存器写Shared：每片{us6(write)} µs，再进入L2/HBM写出；Shared读回不单独计时',
+ '每轮写L2为0.075871 µs':f'每CU每片先写Shared：{us6(write)} µs；每轮写L2为0.075871 µs',
+ '输出转换/重排的额外服务仍为0。':'寄存器→Shared输出写入已计时；输出Shared读回按用户要求不计时；转换/重排额外服务仍为0。',
+}
+for old,new in replacements.items():
+    body=body.replace(old,new);guide=guide.replace(old,new);gpu=gpu.replace(old,new)
+extra=f'<div class="note"><b>输出W阶段的依据：</b>两轮独立Shared写微基准为59.247、59.457 B/cycle/CU，配置取均值{sw:.6f}；原64是读取带宽。采用FP16小片写Shared，转换耗时暂为0。每片4 KiB，共48片；这是mapper候选，不是硬件固定传输粒度。</div>'
+body=body.replace('<div class="diagram" id="outputTimeline"></div>',extra+'<div class="diagram" id="outputTimeline"></div>')
+body=body.replace('每轮72 CU合计288 KiB','每轮72 CU合计288 KiB')
+stats=D.get('comparison')
+comparison='<h3>MMAC 与 256 MAC/cycle 对照</h3><p>同一批72组历史Graph实测；固定服务3.121245 µs不重新拟合；12组校准样例不计入通过率。规则组沿用原分组，包含M=1的decode，非规则组单列。</p>'
+comparison+='<div class="table-scroll"><table><tr><th>计算服务</th><th>全卡峰值</th><th>规则组≤15%</th><th>规则组平均绝对误差</th><th>非规则组≤15%</th><th>总验证通过</th></tr>'
+for mode,name,peak in [('mmac','MMAC：16×16×16 / 8cycles','383.3856 TFLOP/s'),('mac256','每矩阵单元256 MAC/cycle','191.6928 TFLOP/s')]:
+    if stats:
+        a=stats[mode]['regular_validation'];b=stats[mode]['irregular_validation'];c=stats[mode]['all_validation']
+        cells=[name,peak,f"{a['passes']} / {a['count']}",f"{a['mean_absolute_percent']:.2f}%",f"{b['passes']} / {b['count']}",f"{c['passes']} / {c['count']}"]
+    else:cells=[name,peak,'正在计算','—','—','—']
+    comparison+='<tr>'+''.join('<td>'+str(x)+'</td>' for x in cells)+'</tr>'
+comparison+='</table></div><p>两种方式都保留相同的引擎分工、分块搜索、寄存器容量、Shared输入读取和输出写入。256 MAC/cycle方案不额外叠加旧版阵列模型的wavefront或利用率系数。</p>'
+comparison+=f'<p>同一固定示例映射：MMAC为{main["duration_us"]:.6f} µs；256 MAC/cycle为{D["mac256"]["duration_us"]:.6f} µs。固定示例用于解释流程；通过率对各方案分别完整搜索后统计。</p>'
+comparison+='<p>逻辑测试60项通过。精度比较使用已有样例，未宣称全新盲测；输出的Shared读回不计时、转换服务为0，聚合寄存器预算及端口独立假设仍保留。Softmax和LayerNorm尚未实现。</p>'
+start=body.index('<h3>当前验证范围</h3>');end=body.index('<details><summary>代码对应表',start)
+body=body[:start]+comparison+body[end:]
+guide=guide[:guide.index('60项实现测试通过。')]+"""60项实现测试通过；完整对照结果见 `results/validation_20261029_v32/comparison_modes.json`。同一组验证样例上分别搜索，不重拟合固定开销。
+
+## 8. 切换为每个 Tensor Core 256 MAC/cycle
+
+将前述命令的硬件文件换为 `superpod_compute/data/bw1100_mac256.json`，策略换为 `examples/bw1100_mac256_comparison.json`；保持 `--backend auto`。
+默认硬件仍为MMAC模型。两个文件中的L2、Shared、HBM和设备固定服务相同，只切换矩阵计算服务。256 MAC/cycle指每个矩阵服务单元；每CU四个、全卡72CU。
+
+## 9. 重跑本次两模型对照
+
+```powershell
+& $py -B tools/compare_compute_modes.py --measurements results/validation_20261028/final_measurements.json --output-dir results/validation_20261029_v32 --workers 4
+```
+
+脚本复用同一组实测，不连接GPU；已有同名报告可断点续跑。换源码、硬件或策略后应使用新的输出目录，避免复用旧实验。
+输出包含144条预测（72组×2），按12组校准和60组验证分别汇总，阈值为绝对相对误差≤15%。
+
+## 10. 新增硬件参数
+
+- `l2_read_bytes_per_cycle=3768`：全卡L2读。
+- `l2_write_bytes_per_cycle=2990`：全卡L2写。
+- `shared_write_bytes_per_cycle_per_core`：本次对齐向量写实测两轮均值59.35200341023225 Byte/cycle/CU。
+- `shared_read_bytes_per_cycle_per_core=64`：之前Shared输入读取的实测。
+
+新字段默认0时表示兼容旧行为：L2读写回退到旧统一字段；Shared输出写不计费。当前BW1100配置已明确填入新值。
+输出沿 W(寄存器→Shared) → L(L2写) → D(L2读/HBM写) 调度；Shared槽在L结束释放，L2槽在D结束释放。Shared输出读回不单独计时。
+两模型沿用原固定服务3.121245 µs，未重新拟合。硬件指纹已更新，含义是显式迁移同一固定服务用于受控比较，不是重新校准。
+"""
+(ROOT/'计算模型_User_Guide.md').write_text(guide,encoding='utf-8')
 for key,val in [('FLOW',flow),('GPU',gpu),('PARTITION',partition),('REUSEMAP',reusemap),('TILING',render_tiling()),('DATA',json.dumps(D,ensure_ascii=False))]:body=body.replace('@@'+key+'@@',val)
 body=body.replace('</script></body>',TILING_JS+'\n</script></body>')
 (ROOT/'单卡计算建模_总体方案与流水线.html').write_text(body.replace(chr(92)*2,chr(92)),encoding='utf-8')

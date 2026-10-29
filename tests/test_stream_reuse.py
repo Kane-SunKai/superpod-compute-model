@@ -41,8 +41,10 @@ class StreamTests(unittest.TestCase):
             o=w['output_stream'];self.assertEqual(sum(x['chunks']*x['bytes_per_chunk_all_cores'] for x in o['byte_runs']),w['valid_m']*w['valid_n']*2)
             trace=o['pipeline']['trace']
             for i,row in enumerate(trace):
-                if i>=2:self.assertGreaterEqual(row['R_start_s'],trace[i-2]['C_end_s'])
-            self.assertLessEqual(o['duration_s'],w['write_to_l2_s']+w['write_to_hbm_s']+1e-15)
+                if i>=2:
+                    self.assertGreaterEqual(row['W_start_s'],trace[i-2]['L_end_s'])
+                    self.assertGreaterEqual(row['L_start_s'],trace[i-2]['D_end_s'])
+            self.assertLessEqual(o['duration_s'],o['register_to_shared_service_s']+w['write_to_l2_s']+w['write_to_hbm_s']+1e-15)
         serial=evaluate_mapping(GemmRequest(400,600,32),replace(p,output_buffers=1),h)
         self.assertGreaterEqual(serial['duration_s'],r['duration_s'])
 

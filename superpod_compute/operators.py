@@ -3,7 +3,7 @@ from collections import Counter
 from math import ceil, isqrt
 from typing import Protocol
 from .contracts import Mapping
-from .scheduler import pipeline, pipeline_segments, operand_pipeline
+from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline
 from .backends import mmac_operand_plan
 
 def ceildiv(a,b):return (a+b-1)//b
@@ -37,7 +37,7 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-stream-reuse-operands-3.1'
+    version='dense-resident-c-directional-output-3.2'
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
     @staticmethod
@@ -64,7 +64,7 @@ class GemmModel:
         output=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
         registers=p.bm*p.bn*4+hardware.register_reserve_bytes_per_core
         operand_registers=0
-        if hardware.matrix_backend=='mmac' and hardware.shared_read_bytes_per_cycle_per_core:
+        if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core:
             operand_registers=p.register_input_buffers*mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1]
             registers+=operand_registers
         l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output
@@ -97,7 +97,7 @@ class GemmModel:
                                 chunks=sorted({min(x,bm*bn*2) for x in policy.output_chunk_values})
                                 for chunk in chunks:
                                     for O in policy.output_buffer_counts:
-                                        counts=policy.register_buffer_counts if hardware.matrix_backend=='mmac' and hardware.shared_read_bytes_per_cycle_per_core else (2,)
+                                        counts=policy.register_buffer_counts if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core else (2,)
                                         for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V)
 
     def evaluate(self,request,hardware,policy,backend,mapping,trace_limit=0):
@@ -138,20 +138,23 @@ class GemmModel:
             for lo,hi in zip(boundaries,boundaries[1:]):
                 amount=sum(min(chunk,max(0,size-lo*chunk))*count for size,count in sizes)
                 if not amount:continue
-                tr=amount/hardware.l2_bandwidth_Bps+policy.l2_transfer_latency_s
-                th=amount/hardware.hbm_bandwidth_Bps+latency
-                segments.append((hi-lo,0.0,tr,th));byte_runs.append({'chunks':hi-lo,'bytes_per_chunk_all_cores':amount})
-            # Shared output slot is released after its chunk reaches HBM. This is
-            # conservative (actual shared could release at L2); L2 output window
-            # remains reserved through HBM drain, ensuring bounded occupancy.
-            if shared_port:
-                duration=sum(num*(tr+th) for num,_,tr,th in segments)
-                run={'duration_s':duration,'trace':[],'panels':sum(x[0] for x in segments)}
-            else:
-                run=pipeline_segments(segments,1,p.output_buffers,trace_limit=trace_limit)
+                per_core=max(min(chunk,max(0,size-lo*chunk)) for size,_ in sizes)
+                bw=hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz
+                tw=per_core/bw if bw else 0.0
+                tr=amount/hardware.l2_write_bandwidth_Bps+policy.l2_transfer_latency_s
+                # Drain is a streamed L2 read + HBM write; bottleneck rate, not
+                # two copies of the same link service. No extra output LDS read.
+                th=max(amount/hardware.hbm_bandwidth_Bps,amount/hardware.l2_read_bandwidth_Bps)+latency
+                segments.append((hi-lo,tw,tr,th))
+                byte_runs.append({'chunks':hi-lo,'bytes_per_chunk_all_cores':amount,
+                                  'max_bytes_per_chunk_per_core':per_core,'register_to_shared_s':tw,
+                                  'l2_write_s':tr,'l2_read_hbm_drain_s':th})
+            run=output_pipeline(segments,p.output_buffers,p.output_buffers,shared_port=shared_port,trace_limit=trace_limit)
             value={'duration_s':run['duration_s']+policy.epilogue_s_per_wave,'byte_runs':byte_runs,'pipeline':run,
                    'shared_output_limit_per_core':min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers),
-                   'l2_output_window_limit':p.gm*p.gn*min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)}
+                   'l2_output_window_limit':p.gm*p.gn*min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers),
+                   'register_to_shared_service_s':sum(num*tw for num,tw,_,_ in segments),
+                   'output_shared_read_charged':False}
             output_cache[key]=value;return value
 
         def evaluate_order(order):
@@ -172,7 +175,10 @@ class GemmModel:
                     cold=(m+n)*k*2
                     saved_bytes=cold if warm else ((m if order=='A' else n)*k*2 if hit else 0)
                     dh=cold-saved_bytes;dr=(rn*m+rm*n)*k*2
-                    return dh,dr,dh/hardware.hbm_bandwidth_Bps+(latency if dh else 0),dr/hardware.l2_bandwidth_Bps+policy.l2_transfer_latency_s
+                    # HBM fills consume L2 write bandwidth. Stream each fill at
+                    # the slower endpoint rate; R separately charges L2 reads.
+                    ht=max(dh/hardware.hbm_bandwidth_Bps,dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
+                    return dh,dr,ht,dr/hardware.l2_read_bandwidth_Bps+policy.l2_transfer_latency_s
                 hit_full=min(full,keep//p.bk);segments=[];bytes_runs=[]
                 for number,k,hit,service in [(hit_full,p.bk,True,compute),(full-hit_full,p.bk,False,compute),(int(tail>0),tail,keep==request.K,last)]:
                     if not number:continue
@@ -184,7 +190,7 @@ class GemmModel:
                                        'Shared_to_register_bytes_per_core':service.shared_read_bytes if read_bandwidth else 0,
                                        'retained_operand':('AB' if warm else order if hit else None)})
                     hbytes+=count*number*dh;rbytes+=count*number*dr;saved+=count*number*((m+n)*k*2-dh)
-                if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend=='mmac':
+                if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend in ('mmac','mac-throughput'):
                     run=operand_pipeline(segments,p.l2_buffers,p.shared_buffers,p.register_input_buffers,shared_port=shared_port,trace_limit=trace_limit)
                 else:
                     run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit)
@@ -198,9 +204,11 @@ class GemmModel:
                                 'retained_k':request.K if warm else keep,'is_reuse_wave':reused,'panel_byte_runs':bytes_runs,
                                 'full_panel_compute':compute.to_dict() if compute else None,'tail_panel_compute':last.to_dict() if last else None,
                                 'pipeline':run,'output_stream':output,'epilogue_s':policy.epilogue_s_per_wave,
-                                'write_to_l2_s':out/hardware.l2_bandwidth_Bps,'write_to_hbm_s':out/hardware.hbm_bandwidth_Bps,'duration_s':per_wave})
+                                'write_to_l2_s':out/hardware.l2_write_bandwidth_Bps,'write_to_hbm_s':out/hardware.hbm_bandwidth_Bps,'duration_s':per_wave})
             notes=['resident FP32 C registers across all K panels; sequential output waves',
-                   'bounded shared/L2 C staging; output chunks overlap L2 service with HBM drain on independent ports',
+                   'C output: FP16 register->Shared write, L2 write, L2-read/HBM drain; bounded Shared and L2 slots',
+                   'Shared output readback deliberately has no separate time; output conversion/layout cost remains configurable',
+                   'directional L2 bandwidths; endpoint streaming uses max times; full shared-port/cache contention is not modeled',
                    'L2 prefix retention is a planned ideal residence policy, not measured hardware cache behavior',
                    'register aggregate capacity checked; compiler per-thread allocation/occupancy not modeled',
                    'optional Shared->register service uses an explicit rectangular-engine operand reuse plan; independent LDS read/write ports assumed',

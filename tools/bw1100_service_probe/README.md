@@ -1,5 +1,7 @@
 # BW1100独立硬件服务核实
 
+2026-10-29补充：`lds_write_probe.cpp`、`run_lds_write.py`测量寄存器→Shared写入。沿用下方隔离包装，执行 `bash run_task.sh python3 -B run_lds_write.py`。两轮数据在`lds_write_round1.json`和`lds_write_round2.json`；有效写服务取72 blocks、8 waves/block两轮斜率均值59.35200341023225 Byte/cycle/CU。之前64是读带宽。两轮源码仅增加显式`return;`以消除编译器warning，数值算法不变。当前模型对照用`tools/compare_compute_modes.py`，下文V3.1命令是历史复现入口，需要对应历史代码。
+
 这些脚本保留本次服务器路径与容器名，以便复现。服务器所有写入都限制在`/root/sk/compute_mmac_20261028`（容器`/workspace/compute_mmac_20261028`）。通过`run_task.sh`设置日志和缓存路径；不要绕过它运行GPU测试。
 
 把本目录文件复制到服务器上述目录，再从宿主机执行：

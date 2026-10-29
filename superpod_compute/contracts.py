@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-instruction-operand-service-3.1'
-SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.1'
+MODEL_VERSION = 'resident-k-directional-output-service-3.2'
+SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
@@ -68,6 +68,9 @@ class Hardware:
     instruction_k: int = 16
     instruction_issue_cycles: int = 8
     shared_read_bytes_per_cycle_per_core: float = 0.0
+    shared_write_bytes_per_cycle_per_core: float = 0.0
+    l2_read_bytes_per_cycle: float = 0.0
+    l2_write_bytes_per_cycle: float = 0.0
 
 
     def __post_init__(self):
@@ -76,9 +79,10 @@ class Hardware:
         integer(self.register_reserve_bytes_per_core,'register_reserve_bytes_per_core',0)
         for name in ('instruction_m','instruction_n','instruction_k','instruction_issue_cycles'):
             integer(getattr(self,name),name)
-        if self.matrix_backend not in ('array','mmac'):raise ValueError('Invalid matrix backend')
-        positive(self.shared_read_bytes_per_cycle_per_core,'shared_read_bytes_per_cycle_per_core',True)
-        if self.matrix_backend=='mmac' and self.matrix_k_quantum!=self.instruction_k:
+        if self.matrix_backend not in ('array','mmac','mac-throughput'):raise ValueError('Invalid matrix backend')
+        for name in ('shared_read_bytes_per_cycle_per_core','shared_write_bytes_per_cycle_per_core','l2_read_bytes_per_cycle','l2_write_bytes_per_cycle'):
+            positive(getattr(self,name),name,True)
+        if self.matrix_backend in ('mmac','mac-throughput') and self.matrix_k_quantum!=self.instruction_k:
             raise ValueError('MMAC K padding must match instruction K dimension')
         for name in ('clock_hz','mac_per_cell_per_cycle','vector_fp16_flops_per_cycle_per_core','hbm_bandwidth_Bps','l2_bytes_per_cycle'):
             positive(getattr(self,name),name)
@@ -96,6 +100,14 @@ class Hardware:
     @property
     def l2_bandwidth_Bps(self):
         return self.l2_bytes_per_cycle*self.clock_hz
+
+    @property
+    def l2_read_bandwidth_Bps(self):
+        return (self.l2_read_bytes_per_cycle or self.l2_bytes_per_cycle)*self.clock_hz
+
+    @property
+    def l2_write_bandwidth_Bps(self):
+        return (self.l2_write_bytes_per_cycle or self.l2_bytes_per_cycle)*self.clock_hz
 
     def to_dict(self):
         return asdict(self)

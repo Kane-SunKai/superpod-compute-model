@@ -1,5 +1,5 @@
 {
-  "name": "BW1100-72CU-1.30GHz-MMAC8cycle-LDS64-v3.1",
+  "name": "BW1100-MMAC8-L2-directional-LDS-write-v3.2",
   "cores": 72,
   "clock_hz": 1300000000.0,
   "arrays_per_core": 4,
@@ -23,5 +23,8 @@
   "instruction_n": 16,
   "instruction_k": 16,
   "instruction_issue_cycles": 8,
-  "shared_read_bytes_per_cycle_per_core": 64
+  "shared_read_bytes_per_cycle_per_core": 64,
+  "l2_read_bytes_per_cycle": 3768,
+  "l2_write_bytes_per_cycle": 2990,
+  "shared_write_bytes_per_cycle_per_core": 59.35200341023225
 }
