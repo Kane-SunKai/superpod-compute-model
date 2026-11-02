@@ -135,6 +135,22 @@ def output_pipeline(segments,shared_buffers,l2_buffers,*,shared_port=False,trace
     return {'duration_s':ends[2],'W_end_s':ends[0],'L_end_s':ends[1],'D_end_s':ends[2],
             'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['register-to-Shared','L2-write','L2-read/HBM-drain']}
 
+def direct_output_pipeline(segments,l2_buffers,*,shared_port=False,trace_limit=0,accelerate=True):
+    """Registers -> L2 -> HBM. No Shared allocation or Shared-write service.
+
+    Persistent accumulators already hold the output. A zero-duration staging
+    node in the common recurrence adds no dependency beyond the serial L2 port;
+    remove it from the returned trace so it cannot be mistaken for a transfer.
+    """
+    run=output_pipeline([(n,0.0,l,d) for n,l,d in segments],1,l2_buffers,
+                        shared_port=shared_port,trace_limit=trace_limit,accelerate=accelerate)
+    run.pop('W_end_s')
+    for row in run['trace']:
+        for key in ('shared_slot','W_start_s','W_end_s'):row.pop(key)
+    run['stages']=['register-to-L2','L2-read/HBM-drain']
+    return run
+
+
 def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,trace_limit=0,accelerate=True,read_latency_s=0.0):
     """H: HBM->L2, R: L2->Shared, S: Shared->registers, C: matrix.
 

@@ -1,0 +1,568 @@
+{
+  "completed": true,
+  "scope": "Delivery only, paired identical-group-0 versus actual spatial group sources. Repeated first Q panels, raw-offen instructions, no full K streaming or computation. Both modes use the same compiled kernel.",
+  "validated_measurements": 224,
+  "summaries": [
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 506.4283907415364,
+      "ratio_to_shared_sources": 1.0124422227985719,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 2.973485953097599
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 500.20473202083326,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 1.3756245325211673
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 484.9202632903646,
+      "ratio_to_shared_sources": 0.9895306571890561,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.5481742901194897
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 490.05077282584637,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.1479988112613641
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 380.19548356542975,
+      "ratio_to_shared_sources": 0.996488688347325,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 2.5541123623932034
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 381.5351724624024,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.15050542883240056
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 408.2185924052734,
+      "ratio_to_shared_sources": 0.8576700923720498,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.19910626785700256
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 475.9622563919271,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.032415726452005626
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 340.80892139008245,
+      "ratio_to_shared_sources": 1.0031997441374068,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.5767228035754508
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 339.7218982378472,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.7975352758689991
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 388.899862766276,
+      "ratio_to_shared_sources": 0.8342881396989154,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.14871790708054053
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 466.14574061501736,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.10470884335961389
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 6,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 294.5188913081055,
+      "ratio_to_shared_sources": 0.9828398325956119,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 1.1871255884097394
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 6,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 299.66112640174697,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.666337881029618
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 6,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 411.8874271710612,
+      "ratio_to_shared_sources": 0.8538529855534419,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.6046765549166057
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 6,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 482.38682084608286,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.04687939480751177
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 786.6666416328125,
+      "ratio_to_shared_sources": 0.9992743226642423,
+      "ratio_to_aligned": 1.5533620468649831,
+      "two_round_spread_percent": 0.26399554666907166
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 787.2379223509115,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.5738314173287817,
+      "two_round_spread_percent": 0.6749012479776954
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 778.906305631185,
+      "ratio_to_shared_sources": 0.9999348827335676,
+      "ratio_to_aligned": 1.606256460280739,
+      "two_round_spread_percent": 0.06703459509520804
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 778.9570291835937,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.5895435174845005,
+      "two_round_spread_percent": 0.026582536481551934
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 678.097307682129,
+      "ratio_to_shared_sources": 0.9998835902150534,
+      "ratio_to_aligned": 1.7835490872301007,
+      "two_round_spread_percent": 0.7140396994186112
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 678.176254034017,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.7774934081623799,
+      "two_round_spread_percent": 0.568256116558603
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 757.0566236974284,
+      "ratio_to_shared_sources": 1.040143568222981,
+      "ratio_to_aligned": 1.8545373429386425,
+      "two_round_spread_percent": 0.7776604013708942
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 727.8385857740884,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.5291939140122823,
+      "two_round_spread_percent": 0.06458874845625096
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 635.3641218610026,
+      "ratio_to_shared_sources": 1.0019708492284438,
+      "ratio_to_aligned": 1.8642825406961065,
+      "two_round_spread_percent": 0.2461287783438827
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 634.1143780283203,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.8665690416705552,
+      "two_round_spread_percent": 0.5200501963351081
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 681.4576784769965,
+      "ratio_to_shared_sources": 1.0461055627933493,
+      "ratio_to_aligned": 1.7522702981423888,
+      "two_round_spread_percent": 1.0702776525547197
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 651.4234344164497,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.3974673104531279,
+      "two_round_spread_percent": 0.26643922030316874
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 6,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 590.9457537862954,
+      "ratio_to_shared_sources": 0.9975965510883765,
+      "ratio_to_aligned": 2.0064782641331096,
+      "two_round_spread_percent": 0.020560390911439196
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 6,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 592.3694835768772,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.9767978939740907,
+      "two_round_spread_percent": 0.17881196601213786
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 6,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 631.8659848637153,
+      "ratio_to_shared_sources": 0.9748097853570508,
+      "ratio_to_aligned": 1.534074465937254,
+      "two_round_spread_percent": 0.42594287312187457
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 6,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 648.1941342354058,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.3437227267082155,
+      "two_round_spread_percent": 0.0214581932395198
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 762.5533640384115,
+      "ratio_to_shared_sources": 1.0032935014098436,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.4774264997475038
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 760.0501378378906,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 2.864384119770301
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 813.9062523841146,
+      "ratio_to_shared_sources": 0.9498558941628359,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.16622383998153867
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 856.8734029928385,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.09716922939187356
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 653.2820661861979,
+      "ratio_to_shared_sources": 1.0119037963406263,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.14314752973908046
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 645.5970108509115,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.9925874996568659
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 760.4165176551107,
+      "ratio_to_shared_sources": 0.849159022203076,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 4.9643374462285946e-05
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 895.4936563969727,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.01734792552481046
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 589.6526641316188,
+      "ratio_to_shared_sources": 0.9855209030783051,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.3533526319574527
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 598.315735657986,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.1915086596354313
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 748.576018545356,
+      "ratio_to_shared_sources": 0.8546348924588276,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.17629469614040197
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 875.9015401204426,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.0,
+      "two_round_spread_percent": 0.0951966865829352
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 1334.8480264345703,
+      "ratio_to_shared_sources": 1.0008593359231253,
+      "ratio_to_aligned": 1.750497852852343,
+      "two_round_spread_percent": 0.03877943110012929
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 1333.701928456706,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.754755195822579,
+      "two_round_spread_percent": 0.00809803256873568
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 1328.6979397138673,
+      "ratio_to_shared_sources": 0.998280180960424,
+      "ratio_to_aligned": 1.6324950641696288,
+      "two_round_spread_percent": 0.008041802171289605
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 1330.986996491862,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.5533064649259352,
+      "two_round_spread_percent": 0.008022000770169822
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 1225.4682580629883,
+      "ratio_to_shared_sources": 0.9998294709172149,
+      "ratio_to_aligned": 1.8758639207978907,
+      "two_round_spread_percent": 0.16157305996700413
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 1225.6772716839191,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.8985175753345709,
+      "two_round_spread_percent": 0.008257368329087324
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 1308.4111014999999,
+      "ratio_to_shared_sources": 1.0056442653555842,
+      "ratio_to_aligned": 1.7206505528506073,
+      "two_round_spread_percent": 0.02800416622661249
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 1301.0675311088867,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.4529053576367523,
+      "two_round_spread_percent": 0.06806762838971142
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "distributed",
+      "ns_per_panel": 1176.422648959744,
+      "ratio_to_shared_sources": 1.00007343733368,
+      "ratio_to_aligned": 1.9951112248297243,
+      "two_round_spread_percent": 0.15348874454096517
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "source_layout": "shared",
+      "ns_per_panel": 1176.3362619611546,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.9660794324045345,
+      "two_round_spread_percent": 0.0560249612099267
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "distributed",
+      "ns_per_panel": 1234.0792682434894,
+      "ratio_to_shared_sources": 1.0251959461820481,
+      "ratio_to_aligned": 1.6485690666948838,
+      "two_round_spread_percent": 0.030934895107130423
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "source_layout": "shared",
+      "ns_per_panel": 1203.749656677192,
+      "ratio_to_shared_sources": 1.0,
+      "ratio_to_aligned": 1.3742979108264473,
+      "two_round_spread_percent": 0.02316019700084776
+    }
+  ],
+  "source_sha256": "bed09ade88c3e5baab7be1c011515d11d5cc7c10be09a9b350c4c145fabe0697"
+}

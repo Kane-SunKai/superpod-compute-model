@@ -5,7 +5,7 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-readiness-experimental-3.3'
+MODEL_VERSION = 'resident-k-output-route-experimental-3.4'
 SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
 
 def canonical(value):
@@ -139,6 +139,7 @@ class Policy:
     output_buffer_counts: tuple = (1,2)
     calibration_hardware_sha256: str = ''
     register_buffer_counts: tuple = (1,2)
+    output_route: str = 'via-shared'
 
     def __post_init__(self):
         for name in ('add_shape_candidate','charge_hbm_latency','input_reuse'):
@@ -159,6 +160,7 @@ class Policy:
             raise ValueError('Unknown transfer resource mode')
         integer(self.top_k,'top_k')
         if self.initial_cache_state not in ('cold','warm-if-fit'):raise ValueError('Invalid initial cache state')
+        if self.output_route not in ('via-shared','direct-register'):raise ValueError('Invalid output route')
         fingerprint=self.calibration_hardware_sha256
         if not isinstance(fingerprint,str) or (fingerprint and (len(fingerprint)!=64 or any(c not in '0123456789abcdef' for c in fingerprint))):
             raise ValueError('calibration_hardware_sha256 must be an empty string or lowercase SHA256')
@@ -177,9 +179,12 @@ class Mapping:
     output_chunk_bytes: int = 16384
     output_buffers: int = 2
     register_input_buffers: int = 2
+    output_route: str = 'via-shared'
 
     def __post_init__(self):
-        for name,value in asdict(self).items():integer(value,name)
+        for name,value in asdict(self).items():
+            if name!='output_route':integer(value,name)
+        if self.output_route not in ('via-shared','direct-register'):raise ValueError('Invalid output route')
         if any(x not in range(1,9) for x in (self.l2_buffers,self.shared_buffers,self.output_buffers,self.register_input_buffers)):raise ValueError('buffer count must be between 1 and 8')
 
     def to_dict(self):return asdict(self)

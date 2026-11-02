@@ -1,0 +1,917 @@
+{
+  "completed": true,
+  "cases": [
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 106.66000097990036,
+      "via_shared_us": 37.33659978267831,
+      "direct_register_us": 37.23042748689273,
+      "saved_us": 0.10617229578558351,
+      "via_shared_error_percent": -64.99475019720444,
+      "direct_register_error_percent": -65.09429294501071
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 106.66000097990036,
+      "via_shared_us": 37.336599782678206,
+      "direct_register_us": 37.230427486892616,
+      "saved_us": 0.10617229578559062,
+      "via_shared_error_percent": -64.99475019720454,
+      "direct_register_error_percent": -65.0942929450108
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 35.39000079035759,
+      "via_shared_us": 21.357942392512378,
+      "direct_register_us": 21.304856244619586,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -39.649782663097334,
+      "direct_register_error_percent": -39.7997859032986
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 35.39000079035759,
+      "via_shared_us": 21.357942392512317,
+      "direct_register_us": 21.304856244619522,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -39.6497826630975,
+      "direct_register_error_percent": -39.799785903298776
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 49.56874996423721,
+      "via_shared_us": 37.274153844093604,
+      "direct_register_us": 37.21774981195751,
+      "saved_us": 0.05640403213609346,
+      "via_shared_error_percent": -24.8031191607896,
+      "direct_register_error_percent": -24.916908659570158
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 49.56874996423721,
+      "via_shared_us": 37.27415384409348,
+      "direct_register_us": 37.21774981195739,
+      "saved_us": 0.05640403213609346,
+      "via_shared_error_percent": -24.803119160789844,
+      "direct_register_error_percent": -24.916908659570403
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.230000123381615,
+      "via_shared_us": 21.358382371394892,
+      "direct_register_us": 21.3052962235021,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -21.563047100190545,
+      "direct_register_error_percent": -21.7580017371801
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.230000123381615,
+      "via_shared_us": 21.35838237139484,
+      "direct_register_us": 21.305296223502044,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -21.563047100190747,
+      "direct_register_error_percent": -21.75800173718031
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 62.829989939928055,
+      "via_shared_us": 37.27895892100863,
+      "direct_register_us": 37.220895946750886,
+      "saved_us": 0.058062974257744315,
+      "via_shared_error_percent": -40.6669347605321,
+      "direct_register_error_percent": -40.75934759445625
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 62.829989939928055,
+      "via_shared_us": 37.27895892100851,
+      "direct_register_us": 37.220895946750765,
+      "saved_us": 0.058062974257744315,
+      "via_shared_error_percent": -40.66693476053229,
+      "direct_register_error_percent": -40.75934759445644
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 50.16749911010265,
+      "via_shared_us": 21.359780700987088,
+      "direct_register_us": 21.306694553094292,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -57.423070553888365,
+      "direct_register_error_percent": -57.528888361900464
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 50.16749911010265,
+      "via_shared_us": 21.35978070098703,
+      "direct_register_us": 21.30669455309424,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -57.423070553888486,
+      "direct_register_error_percent": -57.52888836190056
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.088742703199387,
+      "via_shared_us": 21.359780700987095,
+      "direct_register_us": 21.3066945530943,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -21.14886639436262,
+      "direct_register_error_percent": -21.344837645130653
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.088742703199387,
+      "via_shared_us": 21.35978070098703,
+      "direct_register_us": 21.30669455309424,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -21.14886639436285,
+      "direct_register_error_percent": -21.344837645130877
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 64.76624310016632,
+      "via_shared_us": 50.18289050352346,
+      "direct_register_us": 50.12980435563067,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -22.516903711843383,
+      "direct_register_error_percent": -22.598869478810435
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1,
+        "output_route": "via-shared"
+      },
+      "measured_us": 64.76624310016632,
+      "via_shared_us": 75.19212127275435,
+      "direct_register_us": 75.13903512486155,
+      "saved_us": 0.05308614789279886,
+      "via_shared_error_percent": 16.09770410252691,
+      "direct_register_error_percent": 16.01573833555985
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "macro_baseline",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 43.41124929487705,
+      "via_shared_us": 21.605934547140937,
+      "direct_register_us": 21.552848399248145,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -50.22964116886024,
+      "direct_register_error_percent": -50.351927785244385
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "wave_schedule",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 43.41124929487705,
+      "via_shared_us": 21.605934547140876,
+      "direct_register_us": 21.552848399248084,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -50.22964116886038,
+      "direct_register_error_percent": -50.351927785244534
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_schedule_lds_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 35.39000079035759,
+      "via_shared_us": 15.208982147556583,
+      "direct_register_us": 15.15589599966379,
+      "saved_us": 0.053086147892793534,
+      "via_shared_error_percent": -57.0246346202387,
+      "direct_register_error_percent": -57.174637860439994
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_schedule_lds_barrier_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 35.39000079035759,
+      "via_shared_us": 17.7890537429371,
+      "direct_register_us": 17.735967595044304,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -49.73423750873741,
+      "direct_register_error_percent": -49.884240748938694
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_lds_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 49.56874996423721,
+      "via_shared_us": 24.676996228316543,
+      "direct_register_us": 24.570823932530953,
+      "saved_us": 0.10617229578559062,
+      "via_shared_error_percent": -50.21662590620004,
+      "direct_register_error_percent": -50.430817903904625
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_lds_barrier_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 49.56874996423721,
+      "via_shared_us": 30.13637654494305,
+      "direct_register_us": 30.079972512806954,
+      "saved_us": 0.056404032136097015,
+      "via_shared_error_percent": -39.202871634475756,
+      "direct_register_error_percent": -39.316661133256325
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_lds_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.230000123381615,
+      "via_shared_us": 15.20901056347977,
+      "direct_register_us": 15.155924415586975,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -44.14612378051284,
+      "direct_register_error_percent": -44.34107841750239
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_lds_barrier_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.230000123381615,
+      "via_shared_us": 17.789493721819618,
+      "direct_register_us": 17.736407573926826,
+      "saved_us": 0.05308614789279176,
+      "via_shared_error_percent": -34.66950554089681,
+      "direct_register_error_percent": -34.86446017788636
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_schedule_lds_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 4,
+        "gn": 10,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 62.829989939928055,
+      "via_shared_us": 24.680142363109915,
+      "direct_register_us": 24.57397006732433,
+      "saved_us": 0.10617229578558707,
+      "via_shared_error_percent": -60.71916868567594,
+      "direct_register_error_percent": -60.88815215342295
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_schedule_lds_barrier_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 62.829989939928055,
+      "via_shared_us": 30.14118162185807,
+      "direct_register_us": 30.083118647600326,
+      "saved_us": 0.058062974257744315,
+      "via_shared_error_percent": -52.02739702699913,
+      "direct_register_error_percent": -52.11980986092328
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_lds_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.088742703199387,
+      "via_shared_us": 15.214112959705965,
+      "direct_register_us": 15.16102681181317,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -43.836031349254675,
+      "direct_register_error_percent": -44.032002600022714
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_lds_barrier_phase",
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2,
+        "output_route": "via-shared"
+      },
+      "measured_us": 27.088742703199387,
+      "via_shared_us": 17.790892051411817,
+      "direct_register_us": 17.73780590351902,
+      "saved_us": 0.05308614789279531,
+      "via_shared_error_percent": -34.32366999701845,
+      "direct_register_error_percent": -34.51964124778648
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_schedule_lds_phase",
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1,
+        "output_route": "via-shared"
+      },
+      "measured_us": 64.76624310016632,
+      "via_shared_us": 65.7112293038588,
+      "direct_register_us": 65.658143155966,
+      "saved_us": 0.05308614789279886,
+      "via_shared_error_percent": 1.4590721314975408,
+      "direct_register_error_percent": 1.3771063645305004
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_schedule_lds_barrier_phase",
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1,
+        "output_route": "via-shared"
+      },
+      "measured_us": 64.76624310016632,
+      "via_shared_us": 67.99046884912404,
+      "direct_register_us": 67.93738270123126,
+      "saved_us": 0.05308614789278465,
+      "via_shared_error_percent": 4.978250388819361,
+      "direct_register_error_percent": 4.89628462185232
+    }
+  ],
+  "scope": "Only output route changes; original mappings, compute, input transfer and independently measured LDS phase stay fixed. Direct output evidence is limited to two inspected kernels. Tail and output instruction issue costs remain unresolved.",
+  "source_sha256": {
+    "tools\\diagnostics\\compare_output_routes.py": "32cfcdb579101ebfe8ae36ab13fdbf5c453e73614cce3bc768b3c792ddd5a68b",
+    "superpod_compute\\data\\bw1100.json": "09b73e39b5f4f24d1c5780841d677e47717a667b8aa014e17af1d0a03912223d",
+    "examples\\bw1100_graph_calibrated.json": "bdfe2f368923294d2821d9a39b60b31e92ff8410ceb35faa723b4130da3988e1",
+    "results\\boundary_20261102\\server_evidence\\lds_instruction_mix_measurements.json": "4500115aa016d5a3f5fdf6136a2d4ce916e803fc4cd79964a2bae938ccf86741",
+    "results\\boundary_20261102\\wave_schedule_comparison.json": "9776a6c20bcb42e40e70852ee623eb2ce195dc3ba6f463f7040ae37603ec8f15",
+    "results\\boundary_20261102\\wave_lds_phase_comparison.json": "f620492493a1e91e81d565654387e32c0954783ecfbf44caaef8ed413d5f7486",
+    "superpod_compute\\api.py": "53baa403d9ea906a572b1a59460fe65de3990ad221a5797816c5eb155f87eb05",
+    "superpod_compute\\backends.py": "5a0b8bebe30589d69d71c8528a9882689892468c2b3676e51626422fb0d18def",
+    "superpod_compute\\cache.py": "b8bace331feaf84926beff2b1a6e246e06409c04cb4424dcc8c80423b21e6043",
+    "superpod_compute\\cli.py": "d3158b601a5f3e03b62b67c9b4d40f08b8d26740b01fec30fef86f171025bd09",
+    "superpod_compute\\contracts.py": "6fbc533f4acae77371b6c7fd59d13b57441f041a991954355cb9f544df6c54a0",
+    "superpod_compute\\kernel_plan.py": "99c69437f7442ff310672cca09b0b00b015b0394f8cf2a28a09d76f3041308f4",
+    "superpod_compute\\memory_access.py": "e82f4e6adcdf3a0ef8929a8bfd2c5c1677d2a66c7987fc6d4f23b323c2151776",
+    "superpod_compute\\operators.py": "0b716666c5250dba9b7b91f8d61489e9a9448cc7a67374f8335a1e67560a2c74",
+    "superpod_compute\\scheduler.py": "20a2bfd5e2a74f2a5e30df5f98413ec1230a7cc6eda2f351f46179843da13a4a",
+    "superpod_compute\\wave_plan.py": "6d93dc68051f29344c66f3a74d59a084230cb31ea26655c1280d2cc3ee2363f4",
+    "superpod_compute\\wave_scheduler.py": "ce3cb3f6fa8470bea551ab44fc662cb57353578394ba418da9ebe997c85fd1d2",
+    "superpod_compute\\__init__.py": "3b69372f0952c6026a73962a21ea572b673a11ae1a696d60e7be1899e389a4cf",
+    "superpod_compute\\__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4"
+  },
+  "summary": {
+    "macro_baseline": {
+      "via_shared": {
+        "count": 9,
+        "passes": 0,
+        "mape_percent": 38.11067952341874
+      },
+      "direct_register": {
+        "count": 9,
+        "passes": 0,
+        "mape_percent": 38.23920667895575
+      }
+    },
+    "wave_schedule": {
+      "via_shared": {
+        "count": 9,
+        "passes": 0,
+        "mape_percent": 37.397435122383726
+      },
+      "direct_register": {
+        "count": 9,
+        "passes": 0,
+        "mape_percent": 37.507747663039176
+      }
+    },
+    "wave_schedule_lds_barrier_phase": {
+      "via_shared": {
+        "count": 6,
+        "passes": 1,
+        "mape_percent": 35.82265534949115
+      },
+      "direct_register": {
+        "count": 6,
+        "passes": 1,
+        "mape_percent": 35.93351629844058
+      }
+    },
+    "wave_schedule_lds_phase": {
+      "via_shared": {
+        "count": 6,
+        "passes": 1,
+        "mape_percent": 42.900276078896624
+      },
+      "direct_register": {
+        "count": 6,
+        "passes": 1,
+        "mape_percent": 43.04063254997053
+      }
+    }
+  }
+}

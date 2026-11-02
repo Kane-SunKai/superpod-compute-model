@@ -3,7 +3,7 @@ from collections import Counter
 from math import ceil, isqrt
 from typing import Protocol
 from .contracts import Mapping
-from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline
+from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline, direct_output_pipeline
 from .backends import mmac_operand_plan
 
 def ceildiv(a,b):return (a+b-1)//b
@@ -37,7 +37,7 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-readiness-experimental-3.3'
+    version='dense-resident-c-output-route-experimental-3.4'
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
     def run_operand_pipeline(self,segments,mapping,hardware,**kwargs):
@@ -63,13 +63,14 @@ class GemmModel:
     def capacity(mapping,hardware):
         p=mapping;gm=p.gm*p.bm;gn=p.gn*p.bn
         inputs=p.shared_buffers*(p.bm+p.bn)*p.bk*2
-        output=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
+        output_window=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
+        output=output_window if p.output_route=='via-shared' else 0
         registers=p.bm*p.bn*4+hardware.register_reserve_bytes_per_core
         operand_registers=0
         if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core:
             operand_registers=p.register_input_buffers*mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1]
             registers+=operand_registers
-        l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output
+        l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output_window
         reasons=[]
         if max(inputs,output)>hardware.shared_budget_bytes_per_core:reasons.append('shared')
         if registers>hardware.register_budget_bytes_per_core:reasons.append('registers')
@@ -100,7 +101,7 @@ class GemmModel:
                                 for chunk in chunks:
                                     for O in policy.output_buffer_counts:
                                         counts=policy.register_buffer_counts if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core else (2,)
-                                        for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V)
+                                        for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V,policy.output_route)
 
     def evaluate(self,request,hardware,policy,backend,mapping,trace_limit=0):
         p=mapping;cap=self.capacity(p,hardware)
@@ -142,7 +143,7 @@ class GemmModel:
                 if not amount:continue
                 per_core=max(min(chunk,max(0,size-lo*chunk)) for size,_ in sizes)
                 bw=hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz
-                tw=per_core/bw if bw else 0.0
+                tw=per_core/bw if bw and p.output_route=='via-shared' else 0.0
                 tr=amount/hardware.l2_write_bandwidth_Bps+policy.l2_transfer_latency_s
                 # Drain is a streamed L2 read + HBM write; bottleneck rate, not
                 # two copies of the same link service. No extra output LDS read.
@@ -151,9 +152,14 @@ class GemmModel:
                 byte_runs.append({'chunks':hi-lo,'bytes_per_chunk_all_cores':amount,
                                   'max_bytes_per_chunk_per_core':per_core,'register_to_shared_s':tw,
                                   'l2_write_s':tr,'l2_read_hbm_drain_s':th})
-            run=output_pipeline(segments,p.output_buffers,p.output_buffers,shared_port=shared_port,trace_limit=trace_limit)
+            if p.output_route=='via-shared':
+                run=output_pipeline(segments,p.output_buffers,p.output_buffers,shared_port=shared_port,trace_limit=trace_limit)
+            else:
+                run=direct_output_pipeline([(num,l,d) for num,_,l,d in segments],p.output_buffers,
+                                           shared_port=shared_port,trace_limit=trace_limit)
             value={'duration_s':run['duration_s']+policy.epilogue_s_per_wave,'byte_runs':byte_runs,'pipeline':run,
-                   'shared_output_limit_per_core':min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers),
+                   'output_route':p.output_route,
+                   'shared_output_limit_per_core':cap['shared_output_bytes'],
                    'l2_output_window_limit':p.gm*p.gn*min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers),
                    'register_to_shared_service_s':sum(num*tw for num,tw,_,_ in segments),
                    'output_shared_read_charged':False}
@@ -208,7 +214,8 @@ class GemmModel:
                                 'pipeline':run,'output_stream':output,'epilogue_s':policy.epilogue_s_per_wave,
                                 'write_to_l2_s':out/hardware.l2_write_bandwidth_Bps,'write_to_hbm_s':out/hardware.hbm_bandwidth_Bps,'duration_s':per_wave})
             notes=['resident FP32 C registers across all K panels; sequential output waves',
-                   'C output: FP16 register->Shared write, L2 write, L2-read/HBM drain; bounded Shared and L2 slots',
+                   ('C output: FP16 register->Shared write, L2 write, L2-read/HBM drain; bounded Shared and L2 slots' if p.output_route=='via-shared'
+                    else 'C output: FP16 direct register->L2 write, L2-read/HBM drain; bounded L2 windows; no output Shared allocation'),
                    'Shared output readback deliberately has no separate time; output conversion/layout cost remains configurable',
                    'directional L2 bandwidths; endpoint streaming uses max times; full shared-port/cache contention is not modeled',
                    'L2 prefix retention is a planned ideal residence policy, not measured hardware cache behavior',
