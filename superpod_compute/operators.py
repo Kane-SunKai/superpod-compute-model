@@ -40,6 +40,8 @@ class GemmModel:
     version='dense-resident-c-readiness-experimental-3.3'
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
+    def run_operand_pipeline(self,segments,mapping,hardware,**kwargs):
+        return operand_pipeline(segments,mapping.l2_buffers,mapping.shared_buffers,mapping.register_input_buffers,**kwargs)
     @staticmethod
     def rank_key(result):
         m=result['mapping']
@@ -191,7 +193,7 @@ class GemmModel:
                                        'retained_operand':('AB' if warm else order if hit else None)})
                     hbytes+=count*number*dh;rbytes+=count*number*dr;saved+=count*number*((m+n)*k*2-dh)
                 if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend in ('mmac','mac-throughput'):
-                    run=operand_pipeline(segments,p.l2_buffers,p.shared_buffers,p.register_input_buffers,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
+                    run=self.run_operand_pipeline(segments,p,hardware,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
                 else:
                     run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
                 output=output_plan(m,n)

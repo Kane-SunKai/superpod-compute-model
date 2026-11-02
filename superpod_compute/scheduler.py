@@ -1,5 +1,6 @@
 """Operator-independent event service and accelerated H/R/C or H/R/S/C pipelines."""
 from dataclasses import asdict, dataclass
+from math import lcm
 from .contracts import positive, integer
 
 @dataclass(frozen=True)
@@ -34,7 +35,7 @@ def pipeline(h, r, c, count, l2_buffers, shared_buffers, tail=None, *, accelerat
     for v in (h,r,c):positive(v,'stage duration',True)
     integer(count,'count',0)
     integer(trace_limit,'trace_limit',0)
-    if l2_buffers not in (1,2) or shared_buffers not in (1,2):raise ValueError('invalid buffer count')
+    if l2_buffers not in range(1,9) or shared_buffers not in range(1,9):raise ValueError('invalid buffer count')
     if tail is not None:
         if len(tail)!=3:raise ValueError('tail must contain H/R/C durations')
         for v in tail:positive(v,'tail duration',True)
@@ -50,7 +51,8 @@ def pipeline_segments(segments,l2_buffers,shared_buffers,*,accelerate=True,share
     a reused input has H=0 but still needs its R and C service. A zero-H panel
     may conservatively reserve an input window; it never bypasses R or C.
     """
-    if l2_buffers not in (1,2) or shared_buffers not in (1,2):raise ValueError('invalid buffer count')
+    if l2_buffers not in range(1,9) or shared_buffers not in range(1,9):raise ValueError('invalid buffer count')
+    period=lcm(2,l2_buffers,shared_buffers)
     integer(trace_limit,'trace_limit',0)
     positive(read_latency_s,'read latency',True)
     H=R=C=0.0;lf=[0.0]*l2_buffers;sf=[0.0]*shared_buffers;i=0;skipped=0;trace=[]
@@ -71,14 +73,14 @@ def pipeline_segments(segments,l2_buffers,shared_buffers,*,accelerate=True,share
         stop=i+count;previous=None
         while i<stop:
             step(h,r,c)
-            if accelerate and i%2==0:
+            if accelerate and i%period==0:
                 state=[H,R,C,*lf,*sf]
                 if previous is not None:
                     deltas=[a-b for a,b in zip(state,previous)];delta=deltas[0]
                     if delta>0 and all(abs(d-delta)<=max(1e-18,abs(delta)*1e-10) for d in deltas):
-                        cycles=(stop-i)//2
+                        cycles=(stop-i)//period
                         if cycles and len(trace)>=trace_limit:
-                            shift=cycles*delta;H+=shift;R+=shift;C+=shift;lf=[v+shift for v in lf];sf=[v+shift for v in sf];i+=2*cycles;skipped+=2*cycles
+                            shift=cycles*delta;H+=shift;R+=shift;C+=shift;lf=[v+shift for v in lf];sf=[v+shift for v in sf];i+=period*cycles;skipped+=period*cycles
                 previous=[H,R,C,*lf,*sf]
     return {'duration_s':C,'H_end_s':H,'R_end_s':R,'C_end_s':C,'panels':i,'skipped_panels':skipped,'trace':trace}
 
@@ -102,7 +104,8 @@ def output_pipeline(segments,shared_buffers,l2_buffers,*,shared_port=False,trace
     L.start..D.end. Shared write and the output port are independent resources.
     shared_port serializes L and D, not W. Slots are per output wave/chunk round.
     """
-    if shared_buffers not in (1,2) or l2_buffers not in (1,2):raise ValueError('invalid output buffer count')
+    if shared_buffers not in range(1,9) or l2_buffers not in range(1,9):raise ValueError('invalid output buffer count')
+    period=lcm(2,shared_buffers,l2_buffers)
     integer(trace_limit,'trace_limit',0)
     ends=[0.0]*3;sf=[0.0]*shared_buffers;lf=[0.0]*l2_buffers;i=skipped=0;trace=[]
     for count,w,l,d in segments:
@@ -119,15 +122,15 @@ def output_pipeline(segments,shared_buffers,l2_buffers,*,shared_port=False,trace
                 trace.append({'panel':i,'shared_slot':ss,'l2_slot':ls,
                     'W_start_s':w0,'W_end_s':w1,'L_start_s':l0,'L_end_s':l1,'D_start_s':d0,'D_end_s':d1})
             i+=1
-            if accelerate and i%2==0:
+            if accelerate and i%period==0:
                 state=ends+sf+lf
                 if previous is not None:
                     deltas=[a-b for a,b in zip(state,previous)];delta=deltas[0]
                     if delta>0 and all(abs(v-delta)<=max(1e-18,abs(delta)*1e-10) for v in deltas):
-                        repeats=(stop-i)//2
+                        repeats=(stop-i)//period
                         if repeats and len(trace)>=trace_limit:
                             offset=repeats*delta;ends=[x+offset for x in ends];sf=[x+offset for x in sf];lf=[x+offset for x in lf]
-                            i+=2*repeats;skipped+=2*repeats
+                            i+=period*repeats;skipped+=period*repeats
                 previous=ends+sf+lf
     return {'duration_s':ends[2],'W_end_s':ends[0],'L_end_s':ends[1],'D_end_s':ends[2],
             'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['register-to-Shared','L2-write','L2-read/HBM-drain']}
@@ -147,7 +150,8 @@ def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,share
     response model; shared-port scheduling retains its conservative H/R order.
     """
     buffers=(l2_buffers,shared_buffers,register_buffers)
-    if any(x not in (1,2) for x in buffers):raise ValueError('invalid buffer count')
+    if any(x not in range(1,9) for x in buffers):raise ValueError('invalid buffer count')
+    period=lcm(2,*buffers)
     positive(read_latency_s,'read latency',True)
     integer(trace_limit,'trace_limit',0)
     ends=[0.0]*4;slots=[[0.0]*n for n in buffers];i=0;skipped=0;trace=[]
@@ -174,15 +178,15 @@ def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,share
                 for stage,name in enumerate(('H','R','S','C')):row.update({name+'_start_s':start[stage],name+'_end_s':finish[stage]})
                 trace.append(row)
             i+=1
-            if accelerate and i%2==0:
+            if accelerate and i%period==0:
                 state=ends+[v for group in slots for v in group]
                 if previous is not None:
                     diffs=[a-b for a,b in zip(state,previous)];shift=diffs[0]
                     if shift>0 and all(abs(d-shift)<=max(1e-18,abs(shift)*1e-10) for d in diffs):
-                        cycles=(stop-i)//2
+                        cycles=(stop-i)//period
                         if cycles and len(trace)>=trace_limit:
                             offset=cycles*shift;ends=[x+offset for x in ends];slots=[[x+offset for x in group] for group in slots]
-                            i+=cycles*2;skipped+=cycles*2
+                            i+=cycles*period;skipped+=cycles*period
                 previous=ends+[v for group in slots for v in group]
     return {'duration_s':ends[3],'H_end_s':ends[0],'R_end_s':ends[1],'S_end_s':ends[2],'C_end_s':ends[3],
             'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['HBM','L2','Shared-read','matrix']}

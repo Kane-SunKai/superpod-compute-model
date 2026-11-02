@@ -149,8 +149,8 @@ class Policy:
                 raise ValueError(f'{name} must contain unique positive integers')
             for v in values:
                 integer(v,name)
-            if name in ('buffer_counts','output_buffer_counts','register_buffer_counts') and not set(values)<= {1,2}:
-                raise ValueError('Only one or two buffers are supported by the fast pipeline')
+            if name in ('buffer_counts','output_buffer_counts','register_buffer_counts') and not set(values)<=set(range(1,9)):
+                raise ValueError('The bounded pipeline supports one through eight buffers')
         positive(self.matrix_efficiency,'matrix_efficiency')
         if self.matrix_efficiency>1:raise ValueError('matrix_efficiency must be <= 1')
         for name in ('l2_transfer_latency_s','input_read_latency_s','epilogue_s_per_wave','device_service_s'):
@@ -180,6 +180,6 @@ class Mapping:
 
     def __post_init__(self):
         for name,value in asdict(self).items():integer(value,name)
-        if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2) or self.output_buffers not in (1,2) or self.register_input_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
+        if any(x not in range(1,9) for x in (self.l2_buffers,self.shared_buffers,self.output_buffers,self.register_input_buffers)):raise ValueError('buffer count must be between 1 and 8')
 
     def to_dict(self):return asdict(self)

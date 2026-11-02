@@ -1,0 +1,500 @@
+{
+  "completed": true,
+  "rounds": [
+    {
+      "cases": [
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 267.037994385,
+          "ticks": 335532,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 1039.675048828,
+          "ticks": 1327840,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 400.638000488,
+          "ticks": 507448,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 1570.391113281,
+          "ticks": 2028104,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 266.880004883,
+          "ticks": 335492,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 1039.677001953,
+          "ticks": 1340036,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 399.039001465,
+          "ticks": 507356,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 1568.794921875,
+          "ticks": 2028000,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 1016.329040527,
+          "ticks": 1311400,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 4040.962158203,
+          "ticks": 5243508,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 1161.442993164,
+          "ticks": 1499760,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 4620.96484375,
+          "ticks": 5997152,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 1017.119995117,
+          "ticks": 1311372,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 4045.761962891,
+          "ticks": 5243536,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 1160.640991211,
+          "ticks": 1499676,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 4620.1640625,
+          "ticks": 5997080,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        }
+      ],
+      "slopes": [
+        {
+          "waves": 4,
+          "blocks": 1,
+          "barrier": 0,
+          "ns_per_panel": 125.75472891324868,
+          "cycles_per_panel": 161.50846354166666,
+          "effective_bytes_per_cycle_per_cu": 126.80450021565886
+        },
+        {
+          "waves": 4,
+          "blocks": 1,
+          "barrier": 1,
+          "ns_per_panel": 190.389504035319,
+          "cycles_per_panel": 247.50260416666666,
+          "effective_bytes_per_cycle_per_cu": 82.74660409717912
+        },
+        {
+          "waves": 4,
+          "blocks": 72,
+          "barrier": 0,
+          "ns_per_panel": 125.78076124186195,
+          "cycles_per_panel": 163.5,
+          "effective_bytes_per_cycle_per_cu": 125.25993883792049
+        },
+        {
+          "waves": 4,
+          "blocks": 72,
+          "barrier": 1,
+          "ns_per_panel": 190.38996100423176,
+          "cycles_per_panel": 247.50065104166666,
+          "effective_bytes_per_cycle_per_cu": 82.74725708318319
+        },
+        {
+          "waves": 8,
+          "blocks": 1,
+          "barrier": 0,
+          "ns_per_panel": 492.2905464967448,
+          "cycles_per_panel": 639.9915364583334,
+          "effective_bytes_per_cycle_per_cu": 89.60118491150294
+        },
+        {
+          "waves": 8,
+          "blocks": 1,
+          "barrier": 1,
+          "ns_per_panel": 563.0732178688152,
+          "cycles_per_panel": 731.9973958333334,
+          "effective_bytes_per_cycle_per_cu": 78.33907651367726
+        },
+        {
+          "waves": 8,
+          "blocks": 72,
+          "barrier": 0,
+          "ns_per_panel": 492.94302860904946,
+          "cycles_per_panel": 640.0006510416666,
+          "effective_bytes_per_cycle_per_cu": 89.5999088542594
+        },
+        {
+          "waves": 8,
+          "blocks": 72,
+          "barrier": 1,
+          "ns_per_panel": 563.073416550944,
+          "cycles_per_panel": 731.9993489583334,
+          "effective_bytes_per_cycle_per_cu": 78.33886748888914
+        }
+      ]
+    },
+    {
+      "cases": [
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 268.479003906,
+          "ticks": 336308,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 1041.116943359,
+          "ticks": 1340068,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 400.79901123,
+          "ticks": 508492,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 1570.552978516,
+          "ticks": 2029008,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 266.878997803,
+          "ticks": 335488,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 1039.517089844,
+          "ticks": 1340032,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 399.039001465,
+          "ticks": 507364,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 4,
+          "matrix_reads": 2,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 1568.794921875,
+          "ticks": 2028000,
+          "bytes_per_panel_per_block": 20480,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 1016.481018066,
+          "ticks": 1311396,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 4041.135742188,
+          "ticks": 5243552,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 1161.440917969,
+          "ticks": 1499756,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 1,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 4620.803710938,
+          "ticks": 5997152,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 2048,
+          "median_us": 1017.119995117,
+          "ticks": 1311392,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 0,
+          "iterations": 8192,
+          "median_us": 4045.761230469,
+          "ticks": 5250304,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 2048,
+          "median_us": 1160.640014648,
+          "ticks": 1499668,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        },
+        {
+          "waves": 8,
+          "matrix_reads": 4,
+          "blocks": 72,
+          "barrier": 1,
+          "iterations": 8192,
+          "median_us": 4620.163085938,
+          "ticks": 5997084,
+          "bytes_per_panel_per_block": 57344,
+          "correct": true
+        }
+      ],
+      "slopes": [
+        {
+          "waves": 4,
+          "blocks": 1,
+          "barrier": 0,
+          "ns_per_panel": 125.75487295784507,
+          "cycles_per_panel": 163.37239583333334,
+          "effective_bytes_per_cycle_per_cu": 125.35777476687653
+        },
+        {
+          "waves": 4,
+          "blocks": 1,
+          "barrier": 1,
+          "ns_per_panel": 190.3896431129557,
+          "cycles_per_panel": 247.47981770833334,
+          "effective_bytes_per_cycle_per_cu": 82.75422290853894
+        },
+        {
+          "waves": 4,
+          "blocks": 72,
+          "barrier": 0,
+          "ns_per_panel": 125.75489779313153,
+          "cycles_per_panel": 163.5,
+          "effective_bytes_per_cycle_per_cu": 125.25993883792049
+        },
+        {
+          "waves": 4,
+          "blocks": 72,
+          "barrier": 1,
+          "ns_per_panel": 190.38996100423176,
+          "cycles_per_panel": 247.49934895833334,
+          "effective_bytes_per_cycle_per_cu": 82.74769241291143
+        },
+        {
+          "waves": 8,
+          "blocks": 1,
+          "barrier": 0,
+          "ns_per_panel": 492.2940631708984,
+          "cycles_per_panel": 639.9993489583334,
+          "effective_bytes_per_cycle_per_cu": 89.60009114592604
+        },
+        {
+          "waves": 8,
+          "blocks": 1,
+          "barrier": 1,
+          "ns_per_panel": 563.0473295847981,
+          "cycles_per_panel": 731.998046875,
+          "effective_bytes_per_cycle_per_cu": 78.33900683862394
+        },
+        {
+          "waves": 8,
+          "blocks": 72,
+          "barrier": 0,
+          "ns_per_panel": 492.94290939973956,
+          "cycles_per_panel": 641.0989583333334,
+          "effective_bytes_per_cycle_per_cu": 89.44640956690579
+        },
+        {
+          "waves": 8,
+          "blocks": 72,
+          "barrier": 1,
+          "ns_per_panel": 563.0734165511068,
+          "cycles_per_panel": 732.0013020833334,
+          "effective_bytes_per_cycle_per_cu": 78.33865846521647
+        }
+      ]
+    }
+  ],
+  "source_sha256": "461433a45988f5b09c51cddf3d0625af26d2fd3ca3c731fc81463aeaefab62ff",
+  "pattern_sha256": "40cfe8cd5d8ef9c466de39440a81909e7951d1da2531ca7573bc5640ab1debf5",
+  "scope": "LDS-only instruction mix plus checksum/control/barrier; slope removes one-time initialization/launch. Effective service for this independent microbenchmark, not a fitted GEMM penalty."
+}

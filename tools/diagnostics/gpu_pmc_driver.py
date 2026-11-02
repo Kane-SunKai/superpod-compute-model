@@ -14,8 +14,12 @@ from boundary_experiment import plan,tensors
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--case',required=True);args=ap.parse_args()
-    rows=[r for r in plan() if r['id']==args.case]
+    ap=argparse.ArgumentParser();ap.add_argument('--case',required=True)
+    ap.add_argument('--plan',choices=('boundary','k-stride'),default='boundary');args=ap.parse_args()
+    selected_plan=plan
+    if args.plan=='k-stride':
+        from k_stride_isolation import plan as selected_plan
+    rows=[r for r in selected_plan() if r['id']==args.case]
     if len(rows)!=1:raise ValueError('Unknown or ambiguous case')
     torch.cuda.set_device(0);torch.manual_seed(20261102)
     sys.path.insert(0,'/workspace')

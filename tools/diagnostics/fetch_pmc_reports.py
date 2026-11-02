@@ -8,15 +8,16 @@ ROOT=Path(__file__).resolve().parents[2]
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--ssh-config',required=True)
     ap.add_argument('--host',default='codex-bw1100');ap.add_argument('--cases',nargs='+',required=True)
+    ap.add_argument('--category',choices=('pmc','pmc_read'),default='pmc')
     args=ap.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9_.-]+',args.host):raise ValueError('Use a configured SSH alias')
     for case in args.cases:
         if not re.fullmatch(r'[A-Za-z0-9_]+',case):raise ValueError('Invalid case ID')
     def fetch(case):
-        destination=ROOT/'results/boundary_20261102/pmc'/case
+        destination=ROOT/'results/boundary_20261102'/args.category/case
         destination.mkdir(parents=True,exist_ok=True)
         names=('report.csv','status.json','command.json')
-        sources=[f'{args.host}:/root/sk/gemm_boundary_20261102/pmc/{case}/{name}' for name in names]
+        sources=[f'{args.host}:/root/sk/gemm_boundary_20261102/{args.category}/{case}/{name}' for name in names]
         p=subprocess.run(['scp','-F',args.ssh_config,'-o','BatchMode=yes',*sources,str(destination)],capture_output=True,text=True)
         if p.returncode:raise RuntimeError(case+': '+p.stderr)
         status=json.loads((destination/'status.json').read_text())

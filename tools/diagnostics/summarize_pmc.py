@@ -19,7 +19,7 @@ INSTANCE_COUNTERS = ('TCC_HIT', 'TCC_MISS', 'TCP_TCP_TA_DATA_STALL_CYCLES')
 GEOMETRY = ('grd', 'wgr', 'lds', 'arch_vgpr', 'accum_vgpr', 'wave_size')
 
 
-def summarize(csv_path, measurement):
+def summarize(csv_path, measurement, instance_counters=INSTANCE_COUNTERS):
     with csv_path.open(newline='', encoding='utf-8-sig') as stream:
         rows = list(csv.DictReader(stream))
     if len(rows) != 6:
@@ -38,14 +38,15 @@ def summarize(csv_path, measurement):
         raise ValueError('HIP global work-items must divide by workgroup size')
     metadata['workgroups'] = metadata['grd'] // metadata['wgr']
     samples = {k: [float(r[k]) for r in observed] for k in SINGLE_COUNTERS}
-    for prefix in INSTANCE_COUNTERS:
+    for prefix in instance_counters:
         columns = [k for k in observed[0] if k.startswith(prefix + '[')]
         if not columns:
             raise ValueError(f'Missing counter instances: {prefix}')
         samples[prefix + '_instance_sum'] = [sum(float(r[k]) for k in columns) for r in observed]
-    samples['TCC_HIT_plus_MISS_instance_sum'] = [
-        a + b for a, b in zip(samples['TCC_HIT_instance_sum'], samples['TCC_MISS_instance_sum'])
-    ]
+    if 'TCC_HIT' in instance_counters and 'TCC_MISS' in instance_counters:
+        samples['TCC_HIT_plus_MISS_instance_sum'] = [
+            a + b for a, b in zip(samples['TCC_HIT_instance_sum'], samples['TCC_MISS_instance_sum'])
+        ]
     counters = {k: {'median': statistics.median(v), 'min': min(v), 'max': max(v)} for k, v in samples.items()}
     return {
         'id': measurement['id'], 'shape': measurement['shape'], 'layout': measurement['layout'],

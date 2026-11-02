@@ -1,0 +1,2367 @@
+{
+  "completed": true,
+  "cases": [
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "macro_baseline",
+      "model_us": 37.33659978267831,
+      "measured_us": 106.66000097990036,
+      "error_percent": -64.99475019720444,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 602112,
+        "parallel_cores": 54
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "wave_only",
+      "model_us": 37.33659978267831,
+      "measured_us": 106.66000097990036,
+      "error_percent": -64.99475019720444,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 602112,
+        "parallel_cores": 54,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "wave_slots",
+      "model_us": 37.33659978267832,
+      "measured_us": 106.66000097990036,
+      "error_percent": -64.99475019720443,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 522240,
+        "parallel_cores": 54,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 37.81546019066844,
+      "measured_us": 106.66000097990036,
+      "error_percent": -64.54579050885758,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 602112,
+        "parallel_cores": 54,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "wave_schedule",
+      "model_us": 37.336599782678206,
+      "measured_us": 106.66000097990036,
+      "error_percent": -64.99475019720454,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 522240,
+        "parallel_cores": 54,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 37.81546019066832,
+      "measured_us": 106.66000097990036,
+      "error_percent": -64.54579050885769,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 602112,
+        "parallel_cores": 54,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "model_us": 21.357942392512378,
+      "measured_us": 35.39000079035759,
+      "error_percent": -39.649782663097334,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_only",
+      "model_us": 21.357942392512378,
+      "measured_us": 35.39000079035759,
+      "error_percent": -39.649782663097334,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_slots",
+      "model_us": 21.357942392512378,
+      "measured_us": 35.39000079035759,
+      "error_percent": -39.649782663097334,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 21.597372596507448,
+      "measured_us": 35.39000079035759,
+      "error_percent": -38.973235054597964,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "model_us": 21.357942392512317,
+      "measured_us": 35.39000079035759,
+      "error_percent": -39.6497826630975,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 21.597372596507373,
+      "measured_us": 35.39000079035759,
+      "error_percent": -38.97323505459818,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "model_us": 37.274153844093604,
+      "measured_us": 49.56874996423721,
+      "error_percent": -24.8031191607896,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_only",
+      "model_us": 37.274153844093604,
+      "measured_us": 49.56874996423721,
+      "error_percent": -24.8031191607896,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_slots",
+      "model_us": 37.274153844093604,
+      "measured_us": 49.56874996423721,
+      "error_percent": -24.8031191607896,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 37.75301425208373,
+      "measured_us": 49.56874996423721,
+      "error_percent": -23.837066136786344,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "model_us": 37.27415384409348,
+      "measured_us": 49.56874996423721,
+      "error_percent": -24.803119160789844,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 37.753014252083595,
+      "measured_us": 49.56874996423721,
+      "error_percent": -23.83706613678662,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "model_us": 21.358382371394892,
+      "measured_us": 27.230000123381615,
+      "error_percent": -21.563047100190545,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_only",
+      "model_us": 21.358382371394892,
+      "measured_us": 27.230000123381615,
+      "error_percent": -21.563047100190545,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_slots",
+      "model_us": 21.3583823713949,
+      "measured_us": 27.230000123381615,
+      "error_percent": -21.563047100190524,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 21.597812575389963,
+      "measured_us": 27.230000123381615,
+      "error_percent": -20.68375880452331,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "model_us": 21.35838237139484,
+      "measured_us": 27.230000123381615,
+      "error_percent": -21.563047100190747,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 21.597812575389888,
+      "measured_us": 27.230000123381615,
+      "error_percent": -20.683758804523578,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "model_us": 37.27895892100863,
+      "measured_us": 62.829989939928055,
+      "error_percent": -40.6669347605321,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_only",
+      "model_us": 37.27895892100863,
+      "measured_us": 62.829989939928055,
+      "error_percent": -40.6669347605321,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_slots",
+      "model_us": 37.27895892100862,
+      "measured_us": 62.829989939928055,
+      "error_percent": -40.666934760532115,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 37.75781932899874,
+      "measured_us": 62.829989939928055,
+      "error_percent": -39.90478215085008,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "model_us": 37.27895892100851,
+      "measured_us": 62.829989939928055,
+      "error_percent": -40.66693476053229,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 37.75781932899862,
+      "measured_us": 62.829989939928055,
+      "error_percent": -39.904782150850274,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 2,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "macro_baseline",
+      "model_us": 21.359780700987088,
+      "measured_us": 50.16749911010265,
+      "error_percent": -57.423070553888365,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "wave_only",
+      "model_us": 21.359780700987088,
+      "measured_us": 50.16749911010265,
+      "error_percent": -57.423070553888365,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "wave_slots",
+      "model_us": 21.359780700987095,
+      "measured_us": 50.16749911010265,
+      "error_percent": -57.42307055388836,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 21.59921090498216,
+      "measured_us": 50.16749911010265,
+      "error_percent": -56.94580896373097,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "wave_schedule",
+      "model_us": 21.35978070098703,
+      "measured_us": 50.16749911010265,
+      "error_percent": -57.423070553888486,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 21.599210904982087,
+      "measured_us": 50.16749911010265,
+      "error_percent": -56.94580896373112,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "model_us": 21.359780700987095,
+      "measured_us": 27.088742703199387,
+      "error_percent": -21.14886639436262,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_only",
+      "model_us": 21.359780700987095,
+      "measured_us": 27.088742703199387,
+      "error_percent": -21.14886639436262,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_slots",
+      "model_us": 21.359780700987095,
+      "measured_us": 27.088742703199387,
+      "error_percent": -21.14886639436262,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 21.59921090498216,
+      "measured_us": 27.088742703199387,
+      "error_percent": -20.264992946936843,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "model_us": 21.35978070098703,
+      "measured_us": 27.088742703199387,
+      "error_percent": -21.14886639436285,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 21.599210904982087,
+      "measured_us": 27.088742703199387,
+      "error_percent": -20.26499294693712,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "macro_baseline",
+      "model_us": 50.18289050352346,
+      "measured_us": 64.76624310016632,
+      "error_percent": -22.516903711843383,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 40960,
+        "shared_input_bytes": 40960,
+        "shared_output_bytes": 8192,
+        "register_bytes": 507904,
+        "operand_register_bytes": 81920,
+        "l2_bytes": 761856,
+        "parallel_cores": 72
+      },
+      "waves": 8,
+      "wave_shape": [
+        96,
+        128
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 40960
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_only",
+      "model_us": 56.58289050352348,
+      "measured_us": 64.76624310016632,
+      "error_percent": -12.635212735725021,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 40960,
+        "shared_input_bytes": 40960,
+        "shared_output_bytes": 8192,
+        "register_bytes": 540672,
+        "operand_register_bytes": 114688,
+        "l2_bytes": 933888,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 8,
+      "wave_shape": [
+        96,
+        128
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 57344
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_slots",
+      "model_us": 93.801352041985,
+      "measured_us": 64.76624310016632,
+      "error_percent": 44.8306209407785,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 61440,
+        "shared_input_bytes": 61440,
+        "shared_output_bytes": 8192,
+        "register_bytes": 483328,
+        "operand_register_bytes": 57344,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 8,
+      "wave_shape": [
+        96,
+        128
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 57344
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 94.04078224598004,
+      "measured_us": 64.76624310016632,
+      "error_percent": 45.200304579251636,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 61440,
+        "shared_input_bytes": 61440,
+        "shared_output_bytes": 8192,
+        "register_bytes": 483328,
+        "operand_register_bytes": 57344,
+        "l2_bytes": 933888,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 8,
+      "wave_shape": [
+        96,
+        128
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 57344
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_schedule",
+      "model_us": 75.19212127275435,
+      "measured_us": 64.76624310016632,
+      "error_percent": 16.09770410252691,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 61440,
+        "shared_input_bytes": 61440,
+        "shared_output_bytes": 8192,
+        "register_bytes": 483328,
+        "operand_register_bytes": 57344,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 8,
+      "wave_shape": [
+        96,
+        128
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 57344
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 75.43155147674942,
+      "measured_us": 64.76624310016632,
+      "error_percent": 16.467387741000074,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 3,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 61440,
+        "shared_input_bytes": 61440,
+        "shared_output_bytes": 8192,
+        "register_bytes": 483328,
+        "operand_register_bytes": 57344,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 8,
+      "wave_shape": [
+        96,
+        128
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 57344
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "macro_baseline",
+      "model_us": 21.605934547140937,
+      "measured_us": 43.41124929487705,
+      "error_percent": -50.22964116886024,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 20480,
+        "shared_input_bytes": 20480,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "wave_only",
+      "model_us": 21.605934547140937,
+      "measured_us": 43.41124929487705,
+      "error_percent": -50.22964116886024,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 21504,
+        "shared_input_bytes": 21504,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "wave_slots",
+      "model_us": 21.605934547140937,
+      "measured_us": 43.41124929487705,
+      "error_percent": -50.22964116886024,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "wave_slots_readiness",
+      "model_us": 21.845364751136007,
+      "measured_us": 43.41124929487705,
+      "error_percent": -49.678101630413174,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "wave_schedule",
+      "model_us": 21.605934547140876,
+      "measured_us": 43.41124929487705,
+      "error_percent": -50.22964116886038,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 675840,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "wave_schedule_readiness",
+      "model_us": 21.845364751135932,
+      "measured_us": 43.41124929487705,
+      "error_percent": -49.67810163041335,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 6,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "capacity": {
+        "valid": true,
+        "rejections": [],
+        "shared_bytes": 64512,
+        "shared_input_bytes": 64512,
+        "shared_output_bytes": 8192,
+        "register_bytes": 172032,
+        "operand_register_bytes": 40960,
+        "l2_bytes": 761856,
+        "parallel_cores": 72,
+        "operand_ownership": "wavefront, not engine"
+      },
+      "waves": 4,
+      "wave_shape": [
+        96,
+        64
+      ],
+      "wave_count": 1,
+      "shared_read_bytes_per_panel_per_cu": 20480
+    }
+  ],
+  "scope": "Supplied-wave and Shared-slot ablations for two inspected kernels; not a dispatch predictor. No change to launch calibration, throughput or bandwidth. Scalar read-latency proxy only in separately labeled sensitivity mode.",
+  "source_sha256": {
+    "superpod_compute\\api.py": "53baa403d9ea906a572b1a59460fe65de3990ad221a5797816c5eb155f87eb05",
+    "superpod_compute\\backends.py": "5a0b8bebe30589d69d71c8528a9882689892468c2b3676e51626422fb0d18def",
+    "superpod_compute\\cache.py": "b8bace331feaf84926beff2b1a6e246e06409c04cb4424dcc8c80423b21e6043",
+    "superpod_compute\\cli.py": "ab871bb8052cf05726b33cba3214d2a165a6a66b0be08cea188e8431238c4764",
+    "superpod_compute\\contracts.py": "11782502d3a459e27f7eaf194dd0f2fe9a73ee810320f56a0ca07a28b6b0f613",
+    "superpod_compute\\kernel_plan.py": "99c69437f7442ff310672cca09b0b00b015b0394f8cf2a28a09d76f3041308f4",
+    "superpod_compute\\operators.py": "cf19c3f73d42a99eba3df1e6663670ef9d0bbd4a0e1812685d3d2fee4f7b357b",
+    "superpod_compute\\scheduler.py": "9cd08e3b5d7b7fe6c9c983b986e4690f238f6c97d36fec3d23840076c1f9e91e",
+    "superpod_compute\\wave_plan.py": "6d93dc68051f29344c66f3a74d59a084230cb31ea26655c1280d2cc3ee2363f4",
+    "superpod_compute\\wave_scheduler.py": "ce3cb3f6fa8470bea551ab44fc662cb57353578394ba418da9ebe997c85fd1d2",
+    "superpod_compute\\__init__.py": "3b69372f0952c6026a73962a21ea572b673a11ae1a696d60e7be1899e389a4cf",
+    "superpod_compute\\__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "results\\boundary_20261102\\server_evidence\\measurements.json": "8dc3222fa68e3e823d9cd3f26caeecfc19a7ffec1e84feb444ef2878de41dd4a",
+    "results\\boundary_20261102\\server_evidence\\kernels.json": "5160f19aa047d8165a0cf3ad6813981d296c07e65b7eb6e42bee0dcd299e2a2c"
+  },
+  "summary": {
+    "macro_baseline": {
+      "count": 9,
+      "passes": 0,
+      "mean_absolute_error_percent": 38.11067952341874
+    },
+    "wave_only": {
+      "count": 9,
+      "passes": 1,
+      "mean_absolute_error_percent": 37.01271385940559
+    },
+    "wave_schedule": {
+      "count": 9,
+      "passes": 0,
+      "mean_absolute_error_percent": 37.397435122383726
+    },
+    "wave_schedule_readiness": {
+      "count": 9,
+      "passes": 0,
+      "mean_absolute_error_percent": 36.81121377085533
+    },
+    "wave_slots": {
+      "count": 9,
+      "passes": 0,
+      "mean_absolute_error_percent": 40.58998143774486
+    },
+    "wave_slots_readiness": {
+      "count": 9,
+      "passes": 0,
+      "mean_absolute_error_percent": 40.00376008621643
+    }
+  }
+}
