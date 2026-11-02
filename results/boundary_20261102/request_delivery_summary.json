@@ -1,0 +1,260 @@
+{
+  "completed": true,
+  "source_sha256": "74fbbadd74379d9c3317a4dfade8bf01fdc63e60b73a77906a48e28d2c64f541",
+  "validated_measurements": 112,
+  "scope": "Independent delivery-only test using supplied source addresses and LDS destination control. Raw offen source addressing, no original scalar/indexed address setup. All workgroups share the group-0 source addresses. Queued panels then wait/barrier; not full GEMM or steady pipeline overlap.",
+  "summaries": [
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "ns_per_panel": 506.4068635302734,
+      "round_spread_percent": 0.6376810184106866,
+      "cycles_per_panel": 658.1875,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "ns_per_panel": 491.491864125,
+      "round_spread_percent": 0.28229501944157875,
+      "cycles_per_panel": 623.4309895833333,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "ns_per_panel": 383.30711424348954,
+      "round_spread_percent": 1.3998123491400252,
+      "cycles_per_panel": 502.546875,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "ns_per_panel": 475.494474172526,
+      "round_spread_percent": 0.0762605687470163,
+      "cycles_per_panel": 611.1555989583334,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "ns_per_panel": 337.7773496839193,
+      "round_spread_percent": 1.4388971620257374,
+      "cycles_per_panel": 446.82161458333337,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "ns_per_panel": 465.0867978731553,
+      "round_spread_percent": 0.007270836704140784,
+      "cycles_per_panel": 598.3016493055555,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 6,
+      "blocks": 1,
+      "ns_per_panel": 304.1405114862739,
+      "round_spread_percent": 0.9190966503289684,
+      "cycles_per_panel": 391.7673611111111,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "queued_panels": 6,
+      "blocks": 72,
+      "ns_per_panel": 482.9335345162218,
+      "round_spread_percent": 0.050356194641343464,
+      "cycles_per_panel": 622.4715711805555,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "ns_per_panel": 787.7089778580728,
+      "round_spread_percent": 0.8987332637389743,
+      "cycles_per_panel": 1023.1979166666666,
+      "relative_to_aligned": 1.5554863778243062
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "ns_per_panel": 779.4791956741535,
+      "round_spread_percent": 0.05295358323917943,
+      "cycles_per_panel": 1005.0963541666666,
+      "relative_to_aligned": 1.5859452669920704
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "ns_per_panel": 678.12466621403,
+      "round_spread_percent": 0.015170900276526782,
+      "cycles_per_panel": 880.8209635416667,
+      "relative_to_aligned": 1.7691418734880626
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "ns_per_panel": 734.3746622402343,
+      "round_spread_percent": 0.6099243805214298,
+      "cycles_per_panel": 935.7467447916666,
+      "relative_to_aligned": 1.5444441568289973
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "ns_per_panel": 636.8396017286242,
+      "round_spread_percent": 0.17433940004910364,
+      "cycles_per_panel": 829.9388020833334,
+      "relative_to_aligned": 1.8853827893568273
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "ns_per_panel": 654.2708079019097,
+      "round_spread_percent": 0.053275793213446804,
+      "cycles_per_panel": 846.3012152777777,
+      "relative_to_aligned": 1.4067714045934954
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 6,
+      "blocks": 1,
+      "ns_per_panel": 592.88162655306,
+      "round_spread_percent": 0.07610185496973204,
+      "cycles_per_panel": 767.4440104166666,
+      "relative_to_aligned": 1.9493674935172756
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "queued_panels": 6,
+      "blocks": 72,
+      "ns_per_panel": 648.6801703771159,
+      "round_spread_percent": 0.015930995485637398,
+      "cycles_per_panel": 839.9418402777778,
+      "relative_to_aligned": 1.3432079655162705
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "ns_per_panel": 752.5484561917318,
+      "round_spread_percent": 0.12449242290410525,
+      "cycles_per_panel": 1001.2591145833334,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "ns_per_panel": 855.6773662568359,
+      "round_spread_percent": 0.15849018186199385,
+      "cycles_per_panel": 1094.6028645833335,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "ns_per_panel": 647.3168830076497,
+      "round_spread_percent": 0.31384699432145813,
+      "cycles_per_panel": 849.9016927083334,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "ns_per_panel": 897.1087038515625,
+      "round_spread_percent": 0.5049480754469753,
+      "cycles_per_panel": 1147.89453125,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "ns_per_panel": 593.611001968316,
+      "round_spread_percent": 1.673022637171431,
+      "cycles_per_panel": 770.1380208333334,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "ns_per_panel": 878.8191080093317,
+      "round_spread_percent": 0.284596721307867,
+      "cycles_per_panel": 1122.6371527777778,
+      "relative_to_aligned": 1.0
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 1,
+      "ns_per_panel": 1333.181997139974,
+      "round_spread_percent": 0.08569438362527439,
+      "cycles_per_panel": 1723.4622395833335,
+      "relative_to_aligned": 1.771556351183731
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 1,
+      "blocks": 72,
+      "ns_per_panel": 1330.5719097454426,
+      "round_spread_percent": 0.007690024608388662,
+      "cycles_per_panel": 1720.9401041666667,
+      "relative_to_aligned": 1.5549925266412443
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 1,
+      "ns_per_panel": 1222.7620283761394,
+      "round_spread_percent": 0.025926323352221548,
+      "cycles_per_panel": 1593.759765625,
+      "relative_to_aligned": 1.8889697773597067
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 2,
+      "blocks": 72,
+      "ns_per_panel": 1297.4746028583984,
+      "round_spread_percent": 0.3731561150869006,
+      "cycles_per_panel": 1673.6145833333335,
+      "relative_to_aligned": 1.4462847114156205
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 1,
+      "ns_per_panel": 1176.7887274423827,
+      "round_spread_percent": 0.19763953172006815,
+      "cycles_per_panel": 1533.1163194444443,
+      "relative_to_aligned": 1.9824240513406013
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "queued_panels": 3,
+      "blocks": 72,
+      "ns_per_panel": 1201.336661974718,
+      "round_spread_percent": 0.02032462038585945,
+      "cycles_per_panel": 1557.4110243055554,
+      "relative_to_aligned": 1.366989692219985
+    }
+  ]
+}
