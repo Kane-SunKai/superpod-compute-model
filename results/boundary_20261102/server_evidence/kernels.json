@@ -1,0 +1,2554 @@
+{
+  "plan": [
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    }
+  ],
+  "script_sha256": "7166028cfb436e6741c0a3c6ecaa350b8439719677cd2dacc4b0432abef2c988",
+  "seed": 20261102,
+  "completed": true,
+  "cases": [
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1168,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "kernels": {
+        "Memset (Device)": 1,
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8192,
+          1
+        ],
+        [
+          8192,
+          1
+        ],
+        [
+          8192,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x16x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG32_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8191,
+          1
+        ],
+        [
+          48,
+          1
+        ],
+        [
+          33,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1008,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1022,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8192,
+          1
+        ],
+        [
+          48,
+          1
+        ],
+        [
+          48,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          784,
+          1
+        ],
+        [
+          4096,
+          1
+        ],
+        [
+          4096,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1168,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          270,
+          1
+        ],
+        [
+          97,
+          1
+        ],
+        [
+          112,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          4096,
+          1
+        ],
+        [
+          4093,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2048,
+          1
+        ],
+        [
+          8192,
+          1
+        ],
+        [
+          8192,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          270,
+          1
+        ],
+        [
+          112,
+          1
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          255,
+          1
+        ],
+        [
+          129,
+          1
+        ],
+        [
+          129,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          776,
+          1
+        ],
+        [
+          776,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          257,
+          1
+        ],
+        [
+          129,
+          1
+        ],
+        [
+          129,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          769,
+          1
+        ],
+        [
+          769,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          16384,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT384x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU8_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA3_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT12_8_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW4_WG32_16_1_WGM1": 2,
+        "Cijk_H_PostGSU": 2
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2047,
+          1
+        ],
+        [
+          8191,
+          1
+        ],
+        [
+          8192,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          272,
+          1
+        ],
+        [
+          112,
+          1
+        ],
+        [
+          112,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8": 2
+      }
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1168,
+          1
+        ],
+        [
+          1168,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1024,
+          1
+        ],
+        [
+          1024,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2048,
+          1
+        ],
+        [
+          8191,
+          1
+        ],
+        [
+          8191,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1040,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          4096,
+          1
+        ],
+        [
+          4096,
+          1
+        ],
+        [
+          4096,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x256x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT16_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_32_1_WGM1": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1026,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          270,
+          1
+        ],
+        [
+          97,
+          1
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          257,
+          1
+        ],
+        [
+          257,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          4093,
+          1
+        ],
+        [
+          4093,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1000,
+          1
+        ],
+        [
+          1000,
+          1
+        ],
+        [
+          1000,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1028,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1056,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1151,
+          1
+        ],
+        [
+          1151,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1016,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2047,
+          1
+        ],
+        [
+          8192,
+          1
+        ],
+        [
+          8191,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          4093,
+          1
+        ],
+        [
+          4096,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1020,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1040,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1032,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8192,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          33,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          784,
+          1
+        ],
+        [
+          4093,
+          1
+        ],
+        [
+          4093,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8191,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          48,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          992,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2047,
+          1
+        ],
+        [
+          8191,
+          1
+        ],
+        [
+          8191,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1": 2
+      }
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          272,
+          1
+        ],
+        [
+          97,
+          1
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8": 2
+      }
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1040,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8191,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          33,
+          1
+        ]
+      ],
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1": 2
+      }
+    }
+  ],
+  "phase": "profile",
+  "protocol": "FP16 torch.mm C=AB; same-address warm HIP Graph; 30 warmup, 6 graph warmup, 2 rounds x 25 Event measurements; profiler names collected separately, never used as latency",
+  "environment": {
+    "torch": "2.11.0",
+    "hip": "6.3.26113",
+    "gpu": "_CudaDeviceProperties(name='BW1100', major=9, minor=3, gcnArchName='gfx938:sramecc+:xnack-', total_memory=147440MB, multi_processor_count=72, uuid=30303034-3563-3735-3439-663233313037, pci_bus_id=3, pci_device_id=0, pci_domain_id=0, L2_cache_size=8MB)"
+  },
+  "wall_seconds": 8.379008572548628
+}

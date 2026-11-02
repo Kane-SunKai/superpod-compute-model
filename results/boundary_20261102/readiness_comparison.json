@@ -1,0 +1,5219 @@
+{
+  "completed": true,
+  "cases": [
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 16.51249546557665,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.353320449695387,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -19.132026546000557
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 16.51249546557665,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.559607927237062,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -11.82672566003571
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 72.44248688220978,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x16x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG32_8_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 16,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          32,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 81.46156798812031,
+      "mapping": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 32,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 1,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": 12.449988251473743
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 72.44248688220978,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x16x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG32_8_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 16,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          32,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 87.09126958824702,
+      "mapping": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 32,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": 20.221258734333492
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.52062076330185,
+      "status": "predicted",
+      "model_us": 13.029813141397145,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -3.6300672173046333
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.52062076330185,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.15639737277231,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -2.693836303123953
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 16.51249546557665,
+      "status": "predicted",
+      "model_us": 13.189813141397144,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -20.122230047579727
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.52062076330185,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.362684850313984,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 6.227998712142679
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.43562314286828,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.353320449695387,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -0.612570718140304
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.43562314286828,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.559607927237062,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 8.36570639423897
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 10.35593543201685,
+      "status": "predicted",
+      "model_us": 3.768934102161071,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -63.60604865776901
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 10.35593543201685,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1",
+        "macro_0": 16,
+        "macro_1": 16,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": true,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 16,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 3.5295038981660145,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -65.91805809010695
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 10.35593543201685,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1",
+        "macro_0": 16,
+        "macro_1": 16,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": true,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 16,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 3.768934102161071,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -63.60604865776901
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 72.44248688220978,
+      "status": "predicted",
+      "model_us": 81.9811745762408,
+      "mapping": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 64,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": 13.167255991005344
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 16.48249849677086,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.451781988156927,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -18.38748239053496
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 16.48249849677086,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.658069465698603,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -11.068886379268816
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.43562314286828,
+      "status": "predicted",
+      "model_us": 13.189813141397144,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -1.829539269279179
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 14.03593784198165,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.367716501025027,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 7,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -4.760788687436079
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 14.03593784198165,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.68688981884108,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 7,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 4.637751920733257
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 16.48249849677086,
+      "status": "predicted",
+      "model_us": 13.226736218320223,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -19.752844382715907
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 8.184375241398811,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1",
+        "macro_0": 16,
+        "macro_1": 16,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": true,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 16,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 3.4585347470351016,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 5,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -57.74222655944603
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 8.184375241398811,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1",
+        "macro_0": 16,
+        "macro_1": 16,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": true,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 16,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 3.8025127444421662,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 5,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": -53.53936455396112
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 8.184375241398811,
+      "status": "predicted",
+      "model_us": 3.8025127444421662,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 5,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": -53.53936455396112
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 16.689371317625046,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.360973295977676,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 7,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -19.943219899076535
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 16.689371317625046,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.669171601544825,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 7,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -12.104708305859068
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 14.03593784198165,
+      "status": "predicted",
+      "model_us": 13.832709337716473,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 64,
+        "gm": 4,
+        "gn": 13,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -1.447915390857013
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 112.89748176932335,
+      "status": "unsupported",
+      "reason": "Split-K requires partial outputs and an explicit reduction model"
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 112.89748176932335,
+      "status": "unsupported",
+      "reason": "Split-K requires partial outputs and an explicit reduction model"
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 16.689371317625046,
+      "status": "predicted",
+      "model_us": 13.82596613266912,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 64,
+        "gm": 4,
+        "gn": 13,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -17.15705840837748
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 11.43937325105071,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.374287383132765,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 16.914511744813755
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.43937325105071,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.740496467729805,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 28.857553156383673
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.43937325105071,
+      "status": "predicted",
+      "model_us": 13.299040917088927,
+      "mapping": {
+        "bm": 192,
+        "bn": 32,
+        "bk": 64,
+        "gm": 3,
+        "gn": 24,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 16.256726878523754
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 17.173750326037407,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 128,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 128,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 17.47511147198735,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 1.7547777289684152
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 17.173750326037407,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 128,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 128,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 18.609277440464837,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 8.35884467384509
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 112.89748176932335,
+      "status": "predicted",
+      "model_us": 146.04726668316508,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 29.36273191777181
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 11.440310161560774,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.352349033494944,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 16.713173374954327
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.440310161560774,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.557460616867093,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 27.247079941764916
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 17.173750326037407,
+      "status": "predicted",
+      "model_us": 18.125529753722073,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 5.5420593033873145
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 11.406250298023224,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.364721326174182,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 17.17015651050875
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.406250298023224,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.722699151584543,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 29.075715216735865
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.440310161560774,
+      "status": "predicted",
+      "model_us": 13.18808392673189,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 15.277328503239396
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 460.3486806154251,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT256x256x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT16_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_32_1_WGM1",
+        "macro_0": 256,
+        "macro_1": 256,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          32,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 256,
+        "logical_bn": 256,
+        "threads": 512,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 428.99426029626943,
+      "mapping": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 16,
+        "gm": 4,
+        "gn": 16,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 4,
+      "error_percent": -6.811015571335832
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 460.3486806154251,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT256x256x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT16_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_32_1_WGM1",
+        "macro_0": 256,
+        "macro_1": 256,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          32,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 256,
+        "logical_bn": 256,
+        "threads": 512,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 460.2536990027219,
+      "mapping": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 16,
+        "gm": 4,
+        "gn": 16,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 4,
+      "error_percent": -0.02063253718382896
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.406250298023224,
+      "status": "predicted",
+      "model_us": 13.257669715101754,
+      "mapping": {
+        "bm": 192,
+        "bn": 32,
+        "bk": 64,
+        "gm": 3,
+        "gn": 24,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 16.231621862615043
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.310623355209827,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.451781988156927,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 1.0604960352352588
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.310623355209827,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.658069465698603,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 10.123087961627132
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.310623355209827,
+      "status": "predicted",
+      "model_us": 13.226736218320223,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -0.6302269597071142
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 8.358122780919075,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8",
+        "macro_0": 16,
+        "macro_1": 16,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": true,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 16,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 3.4945223163650176,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -58.19010550619414
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 8.358122780919075,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8",
+        "macro_0": 16,
+        "macro_1": 16,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": true,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 16,
+        "logical_bn": 16,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 3.848190008366236,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": -53.95868056459585
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 8.358122780919075,
+      "status": "predicted",
+      "model_us": 3.848190008366236,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 128,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "error_percent": -53.95868056459585
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 106.66000097990036,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 37.33659978267831,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -64.99475019720444
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 106.66000097990036,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 42.61275083607545,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -60.04804946129183
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 55.62749132514,
+      "status": "predicted",
+      "model_us": 17.177209196273793,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 32,
+        "gn": 2,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -69.12100692106745
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 55.62749132514,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 128,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 128,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 24.23360300151706,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 32,
+        "gm": 32,
+        "gn": 2,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -56.43592327420839
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 55.62749132514,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 128,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 128,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 24.762231673156663,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 32,
+        "gm": 18,
+        "gn": 3,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -55.485622156817
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 106.66000097990036,
+      "status": "predicted",
+      "model_us": 25.150222385539685,
+      "mapping": {
+        "bm": 192,
+        "bn": 192,
+        "bk": 32,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -76.42019299223601
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 50.026241689920425,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 32,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          8,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 32,
+        "logical_bn": 128,
+        "threads": 128,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 24.51989594794411,
+      "mapping": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 4,
+      "error_percent": -50.98593234341544
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 50.026241689920425,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 32,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          8,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 32,
+        "logical_bn": 128,
+        "threads": 128,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 45.79956382417682,
+      "mapping": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 16,
+        "gm": 9,
+        "gn": 8,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 1
+      },
+      "wave_count": 4,
+      "error_percent": -8.44892145194912
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 460.3486806154251,
+      "status": "predicted",
+      "model_us": 432.5360350332257,
+      "mapping": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "gm": 4,
+        "gn": 16,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 4,
+      "error_percent": -6.041647723420773
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 25.47250036150217,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 128,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 128,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 17.11822598721586,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -32.79722938747125
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 25.47250036150217,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 128,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 128,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 18.17713472884376,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -28.640163035130428
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 25.47250036150217,
+      "status": "predicted",
+      "model_us": 17.76362712049395,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -30.263512146844505
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.341875281184912,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.451781988156927,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 0.823772555624247
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.341875281184912,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.658069465698603,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 9.865136322851287
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 50.026241689920425,
+      "status": "predicted",
+      "model_us": 17.177209196273793,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 32,
+        "gm": 2,
+        "gn": 32,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -65.66360250937109
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 11.650935281068087,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.648705065080005,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 17.1468619112334
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.650935281068087,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.919449694191455,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 28.05366551502919
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.341875281184912,
+      "status": "predicted",
+      "model_us": 13.226736218320223,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -0.862990100252703
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 15.439687762409449,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8",
+        "macro_0": 64,
+        "macro_1": 96,
+        "depth_u": 64,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 96,
+        "logical_bn": 64,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 12.012237209651332,
+      "mapping": {
+        "bm": 96,
+        "bn": 64,
+        "bk": 64,
+        "gm": 6,
+        "gn": 12,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -22.19896286440992
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 15.439687762409449,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8",
+        "macro_0": 64,
+        "macro_1": 96,
+        "depth_u": 64,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 96,
+        "logical_bn": 64,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 12.447149689235495,
+      "mapping": {
+        "bm": 96,
+        "bn": 64,
+        "bk": 64,
+        "gm": 6,
+        "gn": 12,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -19.3821152294271
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.650935281068087,
+      "status": "predicted",
+      "model_us": 13.362120833704836,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 14.687108900324075
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 35.39000079035759,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 21.357942392512378,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -39.649782663097334
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 35.39000079035759,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 26.053267633403333,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -26.382404488383504
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 15.439687762409449,
+      "status": "predicted",
+      "model_us": 13.185873026922174,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -14.597540897002926
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.560624793171883,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.353320449695387,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -1.5287226557649358
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.560624793171883,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.559607927237062,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 7.366792823352752
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 35.39000079035759,
+      "status": "predicted",
+      "model_us": 22.615394331919152,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -36.096654911403746
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 49.56874996423721,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 37.274153844093604,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -24.8031191607896
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 49.56874996423721,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 42.23721654210938,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -14.790636091120668
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.560624793171883,
+      "status": "predicted",
+      "model_us": 13.189813141397144,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -2.7344732077643763
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 27.230000123381615,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 21.358382371394892,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -21.563047100190545
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 27.230000123381615,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 26.053505097178885,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -4.320583991450322
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 49.56874996423721,
+      "status": "predicted",
+      "model_us": 25.114679018059718,
+      "mapping": {
+        "bm": 256,
+        "bn": 128,
+        "bk": 32,
+        "gm": 7,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -49.33364461242331
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 11.447185650467873,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.35332044969539,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 16.65155836054437
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.447185650467873,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.559607927237066,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 27.18941032149662
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.447185650467873,
+      "status": "predicted",
+      "model_us": 13.189813141397144,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 15.223195850397042
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 62.829989939928055,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 37.27895892100863,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -40.6669347605321
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 62.829989939928055,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 42.31958490499533,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -32.64429145149121
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 27.230000123381615,
+      "status": "predicted",
+      "model_us": 22.616467987104134,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -16.942828187194802
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.33968760445714,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.353320449695387,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 0.10219763492580469
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.33968760445714,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.559607927237062,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 9.145044164095072
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.33968760445714,
+      "status": "predicted",
+      "model_us": 13.189813141397144,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -1.1235230352015124
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 50.16749911010265,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 21.359780700987088,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -57.423070553888365
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 50.16749911010265,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 26.056726062733834,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -48.06054412729023
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 62.829989939928055,
+      "status": "predicted",
+      "model_us": 25.115877446496714,
+      "mapping": {
+        "bm": 128,
+        "bn": 256,
+        "bk": 32,
+        "gm": 12,
+        "gn": 5,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -60.02565419712771
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.795933220535517,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.451781988156927,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -2.494584649527831
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.795933220535517,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.662320835788709,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 6.28002181080114
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 50.16749911010265,
+      "status": "predicted",
+      "model_us": 22.6196889526591,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -54.9116672070584
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 13.42499814927578,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.451781988156927,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 0.19950720725121496
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.42499814927578,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.658069465698603,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 9.184890029123327
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.795933220535517,
+      "status": "predicted",
+      "model_us": 13.226736218320223,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -4.125831816640235
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 27.088742703199387,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 21.359780700987095,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -21.14886639436262
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 27.088742703199387,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 26.056726062733834,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -3.809762054197019
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 13.42499814927578,
+      "status": "predicted",
+      "model_us": 13.226736218320223,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -1.476811607353945
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 26.490935124456882,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8",
+        "macro_0": 64,
+        "macro_1": 96,
+        "depth_u": 64,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 96,
+        "logical_bn": 64,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 12.050382183958277,
+      "mapping": {
+        "bm": 96,
+        "bn": 64,
+        "bk": 64,
+        "gm": 6,
+        "gn": 12,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -54.51129932807408
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 26.490935124456882,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8",
+        "macro_0": 64,
+        "macro_1": 96,
+        "depth_u": 64,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 8,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 96,
+        "logical_bn": 64,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 12.487489665992223,
+      "mapping": {
+        "bm": 96,
+        "bn": 64,
+        "bk": 64,
+        "gm": 6,
+        "gn": 12,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -52.861272705833784
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 27.088742703199387,
+      "status": "predicted",
+      "model_us": 22.619688952659093,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -16.49782642002231
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 11.207187548279762,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 13.057935834310772,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 16.513940523062722
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.207187548279762,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 64,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 64,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 14.264223311852447,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 27.277456992695036
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 11.207187548279762,
+      "status": "predicted",
+      "model_us": 12.869813141397143,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 64,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": 14.83535084921983
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 64.05999884009361,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 32,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 32,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 29.465636449058284,
+      "mapping": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "gm": 2,
+        "gn": 36,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -54.00306434189872
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 64.05999884009361,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1",
+        "macro_0": 128,
+        "macro_1": 32,
+        "depth_u": 32,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 2,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 32,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 40.07056751225454,
+      "mapping": {
+        "bm": 32,
+        "bn": 128,
+        "bk": 32,
+        "gm": 2,
+        "gn": 36,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -37.44837927287733
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 26.490935124456882,
+      "status": "predicted",
+      "model_us": 13.293369136839845,
+      "mapping": {
+        "bm": 192,
+        "bn": 32,
+        "bk": 64,
+        "gm": 3,
+        "gn": 24,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -49.81917748699184
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 64.76624310016632,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8",
+        "macro_0": 256,
+        "macro_1": 384,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          32,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 384,
+        "logical_bn": 256,
+        "threads": 512,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 50.18289050352346,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -22.516903711843383
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 64.76624310016632,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8",
+        "macro_0": 256,
+        "macro_1": 384,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          32,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 384,
+        "logical_bn": 256,
+        "threads": 512,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 50.42232070751854,
+      "mapping": {
+        "bm": 384,
+        "bn": 256,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -22.14722007337021
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 43.41124929487705,
+      "status": "predicted",
+      "model_us": 22.767381260351407,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -47.554190146197485
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 43.41124929487705,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 21.605934547140937,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -50.22964116886024
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 43.41124929487705,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+        "macro_0": 128,
+        "macro_1": 192,
+        "depth_u": 16,
+        "global_split_u": 1,
+        "workgroup": [
+          16,
+          16,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 2,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 192,
+        "logical_bn": 128,
+        "threads": 256,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 26.305563420085093,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -39.403809272106336
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 64.05999884009361,
+      "status": "predicted",
+      "model_us": 24.275561451780106,
+      "mapping": {
+        "bm": 48,
+        "bn": 128,
+        "bk": 64,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -62.104961143729184
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "mode": "observed_macro_zero",
+      "service_ns": 0.0,
+      "measured_us": 93.4162400662899,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1",
+        "macro_0": 32,
+        "macro_1": 32,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 32,
+        "logical_bn": 32,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 54.40661067529928,
+      "mapping": {
+        "bm": 32,
+        "bn": 32,
+        "bk": 128,
+        "gm": 64,
+        "gn": 1,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 2048,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -41.75893759298026
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "mode": "observed_macro_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 93.4162400662899,
+      "kernel_plan": {
+        "name": "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1",
+        "macro_0": 32,
+        "macro_1": 32,
+        "depth_u": 128,
+        "global_split_u": 1,
+        "workgroup": [
+          8,
+          8,
+          1
+        ],
+        "global_read_vector_width": 4,
+        "prefetch_global": 1,
+        "prefetch_local": 1,
+        "direct_to_lds": false,
+        "orientation": "row-major-transposed-blas",
+        "provenance": "supplied kernel name; not a shape-only dispatch prediction",
+        "logical_bm": 32,
+        "logical_bn": 32,
+        "threads": 64,
+        "timing_claim": "none; structural execution plan only"
+      },
+      "status": "predicted",
+      "model_us": 55.78175226920837,
+      "mapping": {
+        "bm": 32,
+        "bn": 32,
+        "bk": 128,
+        "gm": 36,
+        "gn": 2,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 2048,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 2,
+      "error_percent": -40.28687920898486
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 64.76624310016632,
+      "status": "predicted",
+      "model_us": 50.42232070751854,
+      "mapping": {
+        "bm": 256,
+        "bn": 384,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -22.14722007337021
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "mode": "free_mapper_readiness",
+      "service_ns": 239.43020399505616,
+      "measured_us": 93.4162400662899,
+      "status": "predicted",
+      "model_us": 32.908710373155785,
+      "mapping": {
+        "bm": 32,
+        "bn": 48,
+        "bk": 128,
+        "gm": 64,
+        "gn": 1,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 3072,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "error_percent": -64.77196004698631
+    }
+  ],
+  "service_ns": 239.43020399505616,
+  "identity": {
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\api.py": "53baa403d9ea906a572b1a59460fe65de3990ad221a5797816c5eb155f87eb05",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\backends.py": "5a0b8bebe30589d69d71c8528a9882689892468c2b3676e51626422fb0d18def",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\cache.py": "b8bace331feaf84926beff2b1a6e246e06409c04cb4424dcc8c80423b21e6043",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\cli.py": "ab871bb8052cf05726b33cba3214d2a165a6a66b0be08cea188e8431238c4764",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\contracts.py": "097531710284eaee81156fc99283ef786fa6120224aba5b702802ef4e75b7eae",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\kernel_plan.py": "99c69437f7442ff310672cca09b0b00b015b0394f8cf2a28a09d76f3041308f4",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\operators.py": "e4c6ffb8f153e59cd44bade0a6064af8f2b8bf265b9ef9846efc765161d3e324",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\scheduler.py": "1bffebaf45b9d905ebc04465bef0777d57474a3c4c06f4faf67ac7efdf7ad33d",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\__init__.py": "3b69372f0952c6026a73962a21ea572b673a11ae1a696d60e7be1899e389a4cf",
+    "D:\\01codex_work\\03_super node\\compute_model\\superpod_compute\\__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "D:\\01codex_work\\03_super node\\compute_model\\results\\boundary_20261102\\server_evidence\\measurements.json": "8dc3222fa68e3e823d9cd3f26caeecfc19a7ffec1e84feb444ef2878de41dd4a",
+    "D:\\01codex_work\\03_super node\\compute_model\\results\\boundary_20261102\\server_evidence\\dependent_memory_results.json": "e19320874edca8bdff4b006ac5a7694a7cc6bdf53d0a7024b5df83c24ac86a9f",
+    "D:\\01codex_work\\03_super node\\compute_model\\results\\boundary_20261102\\server_evidence\\kernels.json": "5160f19aa047d8165a0cf3ad6813981d296c07e65b7eb6e42bee0dcd299e2a2c"
+  },
+  "scope": "Independent scalar dependent-load service as fixed sensitivity proxy. Payload bandwidth separated from response readiness. Not an asserted pure L2/bulk-copy latency; no fitting to GEMM timings. Observed-macro modes require measured kernel selection and remain diagnostic.",
+  "wall_seconds": 247.375,
+  "summaries": {
+    "free_mapper_readiness": {
+      "total": 41,
+      "supported": 41,
+      "passes": 15,
+      "mean_absolute_error_percent": 27.53400665605589
+    },
+    "observed_macro_zero": {
+      "total": 41,
+      "supported": 40,
+      "passes": 12,
+      "mean_absolute_error_percent": 25.78507610646277
+    },
+    "observed_macro_readiness": {
+      "total": 41,
+      "supported": 40,
+      "passes": 18,
+      "mean_absolute_error_percent": 24.1940778855411
+    }
+  }
+}

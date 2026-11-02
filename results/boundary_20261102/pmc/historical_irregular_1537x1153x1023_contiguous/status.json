@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "case": "historical_irregular_1537x1153x1023_contiguous",
+  "scope": "Hardware counters only. Profiling duration not used as benchmark latency."
+}

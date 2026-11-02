@@ -1,0 +1,5015 @@
+{
+  "plan": [
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis"
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis"
+    }
+  ],
+  "script_sha256": "7166028cfb436e6741c0a3c6ecaa350b8439719677cd2dacc4b0432abef2c988",
+  "seed": 20261102,
+  "completed": true,
+  "cases": [
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1168,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 107.10498690605164,
+        "p10_us": 106.97750002145767,
+        "p90_us": 107.14247077703476,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 107.1074828505516,
+        "p10_us": 107.06000030040741,
+        "p90_us": 107.1774810552597,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          658,
+          877,
+          1097,
+          1316,
+          1536
+        ],
+        "sample_columns": [
+          0,
+          164,
+          329,
+          493,
+          658,
+          822,
+          987,
+          1152
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00021244765139272204,
+        "relative_l2_error": 0.00020897470785732634
+      }
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 16.506245359778404,
+        "p10_us": 16.48000068962574,
+        "p90_us": 16.519999131560326,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 16.518745571374893,
+        "p10_us": 16.51437021791935,
+        "p90_us": 16.523124650120735,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023691594469710253,
+        "relative_l2_error": 0.00021081396993084863
+      }
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8192,
+          1
+        ],
+        [
+          8192,
+          1
+        ],
+        [
+          8192,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 72.43935763835907,
+        "p10_us": 72.39874452352524,
+        "p90_us": 72.48811423778534,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 72.44561612606049,
+        "p10_us": 72.39248603582382,
+        "p90_us": 72.47249037027359,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0
+        ],
+        "sample_columns": [
+          0,
+          1170,
+          2340,
+          3510,
+          4680,
+          5850,
+          7020,
+          8191
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0007373929043978933,
+        "relative_l2_error": 0.00025334164669044867
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8191,
+          1
+        ],
+        [
+          48,
+          1
+        ],
+        [
+          33,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 103.18248718976974,
+        "p10_us": 103.12498360872269,
+        "p90_us": 103.24748605489731,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 103.15748304128647,
+        "p10_us": 103.09000313282013,
+        "p90_us": 103.24748605489731,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          292,
+          584,
+          876,
+          1169,
+          1461,
+          1753,
+          2046
+        ],
+        "sample_columns": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0007888768211614661,
+        "relative_l2_error": 0.00023841708548898153
+      }
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1008,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.521245680749416,
+        "p10_us": 13.48062139004469,
+        "p90_us": 13.526249676942825,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.519995845854282,
+        "p10_us": 13.51312454789877,
+        "p90_us": 13.524374924600124,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023812159997760318,
+        "relative_l2_error": 0.00025067069712227227
+      }
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1022,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.43437097966671,
+        "p10_us": 13.39124608784914,
+        "p90_us": 13.443125411868095,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.436875306069851,
+        "p10_us": 13.43437097966671,
+        "p90_us": 13.443125411868095,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00018185410226578824,
+        "relative_l2_error": 0.0001964985125052765
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8192,
+          1
+        ],
+        [
+          48,
+          1
+        ],
+        [
+          48,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 87.73248642683029,
+        "p10_us": 87.69248425960541,
+        "p90_us": 87.77499943971634,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 87.75000274181366,
+        "p10_us": 87.68250048160553,
+        "p90_us": 87.81748265028,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          292,
+          584,
+          876,
+          1169,
+          1461,
+          1753,
+          2046
+        ],
+        "sample_columns": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0009441569495720614,
+        "relative_l2_error": 0.00021550512682113536
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          784,
+          1
+        ],
+        [
+          4096,
+          1
+        ],
+        [
+          4096,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 30.289985239505768,
+        "p10_us": 30.220000073313713,
+        "p90_us": 30.30500002205372,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 30.27999959886074,
+        "p10_us": 30.257483944296837,
+        "p90_us": 30.294999480247498,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          36,
+          73,
+          109,
+          146,
+          182,
+          219,
+          256
+        ],
+        "sample_columns": [
+          0,
+          584,
+          1169,
+          1753,
+          2338,
+          2922,
+          3507,
+          4092
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0001901032155728899,
+        "relative_l2_error": 0.0001866283489943893
+      }
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1168,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 104.94749993085861,
+        "p10_us": 104.86998409032822,
+        "p90_us": 105.01998662948608,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 104.95500266551971,
+        "p10_us": 104.9174815416336,
+        "p90_us": 104.99498248100281,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          658,
+          877,
+          1097,
+          1316,
+          1536
+        ],
+        "sample_columns": [
+          0,
+          164,
+          329,
+          493,
+          658,
+          822,
+          987,
+          1152
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0002213527859566966,
+        "relative_l2_error": 0.0002232815366404267
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          270,
+          1
+        ],
+        [
+          97,
+          1
+        ],
+        [
+          112,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 8.339375257492065,
+        "p10_us": 8.313124999403954,
+        "p90_us": 8.35500005632639,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 8.350624702870846,
+        "p10_us": 8.34562536329031,
+        "p90_us": 8.355624973773956,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          18,
+          36,
+          55,
+          73,
+          92,
+          110,
+          129
+        ],
+        "sample_columns": [
+          0,
+          13,
+          27,
+          41,
+          54,
+          68,
+          82,
+          96
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 9.968052984277165e-05,
+        "relative_l2_error": 0.00021885731508018705
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          4096,
+          1
+        ],
+        [
+          4093,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 31.38750046491623,
+        "p10_us": 31.26249834895134,
+        "p90_us": 31.43249824643135,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 31.412500888109207,
+        "p10_us": 31.37499839067459,
+        "p90_us": 31.462501734495163,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          36,
+          73,
+          109,
+          146,
+          182,
+          219,
+          256
+        ],
+        "sample_columns": [
+          0,
+          584,
+          1169,
+          1753,
+          2338,
+          2922,
+          3507,
+          4092
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0001683742948443978,
+        "relative_l2_error": 0.00017440559056231428
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2048,
+          1
+        ],
+        [
+          8192,
+          1
+        ],
+        [
+          8192,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 51.28749832510948,
+        "p10_us": 51.21000111103058,
+        "p90_us": 51.32998526096344,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 51.282498985528946,
+        "p10_us": 51.2399859726429,
+        "p90_us": 51.350001245737076,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "sample_columns": [
+          0,
+          1170,
+          2340,
+          3510,
+          4680,
+          5850,
+          7020,
+          8190
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0003149225885863416,
+        "relative_l2_error": 0.00018405154954577387
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          270,
+          1
+        ],
+        [
+          112,
+          1
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 8.108749985694885,
+        "p10_us": 8.073749952018261,
+        "p90_us": 8.121875114738941,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 8.12437478452921,
+        "p10_us": 8.118749596178532,
+        "p90_us": 8.128750137984753,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          18,
+          36,
+          55,
+          73,
+          92,
+          110,
+          129
+        ],
+        "sample_columns": [
+          0,
+          13,
+          27,
+          41,
+          54,
+          68,
+          82,
+          96
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00010467132506164489,
+        "relative_l2_error": 0.00021564994484170213
+      }
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          255,
+          1
+        ],
+        [
+          129,
+          1
+        ],
+        [
+          129,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 10.351871140301228,
+        "p10_us": 10.318120941519737,
+        "p90_us": 10.361875407397747,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 10.359999723732471,
+        "p10_us": 10.354374535381794,
+        "p90_us": 10.368120856583118,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          18,
+          36,
+          54,
+          72,
+          90,
+          108,
+          126
+        ],
+        "sample_columns": [
+          0,
+          18,
+          36,
+          54,
+          73,
+          91,
+          109,
+          128
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 9.796355880098417e-05,
+        "relative_l2_error": 0.00020848530755883252
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 25.026874616742134,
+        "p10_us": 25.013750419020653,
+        "p90_us": 25.033745914697647,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 25.02874657511711,
+        "p10_us": 25.0218715518713,
+        "p90_us": 25.03437176346779,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          512
+        ],
+        "sample_columns": [
+          0,
+          109,
+          218,
+          328,
+          437,
+          547,
+          656,
+          766
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023877730382082518,
+        "relative_l2_error": 0.00019902970484891346
+      }
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 16.47999696433544,
+        "p10_us": 16.459371894598007,
+        "p90_us": 16.48624613881111,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 16.485000029206276,
+        "p10_us": 16.47999696433544,
+        "p90_us": 16.489999368786812,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00020896683054161258,
+        "relative_l2_error": 0.00018430404749766527
+      }
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          776,
+          1
+        ],
+        [
+          776,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 14.035625383257866,
+        "p10_us": 14.009996317327023,
+        "p90_us": 14.043125323951244,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 14.036250300705433,
+        "p10_us": 14.028125442564487,
+        "p90_us": 14.044996351003647,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          110,
+          221,
+          332,
+          442,
+          553,
+          664,
+          775
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022363818061421625,
+        "relative_l2_error": 0.00019199272954580283
+      }
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          257,
+          1
+        ],
+        [
+          129,
+          1
+        ],
+        [
+          129,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 8.176875300705433,
+        "p10_us": 8.144996128976345,
+        "p90_us": 8.194999769330025,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 8.19187518209219,
+        "p10_us": 8.187499828636646,
+        "p90_us": 8.198750205338001,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          9,
+          18,
+          27,
+          36,
+          45,
+          54,
+          64
+        ],
+        "sample_columns": [
+          0,
+          18,
+          36,
+          54,
+          73,
+          91,
+          109,
+          128
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00010102316809934564,
+        "relative_l2_error": 0.00018190691325881643
+      }
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          769,
+          1
+        ],
+        [
+          769,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 16.68749563395977,
+        "p10_us": 16.6424959897995,
+        "p90_us": 16.695624217391014,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 16.69124700129032,
+        "p10_us": 16.685621812939644,
+        "p90_us": 16.69749990105629,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          329,
+          438,
+          548,
+          658,
+          768
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00021999374075676315,
+        "relative_l2_error": 0.0002186959197294718
+      }
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          16384,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 112.88998275995255,
+        "p10_us": 112.83998191356659,
+        "p90_us": 112.97748237848282,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 112.90498077869415,
+        "p10_us": 112.84748464822769,
+        "p90_us": 112.99248784780502,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0008382135411011404,
+        "relative_l2_error": 0.0001875645379520999
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2047,
+          1
+        ],
+        [
+          8191,
+          1
+        ],
+        [
+          8192,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 63.72000277042389,
+        "p10_us": 63.64999711513519,
+        "p90_us": 63.78748267889023,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 63.725002110004425,
+        "p10_us": 63.6574849486351,
+        "p90_us": 63.77248466014862,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "sample_columns": [
+          0,
+          1170,
+          2340,
+          3510,
+          4680,
+          5850,
+          7020,
+          8190
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023845806572353467,
+        "relative_l2_error": 0.0002046622675071825
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          272,
+          1
+        ],
+        [
+          112,
+          1
+        ],
+        [
+          112,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 8.09749960899353,
+        "p10_us": 8.085000328719616,
+        "p90_us": 8.10999982059002,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 8.11187457293272,
+        "p10_us": 8.106871508061886,
+        "p90_us": 8.124999701976776,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          18,
+          36,
+          55,
+          73,
+          92,
+          110,
+          129
+        ],
+        "sample_columns": [
+          0,
+          13,
+          27,
+          41,
+          54,
+          68,
+          82,
+          96
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 9.850412607192993e-05,
+        "relative_l2_error": 0.00019348806992386663
+      }
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 11.43812108784914,
+        "p10_us": 11.394371278584003,
+        "p90_us": 11.444996111094952,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 11.440625414252281,
+        "p10_us": 11.423121206462383,
+        "p90_us": 11.446874588727951,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          74,
+          148,
+          222,
+          296,
+          370,
+          444,
+          519
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00024133658644132083,
+        "relative_l2_error": 0.0002070888308238265
+      }
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1168,
+          1
+        ],
+        [
+          1168,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 66.97499752044678,
+        "p10_us": 66.87498092651367,
+        "p90_us": 67.03998148441315,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 66.98500365018845,
+        "p10_us": 66.9499859213829,
+        "p90_us": 67.04249978065491,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          658,
+          877,
+          1097,
+          1316,
+          1536
+        ],
+        "sample_columns": [
+          0,
+          164,
+          329,
+          493,
+          658,
+          822,
+          987,
+          1152
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0004702192936179017,
+        "relative_l2_error": 0.00028632172342742313
+      }
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1024,
+          1
+        ],
+        [
+          1024,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 17.17500016093254,
+        "p10_us": 17.122499644756317,
+        "p90_us": 17.192499712109566,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 17.172500491142273,
+        "p10_us": 17.157500609755516,
+        "p90_us": 17.192499712109566,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          146,
+          292,
+          438,
+          584,
+          730,
+          876,
+          1023
+        ],
+        "sample_columns": [
+          0,
+          146,
+          292,
+          438,
+          584,
+          730,
+          876,
+          1023
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023619062244506495,
+        "relative_l2_error": 0.00022481110694377624
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2048,
+          1
+        ],
+        [
+          8191,
+          1
+        ],
+        [
+          8191,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 62.852486968040466,
+        "p10_us": 62.75250017642975,
+        "p90_us": 62.902502715587616,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 62.83498555421829,
+        "p10_us": 62.774986028671265,
+        "p90_us": 62.90750205516815,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "sample_columns": [
+          0,
+          1170,
+          2340,
+          3510,
+          4680,
+          5850,
+          7020,
+          8190
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022327554779622005,
+        "relative_l2_error": 0.00020784674728477578
+      }
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 11.43999956548214,
+        "p10_us": 11.424999684095383,
+        "p90_us": 11.44499983638525,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 11.440620757639408,
+        "p10_us": 11.436874978244305,
+        "p90_us": 11.44499983638525,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          72,
+          145,
+          218,
+          291,
+          364,
+          437,
+          510
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023593941477884073,
+        "relative_l2_error": 0.0001982089741274355
+      }
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 11.405625380575657,
+        "p10_us": 11.391875334084034,
+        "p90_us": 11.409996077418327,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 11.40687521547079,
+        "p10_us": 11.403124779462814,
+        "p90_us": 11.418749578297138,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          512
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.000209593201361713,
+        "relative_l2_error": 0.00021814270650082762
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1040,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 20.42999677360058,
+        "p10_us": 20.413124933838844,
+        "p90_us": 20.442496985197067,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 20.431870594620705,
+        "p10_us": 20.42124979197979,
+        "p90_us": 20.447496324777603,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          512
+        ],
+        "sample_columns": [
+          0,
+          109,
+          218,
+          328,
+          437,
+          547,
+          656,
+          766
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0002210224738519173,
+        "relative_l2_error": 0.00022968628646440523
+      }
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          4096,
+          1
+        ],
+        [
+          4096,
+          1
+        ],
+        [
+          4096,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 460.33743023872375,
+        "p10_us": 460.27493476867676,
+        "p90_us": 460.4499340057373,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 460.35993099212646,
+        "p10_us": 460.27493476867676,
+        "p90_us": 460.43744683265686,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          585,
+          1170,
+          1755,
+          2340,
+          2925,
+          3510,
+          4095
+        ],
+        "sample_columns": [
+          0,
+          585,
+          1170,
+          1755,
+          2340,
+          2925,
+          3510,
+          4095
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00040486534362571547,
+        "relative_l2_error": 0.00016893970615758047
+      }
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1026,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.31000030040741,
+        "p10_us": 13.285624794661999,
+        "p90_us": 13.313749805092812,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.311246410012245,
+        "p10_us": 13.304996304214,
+        "p90_us": 13.314374722540379,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00021281814770190977,
+        "relative_l2_error": 0.000198571864316717
+      }
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          270,
+          1
+        ],
+        [
+          97,
+          1
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 8.357499726116657,
+        "p10_us": 8.340000174939632,
+        "p90_us": 8.368125185370445,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 8.358745835721493,
+        "p10_us": 8.35499633103609,
+        "p90_us": 8.366250433027744,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          18,
+          36,
+          55,
+          73,
+          92,
+          110,
+          129
+        ],
+        "sample_columns": [
+          0,
+          13,
+          27,
+          41,
+          54,
+          68,
+          82,
+          96
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00017796108659240417,
+        "relative_l2_error": 0.00021725554401000468
+      }
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 106.65249824523926,
+        "p10_us": 106.5874993801117,
+        "p90_us": 106.73248767852783,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 106.66750371456146,
+        "p10_us": 106.61998391151428,
+        "p90_us": 106.71749711036682,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          658,
+          877,
+          1097,
+          1316,
+          1536
+        ],
+        "sample_columns": [
+          0,
+          164,
+          329,
+          493,
+          658,
+          822,
+          987,
+          1152
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023223697098728735,
+        "relative_l2_error": 0.0002192482283823045
+      }
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          257,
+          1
+        ],
+        [
+          257,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 55.624984204769135,
+        "p10_us": 55.58750033378601,
+        "p90_us": 55.640000849962234,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 55.629998445510864,
+        "p10_us": 55.60498312115669,
+        "p90_us": 55.647484958171844,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          584,
+          1169,
+          1753,
+          2338,
+          2922,
+          3507,
+          4092
+        ],
+        "sample_columns": [
+          0,
+          36,
+          73,
+          109,
+          146,
+          182,
+          219,
+          256
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00012081257909812848,
+        "relative_l2_error": 0.00017623551567463343
+      }
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          4093,
+          1
+        ],
+        [
+          4093,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 50.017498433589935,
+        "p10_us": 49.97500032186508,
+        "p90_us": 50.085000693798065,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 50.034984946250916,
+        "p10_us": 50.005000084638596,
+        "p90_us": 50.0749833881855,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          36,
+          73,
+          109,
+          146,
+          182,
+          219,
+          256
+        ],
+        "sample_columns": [
+          0,
+          584,
+          1169,
+          1753,
+          2338,
+          2922,
+          3507,
+          4092
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0001917511731335253,
+        "relative_l2_error": 0.00020885880713102418
+      }
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1000,
+          1
+        ],
+        [
+          1000,
+          1
+        ],
+        [
+          1000,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 25.46750009059906,
+        "p10_us": 25.442499667406082,
+        "p90_us": 25.507500395178795,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 25.47750063240528,
+        "p10_us": 25.405000895261765,
+        "p90_us": 25.51249973475933,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          142,
+          285,
+          428,
+          570,
+          713,
+          856,
+          999
+        ],
+        "sample_columns": [
+          0,
+          142,
+          285,
+          428,
+          570,
+          713,
+          856,
+          999
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022529277339344844,
+        "relative_l2_error": 0.00022830705967078025
+      }
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1028,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.339375145733356,
+        "p10_us": 13.304371386766434,
+        "p90_us": 13.34624644368887,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.344375416636467,
+        "p10_us": 13.339375145733356,
+        "p90_us": 13.348749838769436,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00021844927505298983,
+        "relative_l2_error": 0.0002181954472964513
+      }
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1056,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 11.649999767541885,
+        "p10_us": 11.626250110566616,
+        "p90_us": 11.654375120997429,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 11.651870794594288,
+        "p10_us": 11.648121289908886,
+        "p90_us": 11.65624987334013,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022712568534188904,
+        "relative_l2_error": 0.0002151581581728287
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 26.49749629199505,
+        "p10_us": 26.481250301003456,
+        "p90_us": 26.508120819926262,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 26.502495631575584,
+        "p10_us": 26.493750512599945,
+        "p90_us": 26.569370180368423,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          512
+        ],
+        "sample_columns": [
+          0,
+          109,
+          218,
+          328,
+          437,
+          547,
+          656,
+          766
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0002185454450227553,
+        "relative_l2_error": 0.0002265910644025318
+      }
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 15.440625138580799,
+        "p10_us": 15.4231246560812,
+        "p90_us": 15.449374914169312,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 15.438750386238098,
+        "p10_us": 15.428749844431877,
+        "p90_us": 15.446875244379044,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          218,
+          328,
+          437,
+          547,
+          656,
+          766
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00024173226483981125,
+        "relative_l2_error": 0.0002480244973829107
+      }
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1151,
+          1
+        ],
+        [
+          1151,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 35.397499799728394,
+        "p10_us": 35.292498767375946,
+        "p90_us": 35.43749824166298,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 35.382501780986786,
+        "p10_us": 35.31999886035919,
+        "p90_us": 35.44250130653381,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          657,
+          877,
+          1096,
+          1315,
+          1535
+        ],
+        "sample_columns": [
+          0,
+          164,
+          328,
+          492,
+          657,
+          821,
+          985,
+          1150
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023697074175288435,
+        "relative_l2_error": 0.00021071373636069715
+      }
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1016,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.559374958276749,
+        "p10_us": 13.53062130510807,
+        "p90_us": 13.566246256232262,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.561874628067017,
+        "p10_us": 13.553124852478504,
+        "p90_us": 13.56624998152256,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 9.389397746417671e-05,
+        "relative_l2_error": 0.00015424943723765843
+      }
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 49.56749826669693,
+        "p10_us": 49.54998567700386,
+        "p90_us": 49.602486193180084,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 49.570001661777496,
+        "p10_us": 49.559999257326126,
+        "p90_us": 49.58999902009964,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          658,
+          877,
+          1097,
+          1316,
+          1536
+        ],
+        "sample_columns": [
+          0,
+          164,
+          328,
+          493,
+          657,
+          822,
+          986,
+          1151
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0002096431708196178,
+        "relative_l2_error": 0.00022097513050233742
+      }
+    },
+    {
+      "id": "stride_intervention_33x8191x2047_pad_b16",
+      "group": "stride_intervention",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "pad_b16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2047,
+          1
+        ],
+        [
+          8192,
+          1
+        ],
+        [
+          8191,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 51.567498594522476,
+        "p10_us": 51.44749954342842,
+        "p90_us": 51.597483456134796,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 51.557499915361404,
+        "p10_us": 51.49750038981438,
+        "p90_us": 51.597483456134796,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "sample_columns": [
+          0,
+          1170,
+          2340,
+          3510,
+          4680,
+          5850,
+          7020,
+          8190
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00035693511745193973,
+        "relative_l2_error": 0.00018736174470035673
+      }
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 27.227500453591347,
+        "p10_us": 27.137499302625656,
+        "p90_us": 27.252500876784325,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 27.232499793171883,
+        "p10_us": 27.18999981880188,
+        "p90_us": 27.26498432457447,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          657,
+          876,
+          1095,
+          1314,
+          1534
+        ],
+        "sample_columns": [
+          0,
+          164,
+          328,
+          493,
+          657,
+          822,
+          986,
+          1151
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00024012048379518092,
+        "relative_l2_error": 0.00022705791446972249
+      }
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 11.44499983638525,
+        "p10_us": 11.435621418058872,
+        "p90_us": 11.45937480032444,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 11.449371464550495,
+        "p10_us": 11.446245945990086,
+        "p90_us": 11.453124694526196,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022894099129189271,
+        "relative_l2_error": 0.0002157195577353821
+      }
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 62.837496399879456,
+        "p10_us": 62.78248131275177,
+        "p90_us": 62.89999932050705,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 62.822483479976654,
+        "p10_us": 62.73998320102692,
+        "p90_us": 62.89999932050705,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          657,
+          877,
+          1096,
+          1315,
+          1535
+        ],
+        "sample_columns": [
+          0,
+          164,
+          329,
+          493,
+          658,
+          822,
+          987,
+          1152
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00020961765585525427,
+        "relative_l2_error": 0.0001533279822653901
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          769,
+          1
+        ],
+        [
+          4093,
+          1
+        ],
+        [
+          4096,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 49.619998782873154,
+        "p10_us": 49.54250156879425,
+        "p90_us": 49.72749948501587,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 49.672484397888184,
+        "p10_us": 49.559999257326126,
+        "p90_us": 49.720000475645065,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          36,
+          73,
+          109,
+          146,
+          182,
+          219,
+          256
+        ],
+        "sample_columns": [
+          0,
+          584,
+          1169,
+          1753,
+          2338,
+          2922,
+          3507,
+          4092
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023800488997949287,
+        "relative_l2_error": 0.00022425170553897028
+      }
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1020,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.34062498062849,
+        "p10_us": 13.310621492564678,
+        "p90_us": 13.357499614357948,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.33875022828579,
+        "p10_us": 13.304996304214,
+        "p90_us": 13.344375416636467,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022429107593779918,
+        "relative_l2_error": 0.00023126279796731913
+      }
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1023,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 50.1599982380867,
+        "p10_us": 50.005000084638596,
+        "p90_us": 50.21750181913376,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 50.17499998211861,
+        "p10_us": 50.1449853181839,
+        "p90_us": 50.23498460650444,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          657,
+          877,
+          1096,
+          1315,
+          1535
+        ],
+        "sample_columns": [
+          0,
+          164,
+          328,
+          493,
+          657,
+          822,
+          986,
+          1151
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00012411741045070812,
+        "relative_l2_error": 0.00017515506322568917
+      }
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1040,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.7962456792593,
+        "p10_us": 13.770624995231628,
+        "p90_us": 13.802495785057545,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.795620761811733,
+        "p10_us": 13.771249912679195,
+        "p90_us": 13.803125359117985,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0002188625444432546,
+        "relative_l2_error": 0.0001838242021618146
+      }
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1032,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 13.42499628663063,
+        "p10_us": 13.392499648034573,
+        "p90_us": 13.438125140964985,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 13.425000011920929,
+        "p10_us": 13.397496193647385,
+        "p90_us": 13.436875306069851,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00024376924284297274,
+        "relative_l2_error": 0.00020748635272944935
+      }
+    },
+    {
+      "id": "stride_intervention_1537x1153x1023_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1153,
+          1
+        ],
+        [
+          1153,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 65.420001745224,
+        "p10_us": 65.32248109579086,
+        "p90_us": 65.51248580217361,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 65.44750183820724,
+        "p10_us": 65.3574988245964,
+        "p90_us": 65.52000343799591,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          658,
+          877,
+          1097,
+          1316,
+          1536
+        ],
+        "sample_columns": [
+          0,
+          164,
+          329,
+          493,
+          658,
+          822,
+          987,
+          1152
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00023324187759499182,
+        "relative_l2_error": 0.00022853950966419853
+      }
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 27.09248475730419,
+        "p10_us": 26.982499286532402,
+        "p90_us": 27.1224994212389,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 27.08500064909458,
+        "p10_us": 27.0175002515316,
+        "p90_us": 27.107499539852142,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          657,
+          877,
+          1096,
+          1315,
+          1535
+        ],
+        "sample_columns": [
+          0,
+          164,
+          328,
+          493,
+          657,
+          822,
+          986,
+          1151
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00021910801115154754,
+        "relative_l2_error": 0.00020440406587124166
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8192,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          33,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 77.44748145341873,
+        "p10_us": 77.34499871730804,
+        "p90_us": 77.65500247478485,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 77.46250182390213,
+        "p10_us": 77.40999758243561,
+        "p90_us": 77.73498445749283,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          292,
+          584,
+          876,
+          1169,
+          1461,
+          1753,
+          2046
+        ],
+        "sample_columns": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0004215262090383476,
+        "relative_l2_error": 0.00016988163214703958
+      }
+    },
+    {
+      "id": "stride_intervention_257x4093x769_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          784,
+          1
+        ],
+        [
+          4093,
+          1
+        ],
+        [
+          4093,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 42.364999651908875,
+        "p10_us": 42.28249937295914,
+        "p90_us": 42.44749993085861,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 42.37750172615051,
+        "p10_us": 42.319998145103455,
+        "p90_us": 42.42999851703644,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          36,
+          73,
+          109,
+          146,
+          182,
+          219,
+          256
+        ],
+        "sample_columns": [
+          0,
+          584,
+          1169,
+          1753,
+          2338,
+          2922,
+          3507,
+          4092
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00021929218564764597,
+        "relative_l2_error": 0.00020855052906220794
+      }
+    },
+    {
+      "id": "stride_intervention_2047x33x8191_pad_c16",
+      "group": "stride_intervention",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "pad_c16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8191,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          48,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 93.49250048398972,
+        "p10_us": 93.4000015258789,
+        "p90_us": 93.55250000953674,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 93.47499907016754,
+        "p10_us": 93.40749680995941,
+        "p90_us": 93.54248642921448,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          292,
+          584,
+          876,
+          1169,
+          1461,
+          1753,
+          2046
+        ],
+        "sample_columns": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0009648183313402114,
+        "relative_l2_error": 0.0002712815558041484
+      }
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          767,
+          1
+        ],
+        [
+          767,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 26.49187110364437,
+        "p10_us": 26.47562138736248,
+        "p90_us": 26.50437131524086,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 26.489999145269394,
+        "p10_us": 26.464996859431267,
+        "p90_us": 26.506874710321426,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          512
+        ],
+        "sample_columns": [
+          0,
+          109,
+          218,
+          328,
+          437,
+          547,
+          656,
+          766
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00024057273458311101,
+        "relative_l2_error": 0.00022287037402224285
+      }
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          992,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 11.208750307559967,
+        "p10_us": 11.180625297129154,
+        "p90_us": 11.216875165700912,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 11.205624788999557,
+        "p10_us": 11.17937546223402,
+        "p90_us": 11.225624941289425,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          511
+        ],
+        "sample_columns": [
+          0,
+          109,
+          219,
+          328,
+          438,
+          547,
+          657,
+          767
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00020898570255667437,
+        "relative_l2_error": 0.0002378844921872907
+      }
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          2047,
+          1
+        ],
+        [
+          8191,
+          1
+        ],
+        [
+          8191,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 64.0449970960617,
+        "p10_us": 63.98998200893402,
+        "p90_us": 64.19000029563904,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 64.07500058412552,
+        "p10_us": 63.989996910095215,
+        "p90_us": 64.16498124599457,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "sample_columns": [
+          0,
+          1170,
+          2340,
+          3510,
+          4680,
+          5850,
+          7020,
+          8190
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00048033715211204253,
+        "relative_l2_error": 0.0002387039801376199
+      }
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 64.77750092744827,
+        "p10_us": 64.68500196933746,
+        "p90_us": 64.83248621225357,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 64.75498527288437,
+        "p10_us": 64.66999650001526,
+        "p90_us": 64.82750177383423,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          438,
+          877,
+          1316,
+          1754,
+          2193,
+          2632,
+          3071
+        ],
+        "sample_columns": [
+          0,
+          329,
+          658,
+          987,
+          1316,
+          1645,
+          1974,
+          2303
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0001812933351175161,
+        "relative_l2_error": 0.00021395765477221727
+      }
+    },
+    {
+      "id": "stride_intervention_130x97x270_pad_a16",
+      "group": "stride_intervention",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "layout": "pad_a16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          272,
+          1
+        ],
+        [
+          97,
+          1
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 8.436249569058418,
+        "p10_us": 8.404375053942204,
+        "p90_us": 8.446875028312206,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 8.43374989926815,
+        "p10_us": 8.403121493756771,
+        "p90_us": 8.439996279776096,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          18,
+          36,
+          55,
+          73,
+          92,
+          110,
+          129
+        ],
+        "sample_columns": [
+          0,
+          13,
+          27,
+          41,
+          54,
+          68,
+          82,
+          96
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00011239741434110329,
+        "relative_l2_error": 0.00021596421085751374
+      }
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1025,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 43.434999883174896,
+        "p10_us": 43.334998190402985,
+        "p90_us": 43.467484414577484,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 43.38749870657921,
+        "p10_us": 43.34250092506409,
+        "p90_us": 43.472498655319214,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          219,
+          438,
+          657,
+          877,
+          1096,
+          1315,
+          1535
+        ],
+        "sample_columns": [
+          0,
+          164,
+          328,
+          493,
+          657,
+          822,
+          986,
+          1151
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.00022328555041895015,
+        "relative_l2_error": 0.00019093617587843996
+      }
+    },
+    {
+      "id": "stride_intervention_513x767x1025_pad_abc16",
+      "group": "stride_intervention",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "layout": "pad_abc16",
+      "role": "diagnosis",
+      "strides": [
+        [
+          1040,
+          1
+        ],
+        [
+          768,
+          1
+        ],
+        [
+          768,
+          1
+        ]
+      ],
+      "graph_batch": 256,
+      "graph_round1": {
+        "p50_us": 18.53187568485737,
+        "p10_us": 18.501870334148407,
+        "p90_us": 18.555624410510063,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 18.533121794462204,
+        "p10_us": 18.50874535739422,
+        "p90_us": 18.549999222159386,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          73,
+          146,
+          219,
+          292,
+          365,
+          438,
+          512
+        ],
+        "sample_columns": [
+          0,
+          109,
+          218,
+          328,
+          437,
+          547,
+          656,
+          766
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.000235450057516573,
+        "relative_l2_error": 0.00023194041652511367
+      }
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "layout": "contiguous",
+      "role": "diagnosis",
+      "strides": [
+        [
+          8191,
+          1
+        ],
+        [
+          33,
+          1
+        ],
+        [
+          33,
+          1
+        ]
+      ],
+      "graph_batch": 64,
+      "graph_round1": {
+        "p50_us": 93.43499690294266,
+        "p10_us": 93.33749860525131,
+        "p90_us": 93.52249652147293,
+        "samples": 25
+      },
+      "graph_round2": {
+        "p50_us": 93.39748322963715,
+        "p10_us": 93.35249662399292,
+        "p90_us": 93.49248558282852,
+        "samples": 25
+      },
+      "correctness": {
+        "passed": true,
+        "method": "sample rows/columns, full K, CPU FP64 reference",
+        "sample_rows": [
+          0,
+          292,
+          584,
+          876,
+          1169,
+          1461,
+          1753,
+          2046
+        ],
+        "sample_columns": [
+          0,
+          4,
+          9,
+          13,
+          18,
+          22,
+          27,
+          32
+        ],
+        "atol": 0.002,
+        "rtol": 0.02,
+        "max_absolute_error": 0.0007697673833035878,
+        "relative_l2_error": 0.00022163874027422858
+      }
+    }
+  ],
+  "phase": "measure",
+  "protocol": "FP16 torch.mm C=AB; same-address warm HIP Graph; 30 warmup, 6 graph warmup, 2 rounds x 25 Event measurements; profiler names collected separately, never used as latency",
+  "environment": {
+    "torch": "2.11.0",
+    "hip": "6.3.26113",
+    "gpu": "_CudaDeviceProperties(name='BW1100', major=9, minor=3, gcnArchName='gfx938:sramecc+:xnack-', total_memory=147440MB, multi_processor_count=72, uuid=30303034-3563-3735-3439-663233313037, pci_bus_id=3, pci_device_id=0, pci_domain_id=0, L2_cache_size=8MB)"
+  },
+  "wall_seconds": 25.227756462991238
+}

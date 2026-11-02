@@ -1,0 +1,2403 @@
+{
+  "completed": true,
+  "service_ns": 239.43020399505616,
+  "cases": [
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "mode": "dependent_read",
+      "measured_us": 16.51249546557665,
+      "model_us": 13.811623755111317,
+      "error_percent": -16.35653263975635,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_K_512x768x1023_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1023
+      ],
+      "mode": "baseline",
+      "measured_us": 16.51249546557665,
+      "model_us": 11.706499551246266,
+      "error_percent": -29.10520656523038,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "mode": "dependent_read",
+      "measured_us": 72.44248688220978,
+      "model_us": 81.9811745762408,
+      "error_percent": 13.167255991005344,
+      "mapping": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 64,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 97344,
+      "feasible": 48096
+    },
+    {
+      "id": "historical_control_1x8192x8192_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "mode": "baseline",
+      "measured_us": 72.44248688220978,
+      "model_us": 81.32147979605762,
+      "error_percent": 12.256609754832027,
+      "mapping": {
+        "bm": 16,
+        "bn": 128,
+        "bk": 16,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 1,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 97344,
+      "feasible": 48096
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "mode": "baseline",
+      "measured_us": 13.52062076330185,
+      "model_us": 11.583422628169343,
+      "error_percent": -14.327730723655218,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1008_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1008
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.52062076330185,
+      "model_us": 13.614700678188242,
+      "error_percent": 0.6958254101893546,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "mode": "dependent_read",
+      "measured_us": 10.35593543201685,
+      "model_us": 3.9166264098533783,
+      "error_percent": -62.17988770242262,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 256,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 1,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 1
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 36384,
+      "feasible": 21016
+    },
+    {
+      "id": "historical_irregular_127x129x255_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        127,
+        129,
+        255
+      ],
+      "mode": "baseline",
+      "measured_us": 10.35593543201685,
+      "model_us": 3.4002731289352455,
+      "error_percent": -67.16594892603504,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 36384,
+      "feasible": 21016
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "mode": "baseline",
+      "measured_us": 13.43562314286828,
+      "model_us": 11.706499551246266,
+      "error_percent": -12.869694045711944,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1022_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1022
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.43562314286828,
+      "model_us": 13.811623755111317,
+      "error_percent": 2.798534971134692,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "mode": "dependent_read",
+      "measured_us": 16.48249849677086,
+      "model_us": 13.860854524342088,
+      "error_percent": -15.905622396643238,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_K_512x768x1025_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1025
+      ],
+      "mode": "baseline",
+      "measured_us": 16.48249849677086,
+      "model_us": 11.829576474323188,
+      "error_percent": -28.229470327931416,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 14.03593784198165,
+      "model_us": 13.254308041119748,
+      "error_percent": -5.568775023525951,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 16,
+        "gm": 4,
+        "gn": 13,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 97440,
+      "feasible": 51072
+    },
+    {
+      "id": "axis_N_512x776x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        776,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 14.03593784198165,
+      "model_us": 13.832709337716473,
+      "error_percent": -1.447915390857013,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 64,
+        "gm": 4,
+        "gn": 13,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 97440,
+      "feasible": 51072
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "mode": "dependent_read",
+      "measured_us": 8.184375241398811,
+      "model_us": 3.8114779348616126,
+      "error_percent": -53.42982423897045,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 256,
+        "gm": 5,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 43568,
+      "feasible": 22768
+    },
+    {
+      "id": "historical_irregular_65x129x257_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        65,
+        129,
+        257
+      ],
+      "mode": "baseline",
+      "measured_us": 8.184375241398811,
+      "model_us": 3.365364732336424,
+      "error_percent": -58.880615403439876,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 16,
+        "gm": 5,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 43568,
+      "feasible": 22768
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 16.689371317625046,
+      "model_us": 13.82596613266912,
+      "error_percent": -17.15705840837748,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 64,
+        "gm": 4,
+        "gn": 13,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 97440,
+      "feasible": 51072
+    },
+    {
+      "id": "axis_N_512x769x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        769,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 16.689371317625046,
+      "model_us": 13.248113586684843,
+      "error_percent": -20.61945693128665,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 16,
+        "gm": 4,
+        "gn": 13,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 97440,
+      "feasible": 51072
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "mode": "dependent_read",
+      "measured_us": 112.89748176932335,
+      "model_us": 155.69149495368006,
+      "error_percent": 37.90519727605188,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_control_512x768x16384_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "mode": "baseline",
+      "measured_us": 112.89748176932335,
+      "model_us": 129.8841596585808,
+      "error_percent": 15.046108755521503,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 11.43937325105071,
+      "model_us": 13.843252129019051,
+      "error_percent": 21.014078526964262,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 95616,
+      "feasible": 50592
+    },
+    {
+      "id": "axis_M_520x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        520,
+        768,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 11.43937325105071,
+      "model_us": 11.722031240522279,
+      "error_percent": 2.470921992562891,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 17,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 95616,
+      "feasible": 50592
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 17.173750326037407,
+      "model_us": 17.269617433117517,
+      "error_percent": 0.5582188238451691,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 110400,
+      "feasible": 56632
+    },
+    {
+      "id": "historical_control_1024x1024x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 17.173750326037407,
+      "model_us": 18.125529753722073,
+      "error_percent": 5.5420593033873145,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 110400,
+      "feasible": 56632
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 11.440310161560774,
+      "model_us": 13.810417160076968,
+      "error_percent": 20.71715683443365,
+      "mapping": {
+        "bm": 128,
+        "bn": 64,
+        "bk": 64,
+        "gm": 4,
+        "gn": 12,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_M_511x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        511,
+        768,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 11.440310161560774,
+      "model_us": 11.705580397008903,
+      "error_percent": 2.3187328988634626,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 11.406250298023224,
+      "model_us": 13.833137321448024,
+      "error_percent": 21.276817183692653,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 95616,
+      "feasible": 50592
+    },
+    {
+      "id": "axis_M_513x768x1024_contiguous",
+      "group": "axis_M",
+      "shape": [
+        513,
+        768,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 11.406250298023224,
+      "model_us": 11.712831017305323,
+      "error_percent": 2.687830893341281,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 17,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 95616,
+      "feasible": 50592
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "mode": "baseline",
+      "measured_us": 13.310623355209827,
+      "model_us": 11.829576474323188,
+      "error_percent": -11.126803316141853,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1026_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1026
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.310623355209827,
+      "model_us": 13.860854524342088,
+      "error_percent": 4.133774613319652,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "mode": "dependent_read",
+      "measured_us": 8.358122780919075,
+      "model_us": 3.876366369780293,
+      "error_percent": -53.62156705056156,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 256,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 46368,
+      "feasible": 23984
+    },
+    {
+      "id": "historical_irregular_130x97x270_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        130,
+        97,
+        270
+      ],
+      "mode": "baseline",
+      "measured_us": 8.358122780919075,
+      "model_us": 3.3760640442761725,
+      "error_percent": -59.60738873107421,
+      "mapping": {
+        "bm": 16,
+        "bn": 16,
+        "bk": 16,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 512,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 46368,
+      "feasible": 23984
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "mode": "dependent_read",
+      "measured_us": 460.3486806154251,
+      "model_us": 432.5360350332257,
+      "error_percent": -6.041647723420773,
+      "mapping": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 32,
+        "gm": 4,
+        "gn": 16,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 4,
+      "service_ns": 239.43020399505616,
+      "searched": 135168,
+      "feasible": 66048
+    },
+    {
+      "id": "historical_control_4096x4096x4096_contiguous",
+      "group": "historical_control",
+      "shape": [
+        4096,
+        4096,
+        4096
+      ],
+      "mode": "baseline",
+      "measured_us": 460.3486806154251,
+      "model_us": 428.99426029626943,
+      "error_percent": -6.811015571335832,
+      "mapping": {
+        "bm": 256,
+        "bn": 256,
+        "bk": 16,
+        "gm": 4,
+        "gn": 16,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 4,
+      "service_ns": 0.0,
+      "searched": 135168,
+      "feasible": 66048
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "dependent_read",
+      "measured_us": 106.66000097990036,
+      "model_us": 25.150222385539692,
+      "error_percent": -76.420192992236,
+      "mapping": {
+        "bm": 192,
+        "bn": 192,
+        "bk": 32,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 124800,
+      "feasible": 62384
+    },
+    {
+      "id": "historical_irregular_1537x1153x1023_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1537,
+        1153,
+        1023
+      ],
+      "mode": "baseline",
+      "measured_us": 106.66000097990036,
+      "model_us": 24.551177613522427,
+      "error_percent": -76.98183256331585,
+      "mapping": {
+        "bm": 192,
+        "bn": 192,
+        "bk": 16,
+        "gm": 9,
+        "gn": 7,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 124800,
+      "feasible": 62384
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "mode": "baseline",
+      "measured_us": 55.62749132514,
+      "model_us": 16.772325857352968,
+      "error_percent": -69.84885448218483,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 22,
+        "gn": 3,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 127488,
+      "feasible": 62720
+    },
+    {
+      "id": "historical_irregular_4093x257x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        4093,
+        257,
+        769
+      ],
+      "mode": "dependent_read",
+      "measured_us": 55.62749132514,
+      "model_us": 17.177209196273797,
+      "error_percent": -69.12100692106743,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 32,
+        "gn": 2,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 127488,
+      "feasible": 62720
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "mode": "dependent_read",
+      "measured_us": 50.026241689920425,
+      "model_us": 17.177209196273797,
+      "error_percent": -65.66360250937107,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 32,
+        "gm": 2,
+        "gn": 32,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 127488,
+      "feasible": 62720
+    },
+    {
+      "id": "historical_irregular_257x4093x769_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        257,
+        4093,
+        769
+      ],
+      "mode": "baseline",
+      "measured_us": 50.026241689920425,
+      "model_us": 16.772325857352968,
+      "error_percent": -66.47294441722502,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 16,
+        "gm": 3,
+        "gn": 22,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 127488,
+      "feasible": 62720
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.341875281184912,
+      "model_us": 13.860854524342088,
+      "error_percent": 3.8898523050133305,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1028_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1028
+      ],
+      "mode": "baseline",
+      "measured_us": 13.341875281184912,
+      "model_us": 11.829576474323188,
+      "error_percent": -11.334979341280526,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "mode": "baseline",
+      "measured_us": 25.47250036150217,
+      "model_us": 17.01370206103589,
+      "error_percent": -33.20756965519755,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 110400,
+      "feasible": 56632
+    },
+    {
+      "id": "historical_irregular_1000x1000x1000_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        1000,
+        1000,
+        1000
+      ],
+      "mode": "dependent_read",
+      "measured_us": 25.47250036150217,
+      "model_us": 17.76362712049395,
+      "error_percent": -30.263512146844505,
+      "mapping": {
+        "bm": 128,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 8,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 110400,
+      "feasible": 56632
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "mode": "dependent_read",
+      "measured_us": 11.650935281068087,
+      "model_us": 14.008546832034394,
+      "error_percent": 20.235384491382867,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1056_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1056
+      ],
+      "mode": "baseline",
+      "measured_us": 11.650935281068087,
+      "model_us": 11.952653397400109,
+      "error_percent": 2.5896471746975624,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 15.439687762409449,
+      "model_us": 11.705799678482874,
+      "error_percent": -24.18370203714457,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_N_512x767x1024_contiguous",
+      "group": "axis_N",
+      "shape": [
+        512,
+        767,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 15.439687762409449,
+      "model_us": 13.81081935842175,
+      "error_percent": -10.549879175364262,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 35.39000079035759,
+      "model_us": 23.38330846306199,
+      "error_percent": -33.92679304648944,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "large_axis_N_1536x1151x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1151,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 35.39000079035759,
+      "model_us": 21.35791626153083,
+      "error_percent": -39.64985650028571,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "mode": "baseline",
+      "measured_us": 13.560624793171883,
+      "model_us": 11.706499551246266,
+      "error_percent": -13.672859991371611,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1016_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1016
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.560624793171883,
+      "model_us": 13.811623755111317,
+      "error_percent": 1.850939508818339,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 49.56874996423721,
+      "model_us": 25.114679018059718,
+      "error_percent": -49.33364461242331,
+      "mapping": {
+        "bm": 256,
+        "bn": 128,
+        "bk": 32,
+        "gm": 7,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 123264,
+      "feasible": 61880
+    },
+    {
+      "id": "large_axis_M_1537x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1537,
+        1152,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 49.56874996423721,
+      "model_us": 24.535278211418902,
+      "error_percent": -50.50252784441693,
+      "mapping": {
+        "bm": 256,
+        "bn": 128,
+        "bk": 16,
+        "gm": 7,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 123264,
+      "feasible": 61880
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 27.230000123381615,
+      "model_us": 21.358382371394892,
+      "error_percent": -21.563047100190545,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 16,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "large_axis_M_1535x1152x1024_contiguous",
+      "group": "large_axis_M",
+      "shape": [
+        1535,
+        1152,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 27.230000123381615,
+      "model_us": 23.38500926180406,
+      "error_percent": -14.120421755988065,
+      "mapping": {
+        "bm": 192,
+        "bn": 128,
+        "bk": 32,
+        "gm": 8,
+        "gn": 9,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 11.447185650467873,
+      "model_us": 13.81162375511132,
+      "error_percent": 20.65519138799681,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_control_512x768x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 11.447185650467873,
+      "model_us": 11.706499551246266,
+      "error_percent": 2.265307025642538,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.33968760445714,
+      "model_us": 13.811623755111317,
+      "error_percent": 3.537835102648801,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1020_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1020
+      ],
+      "mode": "baseline",
+      "measured_us": 13.33968760445714,
+      "model_us": 11.706499551246266,
+      "error_percent": -12.243075712396623,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 62.829989939928055,
+      "model_us": 25.115877446496718,
+      "error_percent": -60.02565419712771,
+      "mapping": {
+        "bm": 128,
+        "bn": 256,
+        "bk": 32,
+        "gm": 12,
+        "gn": 5,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 120768,
+      "feasible": 60840
+    },
+    {
+      "id": "large_axis_N_1536x1153x1024_contiguous",
+      "group": "large_axis_N",
+      "shape": [
+        1536,
+        1153,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 62.829989939928055,
+      "model_us": 24.53841128072151,
+      "error_percent": -60.944747398204655,
+      "mapping": {
+        "bm": 256,
+        "bn": 128,
+        "bk": 16,
+        "gm": 6,
+        "gn": 10,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 120768,
+      "feasible": 60840
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "baseline",
+      "measured_us": 50.16749911010265,
+      "model_us": 21.359780700987088,
+      "error_percent": -57.423070553888365,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "large_axis_K_1536x1152x1023_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1023
+      ],
+      "mode": "dependent_read",
+      "measured_us": 50.16749911010265,
+      "model_us": 23.38070450467406,
+      "error_percent": -53.394717856354745,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "mode": "baseline",
+      "measured_us": 13.795933220535517,
+      "model_us": 11.829576474323188,
+      "error_percent": -14.253162252810615,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x1040_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        1040
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.795933220535517,
+      "model_us": 13.860854524342088,
+      "error_percent": 0.4705829085192681,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "mode": "dependent_read",
+      "measured_us": 13.42499814927578,
+      "model_us": 13.860854524342088,
+      "error_percent": 3.2466028689160042,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "axis_K_512x768x1032_contiguous",
+      "group": "axis_K",
+      "shape": [
+        512,
+        768,
+        1032
+      ],
+      "mode": "baseline",
+      "measured_us": 13.42499814927578,
+      "model_us": 11.829576474323188,
+      "error_percent": -11.883961973124425,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 27.088742703199387,
+      "model_us": 23.390111658030264,
+      "error_percent": -13.653756786328387,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "historical_control_1536x1152x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 27.088742703199387,
+      "model_us": 21.359780700987095,
+      "error_percent": -21.14886639436262,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "mode": "dependent_read",
+      "measured_us": 11.207187548279762,
+      "model_us": 13.417777601265165,
+      "error_percent": 19.724752918270873,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 8,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "k_tail_512x768x992_contiguous",
+      "group": "k_tail",
+      "shape": [
+        512,
+        768,
+        992
+      ],
+      "mode": "baseline",
+      "measured_us": 11.207187548279762,
+      "model_us": 11.460345705092417,
+      "error_percent": 2.258891052925338,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 16,
+        "gn": 4,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 90528,
+      "feasible": 48136
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "mode": "dependent_read",
+      "measured_us": 26.490935124456882,
+      "model_us": 13.881535885681348,
+      "error_percent": -47.59892083663865,
+      "mapping": {
+        "bm": 64,
+        "bn": 128,
+        "bk": 64,
+        "gm": 9,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 95616,
+      "feasible": 50592
+    },
+    {
+      "id": "historical_irregular_513x767x1025_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        513,
+        767,
+        1025
+      ],
+      "mode": "baseline",
+      "measured_us": 26.490935124456882,
+      "model_us": 11.835199857547142,
+      "error_percent": -55.323585966504126,
+      "mapping": {
+        "bm": 32,
+        "bn": 192,
+        "bk": 16,
+        "gm": 17,
+        "gn": 4,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 95616,
+      "feasible": 50592
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "mode": "dependent_read",
+      "measured_us": 64.05999884009361,
+      "model_us": 24.275561451780106,
+      "error_percent": -62.104961143729184,
+      "mapping": {
+        "bm": 48,
+        "bn": 128,
+        "bk": 64,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 114528,
+      "feasible": 58312
+    },
+    {
+      "id": "historical_irregular_33x8191x2047_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        33,
+        8191,
+        2047
+      ],
+      "mode": "baseline",
+      "measured_us": 64.05999884009361,
+      "model_us": 23.354210620641485,
+      "error_percent": -63.543223472516445,
+      "mapping": {
+        "bm": 48,
+        "bn": 128,
+        "bk": 16,
+        "gm": 1,
+        "gn": 64,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 114528,
+      "feasible": 58312
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "dependent_read",
+      "measured_us": 64.76624310016632,
+      "model_us": 50.42232070751852,
+      "error_percent": -22.14722007337023,
+      "mapping": {
+        "bm": 256,
+        "bn": 384,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 132288,
+      "feasible": 65096
+    },
+    {
+      "id": "historical_control_3072x2304x1024_contiguous",
+      "group": "historical_control",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "mode": "baseline",
+      "measured_us": 64.76624310016632,
+      "model_us": 50.18289050352346,
+      "error_percent": -22.516903711843383,
+      "mapping": {
+        "bm": 256,
+        "bn": 384,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 132288,
+      "feasible": 65096
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "baseline",
+      "measured_us": 43.41124929487705,
+      "model_us": 21.605934547140937,
+      "error_percent": -50.22964116886024,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 16,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "large_axis_K_1536x1152x1025_contiguous",
+      "group": "large_axis_K",
+      "shape": [
+        1536,
+        1152,
+        1025
+      ],
+      "mode": "dependent_read",
+      "measured_us": 43.41124929487705,
+      "model_us": 23.537803965722567,
+      "error_percent": -45.7794826270981,
+      "mapping": {
+        "bm": 128,
+        "bn": 192,
+        "bk": 32,
+        "gm": 12,
+        "gn": 6,
+        "l2_buffers": 1,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 4096,
+        "output_buffers": 2,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 119040,
+      "feasible": 60256
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "mode": "baseline",
+      "measured_us": 93.4162400662899,
+      "model_us": 31.69702043795554,
+      "error_percent": -66.06904707847079,
+      "mapping": {
+        "bm": 32,
+        "bn": 48,
+        "bk": 16,
+        "gm": 64,
+        "gn": 1,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 3072,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 0.0,
+      "searched": 88704,
+      "feasible": 47384
+    },
+    {
+      "id": "historical_irregular_2047x33x8191_contiguous",
+      "group": "historical_irregular",
+      "shape": [
+        2047,
+        33,
+        8191
+      ],
+      "mode": "dependent_read",
+      "measured_us": 93.4162400662899,
+      "model_us": 33.34575740075261,
+      "error_percent": -64.30411095855513,
+      "mapping": {
+        "bm": 32,
+        "bn": 48,
+        "bk": 128,
+        "gm": 64,
+        "gn": 1,
+        "l2_buffers": 2,
+        "shared_buffers": 2,
+        "output_chunk_bytes": 3072,
+        "output_buffers": 1,
+        "register_input_buffers": 2
+      },
+      "wave_count": 1,
+      "service_ns": 239.43020399505616,
+      "searched": 88704,
+      "feasible": 47384
+    }
+  ],
+  "scope": "Scalar dependency service added only to input L2-to-core stage, NOT output writes. Diagnostic sensitivity, not a validated hardware parameter. Full mapper re-optimized separately. Non-contiguous layout interventions excluded because baseline request contract cannot express them.",
+  "source_hashes": {
+    "experimental_read_latency/superpod_compute/contracts.py": "b55083fa008cd7f3f682d3eb7c063ba8803209dd9c091d67809b90042f38c3b3",
+    "experimental_read_latency/superpod_compute/operators.py": "354a703162ba3f366129eaf8ba2b897ea41c7b749c2c816e8b6a9ba8f7bf5906",
+    "measurements.json": "8dc3222fa68e3e823d9cd3f26caeecfc19a7ffec1e84feb444ef2878de41dd4a",
+    "dependent_memory_results.json": "e19320874edca8bdff4b006ac5a7694a7cc6bdf53d0a7024b5df83c24ac86a9f"
+  },
+  "resumed_from_server_cases": 58,
+  "wall_seconds": 119.89100000000326,
+  "baseline": {
+    "count": 41,
+    "passes": 18,
+    "mean_absolute_error_percent": 29.26248374519989
+  },
+  "dependent_read": {
+    "count": 41,
+    "passes": 15,
+    "mean_absolute_error_percent": 27.93682377540831
+  }
+}

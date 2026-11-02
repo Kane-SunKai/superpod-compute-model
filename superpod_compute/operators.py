@@ -37,7 +37,7 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-directional-output-3.2'
+    version='dense-resident-c-readiness-experimental-3.3'
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
     @staticmethod
@@ -191,9 +191,9 @@ class GemmModel:
                                        'retained_operand':('AB' if warm else order if hit else None)})
                     hbytes+=count*number*dh;rbytes+=count*number*dr;saved+=count*number*((m+n)*k*2-dh)
                 if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend in ('mmac','mac-throughput'):
-                    run=operand_pipeline(segments,p.l2_buffers,p.shared_buffers,p.register_input_buffers,shared_port=shared_port,trace_limit=trace_limit)
+                    run=operand_pipeline(segments,p.l2_buffers,p.shared_buffers,p.register_input_buffers,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
                 else:
-                    run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit)
+                    run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
                 output=output_plan(m,n)
                 per_wave=run['duration_s']+output['duration_s'];total+=count*per_wave
                 out=m*n*2;obytes+=count*out;wave_count+=count
@@ -214,9 +214,11 @@ class GemmModel:
                    'optional Shared->register service uses an explicit rectangular-engine operand reuse plan; independent LDS read/write ports assumed',
                    'FP16/BF16 share 16-bit service; conversion/layout execution cost remains a separate configurable term',
                    'device_service_s is additive per GEMM, distinct from hardware.kernel_launch_s host submission setting',
+                   'optional input read latency delays response readiness without occupying payload bandwidth; default zero preserves the V3.2 baseline; a scalar pointer-chase latency is not automatically a bulk-copy parameter',
                    'matrix service selected by hardware/backend; no GEMM-shape-dependent correction']
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
+                    'input_read_latency_s':policy.input_read_latency_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,
                     'reuse_order':order,'retention_budget_bytes':spare,'hbm_bytes_saved_by_reuse':saved,
                     'wave_count':wave_count,'wave_classes':classes,'hbm_read_bytes':hbytes,'l2_to_core_bytes':rbytes,'output_bytes':obytes,

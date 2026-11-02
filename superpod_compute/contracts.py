@@ -5,7 +5,7 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-directional-output-service-3.2'
+MODEL_VERSION = 'resident-k-readiness-experimental-3.3'
 SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
 
 def canonical(value):
@@ -128,6 +128,7 @@ class Policy:
     matrix_efficiency: float = 1.0
     charge_hbm_latency: bool = False
     l2_transfer_latency_s: float = 0.0
+    input_read_latency_s: float = 0.0
     epilogue_s_per_wave: float = 0.0
     transfer_resource_mode: str = 'independent'
     top_k: int = 5
@@ -152,7 +153,7 @@ class Policy:
                 raise ValueError('Only one or two buffers are supported by the fast pipeline')
         positive(self.matrix_efficiency,'matrix_efficiency')
         if self.matrix_efficiency>1:raise ValueError('matrix_efficiency must be <= 1')
-        for name in ('l2_transfer_latency_s','epilogue_s_per_wave','device_service_s'):
+        for name in ('l2_transfer_latency_s','input_read_latency_s','epilogue_s_per_wave','device_service_s'):
             positive(getattr(self,name),name,True)
         if self.transfer_resource_mode not in ('independent','shared-port'):
             raise ValueError('Unknown transfer resource mode')

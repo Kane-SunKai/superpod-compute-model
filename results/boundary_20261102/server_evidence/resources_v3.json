@@ -1,0 +1,182 @@
+{
+  "returncode": 0,
+  "cases": [
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8",
+      "status": 0,
+      "registers": 256,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x64x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM1",
+      "status": 0,
+      "registers": 164,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x16x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG32_8_1_WGM1",
+      "status": 0,
+      "registers": 82,
+      "static_shared_bytes": 55296,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT32x32x128_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG8_8_1_WGM1",
+      "status": 0,
+      "registers": 148,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 64
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x32x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU0_SUM0_SUS256_SVW4_TT8_4_TLM0_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW4_WG16_8_1_WGM1",
+      "status": 0,
+      "registers": 80,
+      "static_shared_bytes": 13312,
+      "local_bytes": 0,
+      "max_threads": 128,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 4,
+      "actual_threads": 128
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM8",
+      "status": 0,
+      "registers": 90,
+      "static_shared_bytes": 16384,
+      "local_bytes": 0,
+      "max_threads": 64,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 4,
+      "actual_threads": 64
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x32x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_2_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW2_WG16_16_1_WGM1",
+      "status": 0,
+      "registers": 106,
+      "static_shared_bytes": 61440,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1",
+      "status": 0,
+      "registers": 90,
+      "static_shared_bytes": 16384,
+      "local_bytes": 0,
+      "max_threads": 64,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 4,
+      "actual_threads": 64
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT64x96x64_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT4_6_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW2_WG16_16_1_WGM8",
+      "status": 0,
+      "registers": 256,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT16x16x128_SE_AMAS3_BW_DTL1_BL1_DRB16_ALT_KME1_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW2_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW2_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT2_2_TLM1_ULDSWM0_USFGRO0_USSB0_VAW2_VSn1_VW2_WG8_8_1_WGM1",
+      "status": 0,
+      "registers": 90,
+      "static_shared_bytes": 16384,
+      "local_bytes": 0,
+      "max_threads": 64,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 4,
+      "actual_threads": 64
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT384x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU8_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA3_NLCB1_OLDSR1_PGR2_PLR1_RK0_SU32_SUM0_SUS256_SVW4_TT12_8_TLM0_ULDSWM0_USFGRO0_USSB0_VAW1_VSn1_VW4_WG32_16_1_WGM1",
+      "status": 0,
+      "registers": 170,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 512,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 512
+    },
+    {
+      "kernel": "Cijk_H_PostGSU",
+      "status": 0,
+      "registers": 20,
+      "static_shared_bytes": 0,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 8,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM8",
+      "status": 0,
+      "registers": 176,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT256x256x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT16_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_32_1_WGM1",
+      "status": 0,
+      "registers": 210,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 512,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 512
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT128x128x32_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW8_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW8_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_8_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW8_WG16_16_1_WGM1",
+      "status": 0,
+      "registers": 176,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 256,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 256
+    },
+    {
+      "kernel": "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8",
+      "status": 0,
+      "registers": 256,
+      "static_shared_bytes": 65536,
+      "local_bytes": 0,
+      "max_threads": 512,
+      "occupancy_status": 0,
+      "max_resident_workgroups_per_cu": 1,
+      "actual_threads": 512
+    }
+  ],
+  "scope": "runtime attributes queried by hipModuleGetFunction interception; not a timing run"
+}

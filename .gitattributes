@@ -1,1 +1,3 @@
 * text=auto eol=lf
+# Raw experiment evidence carries byte-level SHA256 fingerprints.
+/results/boundary_20261102/** -text

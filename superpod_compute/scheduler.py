@@ -30,7 +30,7 @@ class EventScheduler:
             result.append({**asdict(event),'start_s':start,'end_s':end})
         return result
 
-def pipeline(h, r, c, count, l2_buffers, shared_buffers, tail=None, *, accelerate=True, shared_port=False, trace_limit=0):
+def pipeline(h, r, c, count, l2_buffers, shared_buffers, tail=None, *, accelerate=True, shared_port=False, trace_limit=0, read_latency_s=0.0):
     for v in (h,r,c):positive(v,'stage duration',True)
     integer(count,'count',0)
     integer(trace_limit,'trace_limit',0)
@@ -40,10 +40,10 @@ def pipeline(h, r, c, count, l2_buffers, shared_buffers, tail=None, *, accelerat
         for v in tail:positive(v,'tail duration',True)
     segments=[(count,h,r,c)]
     if tail is not None:segments.append((1,*tail))
-    return pipeline_segments(segments,l2_buffers,shared_buffers,accelerate=accelerate,shared_port=shared_port,trace_limit=trace_limit)
+    return pipeline_segments(segments,l2_buffers,shared_buffers,accelerate=accelerate,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=read_latency_s)
 
 
-def pipeline_segments(segments,l2_buffers,shared_buffers,*,accelerate=True,shared_port=False,trace_limit=0):
+def pipeline_segments(segments,l2_buffers,shared_buffers,*,accelerate=True,shared_port=False,trace_limit=0,read_latency_s=0.0):
     """Piecewise H/R/C service, retaining resource and buffer state at boundaries.
 
     Each tuple is (panel_count, H_seconds, R_seconds, C_seconds). In particular,
@@ -52,16 +52,18 @@ def pipeline_segments(segments,l2_buffers,shared_buffers,*,accelerate=True,share
     """
     if l2_buffers not in (1,2) or shared_buffers not in (1,2):raise ValueError('invalid buffer count')
     integer(trace_limit,'trace_limit',0)
+    positive(read_latency_s,'read latency',True)
     H=R=C=0.0;lf=[0.0]*l2_buffers;sf=[0.0]*shared_buffers;i=0;skipped=0;trace=[]
     def step(hh,rr,cc):
         nonlocal H,R,C,i
         ls=i%l2_buffers;ss=i%shared_buffers
         h0=max(H,lf[ls],R if shared_port else 0.0);h1=h0+hh
-        r0=max(h1,R,sf[ss]);r1=r0+rr
+        request=max(h1,sf[ss]);ready=request+read_latency_s
+        r0=max(ready,R);r1=r0+rr
         c0=max(r1,C);c1=c0+cc
         H,R,C=h1,r1,c1;lf[ls]=r1;sf[ss]=c1
         if len(trace)<trace_limit:
-            trace.append({'panel':i,'l2_slot':ls,'shared_slot':ss,'H_start_s':h0,'H_end_s':h1,'R_start_s':r0,'R_end_s':r1,'C_start_s':c0,'C_end_s':c1})
+            trace.append({'panel':i,'l2_slot':ls,'shared_slot':ss,'H_start_s':h0,'H_end_s':h1,'R_request_s':request,'R_response_ready_s':ready,'R_start_s':r0,'R_end_s':r1,'C_start_s':c0,'C_end_s':c1})
         i+=1
     for count,h,r,c in segments:
         integer(count,'segment count',0)
@@ -130,15 +132,24 @@ def output_pipeline(segments,shared_buffers,l2_buffers,*,shared_port=False,trace
     return {'duration_s':ends[2],'W_end_s':ends[0],'L_end_s':ends[1],'D_end_s':ends[2],
             'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['register-to-Shared','L2-write','L2-read/HBM-drain']}
 
-def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,trace_limit=0,accelerate=True):
+def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,trace_limit=0,accelerate=True,read_latency_s=0.0):
     """H: HBM->L2, R: L2->Shared, S: Shared->registers, C: matrix.
 
     Input window frees at R end, Shared frees at S end, operand registers free
     at C end. The persistent C accumulator is a distinct register allocation.
     LDS-read and input-write service use independent ports in this abstraction.
+
+    Read requests may be outstanding concurrently. A request starts after H and
+    destination Shared-slot availability; the response becomes ready after the
+    configured latency. Only payload service reserves the R bandwidth resource.
+    Source L2 stays reserved until R.end, destination Shared until S.end. This
+    separates dependency latency from link occupancy. It is still an in-order
+    response model; shared-port scheduling retains its conservative H/R order.
     """
     buffers=(l2_buffers,shared_buffers,register_buffers)
     if any(x not in (1,2) for x in buffers):raise ValueError('invalid buffer count')
+    positive(read_latency_s,'read latency',True)
+    integer(trace_limit,'trace_limit',0)
     ends=[0.0]*4;slots=[[0.0]*n for n in buffers];i=0;skipped=0;trace=[]
     for number,h,r,s,c in segments:
         integer(number,'segment count',0)
@@ -151,11 +162,15 @@ def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,share
                 available=max(ends[stage],finish[-1] if stage else 0)
                 if stage<3:available=max(available,slots[stage][i%buffers[stage]])
                 if stage==0 and shared_port:available=max(available,ends[1])
+                if stage==1:
+                    request=max(finish[0],slots[1][i%buffers[1]])
+                    response_ready=request+read_latency_s
+                    available=max(ends[1],response_ready)
                 start.append(available);finish.append(available+dt)
             ends=finish
             for stage in range(3):slots[stage][i%buffers[stage]]=finish[stage+1]
             if len(trace)<trace_limit:
-                row={'panel':i}
+                row={'panel':i,'R_request_s':request,'R_response_ready_s':response_ready}
                 for stage,name in enumerate(('H','R','S','C')):row.update({name+'_start_s':start[stage],name+'_end_s':finish[stage]})
                 trace.append(row)
             i+=1

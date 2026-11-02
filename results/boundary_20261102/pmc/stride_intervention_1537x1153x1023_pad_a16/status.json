@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "case": "stride_intervention_1537x1153x1023_pad_a16",
+  "scope": "Hardware counters only. Profiling duration not used as benchmark latency."
+}
