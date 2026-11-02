@@ -1,0 +1,1040 @@
+{
+  "plan": [
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        2,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a4_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        4,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a8_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        8,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a16_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        16,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b2_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        2,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c2",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        2
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        2,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a4_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        4,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a8_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        8,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a16_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        16,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b2_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        2,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c2",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        2
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52"
+    }
+  ],
+  "script_sha256": "5d8932940be057a1e059279f70bedf0a81e701a315621882a26c616f24d4432e",
+  "seed": 20261102,
+  "completed": true,
+  "cases": [
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0,
+          0
+        ],
+        "64": [
+          0,
+          0,
+          0
+        ],
+        "256": [
+          0,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Memset (Device)": 1,
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a16_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        16,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0,
+          0
+        ],
+        "64": [
+          16,
+          0,
+          0
+        ],
+        "256": [
+          16,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b0_c2",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        2
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          2
+        ],
+        "16": [
+          0,
+          0,
+          2
+        ],
+        "64": [
+          0,
+          0,
+          2
+        ],
+        "256": [
+          0,
+          0,
+          2
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a8_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        8,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          8,
+          0,
+          0
+        ],
+        "64": [
+          8,
+          0,
+          0
+        ],
+        "256": [
+          8,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a2_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        2,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          2,
+          0,
+          0
+        ],
+        "16": [
+          2,
+          0,
+          0
+        ],
+        "64": [
+          2,
+          0,
+          0
+        ],
+        "256": [
+          2,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b2_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        2,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          2,
+          0
+        ],
+        "16": [
+          0,
+          2,
+          0
+        ],
+        "64": [
+          0,
+          2,
+          0
+        ],
+        "256": [
+          0,
+          2,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0,
+          0
+        ],
+        "64": [
+          0,
+          0,
+          0
+        ],
+        "256": [
+          0,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a16_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        16,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0,
+          0
+        ],
+        "64": [
+          16,
+          0,
+          0
+        ],
+        "256": [
+          16,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a0_b2_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        2,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          2,
+          0
+        ],
+        "16": [
+          0,
+          2,
+          0
+        ],
+        "64": [
+          0,
+          2,
+          0
+        ],
+        "256": [
+          0,
+          2,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a4_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        4,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          4,
+          0,
+          0
+        ],
+        "64": [
+          4,
+          0,
+          0
+        ],
+        "256": [
+          4,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a8_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        8,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          8,
+          0,
+          0
+        ],
+        "64": [
+          8,
+          0,
+          0
+        ],
+        "256": [
+          8,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a0_b0_c2",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        0,
+        0,
+        2
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          2
+        ],
+        "16": [
+          0,
+          0,
+          2
+        ],
+        "64": [
+          0,
+          0,
+          2
+        ],
+        "256": [
+          0,
+          0,
+          2
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_1536x1152x1024_a2_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        2,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          1152,
+          1
+        ],
+        [
+          1152,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          2,
+          0,
+          0
+        ],
+        "16": [
+          2,
+          0,
+          0
+        ],
+        "64": [
+          2,
+          0,
+          0
+        ],
+        "256": [
+          2,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT128x192x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS0_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn2_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR2_PLR1_RK1_SU0_SUM0_SUS256_SVW4_TT8_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_16_1_WGM8": 2
+      }
+    },
+    {
+      "id": "base_alignment_3072x2304x1024_a4_b0_c0",
+      "group": "base_alignment",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "layout": "contiguous-offset",
+      "base_offsets_bytes": [
+        4,
+        0,
+        0
+      ],
+      "role": "diagnosis",
+      "construction_sha256": "26463cee909c201bdd24e6198d99caccf50fb0f573ce68a7c997cec6bffdbf52",
+      "strides": [
+        [
+          1024,
+          1
+        ],
+        [
+          2304,
+          1
+        ],
+        [
+          2304,
+          1
+        ]
+      ],
+      "pointer_modulo_bytes": {
+        "4": [
+          0,
+          0,
+          0
+        ],
+        "16": [
+          4,
+          0,
+          0
+        ],
+        "64": [
+          4,
+          0,
+          0
+        ],
+        "256": [
+          4,
+          0,
+          0
+        ]
+      },
+      "kernels": {
+        "Cijk_Ailk_Bljk_HBH_MT256x384x16_SE_AMAS3_BW_DTL0_BL1_DRB16_ALT_KME0_DRMT_NMZ0_ETSP_EPS1_FL0_GRVW4_GSU1_ISA938_IU1_KME_GRCMn1_K1_KLA_LDL1_LRVW4_MAC_MMAC_BW1_MMAC_KM0_MMAC_KME1_NLCA1_NLCB1_OLDSR0_PGR1_PLR1_RK1_SU1_SUM0_SUS256_SVW4_TT16_12_TLM0_ULDSWM0_USFGRO0_USSB1_VAW2_VSn1_VW4_WG16_32_1_WGM8": 2
+      }
+    }
+  ],
+  "phase": "profile",
+  "protocol": "FP16 torch.mm C=AB; same-address warm HIP Graph; 30 warmup, 6 graph warmup, 2 rounds x 25 Event measurements; profiler names collected separately, never used as latency",
+  "environment": {
+    "torch": "2.11.0",
+    "hip": "6.3.26113",
+    "gpu": "_CudaDeviceProperties(name='BW1100', major=9, minor=3, gcnArchName='gfx938:sramecc+:xnack-', total_memory=147440MB, multi_processor_count=72, uuid=30303034-3563-3735-3439-663233313037, pci_bus_id=3, pci_device_id=0, pci_domain_id=0, L2_cache_size=8MB)"
+  },
+  "wall_seconds": 8.070193029940128
+}

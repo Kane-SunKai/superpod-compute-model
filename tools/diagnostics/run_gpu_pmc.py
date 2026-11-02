@@ -5,10 +5,11 @@ from pathlib import Path
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--case',required=True)
-    ap.add_argument('--plan',choices=('boundary','k-stride'),default='boundary')
+    ap.add_argument('--plan',choices=('boundary','k-stride','base-alignment'),default='boundary')
     ap.add_argument('--read-focus',action='store_true');args=ap.parse_args()
     root=Path('/workspace/gemm_boundary_20261102')
-    rows=json.loads((root/('k_stride_kernels.json' if args.plan=='k-stride' else 'kernels.json')).read_text())['cases']
+    metadata={'boundary':'kernels.json','k-stride':'k_stride_kernels.json','base-alignment':'base_alignment_kernels.json'}
+    rows=json.loads((root/metadata[args.plan]).read_text())['cases']
     row=next(r for r in rows if r['id']==args.case)
     names=[name for name in row['kernels'] if '_MT' in name]
     if len(names)!=1:raise ValueError('Expected one matrix kernel name')

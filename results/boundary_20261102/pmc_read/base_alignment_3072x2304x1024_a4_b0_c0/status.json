@@ -1,0 +1,5 @@
+{
+  "returncode": 0,
+  "case": "base_alignment_3072x2304x1024_a4_b0_c0",
+  "scope": "Hardware counters only. Profiling duration not used as benchmark latency."
+}

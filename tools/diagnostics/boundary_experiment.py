@@ -120,6 +120,7 @@ def main():
         for row in order:
             a,b,c=tensors(torch,row);record=dict(row)
             record['strides']=[list(t.stride()) for t in (a,b,c)]
+            record['pointer_modulo_bytes']={str(q):[t.data_ptr()%q for t in (a,b,c)] for q in (4,16,64,256)}
             stream=torch.cuda.Stream();stream.wait_stream(torch.cuda.current_stream())
             with torch.cuda.stream(stream):
                 for _ in range(30):torch.mm(a,b,out=c)
