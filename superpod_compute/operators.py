@@ -38,6 +38,9 @@ def extents(total,tile):
 class GemmModel:
     name='gemm'
     version='dense-resident-c-directional-output-3.2'
+    def input_hbm_bandwidth(self,hardware):
+        """Read service hook; default preserves the original hardware contract."""
+        return hardware.hbm_bandwidth_Bps
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
     @staticmethod
@@ -177,7 +180,7 @@ class GemmModel:
                     dh=cold-saved_bytes;dr=(rn*m+rm*n)*k*2
                     # HBM fills consume L2 write bandwidth. Stream each fill at
                     # the slower endpoint rate; R separately charges L2 reads.
-                    ht=max(dh/hardware.hbm_bandwidth_Bps,dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
+                    ht=max(dh/self.input_hbm_bandwidth(hardware),dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
                     return dh,dr,ht,dr/hardware.l2_read_bandwidth_Bps+policy.l2_transfer_latency_s
                 hit_full=min(full,keep//p.bk);segments=[];bytes_runs=[]
                 for number,k,hit,service in [(hit_full,p.bk,True,compute),(full-hit_full,p.bk,False,compute),(int(tail>0),tail,keep==request.K,last)]:

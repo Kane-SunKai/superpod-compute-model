@@ -1,0 +1,9 @@
+# Measurement/profile artifacts remain local; no vendor-derived details pushed.
+*.json
+*.log
+outputs/
+!calibration_plan.json
+!acceptance_plan.json
+!holdout_plan.json
+!frozen_calibration.json
+!example_execution_plan.json

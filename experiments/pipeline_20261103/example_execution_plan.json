@@ -1,0 +1,8 @@
+{
+  "layout": "row-major-contiguous",
+  "bm": 256,
+  "bn": 256,
+  "bk": 32,
+  "split_k": 1,
+  "source": "BW1100 torch.matmul FP16 Graph observation for M=1,N=28672,K=8192; do not reuse blindly for other shapes"
+}

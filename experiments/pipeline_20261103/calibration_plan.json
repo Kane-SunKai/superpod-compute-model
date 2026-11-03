@@ -1,0 +1,400 @@
+{
+  "cases": [
+    {
+      "id": "cal_decode_1x6144x6144",
+      "group": "decode",
+      "shape": [
+        1,
+        6144,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_1x12288x6144",
+      "group": "decode",
+      "shape": [
+        1,
+        12288,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_1x24576x6144",
+      "group": "decode",
+      "shape": [
+        1,
+        24576,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_8x6144x6144",
+      "group": "decode",
+      "shape": [
+        8,
+        6144,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_8x12288x6144",
+      "group": "decode",
+      "shape": [
+        8,
+        12288,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_8x24576x6144",
+      "group": "decode",
+      "shape": [
+        8,
+        24576,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_32x6144x6144",
+      "group": "decode",
+      "shape": [
+        32,
+        6144,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_32x12288x6144",
+      "group": "decode",
+      "shape": [
+        32,
+        12288,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_32x24576x6144",
+      "group": "decode",
+      "shape": [
+        32,
+        24576,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_8x12288x4096",
+      "group": "decode",
+      "shape": [
+        8,
+        12288,
+        4096
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_decode_8x12288x12288",
+      "group": "decode",
+      "shape": [
+        8,
+        12288,
+        12288
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_384x6144x6144",
+      "group": "prefill",
+      "shape": [
+        384,
+        6144,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_768x6144x6144",
+      "group": "prefill",
+      "shape": [
+        768,
+        6144,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_1536x6144x6144",
+      "group": "prefill",
+      "shape": [
+        1536,
+        6144,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_768x24576x6144",
+      "group": "prefill",
+      "shape": [
+        768,
+        24576,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_1536x24576x6144",
+      "group": "prefill",
+      "shape": [
+        1536,
+        24576,
+        6144
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_768x6144x24576",
+      "group": "prefill",
+      "shape": [
+        768,
+        6144,
+        24576
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_prefill_1536x6144x24576",
+      "group": "prefill",
+      "shape": [
+        1536,
+        6144,
+        24576
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_square_192x192x192",
+      "group": "square",
+      "shape": [
+        192,
+        192,
+        192
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_square_320x320x320",
+      "group": "square",
+      "shape": [
+        320,
+        320,
+        320
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_square_640x640x640",
+      "group": "square",
+      "shape": [
+        640,
+        640,
+        640
+      ],
+      "role": "calibration"
+    },
+    {
+      "id": "cal_square_1280x1280x1280",
+      "group": "square",
+      "shape": [
+        1280,
+        1280,
+        1280
+      ],
+      "role": "calibration"
+    }
+  ],
+  "shape_order": "M,N,K",
+  "dtype": "fp16",
+  "hardware": {
+    "name": "BW1100-MMAC8-L2-directional-LDS-write-v3.2",
+    "cores": 72,
+    "clock_hz": 1300000000.0,
+    "arrays_per_core": 4,
+    "array_rows": 16,
+    "array_cols": 16,
+    "mac_per_cell_per_cycle": 2,
+    "vector_fp16_flops_per_cycle_per_core": 251.73611111111111,
+    "hbm_bandwidth_Bps": 1720000000000.0,
+    "hbm_latency_s": 0.0,
+    "hbm_capacity_bytes": 154602045440,
+    "l2_bytes": 8388608,
+    "l2_bytes_per_cycle": 2990,
+    "source_sram_bytes_per_core": 65536,
+    "shared_budget_bytes_per_core": 65536,
+    "register_budget_bytes_per_core": 786432,
+    "register_reserve_bytes_per_core": 32768,
+    "kernel_launch_s": 0.0,
+    "matrix_k_quantum": 16,
+    "matrix_backend": "mmac",
+    "instruction_m": 16,
+    "instruction_n": 16,
+    "instruction_k": 16,
+    "instruction_issue_cycles": 8,
+    "shared_read_bytes_per_cycle_per_core": 64,
+    "l2_read_bytes_per_cycle": 3768,
+    "l2_write_bytes_per_cycle": 2990,
+    "shared_write_bytes_per_cycle_per_core": 59.35200341023225
+  },
+  "policy": {
+    "bm_values": [
+      16,
+      32,
+      64,
+      128,
+      192,
+      256,
+      384
+    ],
+    "bn_values": [
+      16,
+      32,
+      64,
+      128,
+      192,
+      256,
+      384
+    ],
+    "bk_values": [
+      16,
+      32,
+      64,
+      128,
+      256,
+      512
+    ],
+    "buffer_counts": [
+      1,
+      2
+    ],
+    "add_shape_candidate": true,
+    "matrix_efficiency": 1.0,
+    "charge_hbm_latency": false,
+    "l2_transfer_latency_s": 0.0,
+    "epilogue_s_per_wave": 0.0,
+    "transfer_resource_mode": "independent",
+    "top_k": 5,
+    "input_reuse": true,
+    "initial_cache_state": "warm-if-fit",
+    "device_service_s": 3.121244690369221e-06,
+    "output_chunk_values": [
+      4096,
+      16384
+    ],
+    "output_buffer_counts": [
+      1,
+      2
+    ],
+    "calibration_hardware_sha256": "bcb718bd78d78ef7be5e5da1a1f5c5840d1381fac17798f803b959caa6320f1e",
+    "register_buffer_counts": [
+      1,
+      2
+    ]
+  },
+  "model_commit": "74e55221b7322bbd9f26961c27ee1547fcd7370c",
+  "restored_from": "84147e4",
+  "source_hashes": {
+    "superpod_compute\\__init__.py": "3b69372f0952c6026a73962a21ea572b673a11ae1a696d60e7be1899e389a4cf",
+    "superpod_compute\\__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+    "superpod_compute\\api.py": "53baa403d9ea906a572b1a59460fe65de3990ad221a5797816c5eb155f87eb05",
+    "superpod_compute\\backends.py": "5a0b8bebe30589d69d71c8528a9882689892468c2b3676e51626422fb0d18def",
+    "superpod_compute\\cache.py": "b8bace331feaf84926beff2b1a6e246e06409c04cb4424dcc8c80423b21e6043",
+    "superpod_compute\\cli.py": "ab871bb8052cf05726b33cba3214d2a165a6a66b0be08cea188e8431238c4764",
+    "superpod_compute\\contracts.py": "e687e2d3370f657d8081cc86a54a1f303e3c11ae31181eaaad84d863c8105f16",
+    "superpod_compute\\operators.py": "9048f9d0e526eb7cc4ec0d0eb14290a84b517dc4714183f9dd485445f4d1ab87",
+    "superpod_compute\\scheduler.py": "6536e5c72f09df5754e59ec5b6c59a9a0053de3da59d14178c89ecfe9ce4fc7c"
+  },
+  "protocol": {
+    "dtype": "fp16",
+    "call": "torch.matmul(A,B,out=C)",
+    "input_layout": "contiguous A[M,K], B[K,N]",
+    "graph": true,
+    "rotating_inputs": false,
+    "preallocated_single_output": true,
+    "input_scale": 0.1,
+    "warmup_calls": 30,
+    "graph_warmup_replays": 6,
+    "graph_calls_large": 64,
+    "graph_calls_small": 256,
+    "large_threshold_flops": 1000000000.0,
+    "rounds": 2,
+    "event_samples_per_round": 25,
+    "statistic": "mean of the two per-GEMM GPU-event p50 values",
+    "precision_flags": "configure_precision disables fp16/bf16 reduced precision reduction and fp16 accumulation, same as historical 72-case Graph benchmark",
+    "timing": "GPU events around each full Graph replay; divide by Graph call count",
+    "differences_from_history": "current fifty shapes and 2D matmul(out) rather than historical 2D mm(out); no eager timing"
+  },
+  "acceptance": {
+    "per_case_abs_relative_error_pct": 10,
+    "fit_acceptance": false,
+    "model_parameter_change": false
+  },
+  "prediction_sources": {
+    "predictions.json": "8841ec33b52c13d7f06018f97f27bbf47b607568c06a100827f646484c2b579e",
+    "predictions_mac256.json": "db9934e737163907650cc9937842261942403edd74d009391c8774fa7d35501a"
+  },
+  "stage": "independent calibration; frozen before measurement",
+  "acceptance_ids": [
+    "01_decode_1x8192x8192",
+    "02_decode_1x28672x8192",
+    "03_decode_2x8192x8192",
+    "04_decode_2x28672x8192",
+    "05_decode_4x8192x8192",
+    "06_decode_4x28672x8192",
+    "07_decode_8x8192x8192",
+    "08_decode_8x28672x8192",
+    "09_decode_16x8192x8192",
+    "10_decode_16x28672x8192",
+    "11_decode_32x8192x8192",
+    "12_decode_32x28672x8192",
+    "13_prefill_512x8192x8192",
+    "14_prefill_1024x8192x8192",
+    "15_prefill_2048x8192x8192",
+    "16_prefill_4096x8192x8192",
+    "17_prefill_512x28672x8192",
+    "18_prefill_1024x28672x8192",
+    "19_prefill_2048x28672x8192",
+    "20_prefill_512x8192x28672",
+    "21_prefill_1024x8192x28672",
+    "22_prefill_2048x8192x28672",
+    "23_square_256x256x256",
+    "24_square_384x384x384",
+    "25_square_512x512x512",
+    "26_square_768x768x768",
+    "27_square_1024x1024x1024",
+    "28_square_1536x1536x1536",
+    "29_square_2048x2048x2048",
+    "30_square_3072x3072x3072",
+    "31_long_k_512x768x256",
+    "32_long_k_512x768x448",
+    "33_long_k_512x768x512",
+    "34_long_k_512x768x960",
+    "35_long_k_512x768x1024",
+    "36_long_k_512x768x4096",
+    "37_long_k_512x768x8192",
+    "38_long_k_512x768x16384",
+    "39_aspect_4096x256x1024",
+    "40_aspect_256x4096x1024",
+    "41_aspect_8192x128x1024",
+    "42_aspect_128x8192x1024",
+    "43_aspect_1536x1152x1024",
+    "44_aspect_3072x2304x1024"
+  ]
+}
