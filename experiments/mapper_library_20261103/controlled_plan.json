@@ -1,0 +1,248 @@
+{
+  "cases": [
+    {
+      "id": "cal_decode_1x6144x6144",
+      "shape": [
+        1,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_8x12288x6144",
+      "shape": [
+        8,
+        12288,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_decode_4x24576x8192",
+      "shape": [
+        4,
+        24576,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_384x6144x6144",
+      "shape": [
+        384,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_768x6144x6144",
+      "shape": [
+        768,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        384,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "14_prefill_1024x8192x8192",
+      "shape": [
+        1024,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "23_square_256x256x256",
+      "shape": [
+        256,
+        256,
+        256
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        32,
+        128
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "26_square_768x768x768",
+      "shape": [
+        768,
+        768,
+        768
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_square_1280x1280x1280",
+      "shape": [
+        1280,
+        1280,
+        1280
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "36_long_k_512x768x4096",
+      "shape": [
+        512,
+        768,
+        4096
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_long_k_384x1024x2048",
+      "shape": [
+        384,
+        1024,
+        2048
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "43_aspect_1536x1152x1024",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        192,
+        128,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    }
+  ],
+  "tiles": [
+    [
+      16,
+      128,
+      32
+    ],
+    [
+      64,
+      128,
+      32
+    ],
+    [
+      128,
+      128,
+      32
+    ],
+    [
+      128,
+      256,
+      32
+    ],
+    [
+      128,
+      128,
+      64
+    ]
+  ],
+  "protocol": {
+    "warmup_calls": 10,
+    "graph_calls": 16,
+    "graph_warmup_replays": 3,
+    "event_samples_per_round": 10,
+    "rounds": 2,
+    "num_warps": 4,
+    "num_stages": 1,
+    "dtype": "fp16",
+    "measurement": "GPU event mean of two medians; same A/B/C per case",
+    "scope": "Triton controlled output tiles/K steps, not a replication of vendor GEMM kernels; development only"
+  },
+  "no_fitting": "These results do not adjust the frozen validation predictions or retrieval rules."
+}

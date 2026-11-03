@@ -1,0 +1,1684 @@
+{
+  "hardware": {
+    "name": "BW1100-MMAC8-L2-directional-LDS-write-v3.2",
+    "cores": 72,
+    "clock_hz": 1300000000.0,
+    "arrays_per_core": 4,
+    "array_rows": 16,
+    "array_cols": 16,
+    "mac_per_cell_per_cycle": 2,
+    "vector_fp16_flops_per_cycle_per_core": 251.73611111111111,
+    "hbm_bandwidth_Bps": 1720000000000.0,
+    "hbm_latency_s": 0.0,
+    "hbm_capacity_bytes": 154602045440,
+    "l2_bytes": 8388608,
+    "l2_bytes_per_cycle": 2990,
+    "source_sram_bytes_per_core": 65536,
+    "shared_budget_bytes_per_core": 65536,
+    "register_budget_bytes_per_core": 786432,
+    "register_reserve_bytes_per_core": 32768,
+    "kernel_launch_s": 0.0,
+    "matrix_k_quantum": 16,
+    "matrix_backend": "mmac",
+    "instruction_m": 16,
+    "instruction_n": 16,
+    "instruction_k": 16,
+    "instruction_issue_cycles": 8,
+    "shared_read_bytes_per_cycle_per_core": 64,
+    "l2_read_bytes_per_cycle": 3768,
+    "l2_write_bytes_per_cycle": 2990,
+    "shared_write_bytes_per_cycle_per_core": 59.35200341023225
+  },
+  "policy": {
+    "bm_values": [
+      16,
+      32,
+      64,
+      128,
+      192,
+      256,
+      384
+    ],
+    "bn_values": [
+      16,
+      32,
+      64,
+      128,
+      192,
+      256,
+      384
+    ],
+    "bk_values": [
+      16,
+      32,
+      64,
+      128,
+      256,
+      512
+    ],
+    "buffer_counts": [
+      1,
+      2
+    ],
+    "add_shape_candidate": true,
+    "matrix_efficiency": 1.0,
+    "charge_hbm_latency": false,
+    "l2_transfer_latency_s": 0.0,
+    "epilogue_s_per_wave": 0.0,
+    "transfer_resource_mode": "independent",
+    "top_k": 5,
+    "input_reuse": true,
+    "initial_cache_state": "warm-if-fit",
+    "device_service_s": 3.121244690369221e-06,
+    "output_chunk_values": [
+      4096,
+      16384
+    ],
+    "output_buffer_counts": [
+      1,
+      2
+    ],
+    "calibration_hardware_sha256": "bcb718bd78d78ef7be5e5da1a1f5c5840d1381fac17798f803b959caa6320f1e",
+    "register_buffer_counts": [
+      1,
+      2
+    ]
+  },
+  "protocol": {
+    "dtype": "fp16",
+    "call": "torch.matmul(A,B,out=C)",
+    "input_layout": "contiguous A[M,K], B[K,N]",
+    "graph": true,
+    "rotating_inputs": false,
+    "preallocated_single_output": true,
+    "input_scale": 0.1,
+    "warmup_calls": 30,
+    "graph_warmup_replays": 6,
+    "graph_calls_large": 64,
+    "graph_calls_small": 256,
+    "large_threshold_flops": 1000000000.0,
+    "rounds": 2,
+    "event_samples_per_round": 25,
+    "statistic": "mean of the two per-GEMM GPU-event p50 values",
+    "precision_flags": "configure_precision disables fp16/bf16 reduced precision reduction and fp16 accumulation, same as historical 72-case Graph benchmark",
+    "timing": "GPU events around each full Graph replay; divide by Graph call count",
+    "differences_from_history": "current fifty shapes and 2D matmul(out) rather than historical 2D mm(out); no eager timing"
+  },
+  "cases": [
+    {
+      "id": "val_decode_1x10240x5120",
+      "shape": [
+        1,
+        10240,
+        5120
+      ],
+      "group": "decode",
+      "role": "validation"
+    },
+    {
+      "id": "val_decode_4x10240x5120",
+      "shape": [
+        4,
+        10240,
+        5120
+      ],
+      "group": "decode",
+      "role": "validation"
+    },
+    {
+      "id": "val_decode_16x10240x5120",
+      "shape": [
+        16,
+        10240,
+        5120
+      ],
+      "group": "decode",
+      "role": "validation"
+    },
+    {
+      "id": "val_decode_32x20480x5120",
+      "shape": [
+        32,
+        20480,
+        5120
+      ],
+      "group": "decode",
+      "role": "validation"
+    },
+    {
+      "id": "val_decode_2x5120x10240",
+      "shape": [
+        2,
+        5120,
+        10240
+      ],
+      "group": "decode",
+      "role": "validation"
+    },
+    {
+      "id": "val_decode_8x30720x5120",
+      "shape": [
+        8,
+        30720,
+        5120
+      ],
+      "group": "decode",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_512x10240x5120",
+      "shape": [
+        512,
+        10240,
+        5120
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_1024x10240x5120",
+      "shape": [
+        1024,
+        10240,
+        5120
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_2048x10240x5120",
+      "shape": [
+        2048,
+        10240,
+        5120
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_512x5120x20480",
+      "shape": [
+        512,
+        5120,
+        20480
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_1024x5120x20480",
+      "shape": [
+        1024,
+        5120,
+        20480
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_768x20480x5120",
+      "shape": [
+        768,
+        20480,
+        5120
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_1536x20480x5120",
+      "shape": [
+        1536,
+        20480,
+        5120
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_prefill_2048x5120x10240",
+      "shape": [
+        2048,
+        5120,
+        10240
+      ],
+      "group": "prefill",
+      "role": "validation"
+    },
+    {
+      "id": "val_square_576x576x576",
+      "shape": [
+        576,
+        576,
+        576
+      ],
+      "group": "square",
+      "role": "validation"
+    },
+    {
+      "id": "val_square_1216x1216x1216",
+      "shape": [
+        1216,
+        1216,
+        1216
+      ],
+      "group": "square",
+      "role": "validation"
+    },
+    {
+      "id": "val_square_1344x1344x1344",
+      "shape": [
+        1344,
+        1344,
+        1344
+      ],
+      "group": "square",
+      "role": "validation"
+    },
+    {
+      "id": "val_square_1408x1408x1408",
+      "shape": [
+        1408,
+        1408,
+        1408
+      ],
+      "group": "square",
+      "role": "validation"
+    },
+    {
+      "id": "val_long_k_640x1024x2048",
+      "shape": [
+        640,
+        1024,
+        2048
+      ],
+      "group": "long_k",
+      "role": "validation"
+    },
+    {
+      "id": "val_long_k_640x1024x6144",
+      "shape": [
+        640,
+        1024,
+        6144
+      ],
+      "group": "long_k",
+      "role": "validation"
+    },
+    {
+      "id": "val_long_k_640x1024x12288",
+      "shape": [
+        640,
+        1024,
+        12288
+      ],
+      "group": "long_k",
+      "role": "validation"
+    },
+    {
+      "id": "val_aspect_4096x320x2048",
+      "shape": [
+        4096,
+        320,
+        2048
+      ],
+      "group": "aspect",
+      "role": "validation"
+    },
+    {
+      "id": "val_aspect_320x4096x2048",
+      "shape": [
+        320,
+        4096,
+        2048
+      ],
+      "group": "aspect",
+      "role": "validation"
+    },
+    {
+      "id": "val_aspect_1280x2560x1024",
+      "shape": [
+        1280,
+        2560,
+        1024
+      ],
+      "group": "aspect",
+      "role": "validation"
+    }
+  ],
+  "development_cases": [
+    {
+      "id": "cal_decode_1x6144x6144",
+      "shape": [
+        1,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_1x12288x6144",
+      "shape": [
+        1,
+        12288,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_1x24576x6144",
+      "shape": [
+        1,
+        24576,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_8x6144x6144",
+      "shape": [
+        8,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_8x12288x6144",
+      "shape": [
+        8,
+        12288,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_8x24576x6144",
+      "shape": [
+        8,
+        24576,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_32x6144x6144",
+      "shape": [
+        32,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_32x12288x6144",
+      "shape": [
+        32,
+        12288,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_32x24576x6144",
+      "shape": [
+        32,
+        24576,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_8x12288x4096",
+      "shape": [
+        8,
+        12288,
+        4096
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_decode_8x12288x12288",
+      "shape": [
+        8,
+        12288,
+        12288
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_384x6144x6144",
+      "shape": [
+        384,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_768x6144x6144",
+      "shape": [
+        768,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        384,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_1536x6144x6144",
+      "shape": [
+        1536,
+        6144,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_768x24576x6144",
+      "shape": [
+        768,
+        24576,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_1536x24576x6144",
+      "shape": [
+        1536,
+        24576,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_768x6144x24576",
+      "shape": [
+        768,
+        6144,
+        24576
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_prefill_1536x6144x24576",
+      "shape": [
+        1536,
+        6144,
+        24576
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_square_192x192x192",
+      "shape": [
+        192,
+        192,
+        192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_square_320x320x320",
+      "shape": [
+        320,
+        320,
+        320
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_square_640x640x640",
+      "shape": [
+        640,
+        640,
+        640
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "cal_square_1280x1280x1280",
+      "shape": [
+        1280,
+        1280,
+        1280
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "01_decode_1x8192x8192",
+      "shape": [
+        1,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "02_decode_1x28672x8192",
+      "shape": [
+        1,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "03_decode_2x8192x8192",
+      "shape": [
+        2,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "04_decode_2x28672x8192",
+      "shape": [
+        2,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "05_decode_4x8192x8192",
+      "shape": [
+        4,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "06_decode_4x28672x8192",
+      "shape": [
+        4,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "07_decode_8x8192x8192",
+      "shape": [
+        8,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "08_decode_8x28672x8192",
+      "shape": [
+        8,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "09_decode_16x8192x8192",
+      "shape": [
+        16,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "10_decode_16x28672x8192",
+      "shape": [
+        16,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "11_decode_32x8192x8192",
+      "shape": [
+        32,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "12_decode_32x28672x8192",
+      "shape": [
+        32,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "13_prefill_512x8192x8192",
+      "shape": [
+        512,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "14_prefill_1024x8192x8192",
+      "shape": [
+        1024,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "15_prefill_2048x8192x8192",
+      "shape": [
+        2048,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "16_prefill_4096x8192x8192",
+      "shape": [
+        4096,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "17_prefill_512x28672x8192",
+      "shape": [
+        512,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "18_prefill_1024x28672x8192",
+      "shape": [
+        1024,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "19_prefill_2048x28672x8192",
+      "shape": [
+        2048,
+        28672,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "20_prefill_512x8192x28672",
+      "shape": [
+        512,
+        8192,
+        28672
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "21_prefill_1024x8192x28672",
+      "shape": [
+        1024,
+        8192,
+        28672
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "22_prefill_2048x8192x28672",
+      "shape": [
+        2048,
+        8192,
+        28672
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "23_square_256x256x256",
+      "shape": [
+        256,
+        256,
+        256
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        32,
+        128
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "24_square_384x384x384",
+      "shape": [
+        384,
+        384,
+        384
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        64,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "25_square_512x512x512",
+      "shape": [
+        512,
+        512,
+        512
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        64,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "26_square_768x768x768",
+      "shape": [
+        768,
+        768,
+        768
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "27_square_1024x1024x1024",
+      "shape": [
+        1024,
+        1024,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "28_square_1536x1536x1536",
+      "shape": [
+        1536,
+        1536,
+        1536
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "29_square_2048x2048x2048",
+      "shape": [
+        2048,
+        2048,
+        2048
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "30_square_3072x3072x3072",
+      "shape": [
+        3072,
+        3072,
+        3072
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "31_long_k_512x768x256",
+      "shape": [
+        512,
+        768,
+        256
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "32_long_k_512x768x448",
+      "shape": [
+        512,
+        768,
+        448
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "33_long_k_512x768x512",
+      "shape": [
+        512,
+        768,
+        512
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "34_long_k_512x768x960",
+      "shape": [
+        512,
+        768,
+        960
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "35_long_k_512x768x1024",
+      "shape": [
+        512,
+        768,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "36_long_k_512x768x4096",
+      "shape": [
+        512,
+        768,
+        4096
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "37_long_k_512x768x8192",
+      "shape": [
+        512,
+        768,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "38_long_k_512x768x16384",
+      "shape": [
+        512,
+        768,
+        16384
+      ],
+      "role": "development",
+      "kernel_count": 2,
+      "supported": false
+    },
+    {
+      "id": "39_aspect_4096x256x1024",
+      "shape": [
+        4096,
+        256,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "40_aspect_256x4096x1024",
+      "shape": [
+        256,
+        4096,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "41_aspect_8192x128x1024",
+      "shape": [
+        8192,
+        128,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "42_aspect_128x8192x1024",
+      "shape": [
+        128,
+        8192,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        128,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "43_aspect_1536x1152x1024",
+      "shape": [
+        1536,
+        1152,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        192,
+        128,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "44_aspect_3072x2304x1024",
+      "shape": [
+        3072,
+        2304,
+        1024
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        384,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_decode_2x16384x6144",
+      "shape": [
+        2,
+        16384,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        16,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_decode_16x32768x8192",
+      "shape": [
+        16,
+        32768,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_decode_4x24576x8192",
+      "shape": [
+        4,
+        24576,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_decode_32x16384x12288",
+      "shape": [
+        32,
+        16384,
+        12288
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        32,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_prefill_640x8192x8192",
+      "shape": [
+        640,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        384,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_prefill_1536x8192x8192",
+      "shape": [
+        1536,
+        8192,
+        8192
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_prefill_1024x16384x6144",
+      "shape": [
+        1024,
+        16384,
+        6144
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        16
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_prefill_2048x6144x16384",
+      "shape": [
+        2048,
+        6144,
+        16384
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        256,
+        256,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_square_448x448x448",
+      "shape": [
+        448,
+        448,
+        448
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        64,
+        64,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_square_896x896x896",
+      "shape": [
+        896,
+        896,
+        896
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_long_k_384x1024x2048",
+      "shape": [
+        384,
+        1024,
+        2048
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        64,
+        64
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    },
+    {
+      "id": "hold_aspect_2048x384x2048",
+      "shape": [
+        2048,
+        384,
+        2048
+      ],
+      "role": "development",
+      "kernel_count": 1,
+      "supported": true,
+      "tile": [
+        96,
+        128,
+        32
+      ],
+      "source": "observed BW1100 torch.matmul FP16 row-major dispatch"
+    }
+  ],
+  "development_count": 78,
+  "validation_count": 24,
+  "retrieval": {
+    "metric": "sum absolute log2 ratio of M,N,K; equal weights; tie by source id",
+    "distinct_templates": 5
+  },
+  "frozen_cost": {
+    "matrix_efficiency": 0.87,
+    "input_hbm_bandwidth_Bps": 1923451164939.4888,
+    "calibration_source": "previous 22 development cases; reused without validation tuning"
+  },
+  "baseline_commit": "20d3cc3",
+  "data_rule": "All old 44+22+12 are DEVELOPMENT here. Only the new 24 are independent validation. No validation trace used for selection."
+}

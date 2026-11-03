@@ -1,0 +1,16 @@
+cache/
+cache_checks/
+outputs/
+initial_partial_predictions_superseded.json
+*.json
+!frozen_plan.json
+!controlled_plan.json
+*.log
+*_measure.json
+predictions.json
+prediction_seal.json
+analysis.json
+controlled_predictions.json
+telemetry*.json
+env_probe.json
+report_qa.json
