@@ -1,9 +1,0 @@
-{
-  "case": "large_axis_K_1536x1152x1023_contiguous",
-  "files": {
-    "report.csv": "b35bb8998379c09e587d4c7cacbaeabe873f22b508f276751a079ce3a5bae11d",
-    "status.json": "cea605e48f925410a99945b1da2b949531d8c650811ae1772d09fe48e8daa87a",
-    "command.json": "2d10a4c3d2c65015457595f254dcad39d7a110294f4f50c7e7074810d1da4ac2"
-  },
-  "scope": "Explicit CSV/status/command allowlist; no binaries or log directories"
-}

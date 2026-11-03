@@ -28,7 +28,7 @@ class ContractsTests(unittest.TestCase):
         with self.assertRaises(ValueError):GemmRequest(1,2,3,dtype='fp32')
         for kwargs in [{'clock_hz':0},{'hbm_bandwidth_Bps':math.nan},{'cores':1.5},{'shared_budget_bytes_per_core':300*1024}]:
             with self.assertRaises(ValueError):Hardware(**kwargs)
-        for kwargs in [{'matrix_efficiency':2},{'buffer_counts':(9,)},{'bm_values':()},{'charge_hbm_latency':'yes'}]:
+        for kwargs in [{'matrix_efficiency':2},{'buffer_counts':(3,)},{'bm_values':()},{'charge_hbm_latency':'yes'}]:
             with self.assertRaises(ValueError):Policy(**kwargs)
     def test_hbm_capacity(self):
         with self.assertRaisesRegex(ValueError,'HBM'):predict(GemmRequest(10**9,10**9,10**9),policy=SMALL)

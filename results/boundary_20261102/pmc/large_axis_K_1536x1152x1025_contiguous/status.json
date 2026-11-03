@@ -1,5 +1,0 @@
-{
-  "returncode": 0,
-  "case": "large_axis_K_1536x1152x1025_contiguous",
-  "scope": "Hardware counters only. Profiling duration not used as benchmark latency."
-}

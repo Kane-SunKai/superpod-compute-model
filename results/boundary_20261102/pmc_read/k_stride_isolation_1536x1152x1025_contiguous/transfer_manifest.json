@@ -1,9 +1,0 @@
-{
-  "case": "k_stride_isolation_1536x1152x1025_contiguous",
-  "files": {
-    "report.csv": "e542e3f35945c82ea84a2290450a84608336fbdfcba0aa0b588d30eddc06ec76",
-    "status.json": "9c363a35acdcc9b8f7f69bb7ad6fb89cf21c9d54cff8335fe27557b0a4f195c9",
-    "command.json": "92097f5e52e786392f5248d30c048f018e349e3d38a51efdadbc8adecd8d5f0a"
-  },
-  "scope": "Explicit CSV/status/command allowlist; no binaries or log directories"
-}

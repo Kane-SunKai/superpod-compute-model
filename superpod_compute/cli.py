@@ -16,7 +16,6 @@ def parser():
         c=sub.add_parser(name,help='Search mappings' if name=='gemm' else 'Evaluate one mapping and export its representative wave trace')
         c.add_argument('--m',type=int,required=True);c.add_argument('--n',type=int,required=True);c.add_argument('--k',type=int,required=True)
         c.add_argument('--dtype',choices=('fp16','bf16'),default='fp16');c.add_argument('--hardware',type=Path);c.add_argument('--policy',type=Path)
-        c.add_argument('--rhs-storage',choices=('kn-contiguous','nk-contiguous-transposed'),default='kn-contiguous',help='Physical RHS layout: B[K,N], or W[N,K] used as W.T by AIOB/linear')
         c.add_argument('--backend',choices=('auto','array','peak','mmac','mac-throughput'),default='auto');c.add_argument('--output',type=Path)
         c.add_argument('--json',action='store_true',help='Print full JSON instead of a concise summary')
         if name=='gemm':
@@ -41,13 +40,13 @@ def main(argv=None):
             cache=MappingCache(args.path)
             if args.action=='clear':cache.clear()
             print(f'entries={cache.count()}');return 0
-        request=GemmRequest(args.m,args.n,args.k,args.dtype,rhs_storage=args.rhs_storage);hardware=Hardware.load(args.hardware)
+        request=GemmRequest(args.m,args.n,args.k,args.dtype);hardware=Hardware.load(args.hardware)
         policy=Policy(**json.loads(args.policy.read_text(encoding='utf-8-sig'))) if args.policy else Policy()
         if args.command=='evaluate':
             values=[int(v) for v in args.mapping.split(',')]
             if len(values) not in (7,9,10):raise ValueError('--mapping requires 7, 9, or 10 integers (the 10th is register operand buffers)')
             if args.trace_panels<0 or args.trace_panels>10000:raise ValueError('--trace-panels must be 0..10000')
-            result=evaluate_mapping(request,Mapping(*values,output_route=policy.output_route),hardware,policy=policy,backend=args.backend,trace_limit=args.trace_panels)
+            result=evaluate_mapping(request,Mapping(*values),hardware,policy=policy,backend=args.backend,trace_limit=args.trace_panels)
             best=result
         else:
             progress=(lambda total,valid:print(f'candidates={total}, feasible={valid}',file=sys.stderr)) if args.progress else None

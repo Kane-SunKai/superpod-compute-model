@@ -1,9 +1,0 @@
-{
-  "case": "stride_intervention_1537x1153x1023_pad_a16",
-  "files": {
-    "report.csv": "adf39e89750427e9c90534bf402361ee18981d56d4071e3a33c76d5fab59add2",
-    "status.json": "3d2300dfb6acb38461e4b93933744c627aa62186eb8efc40090eca5fdcff2b63",
-    "command.json": "020c198a9dfa34b13365009482aecb84994f392c12d647a74540558803ecd02e"
-  },
-  "scope": "Explicit CSV/status/command allowlist; no binaries or log directories"
-}

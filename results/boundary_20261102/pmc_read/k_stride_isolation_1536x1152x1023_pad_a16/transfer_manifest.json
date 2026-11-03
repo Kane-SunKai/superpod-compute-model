@@ -1,9 +1,0 @@
-{
-  "case": "k_stride_isolation_1536x1152x1023_pad_a16",
-  "files": {
-    "report.csv": "77480dd605450e71773bbde0998bb7dcb7bf8ec40ae19151e329f550090f712e",
-    "status.json": "0ace6704f0fd15d6331cb04e46c72de90ad8be364abd9fd95b0baa72b7c2ed22",
-    "command.json": "3cf6cd21993ecbcd7a21e4ddd96d6b7b86345c1e57b4346bffa432c1c6a831c2"
-  },
-  "scope": "Explicit CSV/status/command allowlist; no binaries or log directories"
-}

@@ -1,9 +1,0 @@
-{
-  "case": "historical_irregular_1537x1153x1023_contiguous",
-  "files": {
-    "report.csv": "a2041e7f27481c5c9296b1404323c1752e3bf553be78288c474a2fc8b3ccf62d",
-    "status.json": "2ab7a7ba934d86c7b56c01d8de162aeb39e7af1dac4d57b28dd63f7ed44dd32a",
-    "command.json": "ae8d753e3e5f8b8fe22f251a81fd1a3b66c3ba0f34982cd7b50c1ae3bf518e42"
-  },
-  "scope": "Explicit CSV/status/command allowlist; no binaries or log directories"
-}

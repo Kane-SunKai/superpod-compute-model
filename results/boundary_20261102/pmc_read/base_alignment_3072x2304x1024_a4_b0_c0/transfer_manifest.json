@@ -1,9 +1,0 @@
-{
-  "case": "base_alignment_3072x2304x1024_a4_b0_c0",
-  "files": {
-    "report.csv": "afd665f54fc6e6d3a3eacb68d894ceab6c8939ee8d908b126fe7da73cc29fb4d",
-    "status.json": "fffc78d580cad9013c577aa3774d22f29898f69750b3d384c8ef4c86adef3452",
-    "command.json": "6e7c55d10a01701ed8198f23a370e3aedc898894b25d1fe288e514a1f9b605c3"
-  },
-  "scope": "Explicit CSV/status/command allowlist; no binaries or log directories"
-}

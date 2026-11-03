@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-layout-geometry-3.5'
-SEARCH_VERSION = 'dense-candidates-geometry-frontier-3.5'
+MODEL_VERSION = 'resident-k-directional-output-service-3.2'
+SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
@@ -31,26 +31,12 @@ class GemmRequest:
     accumulator_dtype: str = 'fp32'
     layout: str = 'row-major-contiguous'
     operator: str = 'gemm'
-    rhs_storage: str = 'kn-contiguous'
 
     def __post_init__(self):
         for name in ('M', 'N', 'K'):
             integer(getattr(self, name), name, 0)
         if self.operator != 'gemm' or self.dtype not in ('fp16', 'bf16') or self.accumulator_dtype != 'fp32' or self.layout != 'row-major-contiguous':
             raise ValueError('V1 GEMM supports contiguous fp16/bf16 input/output, fp32 accumulation, C=AB only')
-        if self.rhs_storage not in ('kn-contiguous','nk-contiguous-transposed'):
-            raise ValueError('rhs_storage must describe contiguous B[K,N] or contiguous W[N,K] transposed')
-
-    def storage_description(self):
-        """Logical multiplication stays A@B; transposition here is a view."""
-        linear=self.rhs_storage=='nk-contiguous-transposed'
-        return {'A_shape':[self.M,self.K],'A_strides_elements':[self.K,1],
-                'logical_B_shape':[self.K,self.N],
-                'logical_B_strides_elements':[1,self.K] if linear else [self.N,1],
-                'physical_rhs_shape':[self.N,self.K] if linear else [self.K,self.N],
-                'physical_rhs_strides_elements':[self.K,1] if linear else [self.N,1],
-                'output_shape':[self.M,self.N],'output_strides_elements':[self.N,1],
-                'transpose_requires_copy':False}
 
     def to_dict(self):
         return asdict(self)
@@ -142,7 +128,6 @@ class Policy:
     matrix_efficiency: float = 1.0
     charge_hbm_latency: bool = False
     l2_transfer_latency_s: float = 0.0
-    input_read_latency_s: float = 0.0
     epilogue_s_per_wave: float = 0.0
     transfer_resource_mode: str = 'independent'
     top_k: int = 5
@@ -153,7 +138,6 @@ class Policy:
     output_buffer_counts: tuple = (1,2)
     calibration_hardware_sha256: str = ''
     register_buffer_counts: tuple = (1,2)
-    output_route: str = 'via-shared'
 
     def __post_init__(self):
         for name in ('add_shape_candidate','charge_hbm_latency','input_reuse'):
@@ -164,17 +148,16 @@ class Policy:
                 raise ValueError(f'{name} must contain unique positive integers')
             for v in values:
                 integer(v,name)
-            if name in ('buffer_counts','output_buffer_counts','register_buffer_counts') and not set(values)<=set(range(1,9)):
-                raise ValueError('The bounded pipeline supports one through eight buffers')
+            if name in ('buffer_counts','output_buffer_counts','register_buffer_counts') and not set(values)<= {1,2}:
+                raise ValueError('Only one or two buffers are supported by the fast pipeline')
         positive(self.matrix_efficiency,'matrix_efficiency')
         if self.matrix_efficiency>1:raise ValueError('matrix_efficiency must be <= 1')
-        for name in ('l2_transfer_latency_s','input_read_latency_s','epilogue_s_per_wave','device_service_s'):
+        for name in ('l2_transfer_latency_s','epilogue_s_per_wave','device_service_s'):
             positive(getattr(self,name),name,True)
         if self.transfer_resource_mode not in ('independent','shared-port'):
             raise ValueError('Unknown transfer resource mode')
         integer(self.top_k,'top_k')
         if self.initial_cache_state not in ('cold','warm-if-fit'):raise ValueError('Invalid initial cache state')
-        if self.output_route not in ('via-shared','direct-register'):raise ValueError('Invalid output route')
         fingerprint=self.calibration_hardware_sha256
         if not isinstance(fingerprint,str) or (fingerprint and (len(fingerprint)!=64 or any(c not in '0123456789abcdef' for c in fingerprint))):
             raise ValueError('calibration_hardware_sha256 must be an empty string or lowercase SHA256')
@@ -193,12 +176,9 @@ class Mapping:
     output_chunk_bytes: int = 16384
     output_buffers: int = 2
     register_input_buffers: int = 2
-    output_route: str = 'via-shared'
 
     def __post_init__(self):
-        for name,value in asdict(self).items():
-            if name!='output_route':integer(value,name)
-        if self.output_route not in ('via-shared','direct-register'):raise ValueError('Invalid output route')
-        if any(x not in range(1,9) for x in (self.l2_buffers,self.shared_buffers,self.output_buffers,self.register_input_buffers)):raise ValueError('buffer count must be between 1 and 8')
+        for name,value in asdict(self).items():integer(value,name)
+        if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2) or self.output_buffers not in (1,2) or self.register_input_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
 
     def to_dict(self):return asdict(self)

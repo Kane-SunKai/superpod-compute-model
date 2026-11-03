@@ -1,40 +1,13 @@
 """Operator plugins supply legal mappings and work; scheduler/cache stay generic."""
 from collections import Counter
 from math import ceil, isqrt
-from functools import lru_cache
 from typing import Protocol
 from .contracts import Mapping
-from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline, direct_output_pipeline
+from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline
 from .backends import mmac_operand_plan
 
 def ceildiv(a,b):return (a+b-1)//b
 def align(a,q):return ceildiv(a,q)*q
-
-@lru_cache(maxsize=8192)
-def group_geometries(tiles_m,tiles_n,cores):
-    """Keep legacy groupings and add maximal legal rectangular CU groups.
-
-    A group does not have to divide the physical CU count. E.g. ten by seven
-    workgroups fit on 72 CUs. Divisor-only enumeration missed this geometry.
-    The new frontier has at most O(sqrt(cores)) distinct maximal rectangles.
-    """
-    factors=[]
-    for d in range(1,isqrt(cores)+1):
-        if cores%d==0:factors.extend([(d,cores//d),(cores//d,d)])
-    factors.extend((g,g) for g in (1,2,4,8))
-    result=set()
-    for gm,gn in factors:
-        gm=max(1,min(gm,tiles_m));gn=max(1,min(gn,tiles_n,cores//gm))
-        if gm*gn<=cores:result.add((gm,gn))
-    maximal={}
-    for gm in range(1,min(tiles_m,cores)+1):
-        gn=min(tiles_n,cores//gm)
-        maximal[gn]=gm
-    frontier=tuple((gm,gn) for gn,gm in maximal.items())
-    for gm,gn in frontier:
-        if not any(m>=gm and n>=gn and (m>gm or n>gn) for m,n in frontier):
-            result.add((gm,gn))
-    return tuple(sorted(result))
 
 class OperatorModel(Protocol):
     name: str
@@ -64,11 +37,9 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-output-route-experimental-3.4'
+    version='dense-resident-c-directional-output-3.2'
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
-    def run_operand_pipeline(self,segments,mapping,hardware,**kwargs):
-        return operand_pipeline(segments,mapping.l2_buffers,mapping.shared_buffers,mapping.register_input_buffers,**kwargs)
     @staticmethod
     def rank_key(result):
         m=result['mapping']
@@ -90,14 +61,13 @@ class GemmModel:
     def capacity(mapping,hardware):
         p=mapping;gm=p.gm*p.bm;gn=p.gn*p.bn
         inputs=p.shared_buffers*(p.bm+p.bn)*p.bk*2
-        output_window=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
-        output=output_window if p.output_route=='via-shared' else 0
+        output=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
         registers=p.bm*p.bn*4+hardware.register_reserve_bytes_per_core
         operand_registers=0
         if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core:
             operand_registers=p.register_input_buffers*mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1]
             registers+=operand_registers
-        l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output_window
+        l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output
         reasons=[]
         if max(inputs,output)>hardware.shared_budget_bytes_per_core:reasons.append('shared')
         if registers>hardware.register_budget_bytes_per_core:reasons.append('registers')
@@ -108,10 +78,17 @@ class GemmModel:
     def candidates(self,request,hardware,policy):
         def values(base,dim):
             return sorted(set(base)|({min(max(base),max(min(base),align(dim,hardware.matrix_k_quantum)))} if policy.add_shape_candidate else set()))
+        factors=[]
+        for d in range(1,isqrt(hardware.cores)+1):
+            if hardware.cores%d==0:
+                factors.extend([(d,hardware.cores//d),(hardware.cores//d,d)])
+        factors.extend((g,g) for g in (1,2,4,8))
         for bm in values(policy.bm_values,request.M):
             for bn in values(policy.bn_values,request.N):
-                tm,tn=ceildiv(request.M,bm),ceildiv(request.N,bn)
-                geometries=group_geometries(tm,tn,hardware.cores)
+                tm,tn=ceildiv(request.M,bm),ceildiv(request.N,bn);geometries=set()
+                for gm,gn in factors:
+                    gm=max(1,min(gm,tm));gn=max(1,min(gn,tn,hardware.cores//gm))
+                    if gm*gn<=hardware.cores:geometries.add((gm,gn))
                 for bk in values(policy.bk_values,request.K):
                     for gm,gn in sorted(geometries):
                         for L in policy.buffer_counts:
@@ -121,7 +98,7 @@ class GemmModel:
                                 for chunk in chunks:
                                     for O in policy.output_buffer_counts:
                                         counts=policy.register_buffer_counts if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core else (2,)
-                                        for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V,policy.output_route)
+                                        for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V)
 
     def evaluate(self,request,hardware,policy,backend,mapping,trace_limit=0):
         p=mapping;cap=self.capacity(p,hardware)
@@ -163,7 +140,7 @@ class GemmModel:
                 if not amount:continue
                 per_core=max(min(chunk,max(0,size-lo*chunk)) for size,_ in sizes)
                 bw=hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz
-                tw=per_core/bw if bw and p.output_route=='via-shared' else 0.0
+                tw=per_core/bw if bw else 0.0
                 tr=amount/hardware.l2_write_bandwidth_Bps+policy.l2_transfer_latency_s
                 # Drain is a streamed L2 read + HBM write; bottleneck rate, not
                 # two copies of the same link service. No extra output LDS read.
@@ -172,14 +149,9 @@ class GemmModel:
                 byte_runs.append({'chunks':hi-lo,'bytes_per_chunk_all_cores':amount,
                                   'max_bytes_per_chunk_per_core':per_core,'register_to_shared_s':tw,
                                   'l2_write_s':tr,'l2_read_hbm_drain_s':th})
-            if p.output_route=='via-shared':
-                run=output_pipeline(segments,p.output_buffers,p.output_buffers,shared_port=shared_port,trace_limit=trace_limit)
-            else:
-                run=direct_output_pipeline([(num,l,d) for num,_,l,d in segments],p.output_buffers,
-                                           shared_port=shared_port,trace_limit=trace_limit)
+            run=output_pipeline(segments,p.output_buffers,p.output_buffers,shared_port=shared_port,trace_limit=trace_limit)
             value={'duration_s':run['duration_s']+policy.epilogue_s_per_wave,'byte_runs':byte_runs,'pipeline':run,
-                   'output_route':p.output_route,
-                   'shared_output_limit_per_core':cap['shared_output_bytes'],
+                   'shared_output_limit_per_core':min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers),
                    'l2_output_window_limit':p.gm*p.gn*min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers),
                    'register_to_shared_service_s':sum(num*tw for num,tw,_,_ in segments),
                    'output_shared_read_charged':False}
@@ -219,9 +191,9 @@ class GemmModel:
                                        'retained_operand':('AB' if warm else order if hit else None)})
                     hbytes+=count*number*dh;rbytes+=count*number*dr;saved+=count*number*((m+n)*k*2-dh)
                 if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend in ('mmac','mac-throughput'):
-                    run=self.run_operand_pipeline(segments,p,hardware,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
+                    run=operand_pipeline(segments,p.l2_buffers,p.shared_buffers,p.register_input_buffers,shared_port=shared_port,trace_limit=trace_limit)
                 else:
-                    run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit,read_latency_s=policy.input_read_latency_s)
+                    run=pipeline_segments([(num,h,r,c) for num,h,r,_,c in segments],p.l2_buffers,p.shared_buffers,shared_port=shared_port,trace_limit=trace_limit)
                 output=output_plan(m,n)
                 per_wave=run['duration_s']+output['duration_s'];total+=count*per_wave
                 out=m*n*2;obytes+=count*out;wave_count+=count
@@ -234,8 +206,7 @@ class GemmModel:
                                 'pipeline':run,'output_stream':output,'epilogue_s':policy.epilogue_s_per_wave,
                                 'write_to_l2_s':out/hardware.l2_write_bandwidth_Bps,'write_to_hbm_s':out/hardware.hbm_bandwidth_Bps,'duration_s':per_wave})
             notes=['resident FP32 C registers across all K panels; sequential output waves',
-                   ('C output: FP16 register->Shared write, L2 write, L2-read/HBM drain; bounded Shared and L2 slots' if p.output_route=='via-shared'
-                    else 'C output: FP16 direct register->L2 write, L2-read/HBM drain; bounded L2 windows; no output Shared allocation'),
+                   'C output: FP16 register->Shared write, L2 write, L2-read/HBM drain; bounded Shared and L2 slots',
                    'Shared output readback deliberately has no separate time; output conversion/layout cost remains configurable',
                    'directional L2 bandwidths; endpoint streaming uses max times; full shared-port/cache contention is not modeled',
                    'L2 prefix retention is a planned ideal residence policy, not measured hardware cache behavior',
@@ -243,13 +214,9 @@ class GemmModel:
                    'optional Shared->register service uses an explicit rectangular-engine operand reuse plan; independent LDS read/write ports assumed',
                    'FP16/BF16 share 16-bit service; conversion/layout execution cost remains a separate configurable term',
                    'device_service_s is additive per GEMM, distinct from hardware.kernel_launch_s host submission setting',
-                   'optional input read latency delays response readiness without occupying payload bandwidth; default zero preserves the V3.2 baseline; a scalar pointer-chase latency is not automatically a bulk-copy parameter',
                    'matrix service selected by hardware/backend; no GEMM-shape-dependent correction']
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
-                    'operand_storage':request.storage_description(),
-                    'layout_service_scope':'logical byte counts; implementation-specific service requires an execution profile',
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
-                    'input_read_latency_s':policy.input_read_latency_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,
                     'reuse_order':order,'retention_budget_bytes':spare,'hbm_bytes_saved_by_reuse':saved,
                     'wave_count':wave_count,'wave_classes':classes,'hbm_read_bytes':hbytes,'l2_to_core_bytes':rbytes,'output_bytes':obytes,

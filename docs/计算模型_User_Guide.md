@@ -112,37 +112,3 @@ $py = Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\de
 新字段默认0时表示兼容旧行为：L2读写回退到旧统一字段；Shared输出写不计费。当前BW1100配置已明确填入新值。
 输出沿 W(寄存器→Shared) → L(L2写) → D(L2读/HBM写) 调度；Shared槽在L结束释放，L2槽在D结束释放。Shared输出读回不单独计时。
 两模型沿用原固定服务3.121245 µs，未重新拟合。硬件指纹已更新，含义是显式迁移同一固定服务用于受控比较，不是重新校准。
-
-## 11. 显式指定C输出路径（实验接口）
-
-策略JSON现在支持 `output_route`：
-
-- `via-shared`：原路径，累加寄存器→Shared→L2→HBM。省略字段时仍使用此项。
-- `direct-register`：寄存器直接写L2，再排出到HBM；不分配输出Shared槽，不计算寄存器→Shared写时间。
-
-应该按目标内核实际的数据流选择，不能在两种路径中挑更接近实测的一种当校准。当前仅在两个已检查的BW1100 GEMM内核中确认了直接输出；其他内核需要独立核查。直接输出的转换/短写指令服务仍未完善，不能认为切换后就已对齐真实内核。
-
-本机演示一次指定分块的直接输出预测：
-
-```powershell
-cd 'D:\01codex_work\03_super node\compute_model'
-& $py -m superpod_compute evaluate `
-  --m 3072 --n 2304 --k 1024 `
-  --hardware superpod_compute/data/bw1100.json `
-  --policy examples/bw1100_graph_direct_output.json `
-  --mapping 384,256,16,8,9,1,3,4096,2,1 `
-  --output results/direct_output_example.json
-```
-
-`$py`沿用前文Python路径。此命令演示输出路径接口，不代表输入访存、wave划分、尾部代码都已复刻厂商内核。`evaluate`从策略读取输出路径；Python直接调用`evaluate_mapping`时，以`Mapping(..., output_route='direct-register')`明确指定路径。搜索接口`predict`则从`Policy.output_route`生成对应的映射。
-
-结果中的 `mapping.output_route` 和每类工作波的 `output_stream.output_route` 会显示所用路径。直接输出的 `shared_output_limit_per_core=0`，流水线只含 `register-to-L2`、`L2-read/HBM-drain`。两种路径的输入搬运、矩阵算力和总输出字节数不因该字段而改变。缓存签名包含该选项，不混用两条路径的搜索结果。
-
-复现本次固定分块的输出路径对照：
-
-```powershell
-& $py tools/diagnostics/compare_output_routes.py `
-  --output results/boundary_20261102/output_route_comparison_rerun.json
-```
-
-该脚本沿用已归档实测和映射，修改的只有输出路径，不重新选择映射、拟合算力或使用GEMM结果调参。本次差异仅0.053～0.106 µs，未提高15%阈值内的样本数量，具体见诊断文档第18节。
