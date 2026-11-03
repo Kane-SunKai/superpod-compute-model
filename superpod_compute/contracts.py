@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-output-route-experimental-3.4'
-SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
+MODEL_VERSION = 'resident-k-layout-geometry-3.5'
+SEARCH_VERSION = 'dense-candidates-geometry-frontier-3.5'
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
@@ -31,12 +31,26 @@ class GemmRequest:
     accumulator_dtype: str = 'fp32'
     layout: str = 'row-major-contiguous'
     operator: str = 'gemm'
+    rhs_storage: str = 'kn-contiguous'
 
     def __post_init__(self):
         for name in ('M', 'N', 'K'):
             integer(getattr(self, name), name, 0)
         if self.operator != 'gemm' or self.dtype not in ('fp16', 'bf16') or self.accumulator_dtype != 'fp32' or self.layout != 'row-major-contiguous':
             raise ValueError('V1 GEMM supports contiguous fp16/bf16 input/output, fp32 accumulation, C=AB only')
+        if self.rhs_storage not in ('kn-contiguous','nk-contiguous-transposed'):
+            raise ValueError('rhs_storage must describe contiguous B[K,N] or contiguous W[N,K] transposed')
+
+    def storage_description(self):
+        """Logical multiplication stays A@B; transposition here is a view."""
+        linear=self.rhs_storage=='nk-contiguous-transposed'
+        return {'A_shape':[self.M,self.K],'A_strides_elements':[self.K,1],
+                'logical_B_shape':[self.K,self.N],
+                'logical_B_strides_elements':[1,self.K] if linear else [self.N,1],
+                'physical_rhs_shape':[self.N,self.K] if linear else [self.K,self.N],
+                'physical_rhs_strides_elements':[self.K,1] if linear else [self.N,1],
+                'output_shape':[self.M,self.N],'output_strides_elements':[self.N,1],
+                'transpose_requires_copy':False}
 
     def to_dict(self):
         return asdict(self)

@@ -1,6 +1,7 @@
 """Operator plugins supply legal mappings and work; scheduler/cache stay generic."""
 from collections import Counter
 from math import ceil, isqrt
+from functools import lru_cache
 from typing import Protocol
 from .contracts import Mapping
 from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline, direct_output_pipeline
@@ -8,6 +9,32 @@ from .backends import mmac_operand_plan
 
 def ceildiv(a,b):return (a+b-1)//b
 def align(a,q):return ceildiv(a,q)*q
+
+@lru_cache(maxsize=8192)
+def group_geometries(tiles_m,tiles_n,cores):
+    """Keep legacy groupings and add maximal legal rectangular CU groups.
+
+    A group does not have to divide the physical CU count. E.g. ten by seven
+    workgroups fit on 72 CUs. Divisor-only enumeration missed this geometry.
+    The new frontier has at most O(sqrt(cores)) distinct maximal rectangles.
+    """
+    factors=[]
+    for d in range(1,isqrt(cores)+1):
+        if cores%d==0:factors.extend([(d,cores//d),(cores//d,d)])
+    factors.extend((g,g) for g in (1,2,4,8))
+    result=set()
+    for gm,gn in factors:
+        gm=max(1,min(gm,tiles_m));gn=max(1,min(gn,tiles_n,cores//gm))
+        if gm*gn<=cores:result.add((gm,gn))
+    maximal={}
+    for gm in range(1,min(tiles_m,cores)+1):
+        gn=min(tiles_n,cores//gm)
+        maximal[gn]=gm
+    frontier=tuple((gm,gn) for gn,gm in maximal.items())
+    for gm,gn in frontier:
+        if not any(m>=gm and n>=gn and (m>gm or n>gn) for m,n in frontier):
+            result.add((gm,gn))
+    return tuple(sorted(result))
 
 class OperatorModel(Protocol):
     name: str
@@ -81,17 +108,10 @@ class GemmModel:
     def candidates(self,request,hardware,policy):
         def values(base,dim):
             return sorted(set(base)|({min(max(base),max(min(base),align(dim,hardware.matrix_k_quantum)))} if policy.add_shape_candidate else set()))
-        factors=[]
-        for d in range(1,isqrt(hardware.cores)+1):
-            if hardware.cores%d==0:
-                factors.extend([(d,hardware.cores//d),(hardware.cores//d,d)])
-        factors.extend((g,g) for g in (1,2,4,8))
         for bm in values(policy.bm_values,request.M):
             for bn in values(policy.bn_values,request.N):
-                tm,tn=ceildiv(request.M,bm),ceildiv(request.N,bn);geometries=set()
-                for gm,gn in factors:
-                    gm=max(1,min(gm,tm));gn=max(1,min(gn,tn,hardware.cores//gm))
-                    if gm*gn<=hardware.cores:geometries.add((gm,gn))
+                tm,tn=ceildiv(request.M,bm),ceildiv(request.N,bn)
+                geometries=group_geometries(tm,tn,hardware.cores)
                 for bk in values(policy.bk_values,request.K):
                     for gm,gn in sorted(geometries):
                         for L in policy.buffer_counts:
@@ -226,6 +246,8 @@ class GemmModel:
                    'optional input read latency delays response readiness without occupying payload bandwidth; default zero preserves the V3.2 baseline; a scalar pointer-chase latency is not automatically a bulk-copy parameter',
                    'matrix service selected by hardware/backend; no GEMM-shape-dependent correction']
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
+                    'operand_storage':request.storage_description(),
+                    'layout_service_scope':'logical byte counts; implementation-specific service requires an execution profile',
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'input_read_latency_s':policy.input_read_latency_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,
