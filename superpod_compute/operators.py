@@ -67,16 +67,32 @@ class GemmModel:
         output=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
         registers=p.bm*p.bn*4+hardware.register_reserve_bytes_per_core
         operand_registers=0
+        partition_registers=[]
         if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core:
             operand_registers=p.register_input_buffers*mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1]
             registers+=operand_registers
+        if hardware.register_partitions_per_core:
+            _,_,pm,pn,_=mmac_operand_plan(p.bm,p.bn,p.bk,hardware)
+            fm=ceildiv(p.bm,hardware.instruction_m);fn=ceildiv(p.bn,hardware.instruction_n)
+            qm=ceildiv(fm,pm);qn=ceildiv(fn,pn)
+            for i in range(pm):
+                for j in range(pn):
+                    mi=max(0,min(qm,fm-i*qm))*hardware.instruction_m
+                    ni=max(0,min(qn,fn-j*qn))*hardware.instruction_n
+                    active=bool(mi and ni)
+                    value=(mi*ni*4+p.register_input_buffers*2*p.bk*(mi+ni)) if active else 0
+                    value+=ceildiv(hardware.register_reserve_bytes_per_core,hardware.register_partitions_per_core)
+                    partition_registers.append(value)
         l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output
         reasons=[]
         if max(inputs,output)>hardware.shared_budget_bytes_per_core:reasons.append('shared')
         if registers>hardware.register_budget_bytes_per_core:reasons.append('registers')
+        if partition_registers and max(partition_registers)>hardware.register_bytes_per_partition:reasons.append('register-partition')
         if l2>hardware.l2_bytes:reasons.append('L2')
         if p.gm*p.gn>hardware.cores:reasons.append('cores')
-        return {'valid':not reasons,'rejections':reasons,'shared_bytes':max(inputs,output),'shared_input_bytes':inputs,'shared_output_bytes':output,'register_bytes':registers,'operand_register_bytes':operand_registers,'l2_bytes':l2,'parallel_cores':p.gm*p.gn}
+        result={'valid':not reasons,'rejections':reasons,'shared_bytes':max(inputs,output),'shared_input_bytes':inputs,'shared_output_bytes':output,'register_bytes':registers,'operand_register_bytes':operand_registers,'l2_bytes':l2,'parallel_cores':p.gm*p.gn}
+        if partition_registers:result.update(register_bytes_per_partition=partition_registers,register_partition_limit=hardware.register_bytes_per_partition)
+        return result
 
     def candidates(self,request,hardware,policy):
         def values(base,dim):

@@ -130,12 +130,13 @@ def output_pipeline(segments,shared_buffers,l2_buffers,*,shared_port=False,trace
     return {'duration_s':ends[2],'W_end_s':ends[0],'L_end_s':ends[1],'D_end_s':ends[2],
             'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['register-to-Shared','L2-write','L2-read/HBM-drain']}
 
-def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,trace_limit=0,accelerate=True):
+def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,shared_port=False,local_shared_port=False,trace_limit=0,accelerate=True):
     """H: HBM->L2, R: L2->Shared, S: Shared->registers, C: matrix.
 
     Input window frees at R end, Shared frees at S end, operand registers free
     at C end. The persistent C accumulator is a distinct register allocation.
-    LDS-read and input-write service use independent ports in this abstraction.
+    LDS-read and input-write service use independent ports by default. With
+    local_shared_port=True, R (input store) and S (operand load) share a server.
     """
     buffers=(l2_buffers,shared_buffers,register_buffers)
     if any(x not in (1,2) for x in buffers):raise ValueError('invalid buffer count')
@@ -151,6 +152,7 @@ def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,share
                 available=max(ends[stage],finish[-1] if stage else 0)
                 if stage<3:available=max(available,slots[stage][i%buffers[stage]])
                 if stage==0 and shared_port:available=max(available,ends[1])
+                if stage==1 and local_shared_port:available=max(available,ends[2])
                 start.append(available);finish.append(available+dt)
             ends=finish
             for stage in range(3):slots[stage][i%buffers[stage]]=finish[stage+1]

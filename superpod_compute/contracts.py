@@ -71,12 +71,20 @@ class Hardware:
     shared_write_bytes_per_cycle_per_core: float = 0.0
     l2_read_bytes_per_cycle: float = 0.0
     l2_write_bytes_per_cycle: float = 0.0
+    register_partitions_per_core: int = 0
+    register_bytes_per_partition: int = 0
 
 
     def __post_init__(self):
         for name in ('cores','arrays_per_core','array_rows','array_cols','hbm_capacity_bytes','l2_bytes','source_sram_bytes_per_core','shared_budget_bytes_per_core','register_budget_bytes_per_core','matrix_k_quantum'):
             integer(getattr(self,name),name)
         integer(self.register_reserve_bytes_per_core,'register_reserve_bytes_per_core',0)
+        integer(self.register_partitions_per_core,'register_partitions_per_core',0)
+        integer(self.register_bytes_per_partition,'register_bytes_per_partition',0)
+        if bool(self.register_partitions_per_core)!=bool(self.register_bytes_per_partition):
+            raise ValueError('Register partition count and capacity must be specified together')
+        if self.register_partitions_per_core and self.register_partitions_per_core!=self.arrays_per_core:
+            raise ValueError('Current partitioned-register mapping requires one matrix engine per register partition')
         for name in ('instruction_m','instruction_n','instruction_k','instruction_issue_cycles'):
             integer(getattr(self,name),name)
         if self.matrix_backend not in ('array','mmac','mac-throughput'):raise ValueError('Invalid matrix backend')
@@ -110,7 +118,10 @@ class Hardware:
         return (self.l2_write_bytes_per_cycle or self.l2_bytes_per_cycle)*self.clock_hz
 
     def to_dict(self):
-        return asdict(self)
+        value=asdict(self)
+        if not self.register_partitions_per_core:
+            value.pop('register_partitions_per_core');value.pop('register_bytes_per_partition')
+        return value
 
     @classmethod
     def load(cls, filename=None):
