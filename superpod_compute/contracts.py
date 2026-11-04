@@ -5,7 +5,7 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-directional-output-service-3.2'
+MODEL_VERSION = 'resident-k-directional-output-service-3.3'
 SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
 
 def canonical(value):
@@ -149,9 +149,12 @@ class Policy:
     output_buffer_counts: tuple = (1,2)
     calibration_hardware_sha256: str = ''
     register_buffer_counts: tuple = (1,2)
+    charge_input_shared_write: bool = False
+    k_loop_control_cycles_per_step: float = 0.0
+    effective_shared_read_bytes_per_cycle_per_core: float = 0.0
 
     def __post_init__(self):
-        for name in ('add_shape_candidate','charge_hbm_latency','input_reuse'):
+        for name in ('add_shape_candidate','charge_hbm_latency','input_reuse','charge_input_shared_write'):
             if not isinstance(getattr(self,name),bool):raise ValueError(f'{name} must be boolean')
         for name in ('bm_values','bn_values','bk_values','buffer_counts','output_chunk_values','output_buffer_counts','register_buffer_counts'):
             values=tuple(getattr(self,name));object.__setattr__(self,name,values)
@@ -164,6 +167,8 @@ class Policy:
         positive(self.matrix_efficiency,'matrix_efficiency')
         if self.matrix_efficiency>1:raise ValueError('matrix_efficiency must be <= 1')
         for name in ('l2_transfer_latency_s','epilogue_s_per_wave','device_service_s'):
+            positive(getattr(self,name),name,True)
+        for name in ('k_loop_control_cycles_per_step','effective_shared_read_bytes_per_cycle_per_core'):
             positive(getattr(self,name),name,True)
         if self.transfer_resource_mode not in ('independent','shared-port'):
             raise ValueError('Unknown transfer resource mode')

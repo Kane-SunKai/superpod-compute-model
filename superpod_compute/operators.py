@@ -37,10 +37,16 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-directional-output-3.2'
+    version='dense-resident-c-directional-output-3.3'
     def input_hbm_bandwidth(self,hardware):
         """Read service hook; default preserves the original hardware contract."""
         return hardware.hbm_bandwidth_Bps
+    def input_shared_write_time(self,m,n,k,hardware,policy):
+        """Optional input-store service hook, seconds per CU per K panel."""
+        return 2*(m+n)*k/(hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz) if policy.charge_input_shared_write and hardware.shared_write_bytes_per_cycle_per_core else 0.0
+    def panel_control_time(self,k,hardware,policy):
+        """Optional K-loop control service hook, seconds per CU per panel."""
+        return ceildiv(k,hardware.instruction_k)*policy.k_loop_control_cycles_per_step/hardware.clock_hz
     @staticmethod
     def mapping_from_dict(value):return Mapping(**value)
     @staticmethod
@@ -197,14 +203,15 @@ class GemmModel:
                     # HBM fills consume L2 write bandwidth. Stream each fill at
                     # the slower endpoint rate; R separately charges L2 reads.
                     ht=max(dh/self.input_hbm_bandwidth(hardware),dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
-                    return dh,dr,ht,dr/hardware.l2_read_bandwidth_Bps+policy.l2_transfer_latency_s
+                    rt=max(dr/hardware.l2_read_bandwidth_Bps,self.input_shared_write_time(min(p.bm,m),min(p.bn,n),k,hardware,policy))
+                    return dh,dr,ht,rt+policy.l2_transfer_latency_s
                 hit_full=min(full,keep//p.bk);segments=[];bytes_runs=[]
                 for number,k,hit,service in [(hit_full,p.bk,True,compute),(full-hit_full,p.bk,False,compute),(int(tail>0),tail,keep==request.K,last)]:
                     if not number:continue
                     dh,dr,h,r=transfer(k,hit)
-                    read_bandwidth=hardware.shared_read_bytes_per_cycle_per_core*hardware.clock_hz
+                    read_bandwidth=(policy.effective_shared_read_bytes_per_cycle_per_core or hardware.shared_read_bytes_per_cycle_per_core)*hardware.clock_hz
                     st=service.shared_read_bytes/read_bandwidth if read_bandwidth and service.shared_read_bytes else 0
-                    segments.append((number,h,r,st,service.duration_s))
+                    segments.append((number,h,r,st,service.duration_s+self.panel_control_time(k,hardware,policy)))
                     bytes_runs.append({'panels':number,'k_elements':k,'HBM_bytes_per_panel':dh,'L2_to_core_bytes_per_panel':dr,
                                        'Shared_to_register_bytes_per_core':service.shared_read_bytes if read_bandwidth else 0,
                                        'retained_operand':('AB' if warm else order if hit else None)})
@@ -222,6 +229,8 @@ class GemmModel:
                 classes.append({'valid_m':m,'valid_n':n,'count':count,'active_cores':active,'full_k_panels':full,'tail_k':tail,
                                 'retained_k':request.K if warm else keep,'is_reuse_wave':reused,'panel_byte_runs':bytes_runs,
                                 'full_panel_compute':compute.to_dict() if compute else None,'tail_panel_compute':last.to_dict() if last else None,
+                                'full_panel_control_s':self.panel_control_time(p.bk,hardware,policy) if full else 0.0,
+                                'tail_panel_control_s':self.panel_control_time(tail,hardware,policy) if tail else 0.0,
                                 'pipeline':run,'output_stream':output,'epilogue_s':policy.epilogue_s_per_wave,
                                 'write_to_l2_s':out/hardware.l2_write_bandwidth_Bps,'write_to_hbm_s':out/hardware.hbm_bandwidth_Bps,'duration_s':per_wave})
             notes=['resident FP32 C registers across all K panels; sequential output waves',
@@ -233,6 +242,8 @@ class GemmModel:
                    'optional Shared->register service uses an explicit rectangular-engine operand reuse plan; independent LDS read/write ports assumed',
                    'FP16/BF16 share 16-bit service; conversion/layout execution cost remains a separate configurable term',
                    'device_service_s is additive per GEMM, distinct from hardware.kernel_launch_s host submission setting',
+                   'optional K-loop control service is separate from physical MMAC instruction issue interval; per instruction-K step',
+                   'optional effective Shared-read service is a global calibration parameter, separate from nominal hardware bandwidth',
                    'matrix service selected by hardware/backend; no GEMM-shape-dependent correction']
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,

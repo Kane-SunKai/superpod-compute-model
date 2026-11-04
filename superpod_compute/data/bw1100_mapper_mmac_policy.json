@@ -1,0 +1,58 @@
+{
+  "bm_values": [
+    16,
+    32,
+    64,
+    128,
+    192,
+    256,
+    384
+  ],
+  "bn_values": [
+    16,
+    32,
+    64,
+    128,
+    192,
+    256,
+    384
+  ],
+  "bk_values": [
+    16,
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "buffer_counts": [
+    1,
+    2
+  ],
+  "add_shape_candidate": true,
+  "matrix_efficiency": 1.0,
+  "charge_hbm_latency": false,
+  "l2_transfer_latency_s": 0.0,
+  "epilogue_s_per_wave": 0.0,
+  "transfer_resource_mode": "independent",
+  "top_k": 5,
+  "input_reuse": true,
+  "initial_cache_state": "warm-if-fit",
+  "device_service_s": 3.121244690369221e-06,
+  "output_chunk_values": [
+    4096,
+    16384
+  ],
+  "output_buffer_counts": [
+    1,
+    2
+  ],
+  "calibration_hardware_sha256": "",
+  "register_buffer_counts": [
+    1,
+    2
+  ],
+  "charge_input_shared_write": true,
+  "k_loop_control_cycles_per_step": 40,
+  "effective_shared_read_bytes_per_cycle_per_core": 60
+}
