@@ -4,6 +4,7 @@ __pycache__/
 *.egg-info/
 .cache/
 results/
+outputs/
 dist/
 build/
 *.sqlite3*
