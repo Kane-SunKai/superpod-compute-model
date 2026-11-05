@@ -1,6 +1,6 @@
 # Superpod Compute Model
 
-> 当前正式计算模型为 **3.3**，仍使用自有 mapper 自动搜索，BW1100 默认配置采用 MMAC8 后端。2026-11-05 新增可选的同分块诊断入口、阶段服务账本和独立 Shared bank 地址服务组件。正常预测不需要真实库的分块信息；bank 组件尚未接入正式 GEMM 评分，本次没有改变正式时延公式。命令与职责见[自有 mapper 与实机诊断说明](docs/自有Mapper与实机诊断_使用说明.md)。3.3 的 Shared 输入写与 K 循环服务见源码及对应实验输出。
+> 当前统一开发基线为 **3.4**：自有 mapper＋MMAC8，显式操作数布局同时约束 Shared 容量、输入写入、操作数寄存器和 bank 读取服务。BW1100 使用 `bw1100_mapper_mmac_hardware.json` 与 `bw1100_mapper_mmac_policy.json`。正常预测不需要实机分块。13组普通 Prefill 独立验证的 MAPE 从8.77%降至5.12%，≤10%通过数8→9；20组Decode仍为5/20，GPT主GEMM3/4，注意力BMM尚未收敛。没有宣称所有算子达到10%。[当前模型与运行说明](docs/BW1100_当前模型与运行说明.md)；[可选实机诊断](docs/自有Mapper与实机诊断_使用说明.md)。本轮没有将按验证案例拟合的修正系数加入模型。
 
 > 历史版本2026-10-29 **V3.2**：已补充寄存器→Shared输出写服务、L2读3768/写2990 Byte/cycle；Shared输出读回不计时。两种算力方案同口径对照：MMAC规则组41/50、256 MAC/cycle规则组34/50（≤15%），默认继续MMAC。详见 [V3.2修改与实验报告](docs/BW1100_V32_输出流水与算力对照.md)。
 
@@ -20,7 +20,7 @@
 在Windows PowerShell中：
 
 ```powershell
-cd 'D:\03_Project_Work\02_WORK_Super node\compute_model'
+cd 'D:\01codex_work\03_super node\compute_model'
 
 # 第一次：搜索；再次执行同一命令：精确查表
 .\run.ps1 gemm --m 3072 --n 2304 --k 1024 --output results/array_search.json
@@ -55,7 +55,7 @@ python -m unittest discover -s tests -v
 
 ## 2. 输入、输出与使用边界
 
-输入是**本卡局部算子**的M/N/K，既不自动做TP切分，也不包含跨rank通信。支持二维连续row-major、FP16/BF16输入与输出、FP32累加、C=AB。可以通过`--dtype bf16`显式标识；两种16位数据目前采用相同的阵列服务配置，缓存身份仍不同。非连续布局、转置、bias/激活融合、稀疏与量化不在首版范围内。
+输入是**本卡局部算子**的M/N/K，既不自动做TP切分，也不包含跨rank通信。支持FP16/BF16输入与输出、FP32累加、C=AB。`--layout`可描述普通连续B或连续权重W的转置视图；尚未完整建模行距/地址相关的访问效率。`--dtype bf16`使用当前相同16位服务配置并区分缓存身份。任意strided布局、bias/激活融合、稀疏与量化尚未实现。
 
 输出JSON的重要字段：
 

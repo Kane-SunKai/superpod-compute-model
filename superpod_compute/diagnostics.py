@@ -47,11 +47,13 @@ def service_ledger(request, result, hardware, policy):
             h = max(dh/model.input_hbm_bandwidth(hardware), dh/hardware.l2_write_bandwidth_Bps)
             if dh and policy.charge_hbm_latency:
                 h += hardware.hbm_latency_s
-            r = max(dr/hardware.l2_read_bandwidth_Bps,
-                    model.input_shared_write_time(per_cu_m, per_cu_n, k, hardware, policy))
-            r += policy.l2_transfer_latency_s
+            r = run.get('R_service_s')
+            if r is None:
+                r = max(dr/hardware.l2_read_bandwidth_Bps,
+                        model.input_shared_write_time(per_cu_m, per_cu_n, k, hardware, policy))
+                r += policy.l2_transfer_latency_s
             read = policy.effective_shared_read_bytes_per_cycle_per_core or hardware.shared_read_bytes_per_cycle_per_core
-            s = run['Shared_to_register_bytes_per_core']/(read*hardware.clock_hz) if read else 0.0
+            s = run.get('Shared_read_service_s_per_core',run['Shared_to_register_bytes_per_core']/(read*hardware.clock_hz) if read else 0.0)
             c = service['duration_s'] + model.panel_control_time(k, hardware, policy)
             for stage, value in zip(('H', 'R', 'S', 'C'), (h, r, s, c)):
                 demand[stage] += number*value

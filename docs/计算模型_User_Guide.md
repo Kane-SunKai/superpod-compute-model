@@ -1,6 +1,6 @@
 # 单卡计算模型 · 简明 User Guide
 
-当前实现：V3.2。代码目录：`D:\03_Project_Work\02_WORK_Super node\compute_model`。
+当前BW1100入口与参数见[3.4运行说明](BW1100_当前模型与运行说明.md)。当前代码目录：`D:\01codex_work\03_super node\compute_model`。以下保留V3.2时期的通用教学命令与历史结果。
 模型在CPU上预测本卡GEMM时间，不需要GPU、PyTorch或SSH。Python 3.10+，核心仅使用标准库。
 
 ## 1. 打开项目，选择Python

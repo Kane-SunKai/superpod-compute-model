@@ -5,6 +5,7 @@ from typing import Protocol
 from .contracts import Mapping
 from .scheduler import pipeline, pipeline_segments, operand_pipeline, output_pipeline
 from .backends import mmac_operand_plan
+from .operand_layout import routed_operands, operand_service_time
 
 def ceildiv(a,b):return (a+b-1)//b
 def align(a,q):return ceildiv(a,q)*q
@@ -37,7 +38,7 @@ def extents(total,tile):
 
 class GemmModel:
     name='gemm'
-    version='dense-resident-c-directional-output-3.3'
+    version='dense-resident-c-explicit-operands-3.4'
     def input_hbm_bandwidth(self,hardware):
         """Read service hook; default preserves the original hardware contract."""
         return hardware.hbm_bandwidth_Bps
@@ -70,12 +71,14 @@ class GemmModel:
     def capacity(mapping,hardware):
         p=mapping;gm=p.gm*p.bm;gn=p.gn*p.bn
         inputs=p.shared_buffers*(p.bm+p.bn)*p.bk*2
+        routed=routed_operands(p.bm,p.bn,p.bk,hardware) if p.operand_layout=='engine-routed' else None
+        if routed:inputs=p.shared_buffers*routed['shared_bytes']
         output=min(p.bm*p.bn*2,p.output_chunk_bytes*p.output_buffers)
         registers=p.bm*p.bn*4+hardware.register_reserve_bytes_per_core
         operand_registers=0
         partition_registers=[]
         if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core:
-            operand_registers=p.register_input_buffers*mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1]
+            operand_registers=p.register_input_buffers*(routed['shared_bytes'] if routed else mmac_operand_plan(p.bm,p.bn,p.bk,hardware)[1])
             registers+=operand_registers
         if hardware.register_partitions_per_core:
             _,_,pm,pn,_=mmac_operand_plan(p.bm,p.bn,p.bk,hardware)
@@ -86,7 +89,8 @@ class GemmModel:
                     mi=max(0,min(qm,fm-i*qm))*hardware.instruction_m
                     ni=max(0,min(qn,fn-j*qn))*hardware.instruction_n
                     active=bool(mi and ni)
-                    value=(mi*ni*4+p.register_input_buffers*2*p.bk*(mi+ni)) if active else 0
+                    input_regs=routed['register_bytes_by_engine'][i*pn+j] if routed else 2*p.bk*(mi+ni)
+                    value=(mi*ni*4+p.register_input_buffers*input_regs) if active else 0
                     value+=ceildiv(hardware.register_reserve_bytes_per_core,hardware.register_partitions_per_core)
                     partition_registers.append(value)
         l2=p.l2_buffers*(gm+gn)*p.bk*2+p.gm*p.gn*output
@@ -123,7 +127,9 @@ class GemmModel:
                                 for chunk in chunks:
                                     for O in policy.output_buffer_counts:
                                         counts=policy.register_buffer_counts if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core else (2,)
-                                        for V in counts:yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V)
+                                        for V in counts:
+                                            for layout in policy.operand_layouts:
+                                                yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V,layout)
 
     def evaluate(self,request,hardware,policy,backend,mapping,trace_limit=0):
         p=mapping;cap=self.capacity(p,hardware)
@@ -203,17 +209,25 @@ class GemmModel:
                     # HBM fills consume L2 write bandwidth. Stream each fill at
                     # the slower endpoint rate; R separately charges L2 reads.
                     ht=max(dh/self.input_hbm_bandwidth(hardware),dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
-                    rt=max(dr/hardware.l2_read_bandwidth_Bps,self.input_shared_write_time(min(p.bm,m),min(p.bn,n),k,hardware,policy))
-                    return dh,dr,ht,rt+policy.l2_transfer_latency_s
+                    write=self.input_shared_write_time(min(p.bm,m),min(p.bn,n),k,hardware,policy)
+                    if p.operand_layout=='engine-routed' and policy.charge_input_shared_write:
+                        bw=hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz
+                        if not bw:raise ValueError('Engine-routed input requires Shared write bandwidth')
+                        write=routed_operands(p.bm,p.bn,k,hardware)['shared_bytes']/bw
+                    rt=max(dr/hardware.l2_read_bandwidth_Bps,write)
+                    return dh,dr,ht,rt+policy.l2_transfer_latency_s,write
                 hit_full=min(full,keep//p.bk);segments=[];bytes_runs=[]
                 for number,k,hit,service in [(hit_full,p.bk,True,compute),(full-hit_full,p.bk,False,compute),(int(tail>0),tail,keep==request.K,last)]:
                     if not number:continue
-                    dh,dr,h,r=transfer(k,hit)
-                    read_bandwidth=(policy.effective_shared_read_bytes_per_cycle_per_core or hardware.shared_read_bytes_per_cycle_per_core)*hardware.clock_hz
-                    st=service.shared_read_bytes/read_bandwidth if read_bandwidth and service.shared_read_bytes else 0
+                    dh,dr,h,r,input_write=transfer(k,hit)
+                    st,layout_plan=operand_service_time(p,k,hardware,policy,service)
                     segments.append((number,h,r,st,service.duration_s+self.panel_control_time(k,hardware,policy)))
                     bytes_runs.append({'panels':number,'k_elements':k,'HBM_bytes_per_panel':dh,'L2_to_core_bytes_per_panel':dr,
-                                       'Shared_to_register_bytes_per_core':service.shared_read_bytes if read_bandwidth else 0,
+                                       'Shared_to_register_bytes_per_core':layout_plan['shared_read_bytes'] if layout_plan else service.shared_read_bytes,
+                                       'Shared_read_service_s_per_core':st,
+                                       'Shared_input_write_service_s_per_core':input_write,
+                                       'R_service_s':r,
+                                       'operand_layout_plan':layout_plan,
                                        'retained_operand':('AB' if warm else order if hit else None)})
                     hbytes+=count*number*dh;rbytes+=count*number*dr;saved+=count*number*((m+n)*k*2-dh)
                 if hardware.shared_read_bytes_per_cycle_per_core and hardware.matrix_backend in ('mmac','mac-throughput'):
@@ -245,6 +259,11 @@ class GemmModel:
                    'optional K-loop control service is separate from physical MMAC instruction issue interval; per instruction-K step',
                    'optional effective Shared-read service is a global calibration parameter, separate from nominal hardware bandwidth',
                    'matrix service selected by hardware/backend; no GEMM-shape-dependent correction']
+            if p.operand_layout=='engine-routed':
+                notes.extend(['Engine-routed A/B copies use explicit Shared and register packet capacity; L2 inputs are fetched once per CU, then replicated into Shared',
+                              'Shared operand reads use the declared hardware bank/phase model; legacy calibrated effective-read rate is bypassed for this layout'])
+            if request.layout=='right-transposed-contiguous':
+                notes.append('B is a transposed view of contiguous W[N,K]; no full B transpose is charged. Producer transaction/stride efficiency is not yet modeled beyond logical byte volume')
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,

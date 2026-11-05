@@ -173,3 +173,51 @@ def operand_pipeline(segments,l2_buffers,shared_buffers,register_buffers,*,share
                 previous=ends+[v for group in slots for v in group]
     return {'duration_s':ends[3],'H_end_s':ends[0],'R_end_s':ends[1],'S_end_s':ends[2],'C_end_s':ends[3],
             'panels':i,'skipped_panels':skipped,'trace':trace,'stages':['HBM','L2','Shared-read','matrix']}
+
+
+def vector_output_pipeline(segments,register_buffers,shared_buffers,l2_buffers,*,publish_latency_s=0.0,reuse_latency_s=0.0,shared_port=False,trace_limit=0,accelerate=True):
+    """V: FP32->FP16/format, W: Shared write, L: L2 store, D: HBM drain.
+
+    Register temporaries release after W. Shared slots release after L and a
+    handoff. A publish handoff precedes L. Latencies are dependencies, not
+    reservations of the shared memory or L2 transfer servers.
+    """
+    buffers=(register_buffers,shared_buffers,l2_buffers)
+    if any(x not in (1,2) for x in buffers):raise ValueError('invalid output buffer count')
+    for x in (publish_latency_s,reuse_latency_s):positive(x,'handoff latency',True)
+    integer(trace_limit,'trace_limit',0)
+    ends=[0.0]*4;slots=[[0.0]*n for n in buffers];i=skipped=0;trace=[]
+    for number,v,w,l,d in segments:
+        integer(number,'output count',0)
+        for value in (v,w,l,d):positive(value,'output service',True)
+        stop=i+number;previous=None
+        while i<stop:
+            starts=[];finish=[]
+            for stage,dt in enumerate((v,w,l,d)):
+                ready=max(ends[stage],finish[-1] if stage else 0)
+                if stage<3:ready=max(ready,slots[stage][i%buffers[stage]])
+                if stage==2:
+                    ready=max(ready,finish[1]+publish_latency_s)
+                    if shared_port:ready=max(ready,ends[3])
+                starts.append(ready);finish.append(ready+dt)
+            ends=finish;slots[0][i%buffers[0]]=finish[1]
+            slots[1][i%buffers[1]]=finish[2]+reuse_latency_s
+            slots[2][i%buffers[2]]=finish[3]
+            if len(trace)<trace_limit:
+                row={'panel':i}
+                for j,name in enumerate(('V','W','L','D')):row.update({name+'_start_s':starts[j],name+'_end_s':finish[j]})
+                trace.append(row)
+            i+=1
+            if accelerate and i%2==0:
+                state=ends+[x for group in slots for x in group]
+                if previous is not None:
+                    shifts=[a-b for a,b in zip(state,previous)];shift=shifts[0]
+                    if shift>0 and all(abs(x-shift)<=max(1e-18,abs(shift)*1e-10) for x in shifts):
+                        repeats=(stop-i)//2
+                        if repeats and len(trace)>=trace_limit:
+                            offset=repeats*shift;ends=[x+offset for x in ends];slots=[[x+offset for x in group] for group in slots]
+                            i+=repeats*2;skipped+=repeats*2
+                previous=ends+[x for group in slots for x in group]
+    return {'duration_s':ends[3],'V_end_s':ends[0],'W_end_s':ends[1],'L_end_s':ends[2],'D_end_s':ends[3],
+            'panels':i,'skipped_panels':skipped,'trace':trace,'publish_latency_s':publish_latency_s,'reuse_latency_s':reuse_latency_s,
+            'stages':['vector-format','register-to-Shared','L2-write','L2-read/HBM-drain']}

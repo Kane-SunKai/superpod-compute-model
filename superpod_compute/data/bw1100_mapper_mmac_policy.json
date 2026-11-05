@@ -54,5 +54,8 @@
   ],
   "charge_input_shared_write": true,
   "k_loop_control_cycles_per_step": 40,
-  "effective_shared_read_bytes_per_cycle_per_core": 60
+  "effective_shared_read_bytes_per_cycle_per_core": 0,
+  "operand_layouts": [
+    "engine-routed"
+  ]
 }

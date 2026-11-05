@@ -11,6 +11,7 @@ from .contracts import GemmRequest, Mapping, integer
 from .operators import GemmModel, ceildiv
 from .backends import make_backend
 from .scheduler import operand_pipeline, output_pipeline
+from .operand_layout import operand_service_time,routed_operands
 
 def _waves(batch,m,n,bm,bn,cores):
     tasks=[(head,i,j,min(bm,m-i),min(bn,n-j)) for head in range(batch) for i in range(0,m,bm) for j in range(0,n,bn)]
@@ -40,11 +41,11 @@ def predict_batched_gemm(batch,m,n,k,hardware,policy,*,transpose_b=False):
     best=None;count=feasible=0
     # Reuse the policy's resource-constrained tile candidates; geometries are
     # replaced by a batch-aware pool of independent output tasks, not B broadcast.
-    shapes=sorted({(v.bm,v.bn,v.bk,v.l2_buffers,v.shared_buffers,v.output_chunk_bytes,v.output_buffers,v.register_input_buffers)
+    shapes=sorted({(v.bm,v.bn,v.bk,v.l2_buffers,v.shared_buffers,v.output_chunk_bytes,v.output_buffers,v.register_input_buffers,v.operand_layout)
                    for v in model.candidates(GemmRequest(m,n,k),h,p) if v.bm>=64 and v.bn>=64})
     wave_cache={};out_cache={}
-    for bm,bn,bk,L,S,chunk,O,V in shapes:
-        count+=1;mapping=Mapping(bm,bn,bk,1,1,L,S,chunk,O,V);capacity=model.capacity(mapping,h)
+    for bm,bn,bk,L,S,chunk,O,V,layout in shapes:
+        count+=1;mapping=Mapping(bm,bn,bk,1,1,L,S,chunk,O,V,layout);capacity=model.capacity(mapping,h)
         if not capacity['valid']:continue
         key=(bm,bn)
         if key not in wave_cache:wave_cache[key]=_waves(batch,m,n,bm,bn,h.cores)
@@ -59,9 +60,11 @@ def predict_batched_gemm(batch,m,n,k,hardware,policy,*,transpose_b=False):
                 H=2*unique*width;R=2*duplicated*width
                 th=max(H/h.hbm_bandwidth_Bps,H/h.l2_write_bandwidth_Bps)
                 store=2*local*width/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz) if p.charge_input_shared_write and h.shared_write_bytes_per_cycle_per_core else 0
+                if layout=='engine-routed' and p.charge_input_shared_write:
+                    if not h.shared_write_bytes_per_cycle_per_core:raise ValueError('Routed input requires Shared write bandwidth')
+                    store=routed_operands(bm,bn,width,h)['shared_bytes']/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz)
                 tr=max(R/h.l2_read_bandwidth_Bps,store)
-                bw=p.effective_shared_read_bytes_per_cycle_per_core or h.shared_read_bytes_per_cycle_per_core
-                ts=compute.shared_read_bytes/(bw*h.clock_hz) if bw else 0
+                ts,_=operand_service_time(mapping,width,h,p,compute)
                 tc=compute.duration_s+model.panel_control_time(width,h,p)
                 segments.append((number,th,tr,ts,tc));hbytes+=repeat*number*H;rbytes+=repeat*number*R
                 service_totals=[a+number*b for a,b in zip(service_totals,[th,tr,ts,tc])]

@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-MODEL_VERSION = 'resident-k-directional-output-service-3.3'
-SEARCH_VERSION = 'dense-candidates-reuse-register-buffer-3.2'
+MODEL_VERSION = 'resident-k-explicit-operand-layout-3.4'
+SEARCH_VERSION = 'dense-candidates-operand-layout-3.4'
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)
@@ -35,8 +35,8 @@ class GemmRequest:
     def __post_init__(self):
         for name in ('M', 'N', 'K'):
             integer(getattr(self, name), name, 0)
-        if self.operator != 'gemm' or self.dtype not in ('fp16', 'bf16') or self.accumulator_dtype != 'fp32' or self.layout != 'row-major-contiguous':
-            raise ValueError('V1 GEMM supports contiguous fp16/bf16 input/output, fp32 accumulation, C=AB only')
+        if self.operator != 'gemm' or self.dtype not in ('fp16', 'bf16') or self.accumulator_dtype != 'fp32' or self.layout not in ('row-major-contiguous','right-transposed-contiguous'):
+            raise ValueError('GEMM supports row-major A/C and row-major or transposed-contiguous B; fp16/bf16 inputs with fp32 accumulation')
 
     def to_dict(self):
         return asdict(self)
@@ -73,9 +73,28 @@ class Hardware:
     l2_write_bytes_per_cycle: float = 0.0
     register_partitions_per_core: int = 0
     register_bytes_per_partition: int = 0
+    shared_bank_count: int = 0
+    shared_bank_word_bytes: int = 4
+    shared_wave_lanes: int = 64
+    shared_read_vector_bytes: int = 16
+    shared_read_phase_lanes: tuple = ()
+    shared_words_per_bank_cycle: int = 1
 
 
     def __post_init__(self):
+        object.__setattr__(self,'shared_read_phase_lanes',tuple(tuple(x) for x in self.shared_read_phase_lanes))
+        integer(self.shared_bank_count,'shared_bank_count',0)
+        for name in ('shared_bank_word_bytes','shared_wave_lanes','shared_read_vector_bytes','shared_words_per_bank_cycle'):
+            integer(getattr(self,name),name)
+        if self.shared_bank_count:
+            # Import lazily to keep the shared-memory component's integer
+            # validator independent of hardware construction.
+            from .shared_memory import SharedReadBanks
+            SharedReadBanks(self.shared_bank_count,self.shared_bank_word_bytes,
+                            self.shared_wave_lanes,self.shared_read_vector_bytes,
+                            self.shared_read_phase_lanes,self.shared_words_per_bank_cycle)
+        elif self.shared_read_phase_lanes:
+            raise ValueError('Shared access phases require a nonzero bank count')
         for name in ('cores','arrays_per_core','array_rows','array_cols','hbm_capacity_bytes','l2_bytes','source_sram_bytes_per_core','shared_budget_bytes_per_core','register_budget_bytes_per_core','matrix_k_quantum'):
             integer(getattr(self,name),name)
         integer(self.register_reserve_bytes_per_core,'register_reserve_bytes_per_core',0)
@@ -152,8 +171,12 @@ class Policy:
     charge_input_shared_write: bool = False
     k_loop_control_cycles_per_step: float = 0.0
     effective_shared_read_bytes_per_cycle_per_core: float = 0.0
+    operand_layouts: tuple = ('compact',)
 
     def __post_init__(self):
+        object.__setattr__(self,'operand_layouts',tuple(self.operand_layouts))
+        if not self.operand_layouts or len(set(self.operand_layouts))!=len(self.operand_layouts) or not set(self.operand_layouts)<={'compact','engine-routed'}:
+            raise ValueError('Unsupported or duplicate operand layouts')
         for name in ('add_shape_candidate','charge_hbm_latency','input_reuse','charge_input_shared_write'):
             if not isinstance(getattr(self,name),bool):raise ValueError(f'{name} must be boolean')
         for name in ('bm_values','bn_values','bk_values','buffer_counts','output_chunk_values','output_buffer_counts','register_buffer_counts'):
@@ -192,9 +215,12 @@ class Mapping:
     output_chunk_bytes: int = 16384
     output_buffers: int = 2
     register_input_buffers: int = 2
+    operand_layout: str = 'compact'
 
     def __post_init__(self):
-        for name,value in asdict(self).items():integer(value,name)
+        for name,value in asdict(self).items():
+            if name!='operand_layout':integer(value,name)
+        if self.operand_layout not in ('compact','engine-routed'):raise ValueError('Unknown operand layout')
         if self.l2_buffers not in (1,2) or self.shared_buffers not in (1,2) or self.output_buffers not in (1,2) or self.register_input_buffers not in (1,2):raise ValueError('buffer count must be 1 or 2')
 
     def to_dict(self):return asdict(self)
