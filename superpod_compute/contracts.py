@@ -172,9 +172,13 @@ class Policy:
     k_loop_control_cycles_per_step: float = 0.0
     effective_shared_read_bytes_per_cycle_per_core: float = 0.0
     operand_layouts: tuple = ('compact',)
+    tile_correction: str = ''
 
     def __post_init__(self):
         object.__setattr__(self,'operand_layouts',tuple(self.operand_layouts))
+        if self.tile_correction:
+            from .tile_correction import load as load_tile_correction
+            load_tile_correction(self.tile_correction)   # rejects misspelt or malformed tables
         if not self.operand_layouts or len(set(self.operand_layouts))!=len(self.operand_layouts) or not set(self.operand_layouts)<={'compact','engine-routed'}:
             raise ValueError('Unsupported or duplicate operand layouts')
         for name in ('add_shape_candidate','charge_hbm_latency','input_reuse','charge_input_shared_write'):

@@ -107,6 +107,12 @@ class GemmModel:
     def candidates(self,request,hardware,policy):
         def values(base,dim):
             return sorted(set(base)|({min(max(base),max(min(base),align(dim,hardware.matrix_k_quantum)))} if policy.add_shape_candidate else set()))
+        allowed=None
+        if policy.tile_correction:
+            from .tile_correction import load as load_tile_correction
+            # Only tiles the library actually ships (and the table calibrated) are
+            # proposed; the shape-derived extra tile may not exist as a kernel.
+            allowed=load_tile_correction(policy.tile_correction)['factors']
         factors=[]
         for d in range(1,isqrt(hardware.cores)+1):
             if hardware.cores%d==0:
@@ -119,6 +125,7 @@ class GemmModel:
                     gm=max(1,min(gm,tm));gn=max(1,min(gn,tn,hardware.cores//gm))
                     if gm*gn<=hardware.cores:geometries.add((gm,gn))
                 for bk in values(policy.bk_values,request.K):
+                    if allowed is not None and (bm,bn,bk) not in allowed:continue
                     for gm,gn in sorted(geometries):
                         for L in policy.buffer_counts:
                             for S in policy.buffer_counts:
@@ -264,7 +271,16 @@ class GemmModel:
                               'Shared operand reads use the declared hardware bank/phase model; legacy calibrated effective-read rate is bypassed for this layout'])
             if request.layout=='right-transposed-contiguous':
                 notes.append('B is a transposed view of contiguous W[N,K]; no full B transpose is charged. Producer transaction/stride efficiency is not yet modeled beyond logical byte volume')
-            return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
+            correction=None
+            if policy.tile_correction:
+                from .tile_correction import load as load_tile_correction
+                table=load_tile_correction(policy.tile_correction)
+                correction=table['factors'].get((p.bm,p.bn,p.bk))
+                if correction is None:raise ValueError('Registered tile missing from the correction table')
+                notes.append('Duration divided by the measured per-tile factor %.4f (table %s): the library ships this tile but runs it slower than the MMAC peak model assumes' % (correction,policy.tile_correction))
+            adjusted=total/correction if correction else total
+            return {'mapping':p.to_dict(),'capacity':cap,'duration_s':adjusted,'duration_us':adjusted*1e6,
+                    'uncorrected_duration_us':total*1e6,'tile_correction_factor':correction,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,
                     'reuse_order':order,'retention_budget_bytes':spare,'hbm_bytes_saved_by_reuse':saved,
