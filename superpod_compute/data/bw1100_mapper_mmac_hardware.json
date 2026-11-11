@@ -8,6 +8,8 @@
   "mac_per_cell_per_cycle": 1,
   "vector_fp16_flops_per_cycle_per_core": 251.73611111111111,
   "hbm_bandwidth_Bps": 1720000000000.0,
+  "hbm_write_bandwidth_Bps": 1050000000000.0,
+  "hbm_read_a_Bps": 1100000000000.0,
   "hbm_latency_s": 0.0,
   "hbm_capacity_bytes": 154602045440,
   "l2_bytes": 8388608,

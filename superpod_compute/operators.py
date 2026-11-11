@@ -42,6 +42,9 @@ class GemmModel:
     def input_hbm_bandwidth(self,hardware):
         """Read service hook; default preserves the original hardware contract."""
         return hardware.hbm_bandwidth_Bps
+    def input_a_hbm_bandwidth(self,hardware):
+        """A-view fill rate; the flat input rate when the profile sets no split."""
+        return hardware.hbm_read_a_Bps or hardware.hbm_bandwidth_Bps
     def input_shared_write_time(self,m,n,k,hardware,policy):
         """Optional input-store service hook, seconds per CU per K panel."""
         return 2*(m+n)*k/(hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz) if policy.charge_input_shared_write and hardware.shared_write_bytes_per_cycle_per_core else 0.0
@@ -182,7 +185,7 @@ class GemmModel:
                 tr=amount/hardware.l2_write_bandwidth_Bps+policy.l2_transfer_latency_s
                 # Drain is a streamed L2 read + HBM write; bottleneck rate, not
                 # two copies of the same link service. No extra output LDS read.
-                th=max(amount/hardware.hbm_bandwidth_Bps,amount/hardware.l2_read_bandwidth_Bps)+latency
+                th=max(amount/hardware.hbm_write_bandwidth_Bps,amount/hardware.l2_read_bandwidth_Bps)+latency
                 segments.append((hi-lo,tw,tr,th))
                 byte_runs.append({'chunks':hi-lo,'bytes_per_chunk_all_cores':amount,
                                   'max_bytes_per_chunk_per_core':per_core,'register_to_shared_s':tw,
@@ -215,7 +218,13 @@ class GemmModel:
                     dh=cold-saved_bytes;dr=(rn*m+rm*n)*k*2
                     # HBM fills consume L2 write bandwidth. Stream each fill at
                     # the slower endpoint rate; R separately charges L2 reads.
-                    ht=max(dh/self.input_hbm_bandwidth(hardware),dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
+                    # The A view streams at its own measured rate when nothing is
+                    # retained; a retained operand falls back to the flat rate.
+                    if dh==cold:
+                        fill=m*k*2/self.input_a_hbm_bandwidth(hardware)+n*k*2/self.input_hbm_bandwidth(hardware)
+                    else:
+                        fill=dh/self.input_hbm_bandwidth(hardware)
+                    ht=max(fill,dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
                     write=self.input_shared_write_time(min(p.bm,m),min(p.bn,n),k,hardware,policy)
                     if p.operand_layout=='engine-routed' and policy.charge_input_shared_write:
                         bw=hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz

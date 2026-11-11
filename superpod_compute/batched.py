@@ -20,7 +20,7 @@ def _waves(batch,m,n,bm,bn,cores):
         group=tasks[first:first+cores]
         a={(h,i):mi for h,i,j,mi,nj in group};b={(h,j):nj for h,i,j,mi,nj in group}
         sizes=tuple(sorted(Counter(mi*nj*2 for _,_,_,mi,nj in group).items()))
-        classes[(len(group),sum(a.values())+sum(b.values()),sum(mi+nj for _,_,_,mi,nj in group),max(mi+nj for _,_,_,mi,nj in group),sizes)]+=1
+        classes[(len(group),sum(a.values()),sum(b.values()),sum(mi+nj for _,_,_,mi,nj in group),max(mi+nj for _,_,_,mi,nj in group),sizes)]+=1
     return classes,len(tasks)
 
 def _output(sizes,chunk,buffers,h,p):
@@ -30,7 +30,7 @@ def _output(sizes,chunk,buffers,h,p):
         local=max(min(chunk,max(0,size-lo*chunk)) for size,num in sizes)
         if total:
             w=local/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz) if h.shared_write_bytes_per_cycle_per_core else 0
-            segments.append((hi-lo,w,total/h.l2_write_bandwidth_Bps,max(total/h.hbm_bandwidth_Bps,total/h.l2_read_bandwidth_Bps)))
+            segments.append((hi-lo,w,total/h.l2_write_bandwidth_Bps,max(total/h.hbm_write_bandwidth_Bps,total/h.l2_read_bandwidth_Bps)))
     return output_pipeline(segments,buffers,buffers)['duration_s']+p.epilogue_s_per_wave
 
 def predict_batched_gemm(batch,m,n,k,hardware,policy,*,transpose_b=False):
@@ -50,15 +50,17 @@ def predict_batched_gemm(batch,m,n,k,hardware,policy,*,transpose_b=False):
         key=(bm,bn)
         if key not in wave_cache:wave_cache[key]=_waves(batch,m,n,bm,bn,h.cores)
         classes,tasks=wave_cache[key]
-        if any(L*unique*bk*2+active*min(bm*bn*2,chunk*O)>h.l2_bytes for active,unique,duplicated,local,sizes in classes):continue
+        if any(L*(a_rows+b_cols)*bk*2+active*min(bm*bn*2,chunk*O)>h.l2_bytes for active,a_rows,b_cols,duplicated,local,sizes in classes):continue
         feasible+=1;duration=p.device_service_s+h.kernel_launch_s;hbytes=rbytes=outbytes=0;details=[]
-        for (active,unique,duplicated,local,sizes),repeat in classes.items():
+        for (active,a_rows,b_cols,duplicated,local,sizes),repeat in classes.items():
+            unique=a_rows+b_cols
             segments=[];full,tail=divmod(k,bk);service_totals=[0.0]*4
             for number,width in [(full,bk),(int(tail>0),tail)]:
                 if not number:continue
                 compute=backend.estimate(bm,bn,ceildiv(width,h.instruction_k)*h.instruction_k)
                 H=2*unique*width;R=2*duplicated*width
-                th=max(H/h.hbm_bandwidth_Bps,H/h.l2_write_bandwidth_Bps)
+                fill=2*a_rows*width/h.hbm_read_a_Bps+2*b_cols*width/h.hbm_bandwidth_Bps
+                th=max(fill,H/h.l2_write_bandwidth_Bps)
                 store=2*local*width/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz) if p.charge_input_shared_write and h.shared_write_bytes_per_cycle_per_core else 0
                 if layout=='engine-routed' and p.charge_input_shared_write:
                     if not h.shared_write_bytes_per_cycle_per_core:raise ValueError('Routed input requires Shared write bandwidth')

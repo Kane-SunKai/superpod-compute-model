@@ -52,6 +52,8 @@ class Hardware:
     mac_per_cell_per_cycle: float = 1.0
     vector_fp16_flops_per_cycle_per_core: float = 512
     hbm_bandwidth_Bps: float = 2039e9
+    hbm_write_bandwidth_Bps: float = 0.0
+    hbm_read_a_Bps: float = 0.0
     hbm_latency_s: float = 1e-6
     hbm_capacity_bytes: int = 80_000_000_000
     l2_bytes: int = 40 * 1024**2
@@ -83,6 +85,11 @@ class Hardware:
 
     def __post_init__(self):
         object.__setattr__(self,'shared_read_phase_lanes',tuple(tuple(x) for x in self.shared_read_phase_lanes))
+        if not self.hbm_write_bandwidth_Bps:
+            # Profiles that predate the split keep one rate for both directions.
+            object.__setattr__(self,'hbm_write_bandwidth_Bps',self.hbm_bandwidth_Bps)
+        if not self.hbm_read_a_Bps:
+            object.__setattr__(self,'hbm_read_a_Bps',self.hbm_bandwidth_Bps)
         integer(self.shared_bank_count,'shared_bank_count',0)
         for name in ('shared_bank_word_bytes','shared_wave_lanes','shared_read_vector_bytes','shared_words_per_bank_cycle'):
             integer(getattr(self,name),name)
