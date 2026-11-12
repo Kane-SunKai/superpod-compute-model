@@ -1,0 +1,902 @@
+[
+ {
+  "id": "decode_normal_01",
+  "category": "decode_normal",
+  "shape": [
+   1,
+   6144,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_02",
+  "category": "decode_normal",
+  "shape": [
+   2,
+   6144,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_03",
+  "category": "decode_normal",
+  "shape": [
+   4,
+   6144,
+   6144
+  ]
+ },
+ {
+  "id": "decode_normal_04",
+  "category": "decode_normal",
+  "shape": [
+   8,
+   6144,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_05",
+  "category": "decode_normal",
+  "shape": [
+   16,
+   6144,
+   6144
+  ]
+ },
+ {
+  "id": "decode_normal_06",
+  "category": "decode_normal",
+  "shape": [
+   32,
+   6144,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_07",
+  "category": "decode_normal",
+  "shape": [
+   1,
+   8192,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_08",
+  "category": "decode_normal",
+  "shape": [
+   2,
+   8192,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_09",
+  "category": "decode_normal",
+  "shape": [
+   4,
+   8192,
+   8192
+  ]
+ },
+ {
+  "id": "decode_normal_10",
+  "category": "decode_normal",
+  "shape": [
+   8,
+   8192,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_11",
+  "category": "decode_normal",
+  "shape": [
+   16,
+   8192,
+   6144
+  ]
+ },
+ {
+  "id": "decode_normal_12",
+  "category": "decode_normal",
+  "shape": [
+   32,
+   8192,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_13",
+  "category": "decode_normal",
+  "shape": [
+   1,
+   12288,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_14",
+  "category": "decode_normal",
+  "shape": [
+   4,
+   12288,
+   6144
+  ]
+ },
+ {
+  "id": "decode_normal_15",
+  "category": "decode_normal",
+  "shape": [
+   8,
+   12288,
+   8192
+  ]
+ },
+ {
+  "id": "decode_normal_16",
+  "category": "decode_normal",
+  "shape": [
+   16,
+   21760,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_17",
+  "category": "decode_normal",
+  "shape": [
+   2,
+   21760,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_18",
+  "category": "decode_normal",
+  "shape": [
+   32,
+   21760,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_19",
+  "category": "decode_normal",
+  "shape": [
+   1,
+   11008,
+   4096
+  ]
+ },
+ {
+  "id": "decode_normal_20",
+  "category": "decode_normal",
+  "shape": [
+   8,
+   11008,
+   4096
+  ]
+ },
+ {
+  "id": "decode_largeN_01",
+  "category": "decode_largeN",
+  "shape": [
+   1,
+   32768,
+   6144
+  ]
+ },
+ {
+  "id": "decode_largeN_02",
+  "category": "decode_largeN",
+  "shape": [
+   2,
+   40960,
+   5120
+  ]
+ },
+ {
+  "id": "decode_largeN_03",
+  "category": "decode_largeN",
+  "shape": [
+   4,
+   57344,
+   2048
+  ]
+ },
+ {
+  "id": "decode_largeN_04",
+  "category": "decode_largeN",
+  "shape": [
+   8,
+   69632,
+   3072
+  ]
+ },
+ {
+  "id": "decode_largeN_05",
+  "category": "decode_largeN",
+  "shape": [
+   16,
+   77824,
+   1024
+  ]
+ },
+ {
+  "id": "decode_largeN_06",
+  "category": "decode_largeN",
+  "shape": [
+   32,
+   90112,
+   2048
+  ]
+ },
+ {
+  "id": "decode_largeN_07",
+  "category": "decode_largeN",
+  "shape": [
+   1,
+   106496,
+   1536
+  ]
+ },
+ {
+  "id": "decode_largeN_08",
+  "category": "decode_largeN",
+  "shape": [
+   2,
+   118784,
+   1024
+  ]
+ },
+ {
+  "id": "decode_largeN_09",
+  "category": "decode_largeN",
+  "shape": [
+   4,
+   126976,
+   2048
+  ]
+ },
+ {
+  "id": "decode_largeN_10",
+  "category": "decode_largeN",
+  "shape": [
+   8,
+   131072,
+   1024
+  ]
+ },
+ {
+  "id": "decode_largeN_11",
+  "category": "decode_largeN",
+  "shape": [
+   16,
+   32768,
+   4096
+  ]
+ },
+ {
+  "id": "decode_largeN_12",
+  "category": "decode_largeN",
+  "shape": [
+   32,
+   40960,
+   3072
+  ]
+ },
+ {
+  "id": "decode_largeN_13",
+  "category": "decode_largeN",
+  "shape": [
+   2,
+   57344,
+   4608
+  ]
+ },
+ {
+  "id": "decode_largeN_14",
+  "category": "decode_largeN",
+  "shape": [
+   4,
+   69632,
+   3584
+  ]
+ },
+ {
+  "id": "decode_largeN_15",
+  "category": "decode_largeN",
+  "shape": [
+   8,
+   77824,
+   2560
+  ]
+ },
+ {
+  "id": "decode_largeN_16",
+  "category": "decode_largeN",
+  "shape": [
+   1,
+   90112,
+   1024
+  ]
+ },
+ {
+  "id": "decode_largeN_17",
+  "category": "decode_largeN",
+  "shape": [
+   16,
+   106496,
+   1536
+  ]
+ },
+ {
+  "id": "decode_largeN_18",
+  "category": "decode_largeN",
+  "shape": [
+   32,
+   118784,
+   1024
+  ]
+ },
+ {
+  "id": "decode_largeN_19",
+  "category": "decode_largeN",
+  "shape": [
+   2,
+   126976,
+   1024
+  ]
+ },
+ {
+  "id": "decode_largeN_20",
+  "category": "decode_largeN",
+  "shape": [
+   4,
+   131072,
+   2048
+  ]
+ },
+ {
+  "id": "prefill_01",
+  "category": "prefill",
+  "shape": [
+   64,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_02",
+  "category": "prefill",
+  "shape": [
+   128,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_03",
+  "category": "prefill",
+  "shape": [
+   256,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_04",
+  "category": "prefill",
+  "shape": [
+   1536,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_05",
+  "category": "prefill",
+  "shape": [
+   3072,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_06",
+  "category": "prefill",
+  "shape": [
+   4096,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_07",
+  "category": "prefill",
+  "shape": [
+   1024,
+   7168,
+   5120
+  ]
+ },
+ {
+  "id": "prefill_08",
+  "category": "prefill",
+  "shape": [
+   2048,
+   7168,
+   5120
+  ]
+ },
+ {
+  "id": "prefill_09",
+  "category": "prefill",
+  "shape": [
+   1024,
+   8192,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_10",
+  "category": "prefill",
+  "shape": [
+   2048,
+   8192,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_11",
+  "category": "prefill",
+  "shape": [
+   1024,
+   11008,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_12",
+  "category": "prefill",
+  "shape": [
+   2048,
+   11008,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_13",
+  "category": "prefill",
+  "shape": [
+   1024,
+   16384,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_14",
+  "category": "prefill",
+  "shape": [
+   512,
+   6144,
+   6144
+  ]
+ },
+ {
+  "id": "prefill_15",
+  "category": "prefill",
+  "shape": [
+   1536,
+   4096,
+   10880
+  ]
+ },
+ {
+  "id": "prefill_16",
+  "category": "prefill",
+  "shape": [
+   2560,
+   5120,
+   8192
+  ]
+ },
+ {
+  "id": "prefill_17",
+  "category": "prefill",
+  "shape": [
+   4096,
+   4096,
+   2048
+  ]
+ },
+ {
+  "id": "prefill_18",
+  "category": "prefill",
+  "shape": [
+   2048,
+   4096,
+   3072
+  ]
+ },
+ {
+  "id": "prefill_19",
+  "category": "prefill",
+  "shape": [
+   8192,
+   512,
+   2048
+  ]
+ },
+ {
+  "id": "prefill_20",
+  "category": "prefill",
+  "shape": [
+   8192,
+   256,
+   1024
+  ]
+ },
+ {
+  "id": "prefill_21",
+  "category": "prefill",
+  "shape": [
+   4096,
+   512,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_22",
+  "category": "prefill",
+  "shape": [
+   6144,
+   1024,
+   2048
+  ]
+ },
+ {
+  "id": "prefill_23",
+  "category": "prefill",
+  "shape": [
+   5120,
+   768,
+   1024
+  ]
+ },
+ {
+  "id": "prefill_24",
+  "category": "prefill",
+  "shape": [
+   2048,
+   512,
+   4096
+  ]
+ },
+ {
+  "id": "prefill_25",
+  "category": "prefill",
+  "shape": [
+   512,
+   8192,
+   2048
+  ]
+ },
+ {
+  "id": "prefill_26",
+  "category": "prefill",
+  "shape": [
+   256,
+   8192,
+   1024
+  ]
+ },
+ {
+  "id": "prefill_27",
+  "category": "prefill",
+  "shape": [
+   768,
+   6144,
+   1024
+  ]
+ },
+ {
+  "id": "prefill_28",
+  "category": "prefill",
+  "shape": [
+   512,
+   16384,
+   1024
+  ]
+ },
+ {
+  "id": "prefill_29",
+  "category": "prefill",
+  "shape": [
+   1024,
+   12288,
+   1024
+  ]
+ },
+ {
+  "id": "prefill_30",
+  "category": "prefill",
+  "shape": [
+   1024,
+   4096,
+   512
+  ]
+ },
+ {
+  "id": "gpt7b_01",
+  "category": "gpt7b",
+  "shape": [
+   512,
+   12288,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_02",
+  "category": "gpt7b",
+  "shape": [
+   1024,
+   12288,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_03",
+  "category": "gpt7b",
+  "shape": [
+   2048,
+   12288,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_04",
+  "category": "gpt7b",
+  "shape": [
+   512,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_05",
+  "category": "gpt7b",
+  "shape": [
+   1024,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_06",
+  "category": "gpt7b",
+  "shape": [
+   2048,
+   4096,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_07",
+  "category": "gpt7b",
+  "shape": [
+   512,
+   21760,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_08",
+  "category": "gpt7b",
+  "shape": [
+   1024,
+   21760,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_09",
+  "category": "gpt7b",
+  "shape": [
+   2048,
+   21760,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_10",
+  "category": "gpt7b",
+  "shape": [
+   512,
+   4096,
+   11008
+  ]
+ },
+ {
+  "id": "gpt7b_11",
+  "category": "gpt7b",
+  "shape": [
+   1024,
+   4096,
+   11008
+  ]
+ },
+ {
+  "id": "gpt7b_12",
+  "category": "gpt7b",
+  "shape": [
+   2048,
+   4096,
+   11008
+  ]
+ },
+ {
+  "id": "gpt7b_13",
+  "category": "gpt7b",
+  "shape": [
+   1,
+   50304,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_14",
+  "category": "gpt7b",
+  "shape": [
+   1024,
+   50304,
+   4096
+  ]
+ },
+ {
+  "id": "gpt7b_15",
+  "category": "gpt7b",
+  "shape": [
+   1024,
+   1024,
+   128
+  ]
+ },
+ {
+  "id": "gpt13b_01",
+  "category": "gpt13b",
+  "shape": [
+   512,
+   15360,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_02",
+  "category": "gpt13b",
+  "shape": [
+   1024,
+   15360,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_03",
+  "category": "gpt13b",
+  "shape": [
+   2048,
+   15360,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_04",
+  "category": "gpt13b",
+  "shape": [
+   512,
+   5120,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_05",
+  "category": "gpt13b",
+  "shape": [
+   1024,
+   5120,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_06",
+  "category": "gpt13b",
+  "shape": [
+   2048,
+   5120,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_07",
+  "category": "gpt13b",
+  "shape": [
+   512,
+   27648,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_08",
+  "category": "gpt13b",
+  "shape": [
+   1024,
+   27648,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_09",
+  "category": "gpt13b",
+  "shape": [
+   2048,
+   27648,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_10",
+  "category": "gpt13b",
+  "shape": [
+   512,
+   5120,
+   13824
+  ]
+ },
+ {
+  "id": "gpt13b_11",
+  "category": "gpt13b",
+  "shape": [
+   1024,
+   5120,
+   13824
+  ]
+ },
+ {
+  "id": "gpt13b_12",
+  "category": "gpt13b",
+  "shape": [
+   2048,
+   5120,
+   13824
+  ]
+ },
+ {
+  "id": "gpt13b_13",
+  "category": "gpt13b",
+  "shape": [
+   1,
+   32000,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_14",
+  "category": "gpt13b",
+  "shape": [
+   1024,
+   32000,
+   5120
+  ]
+ },
+ {
+  "id": "gpt13b_15",
+  "category": "gpt13b",
+  "shape": [
+   2048,
+   2048,
+   128
+  ]
+ }
+]
