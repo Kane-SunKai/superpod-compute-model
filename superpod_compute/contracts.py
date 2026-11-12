@@ -51,6 +51,13 @@ class Hardware:
     array_cols: int = 16
     mac_per_cell_per_cycle: float = 1.0
     vector_fp16_flops_per_cycle_per_core: float = 512
+    vector_cores_per_core: int = 1
+    clock_peak_hz: float = 0.0
+    l1d_bytes: int = 0
+    l1i_bytes: int = 0
+    l1d_bytes_per_cycle: float = 0.0
+    resident_wavefronts_per_core: int = 0
+    hbm_contiguous_bandwidth_Bps: float = 0.0
     hbm_bandwidth_Bps: float = 2039e9
     hbm_write_bandwidth_Bps: float = 0.0
     hbm_read_a_Bps: float = 0.0
@@ -107,6 +114,10 @@ class Hardware:
         integer(self.register_reserve_bytes_per_core,'register_reserve_bytes_per_core',0)
         integer(self.register_partitions_per_core,'register_partitions_per_core',0)
         integer(self.register_bytes_per_partition,'register_bytes_per_partition',0)
+        for name in ('vector_cores_per_core','l1d_bytes','l1i_bytes','resident_wavefronts_per_core'):
+            integer(getattr(self,name),name,0)
+        for name in ('clock_peak_hz','l1d_bytes_per_cycle','hbm_contiguous_bandwidth_Bps'):
+            positive(getattr(self,name),name,True)
         if bool(self.register_partitions_per_core)!=bool(self.register_bytes_per_partition):
             raise ValueError('Register partition count and capacity must be specified together')
         if self.register_partitions_per_core and self.register_partitions_per_core!=self.arrays_per_core:
@@ -124,6 +135,16 @@ class Hardware:
             positive(getattr(self,name),name,True)
         if self.shared_budget_bytes_per_core > self.source_sram_bytes_per_core:
             raise ValueError('shared budget exceeds the configured on-chip SRAM capacity')
+
+    @property
+    def vector_flops_per_cycle(self):
+        """Vector throughput of one CU, in fp16 operations per cycle.
+
+        `vector_fp16_flops_per_cycle_per_core` is quoted per vector core, and a
+        profile that predates that convention leaves `vector_cores_per_core` at
+        its default of 1, which keeps its old per-CU meaning.
+        """
+        return self.vector_fp16_flops_per_cycle_per_core*self.vector_cores_per_core
 
     @property
     def core_peak_flops(self):
@@ -179,13 +200,10 @@ class Policy:
     k_loop_control_cycles_per_step: float = 0.0
     effective_shared_read_bytes_per_cycle_per_core: float = 0.0
     operand_layouts: tuple = ('compact',)
-    tile_correction: str = ''
+    buffer_dims: str = 'max'
 
     def __post_init__(self):
         object.__setattr__(self,'operand_layouts',tuple(self.operand_layouts))
-        if self.tile_correction:
-            from .tile_correction import load as load_tile_correction
-            load_tile_correction(self.tile_correction)   # rejects misspelt or malformed tables
         if not self.operand_layouts or len(set(self.operand_layouts))!=len(self.operand_layouts) or not set(self.operand_layouts)<={'compact','engine-routed'}:
             raise ValueError('Unsupported or duplicate operand layouts')
         for name in ('add_shape_candidate','charge_hbm_latency','input_reuse','charge_input_shared_write'):
@@ -208,6 +226,8 @@ class Policy:
             raise ValueError('Unknown transfer resource mode')
         integer(self.top_k,'top_k')
         if self.initial_cache_state not in ('cold','warm-if-fit'):raise ValueError('Invalid initial cache state')
+        if self.buffer_dims not in ('max','search'):
+            raise ValueError("buffer_dims must be 'max' or 'search'")
         fingerprint=self.calibration_hardware_sha256
         if not isinstance(fingerprint,str) or (fingerprint and (len(fingerprint)!=64 or any(c not in '0123456789abcdef' for c in fingerprint))):
             raise ValueError('calibration_hardware_sha256 must be an empty string or lowercase SHA256')

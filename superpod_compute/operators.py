@@ -110,12 +110,6 @@ class GemmModel:
     def candidates(self,request,hardware,policy):
         def values(base,dim):
             return sorted(set(base)|({min(max(base),max(min(base),align(dim,hardware.matrix_k_quantum)))} if policy.add_shape_candidate else set()))
-        allowed=None
-        if policy.tile_correction:
-            from .tile_correction import load as load_tile_correction
-            # Only tiles the library actually ships (and the table calibrated) are
-            # proposed; the shape-derived extra tile may not exist as a kernel.
-            allowed=load_tile_correction(policy.tile_correction)['factors']
         factors=[]
         for d in range(1,isqrt(hardware.cores)+1):
             if hardware.cores%d==0:
@@ -128,18 +122,43 @@ class GemmModel:
                     gm=max(1,min(gm,tm));gn=max(1,min(gn,tn,hardware.cores//gm))
                     if gm*gn<=hardware.cores:geometries.add((gm,gn))
                 for bk in values(policy.bk_values,request.K):
-                    if allowed is not None and (bm,bn,bk) not in allowed:continue
+                    counts=policy.register_buffer_counts if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core else (2,)
                     for gm,gn in sorted(geometries):
-                        for L in policy.buffer_counts:
-                            for S in policy.buffer_counts:
-                                # Avoid duplicate effective chunks for tiny C.
-                                chunks=sorted({min(x,bm*bn*2) for x in policy.output_chunk_values})
-                                for chunk in chunks:
-                                    for O in policy.output_buffer_counts:
-                                        counts=policy.register_buffer_counts if hardware.matrix_backend in ('mmac','mac-throughput') and hardware.shared_read_bytes_per_cycle_per_core else (2,)
-                                        for V in counts:
-                                            for layout in policy.operand_layouts:
-                                                yield Mapping(bm,bn,bk,gm,gn,L,S,chunk,O,V,layout)
+                        for layout in policy.operand_layouts:
+                            for combo in self.buffer_dimensions(hardware,policy,bm,bn,bk,gm,gn,layout,counts):
+                                yield Mapping(bm,bn,bk,gm,gn,*combo,layout)
+
+    def buffer_dimensions(self,hardware,policy,bm,bn,bk,gm,gn,layout,counts):
+        """Pipeline-depth dimensions to enumerate for one tile and geometry.
+
+        'max' yields at most two: the deepest and the shallowest combination that
+        fit the Shared, L2 and register budgets. Enumerating the whole product
+        bought nothing -- on four shapes spanning small, odd and decode tiles the
+        winner was always one of those two ends, while the product is 112x the
+        candidates. 'search' restores the old product.
+        """
+        chunks=sorted({min(x,bm*bn*2) for x in policy.output_chunk_values})
+        combos=sorted(((L,S,chunk,O,V) for L in policy.buffer_counts
+                       for S in policy.buffer_counts for chunk in chunks
+                       for O in policy.output_buffer_counts for V in counts),
+                      key=lambda c:(-c[0],-c[1],c[2],-c[3],-c[4]))
+        if policy.buffer_dims=='search':return combos
+        stage = (bm + bn) * bk * 2
+        budget = hardware.shared_budget_bytes_per_core
+        picks = []
+        # Deepest and shallowest feasible combinations bracket the duration
+        # ranking; keeping both preserves rank_key's minimum-resource tie-break
+        # for shapes where a single K panel makes extra buffers worthless.
+        for ordered in (combos, combos[::-1]):
+            for combo in ordered:
+                # Shared holds the input stage and the output window at once;
+                # reject what cannot fit before paying for a full capacity check.
+                if max(combo[1] * stage, min(bm * bn * 2, combo[2] * combo[3])) > budget:
+                    continue
+                if self.capacity(Mapping(bm,bn,bk,gm,gn,*combo,layout),hardware)['valid']:
+                    if combo not in picks: picks.append(combo)
+                    break
+        return picks
 
     def evaluate(self,request,hardware,policy,backend,mapping,trace_limit=0):
         p=mapping;cap=self.capacity(p,hardware)
@@ -280,16 +299,7 @@ class GemmModel:
                               'Shared operand reads use the declared hardware bank/phase model; legacy calibrated effective-read rate is bypassed for this layout'])
             if request.layout=='right-transposed-contiguous':
                 notes.append('B is a transposed view of contiguous W[N,K]; no full B transpose is charged. Producer transaction/stride efficiency is not yet modeled beyond logical byte volume')
-            correction=None
-            if policy.tile_correction:
-                from .tile_correction import load as load_tile_correction
-                table=load_tile_correction(policy.tile_correction)
-                correction=table['factors'].get((p.bm,p.bn,p.bk))
-                if correction is None:raise ValueError('Registered tile missing from the correction table')
-                notes.append('Duration divided by the measured per-tile factor %.4f (table %s): the library ships this tile but runs it slower than the MMAC peak model assumes' % (correction,policy.tile_correction))
-            adjusted=total/correction if correction else total
-            return {'mapping':p.to_dict(),'capacity':cap,'duration_s':adjusted,'duration_us':adjusted*1e6,
-                    'uncorrected_duration_us':total*1e6,'tile_correction_factor':correction,
+            return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,
                     'reuse_order':order,'retention_budget_bytes':spare,'hbm_bytes_saved_by_reuse':saved,

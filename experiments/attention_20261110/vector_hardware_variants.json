@@ -1,0 +1,78 @@
+{
+ "efficiency": {
+  "softmax": 0.09507,
+  "gelu": 0.098405
+ },
+ "rows": [
+  {
+   "name": "BW1100 \u57fa\u7ebf",
+   "softmax_us": 3210.6,
+   "gelu_us": 640.6,
+   "long_us": 2622.9,
+   "bound": "vector",
+   "softmax_pct": 0.0,
+   "gelu_pct": 0.0,
+   "long_pct": 0.0
+  },
+  {
+   "name": "\u77e2\u91cf\u5355\u5143\u52a0\u5bbd\u4e00\u500d",
+   "softmax_us": 2011.8,
+   "gelu_us": 321.9,
+   "long_us": 1962.4,
+   "bound": "vector",
+   "softmax_pct": -37.3,
+   "gelu_pct": -49.8,
+   "long_pct": -25.2
+  },
+  {
+   "name": "\u6838\u6570\u52a0\u500d (144 CU)",
+   "softmax_us": 1794.7,
+   "gelu_us": 322.3,
+   "long_us": 1964.0,
+   "bound": "mem",
+   "softmax_pct": -44.1,
+   "gelu_pct": -49.7,
+   "long_pct": -25.1
+  },
+  {
+   "name": "\u65f6\u949f 1.6 GHz",
+   "softmax_us": 2609.2,
+   "gelu_us": 521.1,
+   "long_us": 2131.8,
+   "bound": "vector",
+   "softmax_pct": -18.7,
+   "gelu_pct": -18.7,
+   "long_pct": -18.7
+  },
+  {
+   "name": "HBM 2.0 TB/s \u8fde\u7eed",
+   "softmax_us": 3210.6,
+   "gelu_us": 640.6,
+   "long_us": 2622.9,
+   "bound": "vector",
+   "softmax_pct": 0.0,
+   "gelu_pct": 0.0,
+   "long_pct": 0.0
+  },
+  {
+   "name": "L1D 128 KiB",
+   "softmax_us": 3210.6,
+   "gelu_us": 640.6,
+   "long_us": 2458.5,
+   "bound": "vector",
+   "softmax_pct": 0.0,
+   "gelu_pct": 0.0,
+   "long_pct": -6.3
+  },
+  {
+   "name": "\u4ee5\u4e0a\u5168\u90e8",
+   "softmax_us": 1543.8,
+   "gelu_us": 132.9,
+   "long_us": 1546.7,
+   "bound": "mem",
+   "softmax_pct": -51.9,
+   "gelu_pct": -79.3,
+   "long_pct": -41.0
+  }
+ ]
+}

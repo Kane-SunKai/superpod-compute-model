@@ -5,10 +5,9 @@ from .backends import make_backend
 from .cache import MappingCache
 from .contracts import Hardware, Policy, Mapping, MODEL_VERSION, SEARCH_VERSION, digest
 from .operators import default_registry
-from .tile_correction import signature as tile_correction_signature
 
 def signature_for(request,hardware,policy,backend,model):
-    return {'request':request.to_dict(),'hardware':hardware.to_dict(),'policy':policy.to_dict(),'backend':backend.signature,'operator_model':model.version,'model_version':MODEL_VERSION,'search_version':SEARCH_VERSION,'initial_state':policy.initial_cache_state,'tile_correction':tile_correction_signature(policy.tile_correction),'dataflow':'resident-C-full-K; streamed-output; capacity-bounded-input-reuse; sequential-waves'}
+    return {'request':request.to_dict(),'hardware':hardware.to_dict(),'policy':policy.to_dict(),'backend':backend.signature,'operator_model':model.version,'model_version':MODEL_VERSION,'search_version':SEARCH_VERSION,'initial_state':policy.initial_cache_state,'dataflow':'resident-C-full-K; streamed-output; capacity-bounded-input-reuse; sequential-waves'}
 
 def predict(request,hardware=None,*,policy=None,backend='auto',cache_path=None,force=False,registry=None,progress=None,lut_path=None):
     hardware=hardware or Hardware.load();policy=policy or Policy();registry=registry or default_registry();model=registry.get(request.operator);model.validate(request,hardware)

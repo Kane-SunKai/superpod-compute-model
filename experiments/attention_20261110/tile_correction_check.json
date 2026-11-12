@@ -1,0 +1,169 @@
+[
+ {
+  "tile": [
+   256,
+   256,
+   32
+  ],
+  "n": 28,
+  "median_model_over_meas": 30.0,
+  "lo": 13.79,
+  "hi": 70.46,
+  "spread": 56.68,
+  "ratio": 1.3,
+  "table_factor": 1.333283,
+  "drift": -2.5,
+  "shape_ids": [
+   "decode_largeN_07",
+   "decode_largeN_08",
+   "decode_largeN_17",
+   "decode_largeN_18",
+   "prefill_09",
+   "prefill_10",
+   "prefill_12",
+   "prefill_16"
+  ]
+ },
+ {
+  "tile": [
+   256,
+   256,
+   16
+  ],
+  "n": 11,
+  "median_model_over_meas": -10.32,
+  "lo": -21.79,
+  "hi": -2.0,
+  "spread": 19.79,
+  "ratio": 0.8968,
+  "table_factor": 0.98617,
+  "drift": -9.1,
+  "shape_ids": [
+   "decode_largeN_03",
+   "decode_largeN_13",
+   "prefill_06",
+   "prefill_13",
+   "prefill_15",
+   "prefill_17",
+   "gpt7b_05",
+   "gpt7b_06"
+  ]
+ },
+ {
+  "tile": [
+   128,
+   128,
+   16
+  ],
+  "n": 6,
+  "median_model_over_meas": -74.5,
+  "lo": -75.0,
+  "hi": -73.61,
+  "spread": 1.39,
+  "ratio": 0.255,
+  "table_factor": 1.04174,
+  "drift": -75.5,
+  "shape_ids": [
+   "decode_largeN_04",
+   "decode_largeN_05",
+   "decode_largeN_06",
+   "decode_largeN_14",
+   "decode_largeN_15",
+   "decode_largeN_16"
+  ]
+ },
+ {
+  "tile": [
+   32,
+   32,
+   128
+  ],
+  "n": 3,
+  "median_model_over_meas": 27.41,
+  "lo": 11.65,
+  "hi": 32.35,
+  "spread": 20.71,
+  "ratio": 1.2741,
+  "table_factor": 0.514462,
+  "drift": 147.7,
+  "shape_ids": [
+   "decode_normal_06",
+   "decode_normal_12",
+   "decode_normal_18"
+  ]
+ },
+ {
+  "tile": [
+   64,
+   64,
+   16
+  ],
+  "n": 2,
+  "median_model_over_meas": -79.79,
+  "lo": -87.64,
+  "hi": -71.93,
+  "spread": 15.71,
+  "ratio": 0.2021,
+  "table_factor": 1.041554,
+  "drift": -80.6,
+  "shape_ids": [
+   "decode_largeN_02",
+   "decode_largeN_12"
+  ]
+ },
+ {
+  "tile": [
+   128,
+   128,
+   32
+  ],
+  "n": 2,
+  "median_model_over_meas": 1.34,
+  "lo": 1.11,
+  "hi": 1.57,
+  "spread": 0.46,
+  "ratio": 1.0134,
+  "table_factor": 1.103784,
+  "drift": -8.2,
+  "shape_ids": [
+   "prefill_03",
+   "prefill_24"
+  ]
+ },
+ {
+  "tile": [
+   16,
+   16,
+   256
+  ],
+  "n": 1,
+  "median_model_over_meas": 24.27,
+  "lo": 24.27,
+  "hi": 24.27,
+  "spread": 0.0,
+  "ratio": 1.2427,
+  "table_factor": null,
+  "drift": null,
+  "shape_ids": [
+   "decode_normal_15"
+  ]
+ },
+ {
+  "tile": [
+   64,
+   64,
+   64
+  ],
+  "n": 1,
+  "median_model_over_meas": -0.36,
+  "lo": -0.36,
+  "hi": -0.36,
+  "spread": 0.0,
+  "ratio": 0.9964,
+  "table_factor": 0.94291,
+  "drift": 5.7,
+  "shape_ids": [
+   "prefill_01"
+  ]
+ }
+]

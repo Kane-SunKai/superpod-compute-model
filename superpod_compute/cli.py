@@ -19,7 +19,6 @@ def parser():
         c.add_argument('--dtype',choices=('fp16','bf16'),default='fp16');c.add_argument('--hardware',type=Path);c.add_argument('--policy',type=Path)
         c.add_argument('--layout',choices=('row-major-contiguous','right-transposed-contiguous'),default='row-major-contiguous',help='Describe physical B storage; transpose is a view, not a charged transpose kernel')
         c.add_argument('--operand-layout',choices=('compact','engine-routed'),help='Explicit planned Shared layout; otherwise use policy candidates')
-        c.add_argument('--tile-correction',default='',help='Name of a data/<name>.json tile correction table; empty keeps it off')
         c.add_argument('--backend',choices=('auto','array','peak','mmac','mac-throughput'),default='auto');c.add_argument('--output',type=Path)
         c.add_argument('--json',action='store_true',help='Print full JSON instead of a concise summary')
         if name=='gemm':
@@ -47,7 +46,6 @@ def main(argv=None):
         request=GemmRequest(args.m,args.n,args.k,args.dtype,layout=args.layout);hardware=Hardware.load(args.hardware)
         policy=Policy(**json.loads(args.policy.read_text(encoding='utf-8-sig'))) if args.policy else Policy()
         if args.operand_layout:policy=replace(policy,operand_layouts=(args.operand_layout,))
-        if args.tile_correction:policy=replace(policy,tile_correction=args.tile_correction)
         if args.command=='evaluate':
             values=[int(v) for v in args.mapping.split(',')]
             if len(values) not in (7,9,10):raise ValueError('--mapping requires 7, 9, or 10 integers (the 10th is register operand buffers)')

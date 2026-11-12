@@ -8,3 +8,7 @@ outputs/
 dist/
 build/
 *.sqlite3*
+
+# Machine-only captures: ELF resources, dispatch metadata, vendor library headers.
+*_local_only.json
+machine_observation/

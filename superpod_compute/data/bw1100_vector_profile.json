@@ -1,0 +1,144 @@
+{
+  "note": "Vector-path constants for BW1100 + this DTK. Everything here is either an operator property or a library property; the hardware lives in the hardware profile. ops_per_element is the vector work the operation is defined to do (softmax: max, subtract, exp, accumulate, scale; gelu erf: the erf polynomial plus the gating multiply; tanh-gelu: one polynomial), NOT a fitted number. row_cycles is the per-row block setup and cross-lane reduction, kept in cycles because it is latency rather than arithmetic. efficiency is the calibrated quantity: the fraction of the vector unit the vendor kernel actually reaches, fitted per operator, dtype and regime. Change the hardware profile and the prediction follows the hardware; only efficiency would need re-measuring. row_capacity_elements is where the library stops using softmax_warp_forward (row kept in registers, template parameter log2(R) = 9, 10, 11 for 512, 1024, 2048) and switches to cunn_SoftMaxForwardGmem (row streamed from global memory and read twice, which is what the L1D spill term in vector_ops accounts for). layernorm carries the softmax efficiency on purpose: it is a prediction, not a fit. fp32 has no reduction measurement, so its reduction constants mirror fp16.",
+  "stream_bandwidth_ratio": 1.046512,
+  "launch_s": 3.3e-06,
+  "latency_factor": {
+    "warp": 8,
+    "gmem": 1.15,
+    "elem": 1.0
+  },
+  "row_capacity_elements": 2048,
+  "elements_per_block": 1024,
+  "ops_per_element": {
+    "softmax": {
+      "fp16": 10.0,
+      "bf16": 10.0,
+      "fp32": 10.0
+    },
+    "layernorm": {
+      "fp16": 12.0,
+      "bf16": 12.0,
+      "fp32": 12.0
+    },
+    "gelu": {
+      "fp16": 22.0,
+      "bf16": 22.0,
+      "fp32": 22.0
+    },
+    "gelu-tanh": {
+      "fp16": 12.0,
+      "bf16": 12.0,
+      "fp32": 12.0
+    }
+  },
+  "efficiency": {
+    "softmax": {
+      "fp16": {
+        "warp": 0.047389,
+        "gmem": 0.09507
+      },
+      "bf16": {
+        "warp": 0.041577,
+        "gmem": 0.090407
+      },
+      "fp32": {
+        "warp": 0.04627,
+        "gmem": 0.06845
+      }
+    },
+    "layernorm": {
+      "fp16": {
+        "warp": 0.047389,
+        "gmem": 0.10573
+      },
+      "bf16": {
+        "warp": 0.041577,
+        "gmem": 0.051075
+      },
+      "fp32": {
+        "warp": 0.04627,
+        "gmem": 0.06845
+      }
+    },
+    "gelu": {
+      "fp16": {
+        "elem": 0.098405
+      },
+      "bf16": {
+        "elem": 0.08978
+      },
+      "fp32": {
+        "elem": 0.10191
+      }
+    },
+    "gelu-tanh": {
+      "fp16": {
+        "elem": 0.063918
+      },
+      "bf16": {
+        "elem": 0.06391
+      },
+      "fp32": {
+        "elem": 0.06391
+      }
+    }
+  },
+  "achievement": {
+    "softmax": {
+      "fp16": 1.0,
+      "bf16": 1.0,
+      "fp32": 1.0
+    },
+    "gelu": {
+      "fp16": 1.0,
+      "bf16": 1.0,
+      "fp32": 1.0
+    },
+    "gelu-tanh": {
+      "fp16": 1.0,
+      "bf16": 1.0,
+      "fp32": 1.0
+    },
+    "layernorm": {
+      "fp16": 1.0,
+      "bf16": 1.0,
+      "fp32": 1.0
+    }
+  },
+  "row_cycles": {
+    "softmax": {
+      "fp16": {
+        "warp": 46.24,
+        "gmem": 578.02
+      },
+      "bf16": {
+        "warp": 13.76,
+        "gmem": 906.12
+      }
+    },
+    "gelu": {
+      "fp16": {
+        "elem": 0.0
+      },
+      "bf16": {
+        "elem": 0.0
+      },
+      "fp32": {
+        "elem": 0.0
+      }
+    },
+    "gelu-tanh": {
+      "fp16": {
+        "elem": 0.0
+      }
+    },
+    "layernorm": {
+      "bf16": {
+        "gmem": 93.6
+      },
+      "fp16": {
+        "gmem": 383.94
+      }
+    }
+  }
+}
