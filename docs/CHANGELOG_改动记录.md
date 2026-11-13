@@ -492,3 +492,66 @@ softmax 只看到 `(heads/TP, seq, seq)`，6 个模型 × TP=1/8 只产生 10 �
 **已知限制**
 - C 是从耗时反推的，没有 PMC 证据；下一步可以用 occupancy 计数器直接看每 CU 驻留几个 block
 - 长尾（每行成本到 131072 行才饱和）的形状还没测清楚
+
+---
+
+## 2026-11-12 · 按 SimAI 模型分组的矩阵乘法验证
+
+**改了什么**
+- 新增 `bw_probe/measure_simai_gemms.py`：对 6 个 Megatron 模型 × TP=1/8 × 6 个矩阵乘算子做实测与预测
+- 新增 `bw_probe/probe_gemm_dtype.py`、`bw_probe/probe_gemm_outliers.py`、`bw_probe/measure_outlier_fastest.py`
+- `experiments/attention_20261110/build_softmax_configs_html.py` 新增第 6 节，其余章节顺延
+- 重新生成 `矢量算子总验证_20261112.html`
+
+**测了什么**
+每层 6 个算子：QKV 投影 `(seq, 3h/TP, h)`、QKᵀ 与 PV（batched，头数为 `heads/TP`）、
+注意力输出 `(seq, h, h/TP)`、MLP fc1 `(seq, ffn/TP, h)`、fc2 `(seq, h, ffn/TP)`。
+seq=4096，bf16，按 Megatron 的 NT 调用方式（权存 `(N,K)`，算 `x @ w.T`），共 72 个点。
+预测走 `predict(GemmRequest(...))` 与 `predict_batched_gemm`，策略与 100 组回归 V3 一致。
+
+**结论**
+- 剔除两个库退化点后：70 个点平均 **10.9%**，最大 40.7%；按算子 QKV 12.1% / QKᵀ 4.2% /
+  PV 7.4% / 注意力输出 8.1% / fc1 14.5% / fc2 19.6%
+- 误差不随模型规模单调变化（7B 6.0% → 405B 16.4%），说明不是对某个尺寸段过拟合
+- 真正的结构误差集中在长 K：fc2（K=ffn）在 TP=1 上 6 个模型全部偏低，平均 28%；
+  175B/405B 在 TP=8 的 qkv/fc1 也偏低约 30%
+- 两个 † 点是库的可达性上限，不是模型误差：405B TP=1 QKV 与 175B TP=1 fc1 的默认核
+  只有 28 / 41 TFLOPS（MT128x128x16），换 NN 布局也只到 64 / 67 TFLOPS，远低于模型的 ~322
+
+**怎么判断的（测试）**
+- fp16 与 bf16 在 3 个代表形状上差 <1%，且 profiler 显示同一种核，所以用 fp16 标定的模型对 bf16 测量
+- 两个退化点单独复测：两种 dtype 结果一致（+0.3% / +0.1%），排除 dtype
+- 尝试用 rocBLAS 的解枚举找更快核，这两个形状返回 0 个解；改用 NN 布局（权重预转置）
+  实测 104 ms / 73 ms，仍远低于模型值
+
+**已知限制**
+- 大 K 形状偏低 20%~40% 是几何项缺失，不是参数问题；详见 `docs/待解决问题.md` 第 2 条
+- 未纳入 lm_head/logits、MoE 专家路由和 TP all-reduce 通信
+
+## 2026-11-13 · 矢量路径：启动延迟接到硬件字段，重拟 layernorm 的 warp 行成本（commit 留空）
+
+**改了什么**
+- `superpod_compute/data/bw1100_mapper_mmac_hardware.json` — `hbm_latency_s` 0.0 → `4e-07`（本机指针追逐实测 400 ns）
+- `superpod_compute/vector_ops.py` — 新增 `startup = startup_round_trips × hardware.hbm_latency_s`（每次 kernel 收一次，不是每行、不是每 panel）；新增 `row_latency_factor()`，按算子覆盖每行临界路径因子；两者都写进返回值的 `startup_s`
+- `superpod_compute/data/bw1100_vector_profile.json` — 新增 `startup_round_trips`（layernorm 4.27 warp / 6.83 gmem）和 `row_latency_factor`（layernorm = 1.0）；layernorm bf16 warp `row_cycles` 0 → 411.5、`efficiency` 0.041577 → 0.063692；fp16 warp `row_cycles` 同步填 411.5
+
+**为什么要改（问题）**
+- 随机 10 尺寸扫描里 layernorm 四个点超 30%：512×1024 +47.6%、1024×2048 +55.0%、2048×2048 +38.3%、8192×16384 −30.3%
+- 前三个的共同点是 layernorm 的 warp 段没有自己的参数，整套继承 softmax：efficiency 相同、warp 段 `row_cycles` 缺省 0、`latency_factor` 是全局的 warp=8
+
+**怎么判断出原因的（测试）**
+- `bw_probe/probe_layernorm_gap.py` — hidden=1024/2048/4096/16384，rows 256~16384 扫描。行数大时反推每行成本 = **448 cycles 固定 + 0.743 cycles/元素**，模型是 **0 + 1.147**（把固定行开销摊进了每元素斜率，h=1024 附近恰好抵消，h=2048 偏慢 20%）；小行数时实测只多约 **1 µs 固定量**，而模型按 (8−1)×每行收 6.3 / 12.6 µs
+- `bw_probe/probe_ln_placement.py`、`probe_ln_graph.py`、`probe_ln_control.py` — 8192×16384 的 −30%：换 spacer 0~1 GB、缓冲区偏移 0~256 MB、关掉 CUDA graph 用普通循环，都是同一个值；同尺寸 `x*2` / `clone` / `sum(dim=1)` 严格线性，只有 layernorm 在 200 MB 处跳档（1051 → 1825 µs），且 profiler 显示同一形状在 1338 / 2150 µs 两态之间跳 → 库的慢档，不建模
+- `bw_probe/refit_vector_latency.py` — 汇总本机 240 个矢量测点重拟合。softmax 换成常数反而变差（5.5% → 6.6%），说明它的 ×8 是"行不重叠时的临界路径"，不是启动延迟，保持原样
+
+**验证结果**
+- `bw_probe/verify_vector_refit.py`：240 个矢量测点平均|误差| **8.5% → 4.1%**，最大 **109.7% → 30.4%**（剩下的是 8192×16384 慢档）
+- layernorm warp 18 点：37.9% → **2.5%**（最大 7.7%）；layernorm gmem 74 点：11.3% → **5.4%**
+- softmax / gelu 的点一个没变；矩阵乘路径不变（`charge_hbm_latency` 仍为 false，`hbm_latency_s` 只在矢量路径被读）
+- `pytest`：102 passed
+
+**已知限制**
+- 8192×16384（输入 ≥200 MB）的库慢档不建模，报告第 10.2 节列为已知区间
+- layernorm fp16 的 warp 组没有数据验证，row_cycles 与启动圈数按 bf16 结构填
+- `startup_round_trips` 是在本机 400 ns 下标定的无量纲圈数；换到 HBM 延迟差异大的机器上应复核
+- 2.5% 是**样本内**（a/b/启动圈数在同一批 18 个点上拟合）。按行数留出：只用 rows≤2048 拟合去预测 rows≥4096 是 2.0%（最大 4.2%）；反向是 9.4%（最大 21.5%）——行成本可外推，启动圈数必须由小行数据定。跨机器外推本机无法验证

@@ -14,11 +14,15 @@ Physical layer
     is written back, and the cost is the larger roofline divided by the wave
     occupancy.
 
-        t_mem     (scans + 1) * elements * element_bytes / stream bandwidth
+        t_hbm     (scans + 1) * elements * element_bytes / stream bandwidth
+        t_l2_read  elements * element_bytes / l2 read bytes per cycle / clock
+        t_l2_write elements * element_bytes / l2 write bytes per cycle / clock
+        t_mem     max(t_hbm, t_l2_read, t_l2_write)
         t_vector  total_ops / (cores * vector ops per cycle * clock * efficiency)
         spill     rows * max(0, length * element_bytes - l1d_bytes)
                   / (l2 read bytes per cycle * clock)
         t         max(t_mem, t_vector) / occupancy + spill + launch + latency
+                  + startup
 
     `total_ops` is the operator's own work: `elements * ops_per_element`, plus a
     small per-row term for the cross-lane reduction. `ops_per_element` is a
@@ -31,7 +35,7 @@ Physical layer
     read; anything past L1D is `spill`, charged at the L2 byte rate.
 
 Library layer
-    Three things the vendor library decided, measured rather than assumed:
+    Four things the vendor library decided, measured rather than assumed:
 
       `row_capacity_elements`  where it stops using the warp kernel
                                (`softmax_warp_forward`, template parameter
@@ -42,11 +46,22 @@ Library layer
                                ALU is never the binding constraint for these
                                operators and why the model cannot be built from
                                hardware alone.
+      `row_cycles`             per-row block setup and cross-lane reduction, in
+                               cycles rather than seconds: it is latency, not
+                               arithmetic, so it scales with the clock instead
+                               of with the vector width.
+      `row_latency_factor`     how much slower one row runs when it cannot
+                               overlap with other rows. Fitted on softmax; 1.0
+                               where the effect was measured to be absent.
       `achievement`            whatever is left, allowed only when the residual
                                is flat.
 
-    When the hardware changes, `efficiency` is the one thing that has to be
-    re-measured; everything else follows from the hardware fields.
+    `startup` is the one latency term that is not fitted: `startup_round_trips`
+    is a kernel property, and the seconds come from `hardware.hbm_latency_s`,
+    so a machine with slower HBM is predicted to start slower by itself.
+
+    When the hardware changes, the fitted cycle counts and efficiencies have to
+    be re-checked; the start-up latency follows the hardware latency field.
 
 Nothing here is registered in the operator registry: these operators have no
 tiling to search, so they do not need Mapping, candidates() or capacity().
@@ -108,6 +123,33 @@ def workgroups_of(request, profile):
     return ceil(request.elements / profile.get('elements_per_block', 1024))
 
 
+def row_latency_factor(profile, kind, dtype, key):
+    """How much slower one row runs when it cannot overlap with other rows.
+
+    A per-row critical path, not a memory latency: softmax keeps a row in
+    registers and its un-overlapped row costs several times the saturated one,
+    so the factor is fitted. `row_latency_factor` overrides the shared
+    `latency_factor` per operator where the effect was measured to be absent.
+    """
+    override = profile.get('row_latency_factor', {}).get(kind, {}).get(dtype, {})
+    if key in override:
+        return override[key]
+    return profile.get('latency_factor', {}).get(key, 1.0)
+
+
+def startup_latency_s(profile, kind, dtype, key, hardware):
+    """Memory latency exposed once per kernel, in seconds.
+
+    No block can begin its row before its first bytes arrive, and at the start
+    of a kernel there is nothing in flight to hide it. The round-trip count is
+    a property of the kernel's structure; the latency itself is a hardware
+    field, so a machine with slower HBM starts slower without a new constant.
+    """
+    trips = (profile.get('startup_round_trips', {}).get(kind, {})
+             .get(dtype, {}).get(key, 0.0))
+    return trips * hardware.hbm_latency_s
+
+
 
 def predict(request, hardware, profile=None):
     """Prediction for one vector operator, in seconds."""
@@ -123,7 +165,17 @@ def predict(request, hardware, profile=None):
     # profile's nominal HBM figure (1.80 against 1.72 TB/s), so it moves with the
     # hardware rather than being pinned in the vector profile.
     bandwidth = hardware.hbm_bandwidth_Bps * profile.get('stream_bandwidth_ratio', 1.0)
-    t_mem = (scans + 1) * n * b / bandwidth
+    t_hbm = (scans + 1) * n * b / bandwidth
+
+    # L2 sits between the CUs and HBM and its two directions are separate ports,
+    # so every byte read or written passes one of them and each is its own floor.
+    # The write port matters once HBM stops being the slower of the two.
+    rate = hardware.clock_hz
+    t_l2_read = (n * b / (hardware.l2_read_bytes_per_cycle * rate)
+                 if hardware.l2_read_bytes_per_cycle else 0.0)
+    t_l2_write = (n * b / (hardware.l2_write_bytes_per_cycle * rate)
+                  if hardware.l2_write_bytes_per_cycle else 0.0)
+    t_mem = max(t_hbm, t_l2_read, t_l2_write)
 
     # Per element: the operator's own work divided by the hardware's vector rate.
     # This is the term that moves when the hardware moves - a wider vector unit
@@ -157,21 +209,33 @@ def predict(request, hardware, profile=None):
     t_physical = max(t_mem, t_vector) / util
     achievement = profile['achievement'].get(request.kind, {}).get(request.dtype, 1.0)
 
-    # With fewer rows than the machine can keep busy, a block cannot hide its own
-    # latency behind other blocks, so one row costs `latency_factor` times what
-    # the saturated per-row cost says.
-    alpha = profile.get('latency_factor', {}).get(key, 1.0)
+    # With fewer rows than the machine can keep busy, a row cannot overlap with
+    # other rows, so it costs `row_latency_factor` times the saturated per-row
+    # cost. This is a property of the row's critical path (softmax keeps a row
+    # in registers), not of the memory latency, and it is 1.0 for layernorm,
+    # which measured no such effect.
+    alpha = row_latency_factor(profile, request.kind, request.dtype, key)
     latency = (alpha - 1.0) * per_row / hardware.clock_hz
 
-    duration = t_physical / achievement + spill + profile.get('launch_s', 0.0) + latency
+    # Separate from that: no block can start its row until its first bytes
+    # arrive, and at the start of a kernel there is nothing in flight to hide
+    # it. The number of exposed round trips belongs to the kernel; the latency
+    # is a hardware field, so a machine with slower HBM starts slower without
+    # a new fitted constant.
+    startup = startup_latency_s(profile, request.kind, request.dtype, key, hardware)
+
+    duration = (t_physical / achievement + spill + profile.get('launch_s', 0.0)
+                + latency + startup)
 
     return dict(kind=request.kind, dtype=request.dtype, rows=request.rows,
                 length=request.length, elements=n, regime=key, scans=scans,
                 workgroups=workgroups, occupancy=round(util, 4),
                 total_ops=n * ops, ops_per_element=ops, efficiency=efficiency,
                 elem_cycles=elem_cycles, row_cycles=row_cycles,
-                t_mem_s=t_mem, t_vector_s=t_vector, t_ideal_s=ideal,
+                t_mem_s=t_mem, t_hbm_s=t_hbm, t_l2_read_s=t_l2_read,
+                t_l2_write_s=t_l2_write, t_vector_s=t_vector, t_ideal_s=ideal,
                 bound='vector' if t_vector >= t_mem else 'mem',
                 t_physical_s=t_physical, achievement=achievement,
                 per_row_cycles=per_row, spill_s=spill, latency_s=latency,
+                startup_s=startup,
                 duration_s=duration, duration_us=round(duration * 1e6, 1))
