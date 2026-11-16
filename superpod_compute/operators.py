@@ -299,6 +299,17 @@ class GemmModel:
                               'Shared operand reads use the declared hardware bank/phase model; legacy calibrated effective-read rate is bypassed for this layout'])
             if request.layout=='right-transposed-contiguous':
                 notes.append('B is a transposed view of contiguous W[N,K]; no full B transpose is charged. Producer transaction/stride efficiency is not yet modeled beyond logical byte volume')
+            # Large-K throughput floor: for K >= threshold the library's GEMM mainloop
+            # drops to an observed efficiency ceiling, modeled as a minimum compute time.
+            # The floor is flops / ceiling_tflops plus the fixed kernel overhead; it only
+            # binds when the pipeline model predicts a faster time (compute-bound shapes).
+            # Calibrated on BW1100 NT-layout measurements at K=16384..53248.
+            lk_thresh=hardware.matrix_large_k_threshold
+            lk_ceil=hardware.matrix_large_k_ceiling_tflops
+            if lk_thresh and request.K>=lk_thresh and lk_ceil>0:
+                floor_s=(hardware.kernel_launch_s+policy.device_service_s
+                         +2*request.M*request.N*request.K/lk_ceil)
+                if floor_s>total:total=floor_s
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,

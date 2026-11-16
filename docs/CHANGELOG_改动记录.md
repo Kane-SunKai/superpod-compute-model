@@ -581,3 +581,33 @@ seq=4096，bf16，按 Megatron 的 NT 调用方式（权存 `(N,K)`，算 `x @ w
 - batch=10~19 的 PV（库次优核区）低估约 20~37%；这是库核选择问题，BW 模型本身是下界；比旧模型的 70%~136% 高估已大幅改善，可在将来通过测量该区间的实际核行为进一步修正
 - QKT decode（M=1，N=4096，K=128）现在也走 GEMV 路径，比实测低 14~38%；QKT 的 K=128 较小，BW 模型低估说明有额外的计算/调度开销；这是已知的小 K 问题（见待解决问题第 5 条），不在本次修复范围
 - `_GEMV_THRESHOLD = 64` 是本机实测支持的阈值（1~63 均测到走 GEMV 路径）；换机器要用相同形状复测确认
+
+---
+
+## 2026-11-16 · operators.py + hardware: K≥16384 大K效率台阶修正（待提交）
+
+**改了什么**
+- `superpod_compute/contracts.py` — `Hardware` 新增 `matrix_large_k_threshold: int = 0` 和 `matrix_large_k_ceiling_tflops: float = 0.0`；验证与现有字段一致（integer minimum=0，positive allow_zero=True）；默认值 0 表示禁用，不影响其他硬件配置文件
+- `superpod_compute/operators.py` — `GemmModel.evaluate_order()` 末尾加一行 floor 约束：当 `request.K >= matrix_large_k_threshold` 且 ceiling > 0 时，`total = max(total, kernel_launch_s + device_service_s + 2*M*N*K / ceiling)`；只在此处加，逻辑简单、透明
+- `superpod_compute/data/bw1100_mapper_mmac_hardware.json` — 新增 `matrix_large_k_threshold: 16384`，`matrix_large_k_ceiling_tflops: 2.1e14`（210 TFLOPS）
+
+**为什么要改（问题）**
+- prefill K≥16384 的矩阵乘预测值系统性偏低 25%~38%：gpt_7B fc2 -31%、gpt_175B fc2 -37%、gpt_405B fc1/fc2 -31%~-32%、gpt_405B TP8 fc1 -34%
+- 模型当前在这些形状上按接近峰值效率（~335T）预测，而实测 NT 布局只有 185~225T
+
+**怎么判断出原因的（测试）**
+- `bw_probe/probe_k_threshold.py`：M=4096 N=6656，K 从 8192 扫到 18432。K=12288→13824 维持 ~280T，K=14336 NT 单布局掉到 225T（NN=296T，NT 局部问题），K=16384 两种布局都跌到 220T，K=17408 NN 回升到 250T，K=18432 NT=222T 再次掉档。结论：存在周期性掉档，不是单一平滑台阶
+- `bw_probe/probe_k_threshold2.py`：精细扫 15k~20k，以及 SimAI 实际使用的 K=16384/20480/24576/49152/53248。NN 布局在 K=20480/24576 大多恢复正常（274T），但 NT 仍在 185~225T；K=49152 NN 也较慢（187~234T）
+- 分析：NT 布局在大 K 周期性跌档，模型按 NT 布局（Megatron 实际使用的布局）预测 → 需修正
+- 天花板选取：在 SimAI 9 个 K≥16384 形状（M=1024 和 M=4096）上枚举 ceiling_tflops，210T 使所有形状绝对误差 ≤11%（不含库退化点）；改为 240T 对小形状更保守但对大形状 K=49152 效果不佳
+
+**验证结果**
+- 本地快速验证：K=16384 gpt_7B fc2 预测 657µs（之前 465µs，实测 678µs）→ 误差 -3.1%；K=49152 gpt_175B fc2 预测 5893µs（之前 4108µs，实测 6545µs）→ -10.0%；K=53248 gpt_405B fc2 预测 8511µs（之前 5929µs，实测 8648µs）→ -1.6%
+- `bw_probe/verify_k_fix.py`（服务器）：58 个点有变化（包括 tall_factor artifact），K≥16384 的 20 个真实改动点中 19 个改善、1 个轻微变差（gpt_7B fc2 M=4096 从 -18.5% 变 +20.2%，从模型乐观变保守）
+- `pytest`：102 passed（新字段默认值 0 在 A100 配置文件不触发任何 floor，原有测试逐位不变）
+
+**已知限制**
+- K=14336 NT 的周期性掉档不在修正范围（NN 正常，属于 NT 路径对齐问题）；K=17408/18688 等"好档"与"坏档"交替，但 SimAI 实际形状（16384/20480/24576/49152/53248）都属于坏档区间
+- gpt_7B fc2 M=4096（N=4096，小方形 tile）被 ceiling 过度约束（253T → 210T 天花板）：从 -18.5% 变 +20.2%。如后续想修复可把 ceiling_tflops 适当提高并补偿其他大形状
+- 天花板值 210T 是在 BW1100 本机 NT 实测数据上标定的；换机器要用相同 K 形状复测确认
+- 库退化点（gpt_175B/405B TP1 fc1/qkv_proj，实测比模型慢 3~5×）仍在 -87% 附近，属于库行为问题，本次不修

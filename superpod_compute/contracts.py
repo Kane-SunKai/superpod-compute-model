@@ -88,6 +88,8 @@ class Hardware:
     shared_read_vector_bytes: int = 16
     shared_read_phase_lanes: tuple = ()
     shared_words_per_bank_cycle: int = 1
+    matrix_large_k_threshold: int = 0
+    matrix_large_k_ceiling_tflops: float = 0.0
 
 
     def __post_init__(self):
@@ -100,6 +102,8 @@ class Hardware:
         integer(self.shared_bank_count,'shared_bank_count',0)
         for name in ('shared_bank_word_bytes','shared_wave_lanes','shared_read_vector_bytes','shared_words_per_bank_cycle'):
             integer(getattr(self,name),name)
+        integer(self.matrix_large_k_threshold,'matrix_large_k_threshold',0)
+        positive(self.matrix_large_k_ceiling_tflops,'matrix_large_k_ceiling_tflops',True)
         if self.shared_bank_count:
             # Import lazily to keep the shared-memory component's integer
             # validator independent of hardware construction.

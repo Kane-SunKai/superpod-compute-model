@@ -124,5 +124,7 @@
       59
     ]
   ],
-  "shared_words_per_bank_cycle": 1
+  "shared_words_per_bank_cycle": 1,
+  "matrix_large_k_threshold": 16384,
+  "matrix_large_k_ceiling_tflops": 210000000000000.0
 }
