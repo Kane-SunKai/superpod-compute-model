@@ -4,6 +4,19 @@ Each C tile belongs to exactly one batch member. A/B reuse is counted only
 within that member in a wave; there is no fictitious sharing between heads.
 Waves pack independent output tasks onto the configured CUs. This adapter
 does not model FlashAttention fusion, masking, or tensor-layout conversion.
+
+When M is smaller than the minimum tile row (_GEMV_THRESHOLD), the library
+switches from a GEMM tile kernel to a vector/GEMV kernel. The GEMM tile path
+would split K into 256+ panels (bk=16 for K=4096) and accrue large duplicated
+L2 reads for every panel, producing estimates that are both batch-independent
+and 70-135% too high. The GEMV path uses a pure HBM-bandwidth model instead,
+which matches measured TN-layout fast-path timings to within ~25%.
+Directional rates reuse the same hardware fields as operators.py transfer():
+  A operand : hbm_read_a_Bps
+  B operand : hbm_bandwidth_Bps
+  C output  : hbm_write_bandwidth_Bps
+Overhead   : device_service_s + kernel_launch_s (same calibrated constant)
+No new fitted constants; changing the hardware profile moves the prediction.
 """
 from collections import Counter
 from itertools import product
@@ -12,6 +25,10 @@ from .operators import GemmModel, ceildiv
 from .backends import make_backend
 from .scheduler import operand_pipeline, output_pipeline
 from .operand_layout import operand_service_time,routed_operands
+
+# M must reach this to fill one tile row; below it the library picks a GEMV
+# kernel that the tile model cannot represent faithfully.
+_GEMV_THRESHOLD = 64
 
 def _waves(batch,m,n,bm,bn,cores):
     tasks=[(head,i,j,min(bm,m-i),min(bn,n-j)) for head in range(batch) for i in range(0,m,bm) for j in range(0,n,bn)]
@@ -35,9 +52,37 @@ def _output(sizes,chunk,buffers,h,p):
 
 def predict_batched_gemm(batch,m,n,k,hardware,policy,*,transpose_b=False):
     for label,value in [('batch',batch),('M',m),('N',n),('K',k)]:integer(value,label)
-    h=hardware;p=policy;model=GemmModel();backend=make_backend('mmac',h,p.matrix_efficiency)
+    h=hardware;p=policy
     footprint=2*batch*(m*k+k*n+m*n)
     if footprint>h.hbm_capacity_bytes:raise ValueError('Batched inputs/output exceed HBM')
+
+    # --- GEMV path: M too small to fill a tile row ---
+    # The library picks a vector/GEMV kernel for these shapes (measured: batch 1-32
+    # of M=1,N=128,K=4096 follow HBM bandwidth closely on the TN fast path). The
+    # GEMM tile model below splits K into many small panels and counts each one's
+    # duplicated L2 reads separately, which makes the estimate batch-independent
+    # and 70-135% too high. The bandwidth model is a better lower-bound predictor
+    # here; directional rates are the same hardware fields used by operators.py.
+    if m<_GEMV_THRESHOLD:
+        t_a=batch*m*k*2/h.hbm_read_a_Bps
+        t_b=batch*n*k*2/h.hbm_bandwidth_Bps
+        t_out=batch*m*n*2/h.hbm_write_bandwidth_Bps
+        duration_s=p.device_service_s+h.kernel_launch_s+t_a+t_b+t_out
+        gemv_mapping=dict(bm=min(m,_GEMV_THRESHOLD),bn=min(n,_GEMV_THRESHOLD),bk=k,
+                          gm=1,gn=1,l2_buffers=1,shared_buffers=1,
+                          output_chunk_bytes=16384,output_buffers=1,
+                          register_input_buffers=1,operand_layout='compact')
+        return dict(operator='batched_gemm',batch=batch,shape=[m,n,k],transpose_b=transpose_b,
+            best=dict(duration_us=duration_s*1e6,duration_s=duration_s,mapping=gemv_mapping,
+                      output_tasks=batch*ceildiv(m,1)*ceildiv(n,_GEMV_THRESHOLD),
+                      wave_count=1,wave_classes=[],
+                      hbm_read_bytes=batch*(m*k+n*k)*2,l2_read_bytes=0,
+                      output_bytes=batch*m*n*2),
+            searched_candidates=0,feasible_candidates=0,
+            scope='GEMV path: M < %d, HBM-bandwidth model; library uses vector kernel, not GEMM tile'%_GEMV_THRESHOLD,
+            minimum_batched_tile=_GEMV_THRESHOLD)
+
+    model=GemmModel();backend=make_backend('mmac',h,p.matrix_efficiency)
     best=None;count=feasible=0
     # Reuse the policy's resource-constrained tile candidates; geometries are
     # replaced by a batch-aware pool of independent output tasks, not B broadcast.

@@ -555,3 +555,29 @@ seq=4096，bf16，按 Megatron 的 NT 调用方式（权存 `(N,K)`，算 `x @ w
 - layernorm fp16 的 warp 组没有数据验证，row_cycles 与启动圈数按 bf16 结构填
 - `startup_round_trips` 是在本机 400 ns 下标定的无量纲圈数；换到 HBM 延迟差异大的机器上应复核
 - 2.5% 是**样本内**（a/b/启动圈数在同一批 18 个点上拟合）。按行数留出：只用 rows≤2048 拟合去预测 rows≥4096 是 2.0%（最大 4.2%）；反向是 9.4%（最大 21.5%）——行成本可外推，启动圈数必须由小行数据定。跨机器外推本机无法验证
+
+---
+
+## 2026-11-16 · batched.py 加 GEMV 路径，修复 decode PV 小 batch 高估 70%~135%（待提交）
+
+**改了什么**
+- `superpod_compute/batched.py` — 在 `predict_batched_gemm` 入口加 GEMV 分支：当 `m < 64`（填不满最小 tile 行）时，改用 HBM 带宽模型（A: `hbm_read_a_Bps`，B: `hbm_bandwidth_Bps`，C: `hbm_write_bandwidth_Bps`，固定开销: `device_service_s + kernel_launch_s`），跳过 GEMM tile 候选搜索；新增模块级常量 `_GEMV_THRESHOLD = 64`；m≥64 路径逐位不变
+
+**为什么要改（问题）**
+- decode 阶段 attn_pv（M=1~8，N=head_dim=128，K=kv=4096）当前预测约 30.4 µs，与 batch 完全无关；实测 batch=4 只需 7.3 µs，batch=96 是 66.8 µs——误差 +72% 到 +136%，PV 是 decode 误差最大的来源
+- 根因：GEMM tile 路径以 bk=16 拆分 K=4096 为 256 个 panel，每个 panel 对 `duplicated` 项（L2 重复读）计一次，256 次累加后 `tr` 成为瓶颈，且总量与 batch 无关（`b_cols` 在 `_waves` 里按列数算，不随 batch 变化，而 M 只有 1）
+
+**怎么判断出原因的（测试）**
+- `bw_probe/probe_pv_kernel.py`：测 M=1，N=128，K=4096，batch=4~128，NN/TN 两种布局的实际时间 → TN 在 batch≤9 最快（7~9 µs），batch≥20 时 NN 反超；时间几乎线性于 `batch*(M*K + N*K)*2 / hbm_bw`
+- `bw_probe/probe_pv_scan.py`：batch 从 1 扫到 128 的精细曲线 → batch=1~9 走 TN GEMV 路径（约 263~1080 GB/s 等效），batch=10~19 存在一个次优核区（库切换一次），batch≥20 NN 达到 1537 GB/s（89% HBM 峰值）
+- 纯带宽模型 `t = device_service_s + kernel_launch_s + t_a + t_b + t_out` 的本地验证：PV decode M=1 48 个点平均|误差| 从 ~100% → 17%，PV decode M=8 从 ~80% → 17%，prefill M=1024 完全不变（走 GEMM tile）
+
+**验证结果**
+- 本地快速验证：PV decode M=1 batch=4 预测 5.59 µs（之前 30.42 µs），batch=128 预测 82.14 µs（之前 88.97 µs，更准），M=1024 batch=32 预测 78.62 µs（不变）
+- `pytest`：102 passed（现有测试不覆盖 m<64 的 batched，不需要改测试）
+- 返回结构与 `measure_prefill_decode.py` 调用方完全兼容（`best.duration_us` 键存在）
+
+**已知限制**
+- batch=10~19 的 PV（库次优核区）低估约 20~37%；这是库核选择问题，BW 模型本身是下界；比旧模型的 70%~136% 高估已大幅改善，可在将来通过测量该区间的实际核行为进一步修正
+- QKT decode（M=1，N=4096，K=128）现在也走 GEMV 路径，比实测低 14~38%；QKT 的 K=128 较小，BW 模型低估说明有额外的计算/调度开销；这是已知的小 K 问题（见待解决问题第 5 条），不在本次修复范围
+- `_GEMV_THRESHOLD = 64` 是本机实测支持的阈值（1~63 均测到走 GEMV 路径）；换机器要用相同形状复测确认
