@@ -2,6 +2,9 @@
   "note": "Vector-path constants for BW1100 + this DTK. Everything here is either an operator property or a library property; the hardware lives in the hardware profile. ops_per_element is the vector work the operation is defined to do (softmax: max, subtract, exp, accumulate, scale; gelu erf: the erf polynomial plus the gating multiply; tanh-gelu: one polynomial), NOT a fitted number. row_cycles is the per-row block setup and cross-lane reduction, kept in cycles because it is latency rather than arithmetic. efficiency is the calibrated quantity: the fraction of the vector unit the vendor kernel actually reaches, fitted per operator, dtype and regime. Change the hardware profile and the prediction follows the hardware; only efficiency would need re-measuring. row_capacity_elements is where the library stops using softmax_warp_forward (row kept in registers, template parameter log2(R) = 9, 10, 11 for 512, 1024, 2048) and switches to cunn_SoftMaxForwardGmem (row streamed from global memory and read twice, which is what the L1D spill term in vector_ops accounts for). layernorm has its own measurements in both regimes; its warp entry is a fit to a rows sweep at hidden 1024 and 2048 (fixed 411.5 cycles per row plus 0.7485 cycles per element, previously folded into a single per-element slope that put hidden=2048 about 20% too slow), and its fp16 warp row cost is untested. latency_factor is the per-row critical path when rows cannot overlap and is fitted on softmax only; row_latency_factor overrides it per operator, and layernorm measured no such effect (1.0). startup_round_trips is the memory latency exposed once per kernel, in units of hardware.hbm_latency_s, so a machine with slower HBM predictably starts slower without a new constant. fp32 has no reduction measurement, so its reduction constants mirror fp16.",
   "stream_bandwidth_ratio": 1.046512,
   "launch_s": 3.3e-06,
+  "layernorm_large_n_threshold": 8192,
+  "layernorm_small_rows_threshold": 64,
+  "layernorm_slow_footprint_bytes": 200000000,
   "latency_factor": {
     "warp": 8,
     "gmem": 1.15,
@@ -9,16 +12,16 @@
   },
   "row_latency_factor": {
     "layernorm": {
-      "fp16": {"warp": 1.0, "gmem": 1.0},
-      "bf16": {"warp": 1.0, "gmem": 1.0},
-      "fp32": {"warp": 1.0, "gmem": 1.0}
+      "fp16": {"warp": 1.0, "gmem": 1.0, "gmem_large": 1.0},
+      "bf16": {"warp": 1.0, "gmem": 1.0, "gmem_large": 1.0},
+      "fp32": {"warp": 1.0, "gmem": 1.0, "gmem_large": 1.0}
     }
   },
   "startup_round_trips": {
     "layernorm": {
-      "fp16": {"warp": 4.27, "gmem": 6.83},
-      "bf16": {"warp": 4.27, "gmem": 6.83},
-      "fp32": {"warp": 4.27, "gmem": 6.83}
+      "fp16": {"warp": 4.27, "gmem": 6.83, "gmem_large": 6.83},
+      "bf16": {"warp": 4.27, "gmem": 6.83, "gmem_large": 6.83},
+      "fp32": {"warp": 4.27, "gmem": 6.83, "gmem_large": 6.83}
     }
   },
   "row_capacity_elements": 2048,
@@ -63,15 +66,18 @@
     "layernorm": {
       "fp16": {
         "warp": 0.047389,
-        "gmem": 0.10573
+        "gmem": 0.10573,
+        "gmem_large": 0.0813
       },
       "bf16": {
         "warp": 0.063692,
-        "gmem": 0.051075
+        "gmem": 0.051075,
+        "gmem_large": 0.03926
       },
       "fp32": {
         "warp": 0.04627,
-        "gmem": 0.06845
+        "gmem": 0.06845,
+        "gmem_large": 0.0527
       }
     },
     "gelu": {
@@ -149,10 +155,12 @@
     "layernorm": {
       "bf16": {
         "gmem": 93.6,
+        "gmem_large": 93.6,
         "warp": 411.5
       },
       "fp16": {
         "gmem": 383.94,
+        "gmem_large": 383.94,
         "warp": 411.5
       }
     }

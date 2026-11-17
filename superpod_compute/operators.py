@@ -39,12 +39,77 @@ def extents(total,tile):
 class GemmModel:
     name='gemm'
     version='dense-resident-c-explicit-operands-3.4'
+    # GEMV_M_THRESHOLD: below this row count the library switches from a GEMM
+    # tile kernel to a GEMV-like kernel. That kernel's HBM behaviour differs
+    # from the GEMM tile path in two measured ways (BW1100, NT layout,
+    # 换机必须重测):
+    #   * M < 8 and the A/B stream is page-aligned (K a multiple of the
+    #     contiguous quantum, so each B row is a whole number of 8 KiB
+    #     pages): rows stream contiguously at the card's contiguous rate,
+    #     above the general random-access HBM figure.
+    #   * 8 <= M < 64 with large K: the "fat GEMV" kernel reaches only a
+    #     fraction of the nominal HBM rate (calibrated 0.70).
+    GEMV_M_THRESHOLD = 64
     def input_hbm_bandwidth(self,hardware):
         """Read service hook; default preserves the original hardware contract."""
         return hardware.hbm_bandwidth_Bps
     def input_a_hbm_bandwidth(self,hardware):
         """A-view fill rate; the flat input rate when the profile sets no split."""
         return hardware.hbm_read_a_Bps or hardware.hbm_bandwidth_Bps
+    def gemv_bandwidths(self, hardware, request, a_bw, b_bw):
+        """Adjust the A/B fill rates for the GEMV-kernel regime.
+
+        The extension hooks above keep their single-argument signature; the
+        GEMV-kernel behaviour is applied here, at the one call site that
+        knows the request shape, so overrides of the hooks keep working.
+        """
+        if request is None:
+            return a_bw, b_bw
+        if self._gemv_stream_is_contiguous(request, hardware):
+            contig = getattr(hardware, 'hbm_contiguous_bandwidth_Bps', 0.0)
+            if contig:
+                return (max(contig, a_bw), max(contig, b_bw))
+            return a_bw, b_bw
+        if self._gemv_hbm_efficiency_applies(request, hardware):
+            eff = getattr(hardware, 'matrix_gemv_hbm_efficiency', 1.0)
+            if eff and eff < 1.0:
+                return a_bw * eff, b_bw * eff
+        return a_bw, b_bw
+    def _gemv_stream_is_contiguous(self, request, hardware):
+        """Single/few-row GEMV over whole-page B rows: contiguous streaming.
+
+        With M < 8 there is one row of output per N column, so each block
+        walks a complete B row of K elements. When that row is a whole
+        number of pages (K a multiple of `matrix_gemv_contiguous_k_quantum`),
+        every load is a full coalesced page and the library sustains the
+        card's contiguous rate. Calibrated on BW1100 M=1 measurements;
+        换机必须重测.
+        """
+        if request.M >= 8:
+            return False
+        quantum = getattr(hardware, 'matrix_gemv_contiguous_k_quantum', 0)
+        if not quantum:
+            return False
+        return request.K % quantum == 0
+    def _gemv_hbm_efficiency_applies(self, request, hardware):
+        """GEMV-kernel HBM bandwidth efficiency only kicks in for the
+        library's fat-GEMV kernel, when 8 <= M < 64, K is large, and the B
+        row stride aliases L2 sets.
+
+        Measured on BW1100 (NT layout, 换机必须重测): with M=8 and K a
+        multiple of 8192 elements (16 KiB rows) the achieved HBM rate drops
+        to 0.69-0.76 of nominal — the power-of-two row stride maps every B
+        row onto the same L2 set group, so the stream conflicts in cache.
+        K values that are not 8192-aligned (e.g. 5120/10240/20480 rows) run
+        at 0.92-0.95 and must not take the penalty.
+        """
+        if request.M < 8 or request.M >= self.GEMV_M_THRESHOLD:
+            return False
+        thresh = getattr(hardware, 'matrix_gemv_hbm_efficiency_k_threshold', 16384)
+        align = getattr(hardware, 'matrix_gemv_hbm_efficiency_k_alignment', 0)
+        if request.K < thresh:
+            return False
+        return bool(align) and request.K % align == 0
     def input_shared_write_time(self,m,n,k,hardware,policy):
         """Optional input-store service hook, seconds per CU per K panel."""
         return 2*(m+n)*k/(hardware.shared_write_bytes_per_cycle_per_core*hardware.clock_hz) if policy.charge_input_shared_write and hardware.shared_write_bytes_per_cycle_per_core else 0.0
@@ -239,10 +304,14 @@ class GemmModel:
                     # the slower endpoint rate; R separately charges L2 reads.
                     # The A view streams at its own measured rate when nothing is
                     # retained; a retained operand falls back to the flat rate.
+                    a_bw, b_bw = self.gemv_bandwidths(
+                        hardware, request,
+                        self.input_a_hbm_bandwidth(hardware),
+                        self.input_hbm_bandwidth(hardware))
                     if dh==cold:
-                        fill=m*k*2/self.input_a_hbm_bandwidth(hardware)+n*k*2/self.input_hbm_bandwidth(hardware)
+                        fill=m*k*2/a_bw+n*k*2/b_bw
                     else:
-                        fill=dh/self.input_hbm_bandwidth(hardware)
+                        fill=dh/b_bw
                     ht=max(fill,dh/hardware.l2_write_bandwidth_Bps)+(latency if dh else 0)
                     write=self.input_shared_write_time(min(p.bm,m),min(p.bn,n),k,hardware,policy)
                     if p.operand_layout=='engine-routed' and policy.charge_input_shared_write:
@@ -304,12 +373,12 @@ class GemmModel:
             # The floor is flops / ceiling_tflops plus the fixed kernel overhead; it only
             # binds when the pipeline model predicts a faster time (compute-bound shapes).
             # Calibrated on BW1100 NT-layout measurements at K=16384..53248.
-            lk_thresh=hardware.matrix_large_k_threshold
-            lk_ceil=hardware.matrix_large_k_ceiling_tflops
-            if lk_thresh and request.K>=lk_thresh and lk_ceil>0:
-                floor_s=(hardware.kernel_launch_s+policy.device_service_s
-                         +2*request.M*request.N*request.K/lk_ceil)
-                if floor_s>total:total=floor_s
+            lk_thresh = hardware.matrix_large_k_threshold
+            lk_ceil = hardware.matrix_large_k_ceiling_tflops
+            if lk_thresh and lk_ceil > 0 and request.K >= lk_thresh:
+                floor_s = (hardware.kernel_launch_s + policy.device_service_s
+                           + 2*request.M*request.N*request.K / lk_ceil)
+                if floor_s > total: total = floor_s
             return {'mapping':p.to_dict(),'capacity':cap,'duration_s':total,'duration_us':total*1e6,
                     'kernel_launch_s':hardware.kernel_launch_s,'device_service_s':policy.device_service_s,
                     'initial_cache_state':policy.initial_cache_state,'warm_residency_admitted':warm,

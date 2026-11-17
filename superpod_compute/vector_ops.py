@@ -106,10 +106,32 @@ def load_profile(path=PROFILE):
 
 
 def regime(request, profile):
-    """Which of the library's two row kernels this shape lands in."""
+    """Which of the library's row kernels this shape lands in.
+
+    The base warp / gmem split uses `row_capacity_elements` (2048 here). A
+    further subdivision of the gmem regime is needed for layernorm: the
+    library falls into a lower-throughput mode in two measured situations
+    (换机必须重测):
+      * a large hidden size with only a few rows (few workgroups), where the
+        streamed kernel suffers extra L2 spill and bandwidth contention;
+      * a footprint of 200 MB or more, where the library drops to a slower
+        streaming mode irrespective of the row count.
+    Both land in `gmem_large`, which carries its own calibrated efficiency.
+    """
     if request.kind not in REDUCTIONS:
         return 'elem'
-    return 'warp' if request.length <= profile['row_capacity_elements'] else 'gmem'
+    if request.length <= profile['row_capacity_elements']:
+        return 'warp'
+    # gmem regime. Sub-classify the library's slow modes.
+    if request.kind == 'layernorm':
+        large_n_threshold = profile.get('layernorm_large_n_threshold', 8192)
+        small_rows_threshold = profile.get('layernorm_small_rows_threshold', 64)
+        footprint_threshold = profile.get('layernorm_slow_footprint_bytes', 0)
+        footprint = request.elements * request.element_bytes
+        if ((request.length > large_n_threshold and request.rows < small_rows_threshold)
+                or (footprint_threshold and footprint >= footprint_threshold)):
+            return 'gmem_large'
+    return 'gmem'
 
 
 def occupancy(workgroups, hardware):
@@ -160,7 +182,7 @@ def predict(request, hardware, profile=None):
 
     # Only the streamed reduction kernel reads a row twice; the warp kernel keeps
     # it, and an elementwise operator never reads anything twice.
-    scans = 2 if key == 'gmem' else 1
+    scans = 2 if key in ('gmem', 'gmem_large') else 1
     # The achievable streaming rate on this card is a fixed ratio above the
     # profile's nominal HBM figure (1.80 against 1.72 TB/s), so it moves with the
     # hardware rather than being pinned in the vector profile.
@@ -198,7 +220,7 @@ def predict(request, hardware, profile=None):
     # L1D while the row fits in 32 KiB; whatever exceeds that misses and is
     # fetched from L2, which the whole chip shares at a fixed byte rate.
     spill = 0.0
-    if key == 'gmem' and hardware.l1d_bytes and hardware.l2_read_bytes_per_cycle:
+    if key in ('gmem', 'gmem_large') and hardware.l1d_bytes and hardware.l2_read_bytes_per_cycle:
         excess = request.rows * max(0, request.length * request.element_bytes
                                     - hardware.l1d_bytes)
         spill = excess / (hardware.l2_read_bytes_per_cycle * hardware.clock_hz)

@@ -126,5 +126,9 @@
   ],
   "shared_words_per_bank_cycle": 1,
   "matrix_large_k_threshold": 16384,
-  "matrix_large_k_ceiling_tflops": 210000000000000.0
+  "matrix_large_k_ceiling_tflops": 210000000000000.0,
+  "matrix_gemv_hbm_efficiency": 0.70,
+  "matrix_gemv_hbm_efficiency_k_threshold": 16384,
+  "matrix_gemv_hbm_efficiency_k_alignment": 8192,
+  "matrix_gemv_contiguous_k_quantum": 4096
 }

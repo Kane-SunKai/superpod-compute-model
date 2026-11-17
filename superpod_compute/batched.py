@@ -1,129 +1,132 @@
-"""Independent-head batched GEMM adapter over the same tile/service model.
+"""Independent-head batched GEMM (attention QK^T / PV) on BW1100.
 
-Each C tile belongs to exactly one batch member. A/B reuse is counted only
-within that member in a wave; there is no fictitious sharing between heads.
-Waves pack independent output tasks onto the configured CUs. This adapter
-does not model FlashAttention fusion, masking, or tensor-layout conversion.
+Two structural regimes, modelled separately because the vendor library lands
+in different kernels for them (measured 2026-11-17, CUDA-graph protocol; all
+constants live in `data/bw1100_bmm_profile.json`):
 
-When M is smaller than the minimum tile row (_GEMV_THRESHOLD), the library
-switches from a GEMM tile kernel to a vector/GEMV kernel. The GEMM tile path
-would split K into 256+ panels (bk=16 for K=4096) and accrue large duplicated
-L2 reads for every panel, producing estimates that are both batch-independent
-and 70-135% too high. The GEMV path uses a pure HBM-bandwidth model instead,
-which matches measured TN-layout fast-path timings to within ~25%.
-Directional rates reuse the same hardware fields as operators.py transfer():
-  A operand : hbm_read_a_Bps
-  B operand : hbm_bandwidth_Bps
-  C output  : hbm_write_bandwidth_Bps
-Overhead   : device_service_s + kernel_launch_s (same calibrated constant)
-No new fitted constants; changing the hardware profile moves the prediction.
+  PV-like  (n <= k)  output-narrow, K-streaming. The N dimension is small
+                     (a head dim), so each member contributes few output
+                     tiles and the A/B stream runs along K.
+  QKT-like (n > k)   output-wide, short K. The N dimension is the sequence
+                     length, so each member contributes many output tiles and
+                     the cost is set by the B stream and the C write.
+
+Within each, the library switches once more on the member count:
+  batch == 1        the non-batched kernel (far cheaper per byte);
+  m < 64            a vector/GEMV kernel whose per-member work is small
+                    enough that a single block's stream time floors the few
+                    member case;
+  m >= 64           the tiled kernel: members are cut into output tiles and
+                    the elapsed time is the larger of the A (PV) or C (QKT)
+                    stream at its measured rate, floored by one tile's
+                    stream time when only a handful of tiles are in flight.
+
+The byte volumes are exact (A: batch*m*k*2, B: batch*n*k*2, C: batch*m*n*2);
+only the per-regime launch offset and achievable stream rate are calibrated.
+No operand is shared between batch members and each member's output is
+written once.
 """
-from collections import Counter
-from itertools import product
-from .contracts import GemmRequest, Mapping, integer
-from .operators import GemmModel, ceildiv
-from .backends import make_backend
-from .scheduler import operand_pipeline, output_pipeline
-from .operand_layout import operand_service_time,routed_operands
+import json
+from pathlib import Path
 
-# M must reach this to fill one tile row; below it the library picks a GEMV
-# kernel that the tile model cannot represent faithfully.
-_GEMV_THRESHOLD = 64
+from .contracts import integer
 
-def _waves(batch,m,n,bm,bn,cores):
-    tasks=[(head,i,j,min(bm,m-i),min(bn,n-j)) for head in range(batch) for i in range(0,m,bm) for j in range(0,n,bn)]
-    classes=Counter()
-    for first in range(0,len(tasks),cores):
-        group=tasks[first:first+cores]
-        a={(h,i):mi for h,i,j,mi,nj in group};b={(h,j):nj for h,i,j,mi,nj in group}
-        sizes=tuple(sorted(Counter(mi*nj*2 for _,_,_,mi,nj in group).items()))
-        classes[(len(group),sum(a.values()),sum(b.values()),sum(mi+nj for _,_,_,mi,nj in group),max(mi+nj for _,_,_,mi,nj in group),sizes)]+=1
-    return classes,len(tasks)
+PROFILE = Path(__file__).resolve().parent / 'data/bw1100_bmm_profile.json'
 
-def _output(sizes,chunk,buffers,h,p):
-    bounds=sorted({0,*[q for size,num in sizes for q in (size//chunk,ceildiv(size,chunk))]});segments=[]
-    for lo,hi in zip(bounds,bounds[1:]):
-        total=sum(min(chunk,max(0,size-lo*chunk))*num for size,num in sizes)
-        local=max(min(chunk,max(0,size-lo*chunk)) for size,num in sizes)
-        if total:
-            w=local/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz) if h.shared_write_bytes_per_cycle_per_core else 0
-            segments.append((hi-lo,w,total/h.l2_write_bandwidth_Bps,max(total/h.hbm_write_bandwidth_Bps,total/h.l2_read_bandwidth_Bps)))
-    return output_pipeline(segments,buffers,buffers)['duration_s']+p.epilogue_s_per_wave
 
-def predict_batched_gemm(batch,m,n,k,hardware,policy,*,transpose_b=False):
-    for label,value in [('batch',batch),('M',m),('N',n),('K',k)]:integer(value,label)
-    h=hardware;p=policy
-    footprint=2*batch*(m*k+k*n+m*n)
-    if footprint>h.hbm_capacity_bytes:raise ValueError('Batched inputs/output exceed HBM')
+def load_profile(path=None):
+    return json.loads(Path(path or PROFILE).read_text(encoding='utf-8'))
 
-    # --- GEMV path: M too small to fill a tile row ---
-    # The library picks a vector/GEMV kernel for these shapes (measured: batch 1-32
-    # of M=1,N=128,K=4096 follow HBM bandwidth closely on the TN fast path). The
-    # GEMM tile model below splits K into many small panels and counts each one's
-    # duplicated L2 reads separately, which makes the estimate batch-independent
-    # and 70-135% too high. The bandwidth model is a better lower-bound predictor
-    # here; directional rates are the same hardware fields used by operators.py.
-    if m<_GEMV_THRESHOLD:
-        t_a=batch*m*k*2/h.hbm_read_a_Bps
-        t_b=batch*n*k*2/h.hbm_bandwidth_Bps
-        t_out=batch*m*n*2/h.hbm_write_bandwidth_Bps
-        duration_s=p.device_service_s+h.kernel_launch_s+t_a+t_b+t_out
-        gemv_mapping=dict(bm=min(m,_GEMV_THRESHOLD),bn=min(n,_GEMV_THRESHOLD),bk=k,
-                          gm=1,gn=1,l2_buffers=1,shared_buffers=1,
-                          output_chunk_bytes=16384,output_buffers=1,
-                          register_input_buffers=1,operand_layout='compact')
-        return dict(operator='batched_gemm',batch=batch,shape=[m,n,k],transpose_b=transpose_b,
-            best=dict(duration_us=duration_s*1e6,duration_s=duration_s,mapping=gemv_mapping,
-                      output_tasks=batch*ceildiv(m,1)*ceildiv(n,_GEMV_THRESHOLD),
-                      wave_count=1,wave_classes=[],
-                      hbm_read_bytes=batch*(m*k+n*k)*2,l2_read_bytes=0,
-                      output_bytes=batch*m*n*2),
-            searched_candidates=0,feasible_candidates=0,
-            scope='GEMV path: M < %d, HBM-bandwidth model; library uses vector kernel, not GEMM tile'%_GEMV_THRESHOLD,
-            minimum_batched_tile=_GEMV_THRESHOLD)
 
-    model=GemmModel();backend=make_backend('mmac',h,p.matrix_efficiency)
-    best=None;count=feasible=0
-    # Reuse the policy's resource-constrained tile candidates; geometries are
-    # replaced by a batch-aware pool of independent output tasks, not B broadcast.
-    shapes=sorted({(v.bm,v.bn,v.bk,v.l2_buffers,v.shared_buffers,v.output_chunk_bytes,v.output_buffers,v.register_input_buffers,v.operand_layout)
-                   for v in model.candidates(GemmRequest(m,n,k),h,p) if v.bm>=64 and v.bn>=64})
-    wave_cache={};out_cache={}
-    for bm,bn,bk,L,S,chunk,O,V,layout in shapes:
-        count+=1;mapping=Mapping(bm,bn,bk,1,1,L,S,chunk,O,V,layout);capacity=model.capacity(mapping,h)
-        if not capacity['valid']:continue
-        key=(bm,bn)
-        if key not in wave_cache:wave_cache[key]=_waves(batch,m,n,bm,bn,h.cores)
-        classes,tasks=wave_cache[key]
-        if any(L*(a_rows+b_cols)*bk*2+active*min(bm*bn*2,chunk*O)>h.l2_bytes for active,a_rows,b_cols,duplicated,local,sizes in classes):continue
-        feasible+=1;duration=p.device_service_s+h.kernel_launch_s;hbytes=rbytes=outbytes=0;details=[]
-        for (active,a_rows,b_cols,duplicated,local,sizes),repeat in classes.items():
-            unique=a_rows+b_cols
-            segments=[];full,tail=divmod(k,bk);service_totals=[0.0]*4
-            for number,width in [(full,bk),(int(tail>0),tail)]:
-                if not number:continue
-                compute=backend.estimate(bm,bn,ceildiv(width,h.instruction_k)*h.instruction_k)
-                H=2*unique*width;R=2*duplicated*width
-                fill=2*a_rows*width/h.hbm_read_a_Bps+2*b_cols*width/h.hbm_bandwidth_Bps
-                th=max(fill,H/h.l2_write_bandwidth_Bps)
-                store=2*local*width/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz) if p.charge_input_shared_write and h.shared_write_bytes_per_cycle_per_core else 0
-                if layout=='engine-routed' and p.charge_input_shared_write:
-                    if not h.shared_write_bytes_per_cycle_per_core:raise ValueError('Routed input requires Shared write bandwidth')
-                    store=routed_operands(bm,bn,width,h)['shared_bytes']/(h.shared_write_bytes_per_cycle_per_core*h.clock_hz)
-                tr=max(R/h.l2_read_bandwidth_Bps,store)
-                ts,_=operand_service_time(mapping,width,h,p,compute)
-                tc=compute.duration_s+model.panel_control_time(width,h,p)
-                segments.append((number,th,tr,ts,tc));hbytes+=repeat*number*H;rbytes+=repeat*number*R
-                service_totals=[a+number*b for a,b in zip(service_totals,[th,tr,ts,tc])]
-            run=operand_pipeline(segments,L,S,V)
-            outkey=(sizes,chunk,O)
-            if outkey not in out_cache:out_cache[outkey]=_output(sizes,chunk,O,h,p)
-            ot=out_cache[outkey];duration+=repeat*(run['duration_s']+ot);outbytes+=repeat*sum(size*num for size,num in sizes)
-            details.append(dict(active_cores=active,count=repeat,input_s=run['duration_s'],output_s=ot,service_s=service_totals))
-        result=dict(duration_us=duration*1e6,duration_s=duration,mapping=mapping.to_dict(),output_tasks=tasks,wave_count=sum(classes.values()),wave_classes=details,hbm_read_bytes=hbytes,l2_read_bytes=rbytes,output_bytes=outbytes)
-        if best is None or result['duration_us']<best['duration_us']:best=result
-    if best is None:raise ValueError('No batched GEMM candidate fits resources')
-    assert best['output_bytes']==batch*m*n*2
-    return dict(operator='batched_gemm',batch=batch,shape=[m,n,k],transpose_b=transpose_b,best=best,searched_candidates=count,feasible_candidates=feasible,
-        scope='Independent heads packed across CUs; same MMAC/store/control services; reuse only within one head in a wave; no inter-wave cache retention or layout-conversion time; no attention fusion',
-        minimum_batched_tile=64)
+def _pv(n, k):
+    """PV-like: output-narrow, the stream runs along K."""
+    return n <= k
+
+
+def predict_batched_gemm(batch, m, n, k, hardware, policy, *, transpose_b=False,
+                         profile=None):
+    for label, value in [('batch', batch), ('M', m), ('N', n), ('K', k)]:
+        integer(value, label)
+    prof = profile or load_profile()
+
+    a_bytes = batch * m * k * 2
+    b_bytes = batch * n * k * 2
+    c_bytes = batch * m * n * 2
+    footprint = a_bytes + b_bytes + c_bytes
+    if footprint > hardware.hbm_capacity_bytes:
+        raise ValueError('Batched inputs/output exceed HBM')
+
+    gemv_threshold = prof.get('gemv_m_threshold', 64)
+    regime = None
+
+    if batch == 1 and m < gemv_threshold:
+        single = prof['single']
+        regime = 'single-%s' % ('pv' if _pv(n, k) else 'qk')
+        launch = single['launch_pv_s'] if _pv(n, k) else single['launch_qk_s']
+        duration = launch + footprint / single['stream_bw_Bps']
+
+    elif m < gemv_threshold:
+        if _pv(n, k):
+            pv = prof['gemv_pv']
+            if m == 1:
+                # One block streams the member's whole B row set by itself.
+                regime = 'gemv-pv-single-row'
+                floor = n * k * 2 / pv['block_bw_Bps']
+                stream = pv['launch_s'] + footprint / pv['stream_bw_Bps']
+            else:
+                regime = 'gemv-pv'
+                floor = pv['multi_floor_s']
+                stream = pv['multi_launch_s'] + footprint / pv['multi_stream_bw_Bps']
+            duration = max(floor, stream)
+        else:
+            qk = prof['gemv_qk']
+            regime = 'gemv-qk'
+            duration = qk['launch_s'] + footprint / qk['stream_bw_Bps']
+
+    else:
+        tile = prof['tile']
+        if _pv(n, k):
+            pv = tile['pv']
+            regime = 'tile-pv'
+            # A is re-read for every member and dominates; the C write is
+            # small next to it for these shapes. With a single member the
+            # tile floor does not bind (one member's tiles already fill
+            # enough of the card on their own).
+            stream = pv['launch_s'] + a_bytes / pv['a_bw_Bps']
+            duration = stream if batch == 1 else max(pv['floor_s'], stream)
+        else:
+            qk = tile['qk']
+            regime = 'tile-qk'
+            # The C write stream sets the time; its measured rate falls as
+            # the reduction length grows because the B reads interleave.
+            k_ref = qk.get('c_bw_k_ref', 0)
+            c_bw = qk['c_bw_Bps']
+            if k_ref and k > 0:
+                exponent = qk.get('c_bw_k_exponent', 0.0)
+                c_bw = c_bw * (k_ref / k) ** exponent
+            duration = max(qk['floor_s'], qk['launch_s'] + c_bytes / c_bw)
+
+    best = dict(
+        duration_us=duration * 1e6,
+        duration_s=duration,
+        regime=regime,
+        mapping=dict(bm=min(m, 64), bn=min(n, 64), bk=k, gm=1, gn=1,
+                     l2_buffers=1, shared_buffers=1, output_chunk_bytes=16384,
+                     output_buffers=1, register_input_buffers=1,
+                     operand_layout='compact'),
+        output_tasks=batch,
+        wave_count=batch,
+        wave_classes=[],
+        hbm_read_bytes=a_bytes + b_bytes,
+        l2_read_bytes=0,
+        output_bytes=c_bytes,
+    )
+    return dict(
+        operator='batched_gemm', batch=batch, shape=[m, n, k],
+        transpose_b=transpose_b, best=best,
+        searched_candidates=0, feasible_candidates=1,
+        scope=('Independent heads; exact operand byte volumes (A, B, C); '
+               'per-regime launch offset and stream rate calibrated on BW1100 '
+               '(换机必须重测); no inter-member operand sharing; no fusion'),
+        minimum_batched_tile=gemv_threshold,
+    )

@@ -611,3 +611,111 @@ seq=4096，bf16，按 Megatron 的 NT 调用方式（权存 `(N,K)`，算 `x @ w
 - gpt_7B fc2 M=4096（N=4096，小方形 tile）被 ceiling 过度约束（253T → 210T 天花板）：从 -18.5% 变 +20.2%。如后续想修复可把 ceiling_tflops 适当提高并补偿其他大形状
 - 天花板值 210T 是在 BW1100 本机 NT 实测数据上标定的；换机器要用相同 K 形状复测确认
 - 库退化点（gpt_175B/405B TP1 fc1/qkv_proj，实测比模型慢 3~5×）仍在 -87% 附近，属于库行为问题，本次不修
+
+---
+
+## 2026-11-16 · 新增库行为修正层（library_correction.py），对 116 个未收敛算子分桶拟合
+
+**改了什么**
+- `superpod_compute/library_correction.py`（新增）— 在物理模型和预测调用方之间插入修正层；`apply_correction(raw_us, op, kind, phase, m, n, k, batch, tp)` 是唯一入口；按 (kind, phase, N, K, batch) 分 9 个桶，每桶 `factor × raw_us + overhead_us`；`LibKind` 枚举标注每个桶的库行为类型（library_degrade / kernel_overhead / largek_residual / wave_pipeline / kernel_switching / vector_degrade）；所有非 PHYSICAL 桶均标注 `machine_specific=True`（换机重测）
+- `bw_probe/regenerate_predictions_local.py` — 接入修正层；每个 case 写入 `lib_bucket`、`lib_kind`、`lib_factor`、`lib_overhead` 字段；HTML 生成不变
+
+**为什么要改（问题）**
+- `P和D完整预测_1116.html` 中有 116/462 个算子 |err|>15%
+- 之前所有物理模型修复尝试（波间流水公式三种变体、input/output 重叠）均在修好一组的同时破坏另一组；根本原因是不同形状的库内核选择不同，单一物理公式无法同时拟合
+- 物理模型应保持干净（描述硬件理论能力）；库行为差异单独一层处理，明确标注换机要重测
+
+**9 个桶的系数来源**
+- 系数来源：从 462 个算子的 `measured_us / model_us` 分布取中位数
+- 写入实际系数的桶（factor≠1.0）：
+
+  | 桶 | factor | 效果 (bad 变化) |
+  |---|---|---|
+  | B1_DECODE_SMALL | 1.073 | 17→15（改善 15 个，2 个轻微变差）|
+  | C_PREFILL_GEMM | 1.070 | 12→7（改善 11 个，1 个变差）|
+  | D_BATCHED_SMALL_B | 1.492 | 21→9（改善 20 个，1 个变差）|
+  | D_BATCHED_MID | 1.055 | 22→16（改善 19 个，3 个变差）|
+  | D_BATCHED_LARGE_B | 1.076 | 5→4（改善 4 个，1 个变差）|
+
+- 保留 factor=1.0 的桶（有理由不拟合）：
+  - **A_LIBRARY_DEGRADE**：比值 P25=1.67, P75=7.21，方差过大，单一系数无意义；标注为 library_degrade 供 HTML 单独标记
+  - **B2_DECODE_LARGEK**：中位数 1.009，K floor 已基本覆盖，无稳定残差
+  - **B3_DECODE_MID**：中位数 0.981，混合方向，改善 4 个破坏 3 个，净效果接近零
+  - **E_VECTOR**：中位数 1.0005，向量模型均值已准；11 个 bad case 是 N≥12288 的大形状超出 profile 覆盖范围
+
+**验证结果**
+- factor=1.0 时（框架接入前）输出与原始 JSON 完全一致（462/462 条差异为零）
+- 拟合系数写入后，bad cases 105→75（减少 30 个）；仍有 75 个超阈值，主要集中在 A_LIBRARY_DEGRADE（无法修）和 D_BATCHED_SMALL_B 的极端 batch（b=4~5 的 attn_pv）
+
+**已知限制**
+- 所有 `machine_specific=True` 的桶系数只在 BW1100 本机测定；换机器须对每个桶用同类形状重测校准
+- A_LIBRARY_DEGRADE（N≥36864 TP=1）12 个形状全部保持 bad；需要比值表（per-shape）才能覆盖
+- D_BATCHED_SMALL_B 的 factor=1.492 是中位近似，batch=4~5 的极端形状仍有 -50%~-68%（kernel switching 非单调，单一系数无法覆盖）
+- factor 是乘法修正；对于由固定 kernel-launch overhead 主导的小形状（B1）应为加法；当前用乘法是近似，对极小形状（<10µs）欠准
+
+---
+
+## 2026-11-17 · 三处物理建模补齐：GEMV 连续流带宽、fat-GEMV 带宽效率、layernorm 慢档判据（commit 留空）
+
+**改了什么**
+- `superpod_compute/operators.py` — `GemmModel.input_hbm_bandwidth` / `input_a_hbm_bandwidth` 改为接收 `request`；新增 `_gemv_stream_is_contiguous` 与 `_gemv_hbm_efficiency_applies` 两个判据
+  - M < 8 且 K 是 `matrix_gemv_contiguous_k_quantum`（4096 元素 = 8 KiB）的整数倍时，B 行按整页连续流式读，带宽取 `hbm_contiguous_bandwidth_Bps`（2.0 TB/s）
+  - 8 ≤ M < 64 且 K ≥ 16384 且 K 是 `matrix_gemv_hbm_efficiency_k_alignment`（8192 元素 = 16 KiB）的整数倍时，fat-GEMV 内核带宽取 0.70 × 名义值（B 行步长按 2 的幂对齐 → L2 set 冲突别名）
+- `superpod_compute/vector_ops.py` — `regime()` 新增 `gmem_large` 子状态，两个判据：大 hidden + 少行；或 footprint ≥ `layernorm_slow_footprint_bytes`（200 MB）
+- `superpod_compute/contracts.py` — `Hardware` 新增 `matrix_gemv_hbm_efficiency`、`matrix_gemv_hbm_efficiency_k_threshold`、`matrix_gemv_contiguous_k_quantum`
+- `superpod_compute/data/bw1100_mapper_mmac_hardware.json` — 写入 0.70 / 16384 / 4096
+- `superpod_compute/data/bw1100_vector_profile.json` — 新增 `gmem_large` 效率（bf16 layernorm 0.03926 = gmem 0.051075 / 1.30）、阈值键与 footprint 键
+
+**为什么要改（问题）**
+- decode M=1、K 为 4096 整数倍、N ≥ 6144 的形状系统性高估 +15~+18%（如 M=1/N=12288/K=4096 模型 62.0 µs、实测 53.4 µs）：实测有效带宽 1.88~2.04 TB/s，高于模型的 1.72 TB/s。M=1 时每个输出列消费一整条 B 行，行字节数为 8 KiB 整数倍时全部命中合并访问，库达到连续流速率
+- decode M=8、K ≥ 16384 的形状系统性低估 −26~−30%（如 M=8/N=4096/K=16384 模型 81.7、实测 117.0 µs）：实测有效带宽 1.18~1.31 TB/s（名义 1.72 的 0.69~0.76）
+- layernorm rows=8192、N=16384 低估 −30%（模型 1355、实测 1943 µs）：输入 footprint 268 MB 超过库的慢档阈值；同形状 rows=4096（134 MB）完全准确，说明触发量与行数无关而与 footprint 有关
+
+**怎么判断出原因的（测试）**
+- 用 `bw_probe/prefill_decode_1116.json` 的 462 条实测反算每种形状的有效带宽 `2(MK+NK+MN)/(meas − device_service)`，按 K 对 4096 取模分组：K%4096=0 的 M=1 形状全部落在 1.88~2.04 TB/s，K%4096≠0 的落在 1.50~1.65 TB/s
+- 对 M=8 大 K 形状用同一反算得到 0.69~0.76 的带宽比；用该值替换带宽后 6 个形状全部进入 ±9%
+- layernorm 用 `vector_ops.predict` 反解效率：rows=8192/N=16384 需要 0.0393，恰好等于 gmem 效率 / 1.30，且与 rows<64 大 N 缺口所需的比值一致
+- 排除的解释：不是 wave 量化（同 wave 利用率的形状误差却不同）、不是 K-floor 阈值（把阈值降到 6144/12288 会同时破坏 6~12 个原本准确的形状）、不是固定波次间开销（200 µs/过渡的假设会破坏 32 个形状）
+
+**验证结果**
+- M=1 连续流判据：9 个形状修复（+15~+18% → −0.2~+2.7%），0 个新破坏
+- M=8 fat-GEMV：6 个形状修复（−26~−30% → −1.5~+8.6%），0 个新破坏；M=1 与 M=8/K<16384 不受影响
+- layernorm：11 个形状全部进入 ±11%；rows=1024/4096 大形状（−3.5~+1.0%）不受影响
+
+**已知限制**
+- 三个判据的阈值与系数均为 BW1100 本机标定（换机必须重测）
+- K%4096≠0 且 N 大的 M=1 形状（如 M=1/N=12288/K=6144）仍按 1.72 TB/s 建模，实测落在 1.50~1.65；这一组的库内核选择尚无可用物理量描述
+- 服务器（hedr02 跳板）当次不可达，波次间同步开销、batched GEMV 小 batch、N≥36864 库退化三组未取得新实测，未改动
+
+> 补充（同日）：fat-GEMV 判据加入 8192 对齐条件。首版只按 K≥16384 生效，
+> 把 M=8/K=20480 与 M=8/K=53248 两个原本 −5% 的形状推高到 +34%/+36%；
+> 这两条 K 不是 8192 的整数倍，实测带宽 0.92~0.95（不是 0.70）。
+> 八个 M=8/K≥16384 实测点被"K%8192==0"干净分成 0.69~0.76 与 0.92~0.95 两档。
+
+---
+
+## 2026-11-17 · batched GEMM 按 PV/QKT 分离重构（`superpod_compute/batched.py`）
+
+**改了什么**
+- `superpod_compute/batched.py` — 用"精确字节量 + 分档 launch/流速率"模型替换原 GEMV 纯带宽路径与 tile 波次路径；PV（n≤k，输出窄）与 QKT（n>k，输出宽）分成两个结构域
+- `superpod_compute/data/bw1100_bmm_profile.json` — 新增，记录全部标定量与每个量对应的实测依据
+- `bw_probe/probe_bmm_pvqk.py` — 新增测量脚本（222 点）
+
+**为什么要改（问题）**
+- 原模型对 decode 小 batch 的 PV 低估 56~68%（M=1/n=128/k=4096/b=4：模型 5.6 µs、实测 17.7 µs），对 prefill QKT 大 batch 高估 20~33%
+- 同一 batch 范围内 PV 与 QKT 的误差方向相反，单一公式无法同时覆盖（此前已用 116 个点验证过三种波间流水公式均失败）
+
+**怎么判断出原因的（测试）**
+- 服务器实测 222 点（decode m=1/8 × batch 1..128，prefill m=1024/4096，PV 与 QKT 分开，n=128/96 与 k=128/96，另有 m=1..256 的块并行度探针）
+- 三次不同分配的重复测量散差 <1%，说明数值可重复；QKT 与 1116 会话的实测复现到 ±4%，确认机器状态一致
+- 结构判据：PV 的时间由 A/K 流决定（prefill 斜率反算 1.05~1.13 TB/s，与单 GEMM 的 A 上限一致），QKT 由 C 写流决定（0.72~0.96 TB/s）；decode 小 batch 由"单块流式时间"floor 决定（每块 ~60 GB/s）
+- 排除了：机器降频（QKT 复现）、地址敏感（三次分配一致）、L2 复用（各 member 独立，无跨 member 共享）
+
+**验证结果**
+- 报告内 96 个 bmm 单元：未收敛 48 → 7；222 个实测点中 189 个 ≤15%，中位误差 5.3%
+- 剩余 7 个：n=96 的 prefill PV（-41%/-33%，库选核）、QKT b=5（-21%，内核切换点两侧无法同时满足）、decode PV 的 b=40/b=12（±20%，实测非单调）
+
+**已知限制**
+- bmm 的 96 个单元用 2026-11-17 的新测量（与 GEMM/向量单元的 1116 测量同协议但不同会话）；PV decode 大 batch 两次会话差最多 +30%，属库选核差异，故整组重测
+- 所有系数为 BW1100 本机实测；《换机必须重测》
+- `probe_m` 显示 m=64~256 的块并行行为仍有台阶（m=128 处跳变），这些形状不在报告内，未建模

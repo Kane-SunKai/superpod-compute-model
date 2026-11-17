@@ -1,0 +1,43 @@
+{
+  "note": "Batched-GEMM (QKT/PV) library behaviour on BW1100, measured 2026-11-17 with the repository's CUDA-graph protocol (>=2 replays, median of 10x2 samples, median of 3 allocations, 0.5% run-to-run spread). Every constant here is a measured library property, not a hardware capability: the vendor library picks different kernels for the single-member, few-member and saturated regimes, and PV (n <= k, output-narrow, A/K-streaming) and QKT (n > k, output-wide, write-dominated) land in different kernels with different achievable rates. 换机必须重测. Hardware figures (HBM latency/bandwidth) stay in the hardware profile; nothing here scales with them, so a new card needs these numbers re-measured rather than re-derived.",
+  "gemv_m_threshold": 64,
+
+  "single": {
+    "note": "batch == 1 with m < 64: torch.bmm reduces to the non-batched vector kernel, far cheaper per byte than the batched path. Only used for the small-m regime; for m >= 64 the plain kernel is stream-bound like the tiled model and the tile regime is used instead.",
+    "launch_pv_s": 7.5e-06,
+    "launch_qk_s": 3.5e-06,
+    "stream_bw_Bps": 1.7e12
+  },
+
+  "gemv_qk": {
+    "note": "m < 64, n > k: output-wide, short K. Many N tiles per member, so the batched kernel behaves like a stream-limited matmul: a single line over the whole batch range (within 10% at every measured batch).",
+    "launch_s": 6.0e-06,
+    "stream_bw_Bps": 1.36e12
+  },
+
+  "gemv_pv": {
+    "note": "m < 64, n <= k: output-narrow, K-streaming. With a single row each block streams a whole B row set alone, so the time is floored by that block's stream time (n*k*2 / block_bw); multi-row members are already split across enough blocks and sit on a lower floor.",
+    "launch_s": 1.1e-05,
+    "stream_bw_Bps": 1.4e12,
+    "block_bw_Bps": 6.0e10,
+    "multi_launch_s": 0.0,
+    "multi_stream_bw_Bps": 1.03e12,
+    "multi_floor_s": 1.3e-05
+  },
+
+  "tile": {
+    "note": "m >= 64: members are cut into output tiles. PV is A-read bound (the 1.05-1.13 TB/s A ceiling seen on single GEMMs); QKT is output-write bound. c_bw_k_ref/c_bw_k_exponent capture the measured dependence of the write stream on the reduction length (128 -> 0.72 TB/s, 96 -> 0.90 TB/s, same output bytes), which comes from the B reads interleaving with the C write stream.",
+    "pv": {
+      "launch_s": 8.0e-06,
+      "a_bw_Bps": 1.1e12,
+      "floor_s": 2.3e-05
+    },
+    "qk": {
+      "launch_s": 5.5e-06,
+      "c_bw_Bps": 7.2e11,
+      "c_bw_k_ref": 128,
+      "c_bw_k_exponent": 0.75,
+      "floor_s": 0.0
+    }
+  }
+}

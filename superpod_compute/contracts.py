@@ -90,6 +90,25 @@ class Hardware:
     shared_words_per_bank_cycle: int = 1
     matrix_large_k_threshold: int = 0
     matrix_large_k_ceiling_tflops: float = 0.0
+    # Small-M large-K tier: decode shapes (M <= small_m_threshold) have a lower
+    # effective ceiling because the library selects a GEMV-like kernel.
+    # 换机必须重测.
+    matrix_small_m_threshold: int = 0
+    matrix_small_m_large_k_threshold: int = 0
+    matrix_small_m_ceiling_tflops: float = 0.0
+    # GEMV-kernel HBM bandwidth efficiency for small M (M < 64). The GEMV
+    # kernel reads operands with a stream pattern that achieves lower
+    # HBM utilisation than the GEMM tile kernel. Calibrated on BW1100 M=1,8
+    # large-K measurements at ~0.70 of nominal. 换机必须重测.
+    matrix_gemv_hbm_efficiency: float = 1.0
+    # K threshold above which GEMV-kernel HBM efficiency degradation applies,
+    # and the row-stride alignment at which the B stream aliases L2 sets.
+    matrix_gemv_hbm_efficiency_k_threshold: int = 16384
+    matrix_gemv_hbm_efficiency_k_alignment: int = 0
+    # When M < 8 and K is a multiple of this quantum, the GEMV kernel streams
+    # whole page-aligned B rows and sustains the contiguous HBM rate.
+    # 0 disables the contiguous-path model. 换机必须重测.
+    matrix_gemv_contiguous_k_quantum: int = 0
 
 
     def __post_init__(self):
